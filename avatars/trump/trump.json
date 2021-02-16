@@ -1,0 +1,89 @@
+{
+    "imageSrc": "/images/spritesheet-trump.png",
+    "spriteWidth": 100,
+    "spriteHeight": 100,
+    "offsetX": 0,
+    "offsetY": 0,
+    "idleX": -100,
+    "idleY": 0,
+    "animationSteps": 6,
+    "animationPrefix": "trump",
+    "animations": [
+        {
+            "name": "up",
+            "orientationRange": [
+                -45,
+                45
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -2
+                },
+                {
+                    "percent": 100,
+                    "x": -6,
+                    "y": -2
+                }
+            ]
+        },
+        {
+            "name": "right",
+            "orientationRange": [
+                45,
+                135
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -1
+                },
+                {
+                    "percent": 100,
+                    "x": -6,
+                    "y": -1
+                }
+            ]
+        },
+        {
+            "name": "down",
+            "orientationRange": [
+                135,
+                225
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "percent": 100,
+                    "x": -6,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name": "left",
+            "orientationRange": [
+                225,
+                315
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -3
+                },
+                {
+                    "percent": 100,
+                    "x": -6,
+                    "y": -3
+                }
+            ]
+        }
+    ]
+}

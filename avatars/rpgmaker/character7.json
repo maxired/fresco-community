@@ -1,0 +1,109 @@
+{
+    "imageSrc": "/images/spritesheet-rpgmaker.png",
+    "spriteWidth": 48,
+    "spriteHeight": 48,
+    "offsetX": -288,
+    "offsetY": -192,
+    "idleX": -48,
+    "idleY": 0,
+    "animationSteps": 2,
+    "animationPrefix": "rpgmaker",
+    "animations": [
+        {
+            "name": "up",
+            "orientationRange": [
+                -45,
+                45
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -3
+                },
+                {
+                    "percent": 50,
+                    "x": -2,
+                    "y": -3
+                },
+                {
+                    "percent": 100,
+                    "x": 0,
+                    "y": -3
+                }
+            ]
+        },
+        {
+            "name": "right",
+            "orientationRange": [
+                45,
+                135
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -2
+                },
+                {
+                    "percent": 50,
+                    "x": -2,
+                    "y": -2
+                },
+                {
+                    "percent": 100,
+                    "x": 0,
+                    "y": -2
+                }
+            ]
+        },
+        {
+            "name": "down",
+            "orientationRange": [
+                135,
+                225
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "percent": 50,
+                    "x": -2,
+                    "y": 0
+                },
+                {
+                    "percent": 100,
+                    "x": 0,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name": "left",
+            "orientationRange": [
+                225,
+                315
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -1
+                },
+                {
+                    "percent": 50,
+                    "x": -2,
+                    "y": -1
+                },
+                {
+                    "percent": 100,
+                    "x": 0,
+                    "y": -1
+                }
+            ]
+        }
+    ]
+}
