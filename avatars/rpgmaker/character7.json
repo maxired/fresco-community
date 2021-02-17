@@ -7,7 +7,6 @@
     "idleX": -48,
     "idleY": 0,
     "animationSteps": 2,
-    "animationPrefix": "rpgmaker",
     "animations": [
         {
             "name": "up",

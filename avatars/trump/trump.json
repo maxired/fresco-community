@@ -7,7 +7,6 @@
     "idleX": -100,
     "idleY": 0,
     "animationSteps": 6,
-    "animationPrefix": "trump",
     "animations": [
         {
             "name": "up",
