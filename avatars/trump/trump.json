@@ -8,6 +8,7 @@
     "idleY": 0,
     "animationSteps": 6,
     "animationPrefix": "trump",
+    "animationDuration": "1s",
     "animations": [
         {
             "name": "up",

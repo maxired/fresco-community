@@ -8,6 +8,7 @@
     "idleY": 0,
     "animationSteps": 2,
     "animationPrefix": "rpgmaker",
+    "animationDuration": "1s",
     "animations": [
         {
             "name": "up",

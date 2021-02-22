@@ -1,12 +1,13 @@
 {
-    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/amongus/sprites.png",
-    "spriteWidth": 125,
-    "spriteHeight": 108,
-    "offsetX": -125,
+    "imageSrc": "https://dev-community.fres.co/avatars/amongus/sprites.png",
+    "spriteWidth": 114,
+    "spriteHeight": 99,
+    "offsetX": -114,
     "offsetY": 0,
-    "idleX": 125,
+    "idleX": 114,
     "idleY": 0,
-    "animationSteps": 2,
+    "animationSteps": 4,
+    "animationDuration": ".5s",
     "animations": [
         {
             "name": "right",
@@ -22,7 +23,7 @@
                 },
                 {
                     "percent": 100,
-                    "x": -1,
+                    "x": -4,
                     "y": 0
                 }
             ]
@@ -41,7 +42,7 @@
                 },
                 {
                     "percent": 100,
-                    "x": -1,
+                    "x": -4,
                     "y": -1
                 }
             ]
