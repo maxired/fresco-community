@@ -7,6 +7,7 @@
     "idleX": -100,
     "idleY": 0,
     "animationSteps": 6,
+    "animationDuration": "1s",
     "animations": [
         {
             "name": "up",
