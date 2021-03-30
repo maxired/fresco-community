@@ -3,15 +3,15 @@
 1. Add an entry in hosts:
 
 ```
-    127.0.0.1 dev.frescoextensions.com
+    127.0.0.1 dev-community.fres.co
 ```
-2. Set up your web server to respond to https://dev.frescoextensions.com/ (points to the root of the repo)
+2. Set up your web server to respond to https://dev-community.fres.co/ (points to the root of the repo)
 
 # To add the timer to a fres.co space
 
 1. Copy the following snippet
 ```
-    extension:https://dev.frescoextensions.com/timer
+    extension://dev-community.fres.co/elements/timer
 ```
 2. Paste it in the space
 
