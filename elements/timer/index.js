@@ -27,7 +27,12 @@ function startTimer(targetTime, now) {
         const timeRemaining = targetTime - new Date().getTime();
         button.innerText = toTime(timeRemaining);
         if (timeRemaining <= 0) {
+
+            const tingsha = new Audio('tingsha.mp3');
+            tingsha.play();
             button.classList.add('button--done');
+            clearInterval(interval);
+            interval = null;
         }
     }, 1000);
 }
@@ -46,8 +51,11 @@ function toggleTimer() {
 }
 
 fresco.onReady(function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const duration = urlParams.get('duration');
+
     const defaultState = {
-        duration: 1,
+        duration: duration ? parseFloat(duration, 2) : 5,
         startedAt: null
     };
 
