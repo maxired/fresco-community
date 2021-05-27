@@ -69,8 +69,6 @@ fresco.onReady(function () {
         }]
     };
 
-    fresco.initialize(defaultState, elementConfig);
-
     fresco.onStateChanged(function () {
         if (!fresco.element.state.startedAt) {
             stopTimer();
@@ -80,8 +78,7 @@ fresco.onReady(function () {
             startTimer(targetTime, new Date().getTime());
         }
     });
-
-    stopTimer();
+    fresco.initialize(defaultState, elementConfig);
     button.addEventListener('click', toggleTimer);
 });
 
