@@ -11,7 +11,7 @@
 
 1. Copy the following snippet
 ```
-    extension://dev-community.fres.co/elements/timer?duration=10
+    extension://dev-community.fres.co/elements/timer/index.htm?duration=10
 ```
 2. Paste it in the space
 

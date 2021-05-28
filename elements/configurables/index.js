@@ -1,6 +1,21 @@
-const main = document.getElementById('main');
 
 fresco.onReady(function () {
+    const main = document.getElementById('main');
+
+    function render(){
+        main.innerHTML = `
+        <div>
+            <ul>
+                ${
+                    ['sliderConfigurable', 'numberConfigurable', 'colorConfigurable', 'stringConfigurable', 'selectionConfigurable', 'actionConfigurable']
+                    .map(name => 
+                        `<li>${name} : ${fresco.element.state[name]}</li>`)
+                    .join('')
+                }
+            </ul>
+        </div>`
+    }
+
     const defaultState = {
         sliderConfigurable: 12,
         numberConfigurable: 36,
@@ -52,16 +67,3 @@ fresco.onReady(function () {
     render()
 });
 
-function render(){
-    main.innerHTML = `
-    <div>
-        <ul>
-            ${
-                ['sliderConfigurable', 'numberConfigurable', 'colorConfigurable', 'stringConfigurable', 'selectionConfigurable', 'actionConfigurable']
-                .map(name => 
-                    `<li>${name} : ${fresco.element.state[name]}</li>`)
-                .join('')
-            }
-        </ul>
-    </div>`
-}
