@@ -1,4 +1,15 @@
-# Set up
+
+# Description
+
+This extension is a simple demo of a plugin showing all configurables options available to plugin
+
+To add it to a fres.co space, copy the following snippet and paste in anywhere in your space
+
+```
+    extension://fres-co.github.io/fresco-community/elements/configurables
+```
+
+# Dev
 
 1. Add an entry in hosts:
 
@@ -10,9 +21,11 @@
 # To add the timer to a fres.co space
 
 1. Copy the following snippet
+in dev
 ```
-    extension://dev-community.fres.co/elements/timer/index.htm?duration=10
+    extension://dev-community.fres.co/elements/configurables
 ```
+
 2. Paste it in the space
 
 # Source of inspiration
