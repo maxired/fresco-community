@@ -291,5 +291,12 @@
         }
       ]
     }
+  },
+  {
+    "name":"Lobby",
+    "displayName":"Lobby",
+    "displaySearch":"Lobby",
+    "url":"https://fres-co.github.io/fresco-community/assets/chair2.svg",
+    "content": {"visuals":[{"id":"1h8McrgJK4siEiguSF9uu","isLocked":false,"zIndex":-1623909012306,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":-1471,"y":-679},"size":{"x":100,"y":100},"rotation":0},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"entrance","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"l1sXu21eHP6sU_iCPStr8","isLocked":false,"zIndex":1623908485937,"layer":0,"renderer":"Rectangle","transform":{"position":{"x":-983,"y":-438},"size":{"x":1160,"y":660},"rotation":0},"appearance":{"COLOR":"#c2ac94","STROKE_COLOR":"#fde9d2","STROKE_THICKNESS":20,"BORDER_RADIUS":20,"TEXT_DISABLED":true,"BODY_TYPE":"PASSTHROUGH"}},{"id":"-FEfKgw0CBeJ3kKaGlDM2","isLocked":false,"zIndex":1623908485938,"layer":0,"renderer":"Heading","transform":{"position":{"x":-1492,"y":-813},"size":{"x":142,"y":90},"rotation":0},"appearance":{"COLOR":"#737373","BORDER_RADIUS":20,"FONT_WEIGHT":"bold","TEXT_BEHAVIOUR":1,"TEXT":"Lobby","FONT_SIZE":36,"BACKGROUND_COLOR":"transparent","FONT_FAMILY":"Arial","TEXT_MULTILINE":true}},{"id":"BJxIr51cIz99NlZiuOfzl","isLocked":false,"zIndex":1623908485939,"layer":0,"renderer":"Raster","transform":{"position":{"x":-543,"y":-657.5},"size":{"x":280,"y":219},"rotation":0},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/plant1.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":""}}],"groups":[]}
   }
 ]
