@@ -45,7 +45,7 @@
       "visuals":[
         {
           "id":"-vDTiLIAqhaiF9j7qLLIR",
-          "isLocked":true,
+          "isLocked":false,
           "zIndex":-1623142523486,
           "layer":0,
           "renderer":"SnapPoint",
@@ -73,7 +73,7 @@
         },
         {
           "id":"mojf-RKVGKWLzmZE7vcA_",
-          "isLocked":true,
+          "isLocked":false,
           "zIndex":-1623142508016,
           "layer":0,
           "renderer":"Raster",
