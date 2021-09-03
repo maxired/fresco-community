@@ -1,13 +1,13 @@
 {
-    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/birds/yellow.png",
-    "spriteWidth": 102,
-    "spriteHeight": 90,
+    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/birds/googly.png",
+    "spriteWidth": 108,
+    "spriteHeight": 70,
     "offsetX": 0,
     "offsetY": 0,
     "idleX": 0,
     "idleY": 0,
-    "animationSteps": 2,
-    "animationPrefix": "yellow-bird",
+    "animationSteps": 1,
+    "animationPrefix": "googly",
     "animationDuration": ".5s",
     "animations": [
         {

@@ -1,13 +1,13 @@
 {
-    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/birds/yellow.png",
-    "spriteWidth": 102,
-    "spriteHeight": 90,
+    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/birds/simplet.png",
+    "spriteWidth": 72,
+    "spriteHeight": 70,
     "offsetX": 0,
     "offsetY": 0,
     "idleX": 0,
     "idleY": 0,
-    "animationSteps": 2,
-    "animationPrefix": "yellow-bird",
+    "animationSteps": 8,
+    "animationPrefix": "simplet",
     "animationDuration": ".5s",
     "animations": [
         {
@@ -24,7 +24,26 @@
                 },
                 {
                     "percent": 100,
-                    "x": -2,
+                    "x": -8,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name": "idle-right",
+            "orientationRange": [
+                0,
+                180
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "percent": 100,
+                    "x": -8,
                     "y": 0
                 }
             ]
@@ -43,27 +62,8 @@
                 },
                 {
                     "percent": 100,
-                    "x": -2,
+                    "x": -8,
                     "y": -1
-                }
-            ]
-        },
-        {
-            "name": "idle-right",
-            "orientationRange": [
-                0,
-                180
-            ],
-            "keyframes": [
-                {
-                    "percent": 0,
-                    "x": 0,
-                    "y": 0
-                },
-                {
-                    "percent": 100,
-                    "x": -2,
-                    "y": 0
                 }
             ]
         },
@@ -81,7 +81,7 @@
                 },
                 {
                     "percent": 100,
-                    "x": -2,
+                    "x": -8,
                     "y": -1
                 }
             ]
