@@ -30,7 +30,45 @@
             ]
         },
         {
+            "name": "idle-right",
+            "orientationRange": [
+                0,
+                180
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "percent": 100,
+                    "x": -4,
+                    "y": 0
+                }
+            ]
+        },
+        {
             "name": "left",
+            "orientationRange": [
+                180,
+                360
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -1
+                },
+                {
+                    "percent": 100,
+                    "x": -4,
+                    "y": -1
+                }
+            ]
+        },
+        {
+            "name": "idle-left",
             "orientationRange": [
                 180,
                 360

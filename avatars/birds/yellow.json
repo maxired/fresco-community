@@ -57,6 +57,54 @@
                     "y": -1
                 }
             ]
+        },
+        {
+            "name": "idle-right",
+            "orientationRange": [
+                0,
+                180
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "percent": 50,
+                    "x": -1,
+                    "y": 0
+                },
+                {
+                    "percent": 100,
+                    "x": -2,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name": "idle-left",
+            "orientationRange": [
+                180,
+                360
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": -1
+                },
+                {
+                    "percent": 50,
+                    "x": -1,
+                    "y": -1
+                },
+                {
+                    "percent": 100,
+                    "x": -2,
+                    "y": -1
+                }
+            ]
         }
     ]
 }
