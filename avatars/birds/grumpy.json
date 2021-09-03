@@ -6,7 +6,7 @@
     "offsetY": 0,
     "idleX": 0,
     "idleY": 0,
-    "animationSteps": 4,
+    "animationSteps": 8,
     "animationPrefix": "grumpy",
     "animationDuration": ".5s",
     "animations": [
