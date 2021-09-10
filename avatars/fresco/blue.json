@@ -1,5 +1,5 @@
 {
-    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/dragonbox/dragonbox.png",
+    "imageSrc": "https://localhost:8080/fresco/blue.png",
     "spriteWidth": 50,
     "spriteHeight": 70,
     "offsetX": -50,
@@ -9,6 +9,29 @@
     "animationSteps": 4,
     "animationDuration": ".5s",
     "animations": [
+        {
+            "name": "idle",
+            "animationSteps": 1,
+            "animationDuration": "10s",
+            "orientationRange": [361, 361],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "percent": 99,
+                    "x": 1,
+                    "y": -1
+                },
+                {
+                    "percent": 100,
+                    "x": 1,
+                    "y": -1
+                }
+            ]
+        },
         {
             "name": "right",
             "orientationRange": [
