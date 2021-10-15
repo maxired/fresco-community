@@ -1,0 +1,198 @@
+[
+    {
+        "name":  "amphitheater 01",
+        "filename":  "amphitheater-01.png"
+    },
+    {
+        "name":  "amphitheater 02",
+        "filename":  "amphitheater-02.png"
+    },
+    {
+        "name":  "column 01",
+        "filename":  "column-01.png"
+    },
+    {
+        "name":  "column 02",
+        "filename":  "column-02.png"
+    },
+    {
+        "name":  "column 03",
+        "filename":  "column-03.png"
+    },
+    {
+        "name":  "column 04",
+        "filename":  "column-04.png"
+    },
+    {
+        "name":  "column 05",
+        "filename":  "column-05.png"
+    },
+    {
+        "name":  "cup coffee plate",
+        "filename":  "cup-coffee-plate.png"
+    },
+    {
+        "name":  "cup coffee",
+        "filename":  "cup-coffee.png"
+    },
+    {
+        "name":  "cup empty",
+        "filename":  "cup-empty.png"
+    },
+    {
+        "name":  "cup plate",
+        "filename":  "cup-plate.png"
+    },
+    {
+        "name":  "mushroom 01",
+        "filename":  "mushroom-01.png"
+    },
+    {
+        "name":  "mushroom 02",
+        "filename":  "mushroom-02.png"
+    },
+    {
+        "name":  "patch 01",
+        "filename":  "patch-01.png"
+    },
+    {
+        "name":  "patch 02",
+        "filename":  "patch-02.png"
+    },
+    {
+        "name":  "patch 03",
+        "filename":  "patch-03.png"
+    },
+    {
+        "name":  "patch 04",
+        "filename":  "patch-04.png"
+    },
+    {
+        "name":  "patch 05",
+        "filename":  "patch-05.png"
+    },
+    {
+        "name":  "plant 01",
+        "filename":  "plant-01.png"
+    },
+    {
+        "name":  "plant 02",
+        "filename":  "plant-02.png"
+    },
+    {
+        "name":  "plant 03",
+        "filename":  "plant-03.png"
+    },
+    {
+        "name":  "plant 04",
+        "filename":  "plant-04.png"
+    },
+    {
+        "name":  "plant 05",
+        "filename":  "plant-05.png"
+    },
+    {
+        "name":  "plate",
+        "filename":  "plate.png"
+    },
+    {
+        "name":  "rock 01",
+        "filename":  "rock-01.png"
+    },
+    {
+        "name":  "rock 02",
+        "filename":  "rock-02.png"
+    },
+    {
+        "name":  "screen 01",
+        "filename":  "screen-01.png"
+    },
+    {
+        "name":  "screen 02",
+        "filename":  "screen-02.png"
+    },
+    {
+        "name":  "seat 01",
+        "filename":  "seat-01.png"
+    },
+    {
+        "name":  "seat 02",
+        "filename":  "seat-02.png"
+    },
+    {
+        "name":  "seat 03",
+        "filename":  "seat-03.png"
+    },
+    {
+        "name":  "seat 04",
+        "filename":  "seat-04.png"
+    },
+    {
+        "name":  "seat 05",
+        "filename":  "seat-05.png"
+    },
+    {
+        "name":  "stone block 01",
+        "filename":  "stone-block-01.png"
+    },
+    {
+        "name":  "stone block 02",
+        "filename":  "stone-block-02.png"
+    },
+    {
+        "name":  "tile 01",
+        "filename":  "tile-01.png"
+    },
+    {
+        "name":  "tile 02",
+        "filename":  "tile-02.png"
+    },
+    {
+        "name":  "tile 03",
+        "filename":  "tile-03.png"
+    },
+    {
+        "name":  "tile 04",
+        "filename":  "tile-04.png"
+    },
+    {
+        "name":  "tile 05",
+        "filename":  "tile-05.png"
+    },
+    {
+        "name":  "tile patch 01",
+        "filename":  "tile-patch-01.png"
+    },
+    {
+        "name":  "tree 01",
+        "filename":  "tree-01.png"
+    },
+    {
+        "name":  "tree 02",
+        "filename":  "tree-02.png"
+    },
+    {
+        "name":  "tree 03",
+        "filename":  "tree-03.png"
+    },
+    {
+        "name":  "tree 04",
+        "filename":  "tree-04.png"
+    },
+    {
+        "name":  "tree 05",
+        "filename":  "tree-05.png"
+    },
+    {
+        "name":  "tree 06",
+        "filename":  "tree-06.png"
+    },
+    {
+        "name":  "tree 07",
+        "filename":  "tree-07.png"
+    },
+    {
+        "name":  "tree 08",
+        "filename":  "tree-08.png"
+    }
+]
