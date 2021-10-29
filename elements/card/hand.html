@@ -1,0 +1,15 @@
+
+<html>
+<div id="hand"> Throw the dice</div>
+<script>
+console.log('executing script');
+const bc = new BroadcastChannel('test_channel');
+bc.onmessage = (ev) => {
+console.log('on message ', ev);
+if(ev.data.action === 'dice'){
+const value = Math.floor((Math.random() *6) + 1)
+document.querySelector('#hand').innerHTML = 'dice value:  ' + value
+}
+}
+</script>
+</html>
