@@ -1,0 +1,77 @@
+<html>
+ <script src='../../loadSdk.js' ></script>
+<script>
+let click = 0;
+function RandomAvatar(){
+
+fresco.send({
+            type: 'extension/out/redux',
+            payload: {
+                senderId: fresco.element.id,
+                action: {
+                    userId: undefined,
+                    type: 'PASTE_ITEMS',
+                    payload: { "diagramId":"noomlab",
+                    "json": JSON.stringify({
+                        "visuals":[     
+    {
+        "id": "MptkC0srl3oAXB1FoI0H0" + Date.now(),
+        "isLocked": false,
+        "zIndex": 98,
+        "layer": 0,
+        "renderer": "Raster",
+        "transform": {
+            "position": {
+                "x": 410,
+                "y": 610
+            },
+            "size": {
+                "x": 100,
+                "y": 100
+            },
+            "rotation": 0
+        },
+        "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fresco-upload-prod2.s3.amazonaws.com/public/JAiBJ3KWLTgzSL8yJYGue.png",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": "",
+            "IMAGE_TILED": false
+        }
+    }
+],"groups":[]})
+                        ,"x":200 + Math.random() * 400,"y":-200 + Math.random() * 400,"deltaX":0,"deltaY":0 }
+                }
+                
+            }
+        });
+
+}
+function RandomColor(){
+
+fresco.send({
+            type: 'extension/out/redux',
+            payload: {
+                senderId: fresco.element.id,
+                action: {
+                    userId: undefined,
+                    type: 'UPDATE_LOCAL_PARTICIPANT',
+                    payload: { color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+ }
+                }
+            }
+        });
+
+}
+
+
+fresco.onReady(() => {
+})
+</script>
+<body style="background-color:white">
+<button onclick="RandomAvatar()">Add Noom</button>
+</body>
+</html>
