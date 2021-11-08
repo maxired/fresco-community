@@ -30,7 +30,7 @@ fresco.send({
 "appearance": {
     "NAME":  "",
     "TEXT_BEHAVIOUR": 2,
-    "SOURCE": "https://localhost:8080/elements/nooms/noom.html",
+    "SOURCE": `${window.location.origin}/elements/nooms/noom.html`,
     "PINNED": false,
     "TEXT_DISABLED": true,
     "STROKE_COLOR": 13224393,

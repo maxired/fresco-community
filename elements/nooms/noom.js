@@ -68,7 +68,6 @@ fresco.onReady(function () {
                 // update value
 
                 fresco.setState({ sliderConfigurable: fresco.element.state.sliderConfigurable + ev.data.payload.state.sliderConfigurable })
-                fresco.setState({ sliderConfigurable: fresco.element.state.sliderConfigurable + ev.data.payload.state.sliderConfigurable })
                 
                 fresco.send({
                     type: 'extension/out/redux',
@@ -99,6 +98,7 @@ fresco.onReady(function () {
 
         const newValue = fresco.element.state['sliderConfigurable'];
         if(newValue !== currentValue) {
+            const diff = newValue - currentValue;
             currentValue = newValue;
              fresco.send({
                 type: 'extension/out/redux',
@@ -112,6 +112,10 @@ fresco.onReady(function () {
                             "oldBounds": fresco.element.transform,
                             "newBounds": {
                                 ...fresco.element.transform,
+                                position: {
+                                    ...fresco.element.transform.position,
+                                    y: fresco.element.transform.position.y - diff * 50
+                                },
                                 size: {
                                     ...fresco.element.transform.size,
                                     y: 150 + (currentValue -1) * 100
