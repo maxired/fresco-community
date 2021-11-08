@@ -88,7 +88,7 @@ fresco.onReady(function () {
         }
     }
 
-    let currentValue = 0;
+    let currentValue = 1;
     fresco.onStateChanged(function () {
 
         bc.postMessage({
@@ -97,7 +97,8 @@ fresco.onReady(function () {
         });
 
         const newValue = fresco.element.state['sliderConfigurable'];
-        if(newValue !== currentValue) {
+        if (newValue !== currentValue) {
+            console.log('newValue updated', { newValue, currentValue })
             const diff = newValue - currentValue;
             currentValue = newValue;
              fresco.send({
@@ -118,7 +119,7 @@ fresco.onReady(function () {
                                 },
                                 size: {
                                     ...fresco.element.transform.size,
-                                    y: 150 + (currentValue -1) * 100
+                                    y: 140 + (currentValue -1) * 100
                                 },
                             },
                             "itemIds":[fresco.element.id]
@@ -145,10 +146,11 @@ document.addEventListener('click', (event) => {
     const secondValue = fresco.element.state.sliderConfigurable - newValue;
    
 
-    if (secondValue> 0) {
-        fresco.setState({ sliderConfigurable: newValue });
-        const secondY = fresco.element.transform.position.y + secondValue * 100
-        newNoom({ x: fresco.element.transform.position.x, y: secondY, value: secondValue })
+    if (secondValue> 0 && newValue > 0) {
+        fresco.setState({ sliderConfigurable: secondValue });
+        const top = fresco.element.transform.position.y - fresco.element.transform.size.y / 2;
+        const secondY = top + newValue * 100 - 10;
+        newNoom({ x: fresco.element.transform.position.x, y: secondY, value: newValue })
     }
     
 })
