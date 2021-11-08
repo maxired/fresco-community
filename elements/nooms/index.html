@@ -1,4 +1,37 @@
 <html>
+    <style>
+        html, body {
+            background-color: transparent;
+        }
+        .pipe-front, .pipe-back {
+            position: absolute;
+            top: -40px;
+            left: 20;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 135px;
+            height: 200px;
+        }
+
+        .pipe-front {
+            background-image: url('./assets/PipeFront.png');
+        }
+        .pipe-back {
+            background-image: url('./assets/PipeBack.png');
+        }
+
+        .noom {
+            position: absolute;
+            top: 35;
+            left: 50;
+            width: 70;
+            height: 70;
+            background-image: url('./assets/Bodies/Noom_01.png');
+            background-size: contain;
+            background-color: transparent;
+            border: 0;
+        }
+    </style>
  <script src='../../loadSdk.js' ></script>
 <script>
 let click = 0;
@@ -74,7 +107,12 @@ fresco.send({
 fresco.onReady(() => {
 })
 </script>
-<body style="background-color:white">
-<button onclick="RandomAvatar()">Add Noom</button>
+<body style="background-color:transparent;">
+    <div class='pipe-back' ></div>
+    <div class='pipe-front'></div>
+
+    <div class='noom' ></div>
+    
+<button class='noom'  onclick="RandomAvatar()"></button>
 </body>
 </html>

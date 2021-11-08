@@ -47,10 +47,7 @@ fresco.onReady(function () {
     fresco.onStateChanged(function () {
         const newValue = fresco.element.state['sliderConfigurable'];
         if(newValue !== currentValue) {
-            console.log('maxired newValue !== currentValue', newValue,  currentValue)
             currentValue = newValue;
-            console.log('fresco.element', fresco.element)
-            debugger;
              fresco.send({
                 type: 'extension/out/redux',
                 payload: {
