@@ -26,7 +26,6 @@ fresco.onReady(function () {
             value-=10;
         }
         indexes.unshift(value);
-        console.log('maxired indexes', { indexes })
         noomDiv.innerHTML = indexes.map((index) => Img(nooms[index -1].src)).join('')
     }
 
@@ -44,8 +43,40 @@ fresco.onReady(function () {
         ]
     };
 
+    let currentValue = 0;
     fresco.onStateChanged(function () {
+        const newValue = fresco.element.state['sliderConfigurable'];
+        if(newValue !== currentValue) {
+            console.log('maxired newValue !== currentValue', newValue,  currentValue)
+            currentValue = newValue;
+            console.log('fresco.element', fresco.element)
+            debugger;
+             fresco.send({
+                type: 'extension/out/redux',
+                payload: {
+                    senderId: fresco.element.id,
+                    action: {
+                        userId: undefined,
+                        type: 'TRANSFORM_ITEMS',
+                        payload: { 
+                            "diagramId":"noomlab",
+                            "oldBounds": fresco.element.transform,
+                            "newBounds": {
+                                ...fresco.element.transform,
+                                size: {
+                                    ...fresco.element.transform.size,
+                                    y: 150 + (currentValue -1) * 100
+                                },
+                            },
+                            "itemIds":[fresco.element.id]
+                         }
+                    }
+                }
+            });
+           
+        }
         render()
+       
     });
     fresco.initialize(defaultState, elementConfig);
     render()
