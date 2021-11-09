@@ -14,12 +14,12 @@ fresco.onReady(function () {
             const bottom = fresco.element.transform.position.y +  fresco.element.transform.size.y / 2
           
             const { x, y } = ev.data.payload.transform.position;
-            console.log('maxired onStateChanged')
+            console.log('maxired onStateChanged', { x, left, right}, { y, top, bottom })
             if( 
                 x > left && x < right && 
                 y > top &&  y < bottom
             ) {
-        
+                console.log('maxired remove item')
                 fresco.send({
                     type: 'extension/out/redux',
                     payload: {
@@ -34,6 +34,8 @@ fresco.onReady(function () {
                         }
                     }
                 })
+            } else {
+                console.log('maxired do not remove item')
             }
            
         }

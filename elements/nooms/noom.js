@@ -48,6 +48,12 @@ fresco.onReady(function () {
 
 
     bc.onmessage = (ev) => {
+        if (fresco.element.id === ev.data.payload.id) {
+            // skip yourself
+            console.log('maxired skip yourself')
+            return
+        }
+        console.log('maxired dont skip yourself', fresco.element.id === ev.data.payload.id, fresco.element.id , ev.data.payload.id)
         if (ev.data.action === 'onStateChanged') {
             if(!fresco.element?.transform) {
                 return
@@ -66,8 +72,9 @@ fresco.onReady(function () {
                 // todo
                 // delete moved
                 // update value
-
-                fresco.setState({ sliderConfigurable: fresco.element.state.sliderConfigurable + ev.data.payload.state.sliderConfigurable })
+                console.log('maxired ids are', fresco.element.id, ev.data.payload.id)
+                console.log('maxired REMOVE_ITEMS on bc', { x, left, right}, { y, top, bottom })
+  
                 
                 fresco.send({
                     type: 'extension/out/redux',
@@ -83,6 +90,10 @@ fresco.onReady(function () {
                         }
                     }
                 })
+
+                console.log('maxired, postponed')
+                fresco.setState({ sliderConfigurable: fresco.element.state.sliderConfigurable + ev.data.payload.state.sliderConfigurable })
+                
             }
            
         }
@@ -101,6 +112,10 @@ fresco.onReady(function () {
             console.log('newValue updated', { newValue, currentValue })
             const diff = newValue - currentValue;
             currentValue = newValue;
+            console.log('maxired current size is',
+                fresco.element.transform.size.y,
+                160 + (currentValue -1) * 100
+                )
              fresco.send({
                 type: 'extension/out/redux',
                 payload: {
@@ -119,7 +134,7 @@ fresco.onReady(function () {
                                 },
                                 size: {
                                     ...fresco.element.transform.size,
-                                    y: 140 + (currentValue -1) * 100
+                                    y: 160 + (currentValue -1) * 100
                                 },
                             },
                             "itemIds":[fresco.element.id]
