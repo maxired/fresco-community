@@ -2,12 +2,66 @@
   {
     "filename": "texture1.jpg",
     "name": "Light wood",
-    "group": "Flooring"
+    "group": "Flooring",
+    "content": {
+      "visuals": [
+        {
+          "id": "erCf9sUOlkNy_RG0c3-iM",
+          "isLocked": false,
+          "zIndex": 1099,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": -1691, "y": -431 },
+            "size": { "x": 480, "y": 640 },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/office/texture1.jpg",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": "",
+            "IMAGE_TILED": true
+          }
+        }
+      ],
+      "groups": []
+    }
   },
   {
     "filename": "texture2.jpg",
     "name": "Medium wood",
-    "group": "Flooring"
+    "group": "Flooring",
+    "content": {
+      "visuals": [
+        {
+          "id": "pgPCj0LQ5kuhAgDtcr2oI",
+          "isLocked": false,
+          "zIndex": 1101,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": -964, "y": -568 },
+            "size": { "x": 320, "y": 320 },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/office/texture2.jpg",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": "",
+            "IMAGE_TILED": true
+          }
+        }
+      ],
+      "groups": []
+    }
   },
   {
     "filename": "texture4.jpg",
@@ -17,7 +71,34 @@
   {
     "filename": "texture3.jpg",
     "name": "Checkers",
-    "group": "Flooring"
+    "group": "Flooring",
+    "content": {
+      "visuals": [
+        {
+          "id": "L3ys4GKna4qSdfLddbAtp",
+          "isLocked": false,
+          "zIndex": 1106,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": -719, "y": -322 },
+            "size": { "x": 800, "y": 800 },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/office/texture3.jpg",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": "",
+            "IMAGE_TILED": true
+          }
+        }
+      ],
+      "groups": []
+    }
   },
   {
     "filename": "chair1.svg",
