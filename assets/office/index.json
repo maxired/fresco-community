@@ -199,6 +199,21 @@
     "group": "Chairs"
   },
   {
+    "filename": "chair4.svg",
+    "name": "Chair4",
+    "group": "Chairs"
+  },
+  {
+    "filename": "chair5.svg",
+    "name": "Chair5",
+    "group": "Chairs"
+  },
+  {
+    "filename": "chair6.svg",
+    "name": "Chair6",
+    "group": "Chairs"
+  },
+  {
     "filename": "plant1.svg",
     "name": "Plant1",
     "group": "Plants"
@@ -296,6 +311,26 @@
   {
     "filename": "table-8p.svg",
     "name": "Table for 8",
+    "group": "Tables"
+  },
+  {
+    "filename": "table1.svg",
+    "name": "Table 1",
+    "group": "Tables"
+  },
+  {
+    "filename": "table2.svg",
+    "name": "Table 2",
+    "group": "Tables"
+  },
+  {
+    "filename": "table3.svg",
+    "name": "Table 3",
+    "group": "Tables"
+  },
+  {
+    "filename": "table4.svg",
+    "name": "Table 4",
     "group": "Tables"
   },
   {
