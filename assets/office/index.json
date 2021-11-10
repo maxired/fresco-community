@@ -1,5 +1,25 @@
 [
   {
+    "filename": "texture1.jpg",
+    "name": "Light wood",
+    "group": "Flooring"
+  },
+  {
+    "filename": "texture2.jpg",
+    "name": "Medium wood",
+    "group": "Flooring"
+  },
+  {
+    "filename": "texture4.jpg",
+    "name": "Hard wood",
+    "group": "Flooring"
+  },
+  {
+    "filename": "texture3.jpg",
+    "name": "Checkers",
+    "group": "Flooring"
+  },
+  {
     "filename": "chair1.svg",
     "name": "Chair1",
     "group": "Chairs"
