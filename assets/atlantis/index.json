@@ -185,67 +185,83 @@
     },
     {
         "name":  "seat 01",
-        "filename":  "seat-01.png"
+        "filename":  "seat-01.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 02",
-        "filename":  "seat-02.png"
+        "filename":  "seat-02.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 03",
-        "filename":  "seat-03.png"
+        "filename":  "seat-03.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 04",
-        "filename":  "seat-04.png"
+        "filename":  "seat-04.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 05",
-        "filename":  "seat-05.png"
+        "filename":  "seat-05.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 06",
-        "filename":  "seat-06.png"
+        "filename":  "seat-06.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 07",
-        "filename":  "seat-07.png"
+        "filename":  "seat-07.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 08",
-        "filename":  "seat-08.png"
+        "filename":  "seat-08.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 09",
-        "filename":  "seat-09.png"
+        "filename":  "seat-09.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 10",
-        "filename":  "seat-10.png"
+        "filename":  "seat-10.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 11",
-        "filename":  "seat-11.png"
+        "filename":  "seat-11.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 12",
-        "filename":  "seat-12.png"
+        "filename":  "seat-12.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 13",
-        "filename":  "seat-13.png"
+        "filename":  "seat-13.png",
+        "group": "Seats"
     },
     {
         "name":  "seat 14",
-        "filename":  "seat-14.png"
+        "filename":  "seat-14.png",
+        "group": "Seats"
     },
     {
         "name":  "seater 01",
-        "filename":  "seater-01.png"
+        "filename":  "seater-01.png",
+        "group": "Seats"
     },
     {
         "name":  "seater 02",
-        "filename":  "seater-02.png"
+        "filename":  "seater-02.png",
+        "group": "Seats"
     },
     {
         "name":  "stargate 02",
@@ -325,47 +341,58 @@
     },
     {
         "name":  "stone block 01",
-        "filename":  "stone-block-01.png"
+        "filename":  "stone-block-01.png",
+        "group": "Tables"
     },
     {
         "name":  "stone block 02",
-        "filename":  "stone-block-02.png"
+        "filename":  "stone-block-02.png",
+        "group": "Tables"
     },
     {
         "name":  "table 01",
-        "filename":  "table-01.png"
+        "filename":  "table-01.png",
+        "group": "Tables"
     },
     {
         "name":  "table 02",
-        "filename":  "table-02.png"
+        "filename":  "table-02.png",
+        "group": "Tables"
     },
     {
         "name":  "table 03",
-        "filename":  "table-03.png"
+        "filename":  "table-03.png",
+        "group": "Tables"
     },
     {
         "name":  "table 04",
-        "filename":  "table-04.png"
+        "filename":  "table-04.png",
+        "group": "Tables"
     },
     {
         "name":  "table 05",
-        "filename":  "table-05.png"
+        "filename":  "table-05.png",
+        "group": "Tables"
     },
     {
         "name":  "table 06",
-        "filename":  "table-06.png"
+        "filename":  "table-06.png",
+        "group": "Tables"
     },
     {
         "name":  "table 07",
-        "filename":  "table-07.png"
+        "filename":  "table-07.png",
+        "group": "Tables"
     },
     {
         "name":  "table 08",
-        "filename":  "table-08.png"
+        "filename":  "table-08.png",
+        "group": "Tables"
     },
     {
         "name":  "table 09",
-        "filename":  "table-09.png"
+        "filename":  "table-09.png",
+        "group": "Tables"
     },
     {
         "name":  "texture grass",
@@ -408,99 +435,43 @@
     },
     {
         "name":  "tree 01",
-        "filename":  "tree-01.png"
+        "filename":  "tree-01.png",
+        "group": "Trees"
     },
     {
         "name":  "tree 02",
-        "filename":  "tree-02.png"
+        "filename":  "tree-02.png",
+        "group": "Trees"
     },
     {
         "name":  "tree 03",
-        "filename":  "tree-03.png"
+        "filename":  "tree-03.png",
+        "group": "Trees"
     },
     {
         "name":  "tree 04",
-        "filename":  "tree-04.png"
+        "filename":  "tree-04.png",
+        "group": "Trees"
     },
     {
         "name":  "tree 05",
-        "filename":  "tree-05.png"
-    },
-    {
-        "name":  "tree 06 2",
-        "filename":  "tree-06-2.png"
-    },
-    {
-        "name":  "tree 06 3",
-        "filename":  "tree-06-3.png"
-    },
-    {
-        "name":  "tree 06 4",
-        "filename":  "tree-06-4.png"
-    },
-    {
-        "name":  "tree 06 5",
-        "filename":  "tree-06-5.png"
-    },
-    {
-        "name":  "tree 06 6",
-        "filename":  "tree-06-6.png"
-    },
-    {
-        "name":  "tree 06 7",
-        "filename":  "tree-06-7.png"
+        "filename":  "tree-05.png",
+        "group": "Trees"
     },
     {
         "name":  "tree 06",
-        "filename":  "tree-06.png"
+        "filename":  "tree-06.png",
+        "group": "Trees"
     },
     {
         "name":  "tree 07",
-        "filename":  "tree-07.png"
+        "filename":  "tree-07.png",
+        "group": "Trees"
     },
     {
         "name":  "tree 08",
-        "filename":  "tree-08.png"
-    },
-    {
-        "name":  "tree anim1",
-        "filename":  "tree-anim1.png"
-    },
-    {
-        "name":  "tree anim10",
-        "filename":  "tree-anim10.png"
-    },
-    {
-        "name":  "tree anim2",
-        "filename":  "tree-anim2.png"
-    },
-    {
-        "name":  "tree anim3",
-        "filename":  "tree-anim3.png"
-    },
-    {
-        "name":  "tree anim4",
-        "filename":  "tree-anim4.png"
-    },
-    {
-        "name":  "tree anim5",
-        "filename":  "tree-anim5.png"
-    },
-    {
-        "name":  "tree anim6",
-        "filename":  "tree-anim6.png"
-    },
-    {
-        "name":  "tree anim7",
-        "filename":  "tree-anim7.png"
-    },
-    {
-        "name":  "tree anim8",
-        "filename":  "tree-anim8.png"
-    },
-    {
-        "name":  "tree anim9",
-        "filename":  "tree-anim9.png"
+        "filename":  "tree-08.png",
+        "group": "Trees"
     },
     {
         "name":  "vase 01",
