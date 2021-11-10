@@ -66,7 +66,8 @@
   {
     "filename": "texture4.jpg",
     "name": "Hard wood",
-    "group": "Flooring"
+    "group": "Flooring",
+    "content": {"visuals":[{"id":"PGxYR7QRQcMNDVnAxhtVD","isLocked":false,"zIndex":1107,"layer":0,"renderer":"Raster","transform":{"position":{"x":-120,"y":-839},"size":{"x":512,"y":512},"rotation":0},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/texture4.jpg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":true}}],"groups":[]}
   },
   {
     "filename": "texture3.jpg",
