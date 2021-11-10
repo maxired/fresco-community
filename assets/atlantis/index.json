@@ -369,15 +369,18 @@
     },
     {
         "name":  "texture grass",
-        "filename":  "texture-grass.png"
+        "filename":  "texture-grass.png",
+        "group": "Flooring"
     },
     {
         "name":  "texture sand",
-        "filename":  "texture-sand.png"
+        "filename":  "texture-sand.png",
+        "group": "Flooring"
     },
     {
         "name":  "texture water",
-        "filename":  "texture-water.png"
+        "filename":  "texture-water.png",
+        "group": "Flooring"
     },
     {
         "name":  "tile 01",
