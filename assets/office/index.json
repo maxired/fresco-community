@@ -334,9 +334,130 @@
     "group": "Tables"
   },
   {
+    "filename": "table5.svg",
+    "name": "Table 5",
+    "group": "Tables"
+  },
+  {
+    "filename": "table6.svg",
+    "name": "Table 6",
+    "group": "Tables"
+  },
+  {
     "filename": "bush.svg",
     "name": "Bush",
     "group": "Plants"
+  },
+  {
+    "filename": "cup-1.svg",
+    "name": "Cup 1",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-2.svg",
+    "name": "Cup 2",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-3.svg",
+    "name": "Cup 3",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-4.svg",
+    "name": "Cup 4",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-5.svg",
+    "name": "Cup 5",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-6.svg",
+    "name": "Cup 6",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-7.svg",
+    "name": "Cup 7",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-8.svg",
+    "name": "Cup 8",
+    "group": "Cups"
+  },
+  {
+    "filename": "desk-1.svg",
+    "name": "Desk 1",
+    "group": "Desks"
+  },
+  {
+    "filename": "desk-2.svg",
+    "name": "Desk 2",
+    "group": "Desks"
+  },
+  {
+    "filename": "pingpong-1.svg",
+    "name": "Ping Pong table"
+  },
+  {
+    "filename": "pingpong-2.svg",
+    "name": "Ping Pong table 2"
+  },
+  {
+    "filename": "watercooler01.svg",
+    "name": "Watercooler 1",
+    "group": "Watercoolers"
+  },
+  {
+    "filename": "watercooler02.svg",
+    "name": "Watercooler 2",
+    "group": "Watercoolers"
+  },
+  {
+    "filename": "watercooler03.svg",
+    "name": "Watercooler 3",
+    "group": "Watercoolers"
+  },
+  {
+    "filename": "whiteboard1.svg",
+    "name": "Whiteboard"
+  },
+  {
+    "filename": "fish-bowl.svg",
+    "name": "Fish bowl"
+  },
+  {
+    "filename": "sofa01.svg",
+    "name": "Sofa 3",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa02.svg",
+    "name": "Sofa 2",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa03.svg",
+    "name": "Sofa 3",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa04.svg",
+    "name": "Sofa 4",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa05.svg",
+    "name": "Sofa 5",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa06.svg",
+    "name": "Sofa 6",
+    "group": "Sofas"
   },
   {
     "name": "Lobby",
