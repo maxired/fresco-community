@@ -21,43 +21,53 @@
   },
   {
     "filename": "flowers1.png",
-    "name": "flowers1"
+    "name": "flowers1",
+    "group": "Flowers"
   },
   {
     "filename": "flowers2.png",
-    "name": "flowers2"
+    "name": "flowers2",
+    "group": "Flowers"
   },
   {
     "filename": "flowers3.png",
-    "name": "flowers3"
+    "name": "flowers3",
+    "group": "Flowers"
   },
   {
     "filename": "flowers4.png",
-    "name": "flowers4"
+    "name": "flowers4",
+    "group": "Flowers"
   },
   {
     "filename": "hut1.png",
-    "name": "hut1"
+    "name": "hut1",
+    "group": "Huts"
   },
   {
     "filename": "hut2.png",
-    "name": "hut2"
+    "name": "hut2",
+    "group": "Huts"
   },
   {
     "filename": "hut3.png",
-    "name": "hut3"
+    "name": "hut3",
+    "group": "Huts"
   },
   {
     "filename": "leaves1.png",
-    "name": "leaves1"
+    "name": "leaves1",
+    "group": "Leaves"
   },
   {
     "filename": "leaves2.png",
-    "name": "leaves2"
+    "name": "leaves2",
+    "group": "Leaves"
   },
   {
     "filename": "leaves3.png",
-    "name": "leaves3"
+    "name": "leaves3",
+    "group": "Leaves"
   },
   {
     "filename": "logs1.png",
@@ -65,47 +75,58 @@
   },
   {
     "filename": "mound1.png",
-    "name": "mound1"
+    "name": "mound1",
+    "group": "Mounds"
   },
   {
     "filename": "mound2.png",
-    "name": "mound2"
+    "name": "mound2",
+    "group": "Mounds"
   },
   {
     "filename": "mound3.png",
-    "name": "mound3"
+    "name": "mound3",
+    "group": "Mounds"
   },
   {
     "filename": "mound4.png",
-    "name": "mound4"
+    "name": "mound4",
+    "group": "Mounds"
   },
   {
     "filename": "mound5.png",
-    "name": "mound5"
+    "name": "mound5",
+    "group": "Mounds"
   },
   {
     "filename": "mound6.png",
-    "name": "mound6"
+    "name": "mound6",
+    "group": "Mounds"
   },
   {
     "filename": "plant1.png",
-    "name": "plant1"
+    "name": "plant1",
+    "group": "Plants"
   },
   {
     "filename": "plant2.png",
-    "name": "plant2"
+    "name": "plant2",
+    "group": "Plants"
   },
   {
     "filename": "plant3.png",
-    "name": "plant3"
+    "name": "plant3",
+    "group": "Plants"
   },
   {
     "filename": "plant4.png",
-    "name": "plant4"
+    "name": "plant4",
+    "group": "Plants"
   },
   {
     "filename": "plant5.png",
-    "name": "plant5"
+    "name": "plant5",
+    "group": "Plants"
   },
   {
     "filename": "screen1.png",
@@ -117,23 +138,28 @@
   },
   {
     "filename": "stone1.png",
-    "name": "stone1"
+    "name": "stone1",
+    "group": "Stones"
   },
   {
     "filename": "stone2.png",
-    "name": "stone2"
+    "name": "stone2",
+    "group": "Stones"
   },
   {
     "filename": "stone3.png",
-    "name": "stone3"
+    "name": "stone3",
+    "group": "Stones"
   },
   {
     "filename": "stone4.png",
-    "name": "stone4"
+    "name": "stone4",
+    "group": "Stones"
   },
   {
     "filename": "stone5.png",
-    "name": "stone5"
+    "name": "stone5",
+    "group": "Stones"
   },
   {
     "filename": "table1.png",
@@ -141,15 +167,18 @@
   },
   {
     "filename": "texture-grass.png",
-    "name": "texture grass"
+    "name": "grass",
+    "group": "Flooring"
   },
   {
     "filename": "texture-sand.png",
-    "name": "texture sand"
+    "name": "sand",
+    "group": "Flooring"
   },
   {
     "filename": "texture-water.png",
-    "name": "texture water"
+    "name": "water",
+    "group": "Flooring"
   },
   {
     "filename": "torch1.png",
@@ -157,19 +186,23 @@
   },
   {
     "filename": "tree1.png",
-    "name": "tree1"
+    "name": "tree1",
+    "group": "Trees"
   },
   {
     "filename": "tree2.png",
-    "name": "tree2"
+    "name": "tree2",
+    "group": "Trees"
   },
   {
     "filename": "tree3.png",
-    "name": "tree3"
+    "name": "tree3",
+    "group": "Trees"
   },
   {
     "filename": "tree4.png",
-    "name": "tree4"
+    "name": "tree4",
+    "group": "Trees"
   },
   {
     "filename": "water-barrel1.png",
@@ -181,26 +214,32 @@
   },
   {
     "filename": "water-plant1.png",
-    "name": "water plant1"
+    "name": "water plant1",
+    "group": "Water plants"
   },
   {
     "filename": "water-plant2.png",
-    "name": "water plant2"
+    "name": "water plant2",
+    "group": "Water plants"
   },
   {
     "filename": "water-plant3.png",
-    "name": "water plant3"
+    "name": "water plant3",
+    "group": "Water plants"
   },
   {
     "filename": "water-rock1.png",
-    "name": "water rock1"
+    "name": "water rock1",
+    "group": "Water rocks"
   },
   {
     "filename": "water-rock2.png",
-    "name": "water rock2"
+    "name": "water rock2",
+    "group": "Water rocks"
   },
   {
     "filename": "water-rock3.png",
-    "name": "water rock3"
+    "name": "water rock3",
+    "group": "Water rocks"
   }
 ]
