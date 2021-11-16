@@ -1,63 +1,78 @@
 [
     {
         "name":  "amphitheater 01",
-        "filename":  "amphitheater-01.png"
+        "filename":  "amphitheater-01.png",
+        "group": "Amphitheaters"
     },
     {
         "name":  "amphitheater 02",
-        "filename":  "amphitheater-02.png"
+        "filename":  "amphitheater-02.png",
+        "group": "Amphitheaters"
     },
     {
         "name":  "bucket 01",
-        "filename":  "bucket-01.png"
+        "filename":  "bucket-01.png",
+        "group": "Buckets"
     },
     {
         "name":  "bucket 02",
-        "filename":  "bucket-02.png"
+        "filename":  "bucket-02.png",
+        "group": "Buckets"
     },
     {
         "name":  "cake 01",
-        "filename":  "cake-01.png"
+        "filename":  "cake-01.png",
+        "group": "Cakes"
     },
     {
         "name":  "cake 02",
-        "filename":  "cake-02.png"
+        "filename":  "cake-02.png",
+        "group": "Cakes"
     },
     {
         "name":  "column 01",
-        "filename":  "column-01.png"
+        "filename":  "column-01.png",
+        "group": "Columns"
     },
     {
         "name":  "column 02",
-        "filename":  "column-02.png"
+        "filename":  "column-02.png",
+        "group": "Columns"
     },
     {
         "name":  "column 03",
-        "filename":  "column-03.png"
+        "filename":  "column-03.png",
+        "group": "Columns"
     },
     {
         "name":  "column 04",
-        "filename":  "column-04.png"
+        "filename":  "column-04.png",
+        "group": "Columns"
     },
     {
         "name":  "column 05",
-        "filename":  "column-05.png"
+        "filename":  "column-05.png",
+        "group": "Columns"
     },
     {
         "name":  "cup coffee plate",
-        "filename":  "cup-coffee-plate.png"
+        "filename":  "cup-coffee-plate.png",
+        "group": "Cups"
     },
     {
         "name":  "cup coffee",
-        "filename":  "cup-coffee.png"
+        "filename":  "cup-coffee.png",
+        "group": "Cups"
     },
     {
         "name":  "cup empty",
-        "filename":  "cup-empty.png"
+        "filename":  "cup-empty.png",
+        "group": "Cups"
     },
     {
         "name":  "cup plate",
-        "filename":  "cup-plate.png"
+        "filename":  "cup-plate.png",
+        "group": "Cups"
     },
     {
         "name":  "decoration 01",
@@ -69,43 +84,53 @@
     },
     {
         "name":  "flowers 01",
-        "filename":  "flowers-01.png"
+        "filename":  "flowers-01.png",
+        "group": "Flowers"
     },
     {
         "name":  "flowers 02",
-        "filename":  "flowers-02.png"
+        "filename":  "flowers-02.png",
+        "group": "Flowers"
     },
     {
         "name":  "food 01",
-        "filename":  "food-01.png"
+        "filename":  "food-01.png",
+        "group": "Food"
     },
     {
         "name":  "food 02",
-        "filename":  "food-02.png"
+        "filename":  "food-02.png",
+        "group": "Food"
     },
     {
         "name":  "food 03",
-        "filename":  "food-03.png"
+        "filename":  "food-03.png",
+        "group": "Food"
     },
     {
         "name":  "food 04",
-        "filename":  "food-04.png"
+        "filename":  "food-04.png",
+        "group": "Food"
     },
     {
         "name":  "grass 01",
-        "filename":  "grass-01.png"
+        "filename":  "grass-01.png",
+        "group": "Grass"
     },
     {
         "name":  "grass 02",
-        "filename":  "grass-02.png"
+        "filename":  "grass-02.png",
+        "group": "Grass"
     },
     {
         "name":  "mushroom 01",
-        "filename":  "mushroom-01.png"
+        "filename":  "mushroom-01.png",
+        "group": "Mushrooms"
     },
     {
         "name":  "mushroom 02",
-        "filename":  "mushroom-02.png"
+        "filename":  "mushroom-02.png",
+        "group": "Mushrooms"
     },
     {
         "name":  "patch 01",
@@ -133,23 +158,28 @@
     },
     {
         "name":  "plant 01",
-        "filename":  "plant-01.png"
+        "filename":  "plant-01.png",
+        "group": "Plants"
     },
     {
         "name":  "plant 02",
-        "filename":  "plant-02.png"
+        "filename":  "plant-02.png",
+        "group": "Plants"
     },
     {
         "name":  "plant 03",
-        "filename":  "plant-03.png"
+        "filename":  "plant-03.png",
+        "group": "Plants"
     },
     {
         "name":  "plant 04",
-        "filename":  "plant-04.png"
+        "filename":  "plant-04.png",
+        "group": "Plants"
     },
     {
         "name":  "plant 05",
-        "filename":  "plant-05.png"
+        "filename":  "plant-05.png",
+        "group": "Plants"
     },
     {
         "name":  "plate",
@@ -265,79 +295,98 @@
     },
     {
         "name":  "stargate 02",
-        "filename":  "stargate-02.png"
+        "filename":  "stargate-02.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 04",
-        "filename":  "stargate-04.png"
+        "filename":  "stargate-04.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 05",
-        "filename":  "stargate-05.png"
+        "filename":  "stargate-05.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 06",
-        "filename":  "stargate-06.png"
+        "filename":  "stargate-06.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 07",
-        "filename":  "stargate-07.png"
+        "filename":  "stargate-07.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 08",
-        "filename":  "stargate-08.png"
+        "filename":  "stargate-08.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 09",
-        "filename":  "stargate-09.png"
+        "filename":  "stargate-09.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 10",
-        "filename":  "stargate-10.png"
+        "filename":  "stargate-10.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 11",
-        "filename":  "stargate-11.png"
+        "filename":  "stargate-11.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 12",
-        "filename":  "stargate-12.png"
+        "filename":  "stargate-12.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 13",
-        "filename":  "stargate-13.png"
+        "filename":  "stargate-13.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 14",
-        "filename":  "stargate-14.png"
+        "filename":  "stargate-14.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 15",
-        "filename":  "stargate-15.png"
+        "filename":  "stargate-15.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 16",
-        "filename":  "stargate-16.png"
+        "filename":  "stargate-16.png",
+        "group": "Stargates"
     },
     {
         "name":  "stargate 17",
-        "filename":  "stargate-17.png"
+        "filename":  "stargate-17.png",
+        "group": "Stargates"
     },
     {
         "name":  "Stargate01",
-        "filename":  "Stargate01.png"
+        "filename":  "Stargate01.png",
+        "group": "Stargates"
     },
     {
         "name":  "statue 01",
-        "filename":  "statue-01.png"
+        "filename":  "statue-01.png",
+        "group": "Statues"
     },
     {
         "name":  "statue 02",
-        "filename":  "statue-02.png"
+        "filename":  "statue-02.png",
+        "group": "Statues"
     },
     {
         "name":  "statue 03",
-        "filename":  "statue-03.png"
+        "filename":  "statue-03.png",
+        "group": "Statues"
     },
     {
         "name":  "stone block 01",
@@ -411,27 +460,33 @@
     },
     {
         "name":  "tile 01",
-        "filename":  "tile-01.png"
+        "filename":  "tile-01.png",
+        "group": "Tiles"
     },
     {
         "name":  "tile 02",
-        "filename":  "tile-02.png"
+        "filename":  "tile-02.png",
+        "group": "Tiles"
     },
     {
         "name":  "tile 03",
-        "filename":  "tile-03.png"
+        "filename":  "tile-03.png",
+        "group": "Tiles"
     },
     {
         "name":  "tile 04",
-        "filename":  "tile-04.png"
+        "filename":  "tile-04.png",
+        "group": "Tiles"
     },
     {
         "name":  "tile 05",
-        "filename":  "tile-05.png"
+        "filename":  "tile-05.png",
+        "group": "Tiles"
     },
     {
         "name":  "tile patch 01",
-        "filename":  "tile-patch-01.png"
+        "filename":  "tile-patch-01.png",
+        "group": "Tiles"
     },
     {
         "name":  "tree 01",
@@ -475,34 +530,42 @@
     },
     {
         "name":  "vase 01",
-        "filename":  "vase-01.png"
+        "filename":  "vase-01.png",
+        "group": "Vases"
     },
     {
         "name":  "vase 02",
-        "filename":  "vase-02.png"
+        "filename":  "vase-02.png",
+        "group": "Vases"
     },
     {
         "name":  "vase 03",
-        "filename":  "vase-03.png"
+        "filename":  "vase-03.png",
+        "group": "Vases"
     },
     {
         "name":  "vase 04",
-        "filename":  "vase-04.png"
+        "filename":  "vase-04.png",
+        "group": "Vases"
     },
     {
         "name":  "vase 05",
-        "filename":  "vase-05.png"
+        "filename":  "vase-05.png",
+        "group": "Vases"
     },
     {
         "name":  "vase 06",
-        "filename":  "vase-06.png"
+        "filename":  "vase-06.png",
+        "group": "Vases"
     },
     {
         "name":  "vase 07",
-        "filename":  "vase-07.png"
+        "filename":  "vase-07.png",
+        "group": "Vases"
     },
     {
         "name":  "vase 08",
-        "filename":  "vase-08.png"
+        "filename":  "vase-08.png",
+        "group": "Vases"
     }
 ]
