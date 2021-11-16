@@ -134,27 +134,34 @@
     },
     {
         "name":  "patch 01",
-        "filename":  "patch-01.png"
+        "filename":  "patch-01.png",
+        "group": "Patches"
+
     },
     {
         "name":  "patch 02",
-        "filename":  "patch-02.png"
+        "filename":  "patch-02.png",
+        "group": "Patches"
     },
     {
         "name":  "patch 03",
-        "filename":  "patch-03.png"
+        "filename":  "patch-03.png",
+        "group": "Patches"
     },
     {
         "name":  "patch 04",
-        "filename":  "patch-04.png"
+        "filename":  "patch-04.png",
+        "group": "Patches"
     },
     {
         "name":  "patch 05",
-        "filename":  "patch-05.png"
+        "filename":  "patch-05.png",
+        "group": "Patches"
     },
     {
         "name":  "photo frame",
-        "filename":  "photo-frame.png"
+        "filename":  "photo-frame.png",
+        "group": "Screens"
     },
     {
         "name":  "plant 01",
@@ -195,23 +202,28 @@
     },
     {
         "name":  "rock 01",
-        "filename":  "rock-01.png"
+        "filename":  "rock-01.png",
+        "group": "Rocks"
     },
     {
         "name":  "rock 02",
-        "filename":  "rock-02.png"
+        "filename":  "rock-02.png",
+        "group": "Rocks"
     },
     {
-        "name":  "Sand",
-        "filename":  "Sand.png"
+        "name":  "sand",
+        "filename":  "Sand.png",
+        "group": "Patches"
     },
     {
         "name":  "screen 01",
-        "filename":  "screen-01.png"
+        "filename":  "screen-01.png",
+        "group": "Screens"
     },
     {
         "name":  "screen 02",
-        "filename":  "screen-02.png"
+        "filename":  "screen-02.png",
+        "group": "Screens"
     },
     {
         "name":  "seat 01",
