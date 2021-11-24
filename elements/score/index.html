@@ -1,0 +1,63 @@
+<html>
+ <script src='../../loadSdk.js' ></script>
+<script>
+let click = 0;
+function RandomAvatar(){
+
+fresco.send({
+            type: 'extension/out/redux',
+            payload: {
+                senderId: fresco.element.id,
+                action: {
+                    userId: undefined,
+                    type: 'UPDATE_LOCAL_PARTICIPANT',
+                    payload: { avatarUrl: `https://avatars.dicebear.com/api/avataaars/${Math.random()}_${Date.now()}.svg`
+ }
+                }
+            }
+        });
+
+}
+function RandomColor(){
+
+fresco.send({
+            type: 'extension/out/redux',
+            payload: {
+                senderId: fresco.element.id,
+                action: {
+                    userId: undefined,
+                    type: 'UPDATE_LOCAL_PARTICIPANT',
+                    payload: { color: `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+ }
+                }
+            }
+        });
+
+}
+
+
+fresco.onReady(() => {
+    let wasInside = undefined;
+    const bc = new BroadcastChannel('test_channel');
+
+    function sendEnter(){
+bc.postMessage({ action: 'enter' });
+}
+    fresco.onStateChanged(function () {
+        if (fresco.element.isLocalParticipantInside !== wasInside){
+            wasInside = fresco.element.isLocalParticipantInside
+
+            const backgroundColor = wasInside ? 'green' : 'red';
+            document.querySelector('body').style.backgroundColor = backgroundColor
+            if(wasInside){
+                sendEnter()
+
+            }
+        }
+    });
+})
+
+</script>
+<body style="background-color:white">
+</body>
+</html>

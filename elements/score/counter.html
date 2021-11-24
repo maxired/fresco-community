@@ -1,0 +1,23 @@
+<html>
+ <script src='../../loadSdk.js' ></script>
+<script>
+
+let score = 0
+const render = () => document.querySelector('body').innerHTML = `score is ${score}`
+fresco.onReady(() => {
+    render();
+
+    const bc = new BroadcastChannel('test_channel');
+bc.onmessage = (ev) => {
+
+if(ev.data.action === 'enter'){
+    score += Math.floor((Math.random() *10))
+    render()
+}
+}})
+
+
+</script>
+<body style="background-color:white">
+</body>
+</html>
