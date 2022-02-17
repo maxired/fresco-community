@@ -2,7 +2,8 @@ window.fresco = window.fresco || {
     _listeners: [],
     onReady: function (callback) {
         window.fresco._listeners.push(callback);
-    }
+    },
+    setState: () => {}
 };
 
 const headElement = document.querySelector('head');

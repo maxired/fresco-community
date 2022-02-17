@@ -1,40 +1,69 @@
 [
   {
-    "name":"Timer",
-    "displayName":"Timer",
-    "displaySearch":"Timer",
-    "url":"timer.png",
-    "content":{
-      "visuals":[
+    "name": "Timer",
+    "displayName": "Timer",
+    "displaySearch": "Timer",
+    "url": "timer.png",
+    "content": {
+      "visuals": [
         {
-          "id":"_cLVUyJRNrb2rdHKb2MWk",
-          "isLocked":false,
-          "zIndex":1623133906094,
-          "layer":0,
-          "renderer":"IFrame",
-          "transform":{
-            "position":{
-              "x":1947,
-              "y":112.5
+          "id": "_cLVUyJRNrb2rdHKb2MWk",
+          "isLocked": false,
+          "zIndex": 1623133906094,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": {
+              "x": 1947,
+              "y": 112.5
             },
-            "size":{
-              "x":560,
-              "y":315
+            "size": {
+              "x": 560,
+              "y": 315
             },
-            "rotation":0
+            "rotation": 0
           },
-          "appearance":{
-            "TEXT_BEHAVIOUR":2,
-            "STATE":{
-              "duration":10,
-              "startedAt":null
+          "appearance": {
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": {
+              "duration": 10,
+              "startedAt": null
             },
-            "SOURCE":"https://fres-co.github.io/fresco-community/elements/timer/index.htm?duration=10"
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/timer/index.htm?duration=10"
           }
         }
       ],
-      "groups":[]
+      "groups": []
+    }
+  },
+  {
+    "name": "Icebreaker cards",
+    "displayName": "Icebreaker cards",
+    "displaySearch": "Icebreaker cards",
+    "url": "icebreakers.png",
+    "content": {
+      "visuals": [
+        {
+          "id": "an3hn3f0kzfjbxmhah0lb",
+          "isLocked": false,
+          "zIndex": 9,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": { "x": 1600, "y": 520 },
+            "size": { "x": 560, "y": 640 },
+            "rotation": 0
+          },
+          "appearance": {
+            "NAME": "",
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": { "card": null, "deck": null },
+            "PINNED": false,
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/icebreakers/index.htm"
+          }
+        }
+      ],
+      "groups": []
     }
   }
-
 ]

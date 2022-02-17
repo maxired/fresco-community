@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <script src='../../loadSdk.js' ></script>
+        <style>
+            body {
+                display: flex;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+
+            .card-like {
+                border-radius: 2vw;
+                padding: 6vw;
+                background-color: #333;
+                color: #fff;
+                font-size: 10vw;
+                width: 100%;
+                border-width: 0;
+                cursor: pointer;
+                box-shadow: 1vw 1vw 3vw rgba(0,0,0,.3);
+            }
+
+            .card {
+                text-align: right;
+            }
+
+            .card--blue {
+                background-color: #006ED0;
+            }
+
+            .card--purple {
+                background-color: #8B3C91;
+            }
+
+            .card--green {
+                background-color: #85BD42;
+            }
+
+            #home-screen {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .is-hidden {
+                display: none !important;
+            }
+
+            .deck {
+                flex: 1;
+                position: relative;
+                margin: 6vw 3vw;
+            }
+
+            button {
+                font-weight: bold;
+            }
+
+            .stacked-card {
+                position: absolute;
+                transform: rotate(6deg);
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                width: initial;
+                height: initial;
+            }
+
+            .stacked-card + .stacked-card {
+                transform: rotate(3deg);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="home-screen">
+            <div class="deck">
+                <div class="stacked-card card-like card--green"></div>
+                <div class="stacked-card card-like card--green"></div>
+                <button id='green-deck' class="card-like card--green">Green deck</button>
+            </div>
+            <div class="deck">
+                <div class="stacked-card card-like card--blue"></div>
+                <div class="stacked-card card-like card--blue"></div>
+                <button id='blue-deck' class="card-like card--blue">Blue deck</button>
+            </div>
+            <div class="deck">
+                <div class="stacked-card card-like card--purple"></div>
+                <div class="stacked-card card-like card--purple"></div>
+                <button id='purple-deck' class="card-like card--purple">Purple deck</button>
+            </div>
+        </div>
+        <div id="card-screen" class="card-like card is-hidden">
+            If you had 10 years left to live, how would you live your life differently?
+        </div>
+        <script src='./index.js'></script>
+    </body>
+</html>
