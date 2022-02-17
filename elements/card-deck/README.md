@@ -11,7 +11,7 @@
 
 1. Copy the following snippet
 ```
-    extension://dev-community.fres.co/elements/icebreakers/index.htm
+    extension://dev-community.fres.co/elements/card-deck/index.htm
 ```
 2. Paste it in the space
 
