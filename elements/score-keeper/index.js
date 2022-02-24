@@ -21,6 +21,11 @@ fresco.onReady(function () {
                 title: 'String',
                 ui: { type: 'string' },
                 property: 'icon'
+            },
+            {
+                title: 'String',
+                ui: { type: 'string' },
+                property: 'pointType'
             }
         ]
     };
@@ -29,15 +34,18 @@ fresco.onReady(function () {
         score: '0',
         icon: '🌱',
         color: '#ffffff',
-        backgroundColor: '#ffb136'
+        backgroundColor: '#ffb136',
+        pointType: 'point'
     }, elementConfig);
     render()
 });
 
 const bc = new BroadcastChannel('fresco-community-score-keeper_channel');
 bc.onmessage = (ev) => {
-  if(ev.data.action === 'enter') {
-      const nextScore = Number.parseInt(fresco.element.state.score, 10) + 1;
+    debugger;
+  if(ev.data.action === 'GivePoints' && ev.data?.payload?.points?.type === fresco.element.state.pointType) {
+      const point = Number.parseInt(ev.data.payload.points.value || 1, 10)
+      const nextScore = Number.parseInt(fresco.element.state.score, 10) + point;
       fresco.setState({ score: nextScore });
       fresco.setParticipantLiveFeedItem(`${fresco.element.state.icon} ${nextScore}`, { background: fresco.element.state.backgroundColor, color: fresco.element.state.color });
       render();
