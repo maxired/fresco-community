@@ -1,5 +1,7 @@
 window.fresco = window.fresco || {
     _listeners: [],
+    onHeightChange: function (height) {
+    },
     onReady: function (callback) {
         window.fresco._listeners.push(callback);
     },
