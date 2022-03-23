@@ -4,6 +4,7 @@ import { useEffect, useState } from "preact/hooks";
 const Home = () => {
   const [answers, setAnswers] = useState([]);
   const [newAnswerText, setNewAnswerText] = useState("");
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!fresco) {
@@ -11,6 +12,7 @@ const Home = () => {
     }
 
     fresco.onReady(() => {
+      setReady(true);
       fresco.onStateChanged(() => {
         console.log(
           "state updated!",
@@ -19,7 +21,6 @@ const Home = () => {
         );
         setAnswers(fresco.element.publicState?.answers ?? []);
       });
-      console.warn("ready, fresco:", fresco.element.state);
       fresco.initialize(
         {
           question: "What is your favorite color?",
@@ -39,10 +40,17 @@ const Home = () => {
     });
   }, []);
 
+  if (!ready) {
+    return null;
+  }
+
   const addAnswer = (e) => {
-    const newAnswer = newAnswerText.trim();
-    if (newAnswer) {
-      const newAnswers = [...answers, newAnswer];
+    const value = newAnswerText.trim();
+    if (value) {
+      const newAnswers = [
+        ...answers,
+        { ownerId: fresco.element.participantId, value: value },
+      ];
       setAnswers(newAnswers);
       fresco.setPublicState({ answers: newAnswers });
       setNewAnswerText("");
@@ -66,8 +74,10 @@ const Home = () => {
         <ul>
           {answers.map((answer, ix) => (
             <li key={ix}>
-              {answer}{" "}
-              <button onClick={(e) => deleteAnswer(e, ix)}>Delete</button>
+              {answer.value}{" "}
+              {answer.ownerId === fresco.element.participantId && (
+                <button onClick={(e) => deleteAnswer(e, ix)}>Delete</button>
+              )}
             </li>
           ))}
         </ul>
@@ -90,7 +100,7 @@ const Home = () => {
           e.preventDefault();
         }}
       >
-        Clear Public State
+        Clear all answers
       </button>
       <button
         onClick={(e) => {
