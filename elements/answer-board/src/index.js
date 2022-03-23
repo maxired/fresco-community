@@ -10,24 +10,26 @@ const Home = () => {
 
     fresco.onReady(() => {
       fresco.onStateChanged(() => {
-        setItems(fresco.element.state.items ?? []);
+        console.log(
+          "state updated!",
+          fresco.element.state,
+          fresco.element.publicState
+        );
+        setItems(fresco.element.publicState?.items ?? []);
       });
       console.warn("ready, fresco:", fresco.element.state);
-      // if (!fresco.element.state?.items?.map) {
-      //   // bad state, throw it all away
-      //   console.warn("bad items");
-      //   fresco.setState({ items: [] });
-      // } else setItems(fresco.element.state.items);
       fresco.initialize(
-        {},
+        {
+          question: "What is your favorite color?",
+        },
         {
           title: "Answer Board",
           autoAdjustHeight: true,
           toolbarButtons: [
             {
-              title: "Answers",
-              ui: { type: "string", multiLine: true },
-              property: "items",
+              title: "Question",
+              ui: { type: "string" },
+              property: "question",
             },
           ],
         }
@@ -38,10 +40,11 @@ const Home = () => {
   const [itemValue, setItemValue] = useState("");
 
   const addItem = (e) => {
-    if (itemValue && itemValue.trim()) {
-      const newItems = [...items, itemValue];
+    const newItem = itemValue.trim();
+    if (newItem) {
+      const newItems = [...items, newItem];
       setItems(newItems);
-      fresco.setState({ items: newItems });
+      fresco.setPublicState({ items: newItems });
       setItemValue("");
     }
     e.preventDefault();
@@ -52,13 +55,12 @@ const Home = () => {
     console.log("deleting item", ix);
     const newItems = fresco.element.state.items.filter((_, i) => i !== ix);
     setItems(newItems);
-    fresco.setState({ items: newItems });
+    fresco.setPublicState({ items: newItems });
   };
 
   return (
     <div>
-      <h1 style={{ margin: 0 }}>Answer Board</h1>
-      <p>This is the answer-board component.</p>
+      <h1 style={{ margin: 0 }}>{fresco?.element?.state?.question}</h1>
       <h2>Answers</h2>
       {items.length ? (
         <ul>
@@ -81,6 +83,22 @@ const Home = () => {
         />
         <button onClick={addItem}>Add item</button>
       </form>
+      <button
+        onClick={(e) => {
+          fresco.setPublicState({ items: [] });
+          e.preventDefault();
+        }}
+      >
+        Clear Public State
+      </button>
+      <button
+        onClick={(e) => {
+          fresco.setState({ question: "was reset" });
+          e.preventDefault();
+        }}
+      >
+        Clear State
+      </button>
     </div>
   );
 };
