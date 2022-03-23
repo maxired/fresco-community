@@ -2,7 +2,9 @@ import "./style";
 import { useEffect, useState } from "preact/hooks";
 
 const Home = () => {
-  const [items, setItems] = useState([]);
+  const [answers, setAnswers] = useState([]);
+  const [newAnswerText, setNewAnswerText] = useState("");
+
   useEffect(() => {
     if (!fresco) {
       return;
@@ -15,7 +17,7 @@ const Home = () => {
           fresco.element.state,
           fresco.element.publicState
         );
-        setItems(fresco.element.publicState?.items ?? []);
+        setAnswers(fresco.element.publicState?.answers ?? []);
       });
       console.warn("ready, fresco:", fresco.element.state);
       fresco.initialize(
@@ -37,36 +39,35 @@ const Home = () => {
     });
   }, []);
 
-  const [itemValue, setItemValue] = useState("");
-
-  const addItem = (e) => {
-    const newItem = itemValue.trim();
-    if (newItem) {
-      const newItems = [...items, newItem];
-      setItems(newItems);
-      fresco.setPublicState({ items: newItems });
-      setItemValue("");
+  const addAnswer = (e) => {
+    const newAnswer = newAnswerText.trim();
+    if (newAnswer) {
+      const newAnswers = [...answers, newAnswer];
+      setAnswers(newAnswers);
+      fresco.setPublicState({ answers: newAnswers });
+      setNewAnswerText("");
     }
     e.preventDefault();
   };
 
-  const deleteItem = (e, ix) => {
+  const deleteAnswer = (e, ix) => {
     e.preventDefault();
-    console.log("deleting item", ix);
-    const newItems = fresco.element.state.items.filter((_, i) => i !== ix);
-    setItems(newItems);
-    fresco.setPublicState({ items: newItems });
+    console.log("deleting answer", ix);
+    const newAnswers = fresco.element.state.answers.filter((_, i) => i !== ix);
+    setAnswers(newAnswers);
+    fresco.setPublicState({ answers: newAnswers });
   };
 
   return (
     <div>
       <h1 style={{ margin: 0 }}>{fresco?.element?.state?.question}</h1>
       <h2>Answers</h2>
-      {items.length ? (
+      {answers.length ? (
         <ul>
-          {items.map((item, ix) => (
+          {answers.map((answer, ix) => (
             <li key={ix}>
-              {item} <button onClick={(e) => deleteItem(e, ix)}>Delete</button>
+              {answer}{" "}
+              <button onClick={(e) => deleteAnswer(e, ix)}>Delete</button>
             </li>
           ))}
         </ul>
@@ -78,14 +79,14 @@ const Home = () => {
           type="text"
           name="comment"
           placeholder="Add your answer"
-          value={itemValue}
-          onChange={(e) => setItemValue(e.target.value)}
+          value={newAnswerText}
+          onChange={(e) => setNewAnswerText(e.target.value)}
         />
-        <button onClick={addItem}>Add item</button>
+        <button onClick={addAnswer}>Add answer</button>
       </form>
       <button
         onClick={(e) => {
-          fresco.setPublicState({ items: [] });
+          fresco.setPublicState({ answers: [] });
           e.preventDefault();
         }}
       >
