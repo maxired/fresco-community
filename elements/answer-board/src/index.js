@@ -24,6 +24,7 @@ const Home = () => {
       fresco.initialize(
         {
           question: "What is your favorite color?",
+          maxAnswersPerParticipant: 1,
         },
         {
           title: "Answer Board",
@@ -33,6 +34,11 @@ const Home = () => {
               title: "Question",
               ui: { type: "string" },
               property: "question",
+            },
+            {
+              title: "Max answers per participant",
+              ui: { type: "number" },
+              property: "maxAnswersPerParticipant",
             },
           ],
         }
@@ -66,6 +72,12 @@ const Home = () => {
     fresco.setPublicState({ answers: newAnswers });
   };
 
+  const myAnswerCount = answers.filter(
+    (a) => a.ownerId === fresco.element.participantId
+  ).length;
+  const allowedAnswers = fresco.element.state.maxAnswersPerParticipant;
+  const canAddAnswer = myAnswerCount < allowedAnswers;
+
   return (
     <div>
       <h1 style={{ margin: 0 }}>{fresco?.element?.state?.question}</h1>
@@ -84,16 +96,18 @@ const Home = () => {
       ) : (
         <p>No answers yet, add your own!</p>
       )}
-      <form>
-        <input
-          type="text"
-          name="comment"
-          placeholder="Add your answer"
-          value={newAnswerText}
-          onChange={(e) => setNewAnswerText(e.target.value)}
-        />
-        <button onClick={addAnswer}>Add answer</button>
-      </form>
+      {canAddAnswer && (
+        <form>
+          <input
+            type="text"
+            name="comment"
+            placeholder="Add your answer"
+            value={newAnswerText}
+            onChange={(e) => setNewAnswerText(e.target.value)}
+          />
+          <button onClick={addAnswer}>Add answer</button>
+        </form>
+      )}
       <button
         onClick={(e) => {
           fresco.setPublicState({ answers: [] });
