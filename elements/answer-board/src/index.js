@@ -56,7 +56,7 @@ const Home = () => {
   const answers = fresco.element.publicState?.answers ?? [];
 
   const myAnswerCount = answers.filter(
-    (a) => a.ownerId === fresco.element.participantId
+    (a) => a.ownerId === fresco.element.ownerId
   ).length;
 
   const allowedAnswers = fresco.element.state.maxAnswersPerParticipant;
@@ -76,7 +76,7 @@ const Home = () => {
     if (value) {
       const newAnswers = [
         ...answers,
-        { ownerId: fresco.element.participantId, value: value },
+        { ownerId: fresco.element.ownerId, value: value },
       ];
       fresco.setPublicState({ answers: newAnswers });
       setNewAnswerText("");
@@ -100,7 +100,7 @@ const Home = () => {
           {answers.map((answer, ix) => (
             <li key={ix} style={answerStyle}>
               {answer.value}{" "}
-              {answer.ownerId === fresco.element.participantId && (
+              {answer.ownerId === fresco.element.ownerId && (
                 <button onClick={(e) => deleteAnswer(e, ix)}>Delete</button>
               )}
             </li>
