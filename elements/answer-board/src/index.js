@@ -1,6 +1,8 @@
 import "./style";
 import { useEffect, useState } from "preact/hooks";
 
+const MAX_ANSWER_CHARACTERS = 50;
+
 const initialState = {
   question: "What is your favorite color?",
   maxAnswersPerParticipant: 1,
@@ -114,6 +116,7 @@ const Home = () => {
             name="comment"
             placeholder="Add your answer"
             value={newAnswerText}
+            maxLength={MAX_ANSWER_CHARACTERS}
             onChange={(e) => setNewAnswerText(e.target.value)}
           />
           <button onClick={addAnswer}>Add answer</button>
