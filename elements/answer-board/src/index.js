@@ -1,11 +1,17 @@
 import "./style";
 import { useEffect, useState } from "preact/hooks";
 
+const initialState = {
+  question: "What is your favorite color?",
+  maxAnswersPerParticipant: 1,
+  blurAnswersUntilParticipantAnswers: false,
+};
+
 const Home = () => {
-  const [answers, setAnswers] = useState([]);
+  const [count, updateCount] = useState(0);
+  console.log("render", count);
   const [newAnswerText, setNewAnswerText] = useState("");
   const [ready, setReady] = useState(false);
-
   useEffect(() => {
     if (!fresco) {
       return;
@@ -14,41 +20,54 @@ const Home = () => {
     fresco.onReady(() => {
       setReady(true);
       fresco.onStateChanged(() => {
-        console.log(
-          "state updated!",
-          fresco.element.state,
-          fresco.element.publicState
-        );
-        setAnswers(fresco.element.publicState?.answers ?? []);
+        console.log(`state updated ${count}`, fresco.element);
+        updateCount((c) => c + 1);
       });
-      fresco.initialize(
-        {
-          question: "What is your favorite color?",
-          maxAnswersPerParticipant: 1,
-        },
-        {
-          title: "Answer Board",
-          autoAdjustHeight: true,
-          toolbarButtons: [
-            {
-              title: "Question",
-              ui: { type: "string" },
-              property: "question",
-            },
-            {
-              title: "Max answers per participant",
-              ui: { type: "number" },
-              property: "maxAnswersPerParticipant",
-            },
-          ],
-        }
-      );
+      fresco.initialize(initialState, {
+        title: "Answer Board",
+        autoAdjustHeight: true,
+        toolbarButtons: [
+          {
+            title: "Question",
+            ui: { type: "string" },
+            property: "question",
+          },
+          {
+            title: "Max answers per participant",
+            ui: { type: "number" },
+            property: "maxAnswersPerParticipant",
+          },
+          {
+            title: "Blur answers until participant answers?",
+            ui: { type: "checkbox" },
+            property: "blurAnswersUntilParticipantAnswers",
+          },
+        ],
+      });
     });
   }, []);
 
   if (!ready) {
-    return null;
+    return <h1>Initialising...</h1>;
   }
+
+  const answers = fresco.element.publicState?.answers ?? [];
+
+  const myAnswerCount = answers.filter(
+    (a) => a.ownerId === fresco.element.participantId
+  ).length;
+
+  const allowedAnswers = fresco.element.state.maxAnswersPerParticipant;
+  const canAddAnswer = myAnswerCount < allowedAnswers;
+  const hasAnswered = myAnswerCount > 0;
+
+  const answerStyle =
+    !hasAnswered && fresco.element.state.blurAnswersUntilParticipantAnswers
+      ? {
+          color: "transparent",
+          "text-shadow": "0 0 8px #000",
+        }
+      : {};
 
   const addAnswer = (e) => {
     const value = newAnswerText.trim();
@@ -57,7 +76,6 @@ const Home = () => {
         ...answers,
         { ownerId: fresco.element.participantId, value: value },
       ];
-      setAnswers(newAnswers);
       fresco.setPublicState({ answers: newAnswers });
       setNewAnswerText("");
     }
@@ -67,16 +85,9 @@ const Home = () => {
   const deleteAnswer = (e, ix) => {
     e.preventDefault();
     console.log("deleting answer", ix);
-    const newAnswers = fresco.element.state.answers.filter((_, i) => i !== ix);
-    setAnswers(newAnswers);
+    const newAnswers = answers.filter((_, i) => i !== ix);
     fresco.setPublicState({ answers: newAnswers });
   };
-
-  const myAnswerCount = answers.filter(
-    (a) => a.ownerId === fresco.element.participantId
-  ).length;
-  const allowedAnswers = fresco.element.state.maxAnswersPerParticipant;
-  const canAddAnswer = myAnswerCount < allowedAnswers;
 
   return (
     <div>
@@ -85,7 +96,7 @@ const Home = () => {
       {answers.length ? (
         <ul>
           {answers.map((answer, ix) => (
-            <li key={ix}>
+            <li key={ix} style={answerStyle}>
               {answer.value}{" "}
               {answer.ownerId === fresco.element.participantId && (
                 <button onClick={(e) => deleteAnswer(e, ix)}>Delete</button>
@@ -118,11 +129,11 @@ const Home = () => {
       </button>
       <button
         onClick={(e) => {
-          fresco.setState({ question: "was reset" });
+          fresco.setState(initialState);
           e.preventDefault();
         }}
       >
-        Clear State
+        Reset
       </button>
     </div>
   );
