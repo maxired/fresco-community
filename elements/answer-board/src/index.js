@@ -2,6 +2,7 @@ import "./style";
 import { useEffect, useState } from "preact/hooks";
 
 const MAX_ANSWER_CHARACTERS = 50;
+const ANSWERS_STORAGE = "answers";
 
 const initialState = {
   question: "What is your favorite color?",
@@ -11,7 +12,6 @@ const initialState = {
 
 const Home = () => {
   const [count, updateCount] = useState(0);
-  console.log("render", count);
   const [newAnswerText, setNewAnswerText] = useState("");
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -22,7 +22,6 @@ const Home = () => {
     fresco.onReady(() => {
       setReady(true);
       fresco.onStateChanged(() => {
-        console.log(`state updated ${count}`, fresco.element);
         updateCount((c) => c + 1);
       });
       fresco.initialize(initialState, {
@@ -53,7 +52,7 @@ const Home = () => {
     return <h1>Initialising...</h1>;
   }
 
-  const answers = fresco.element.publicState?.answers ?? [];
+  const answers = fresco.element?.storage[ANSWERS_STORAGE] || [];
 
   const myAnswerCount = answers.filter(
     (a) => a.ownerId === fresco.element.ownerId
@@ -74,21 +73,15 @@ const Home = () => {
   const addAnswer = (e) => {
     const value = newAnswerText.trim();
     if (value) {
-      const newAnswers = [
-        ...answers,
-        { ownerId: fresco.element.ownerId, value: value },
-      ];
-      fresco.setPublicState({ answers: newAnswers });
+      fresco.storage.add(ANSWERS_STORAGE, value);
       setNewAnswerText("");
     }
     e.preventDefault();
   };
 
-  const deleteAnswer = (e, ix) => {
+  const deleteAnswer = (e, id) => {
     e.preventDefault();
-    console.log("deleting answer", ix);
-    const newAnswers = answers.filter((_, i) => i !== ix);
-    fresco.setPublicState({ answers: newAnswers });
+    fresco.storage.remove(ANSWERS_STORAGE, id);
   };
 
   return (
@@ -97,11 +90,13 @@ const Home = () => {
       <h2>Answers</h2>
       {answers.length ? (
         <ul>
-          {answers.map((answer, ix) => (
-            <li key={ix} style={answerStyle}>
+          {answers.map((answer) => (
+            <li key={answer.id} style={answerStyle}>
               {answer.value}{" "}
               {answer.ownerId === fresco.element.ownerId && (
-                <button onClick={(e) => deleteAnswer(e, ix)}>Delete</button>
+                <button onClick={(e) => deleteAnswer(e, answer.id)}>
+                  Delete
+                </button>
               )}
             </li>
           ))}
@@ -124,7 +119,7 @@ const Home = () => {
       )}
       <button
         onClick={(e) => {
-          fresco.setPublicState({ answers: [] });
+          answers.forEach((a) => fresco.storage.remove(ANSWERS_STORAGE, a.id));
           e.preventDefault();
         }}
       >
