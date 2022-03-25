@@ -10,6 +10,41 @@ const initialState = {
   blurAnswersUntilParticipantAnswers: false,
 };
 
+const style = {
+  question: {
+    padding: 20,
+    margin: 0,
+    borderBottom: "1px black solid",
+  },
+  answers: {
+    display: "flex",
+    flexWrap: "wrap",
+    padding: 0,
+    margin: 0,
+  },
+  answer: {
+    backgroundColor: "#94B300",
+    width: 140,
+    height: 140,
+    padding: 5,
+    margin: 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    fontSize: 20,
+    textAlign: "center",
+    border: "solid 1px black",
+  },
+  delete: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    margin: 5,
+    fontWeight: "bold",
+  },
+};
+
 const Home = () => {
   const [count, updateCount] = useState(0);
   const [newAnswerText, setNewAnswerText] = useState("");
@@ -65,10 +100,11 @@ const Home = () => {
   const answerStyle =
     !hasAnswered && fresco.element.state.blurAnswersUntilParticipantAnswers
       ? {
+          ...style.answer,
           color: "transparent",
           "text-shadow": "0 0 8px #000",
         }
-      : {};
+      : style.answer;
 
   const addAnswer = (e) => {
     const value = newAnswerText.trim();
@@ -86,24 +122,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1 style={{ margin: 0 }}>{fresco?.element?.state?.question}</h1>
-      <h2>Answers</h2>
-      {answers.length ? (
-        <ul>
-          {answers.map((answer) => (
-            <li key={answer.id} style={answerStyle}>
-              {answer.value}{" "}
-              {answer.ownerId === fresco.element.ownerId && (
-                <button onClick={(e) => deleteAnswer(e, answer.id)}>
-                  Delete
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No answers yet, add your own!</p>
-      )}
+      <h1 style={style.question}>{fresco?.element?.state?.question}</h1>
       {canAddAnswer && (
         <form>
           <input
@@ -117,22 +136,25 @@ const Home = () => {
           <button onClick={addAnswer}>Add answer</button>
         </form>
       )}
-      <button
-        onClick={(e) => {
-          answers.forEach((a) => fresco.storage.remove(ANSWERS_STORAGE, a.id));
-          e.preventDefault();
-        }}
-      >
-        Clear all answers
-      </button>
-      <button
-        onClick={(e) => {
-          fresco.setState(initialState);
-          e.preventDefault();
-        }}
-      >
-        Reset
-      </button>
+      {answers.length ? (
+        <ul style={style.answers}>
+          {answers.map((answer) => (
+            <li key={answer.id} style={answerStyle}>
+              {answer.value}{" "}
+              {answer.ownerId === fresco.element.ownerId && (
+                <button
+                  onClick={(e) => deleteAnswer(e, answer.id)}
+                  style={style.delete}
+                >
+                  X
+                </button>
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No answers yet, add your own!</p>
+      )}
     </div>
   );
 };
