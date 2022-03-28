@@ -63,7 +63,7 @@ const style = {
     textAlign: "center",
     border: "solid 1px black",
   },
-  deleteButton: {
+  delete: {
     position: "absolute",
     top: 0,
     right: 0,
@@ -202,8 +202,7 @@ const Home = () => {
               {answer.ownerId === fresco.element.ownerId && (
                 <button
                   onClick={(e) => deleteAnswer(e, answer.id)}
-                  style={style.deleteButton}
-                  class="deleteButton"
+                  style={style.delete}
                 >
                   X
                 </button>

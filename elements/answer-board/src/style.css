@@ -8,13 +8,8 @@ h1 {
   text-align: center;
 }
 
-.deleteButton {
-  background-color: #9e32d6;
-  border: none;
-  color: #fff;
-}
-
-.deleteButton:hover {
-  background-color: #ba6be1;
-  color: #fff;
+.home {
+  padding: 20px;
+  min-height: 100%;
+  width: 100%;
 }
