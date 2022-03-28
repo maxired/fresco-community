@@ -43,6 +43,19 @@ const style = {
     margin: 5,
     fontWeight: "bold",
   },
+  yourAnswerContainer: {
+    marginTop: 10,
+    padding: 10,
+  },
+  yourAnswerTextbox: {
+    padding: 10,
+    fontSize: 16,
+  },
+  yourAnswerButton: {
+    padding: 10,
+    marginLeft: 10,
+    fontSize: 16,
+  },
 };
 
 const Home = () => {
@@ -124,17 +137,22 @@ const Home = () => {
     <div>
       <h1 style={style.question}>{fresco?.element?.state?.question}</h1>
       {canAddAnswer && (
-        <form>
-          <input
-            type="text"
-            name="comment"
-            placeholder="Add your answer"
-            value={newAnswerText}
-            maxLength={MAX_ANSWER_CHARACTERS}
-            onChange={(e) => setNewAnswerText(e.target.value)}
-          />
-          <button onClick={addAnswer}>Add answer</button>
-        </form>
+        <div style={style.yourAnswerContainer}>
+          <form>
+            <input
+              style={style.yourAnswerTextbox}
+              type="text"
+              name="comment"
+              placeholder="Add your answer"
+              value={newAnswerText}
+              maxLength={MAX_ANSWER_CHARACTERS}
+              onChange={(e) => setNewAnswerText(e.target.value)}
+            />
+            <button style={style.yourAnswerButton} onClick={addAnswer}>
+              Add answer
+            </button>
+          </form>
+        </div>
       )}
       {answers.length ? (
         <ul style={style.answers}>
