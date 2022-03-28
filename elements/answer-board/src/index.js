@@ -1,5 +1,5 @@
 import "./style";
-import { useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
 
 const MAX_ANSWER_CHARACTERS = 50;
 const ANSWERS_STORAGE = "answers";
@@ -85,10 +85,17 @@ const style = {
   },
 };
 
+const useForceUpdate = () => {
+  const [_, updateCount] = useState(0);
+  return useCallback(() => {
+    updateCount((c) => c + 1);
+  }, []);
+};
+
 const Home = () => {
-  const [count, updateCount] = useState(0);
   const [newAnswerText, setNewAnswerText] = useState("");
   const [ready, setReady] = useState(false);
+  const forceUpdate = useForceUpdate();
   useEffect(() => {
     if (!fresco) {
       return;
@@ -97,7 +104,7 @@ const Home = () => {
     fresco.onReady(() => {
       setReady(true);
       fresco.onStateChanged(() => {
-        updateCount((c) => c + 1);
+        forceUpdate();
       });
       fresco.initialize(initialState, {
         title: "Answer Board",
