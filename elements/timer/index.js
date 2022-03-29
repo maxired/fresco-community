@@ -8,56 +8,78 @@ function toTime(milliseconds) {
     return (m < 10 ? "0" : "") + m.toString() + ":" + (s < 10 ? "0" : "") + s.toString();
 }
 
-function resetTimer() {
-    button.classList.remove('button--done');
-    console.log('iframe', 'fresco.state.appearance', fresco.state.appearance);
-    button.innerText = toTime(fresco.state.appearance.duration * 60 * 1000);
-}
-
 let interval = null;
 let targetTime = null;
-function startTimer() {
-    if (!interval) {
-        targetTime = new Date().getTime() + fresco.state.appearance.duration * 60 * 1000;
-        button.innerText = toTime(targetTime - 1 - new Date().getTime());
 
-        interval = setInterval(() => {
-            const timeRemaining = targetTime - new Date().getTime();
-            button.innerText = toTime(timeRemaining);
-            if (timeRemaining <= 0) {
-                button.classList.add('button--done');
-            }
-        }, 1000);
-
-    } else {
-        clearInterval(interval);
+function stopTimer() {
+    button.classList.remove('button--done');
+    button.innerText = toTime(fresco.element.state.duration * 60 * 1000);
+    if (interval) { 
+        clearInterval(interval); 
         interval = null;
-        resetTimer(fresco.state.appearance.duration * 60 * 1000);
     }
 }
 
+function startTimer(targetTime, now) {
+    button.innerText = toTime(targetTime - 1 - now);
+
+    interval = setInterval(() => {
+        const timeRemaining = targetTime - new Date().getTime();
+        button.innerText = toTime(timeRemaining);
+        if (timeRemaining <= 0) {
+
+            const tingsha = new Audio('tingsha.mp3');
+            tingsha.play();
+            button.classList.add('button--done');
+            clearInterval(interval);
+            interval = null;
+        }
+    }, 1000);
+}
+
+function toggleTimer() {
+    if (interval) { // We want to stop the timer
+        stopTimer();
+        fresco.setState({ startedAt: null });
+        return;
+    }
+    
+    const now = new Date().getTime();
+    targetTime = now + fresco.element.state.duration * 60 * 1000;
+    startTimer(targetTime, now);
+    fresco.setState({ startedAt: now});
+}
+
 fresco.onReady(function () {
-    fresco.initialize({
-            duration: 1
-        },
-        {
-            titlebar: {
-                title: 'Timer'
-            },
-            toolbar: [{
-                title: 'Duration (min)',
-                icon: '<i class="fa fa-users" />',
-                ui: { type: 'slider', min: 1, max: 60 },
-                property: 'duration'
-            }]
-        });
+    const urlParams = new URLSearchParams(window.location.search);
+    const duration = urlParams.get('duration');
+
+    const defaultState = {
+        duration: duration ? parseFloat(duration, 2) : 5,
+        startedAt: null
+    };
+
+    const elementConfig = {
+        title: 'Timer',
+        toolbarButtons: [{
+            title: 'Duration (min)',
+            icon: '<i class="fa fa-users" />',
+            ui: { type: 'slider', min: 1, max: 60 },
+            property: 'duration'
+        }]
+    };
 
     fresco.onStateChanged(function () {
-        resetTimer();
+        if (!fresco.element.state.startedAt) {
+            stopTimer();
+        } else {
+            stopTimer();
+            targetTime = fresco.element.state.startedAt + fresco.element.state.duration * 60 * 1000;
+            startTimer(targetTime, new Date().getTime());
+        }
     });
-
-    resetTimer();
-    button.addEventListener('click', startTimer);
+    fresco.initialize(defaultState, elementConfig);
+    button.addEventListener('click', toggleTimer);
 });
 
 

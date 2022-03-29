@@ -1,0 +1,502 @@
+[
+  {
+    "name": "Mansion",
+    "filename": "mansion.png"
+  },
+  {
+    "name": "Barrel",
+    "filename": "barrel.png"
+  },
+  {
+    "name": "Bed Large Messy",
+    "filename": "bed-large-messy.png"
+  },
+  {
+    "name": "Bed Large",
+    "filename": "bed-large.png"
+  },
+  {
+    "name": "Bed Smaller",
+    "filename": "bed-smaller.png"
+  },
+  {
+    "name": "Bookcase 1",
+    "filename": "bookcase-1.png"
+  },
+  {
+    "name": "Bookcase 2",
+    "filename": "bookcase-2.png"
+  },
+  {
+    "name": "Bookcase Narrow",
+    "filename": "bookcase-narrow.png"
+  },
+  {
+    "name": "Chair Armchair 1",
+    "filename": "chair-armchair-1.png"
+  },
+  {
+    "name": "Chair Armchair 2",
+    "filename": "chair-armchair-2.png"
+  },
+  {
+    "name": "Chair Long Bench",
+    "filename": "chair-long bench.png"
+  },
+  {
+    "name": "Chair Plush",
+    "filename": "chair-plush.png"
+  },
+  {
+    "name": "Chair Sofa",
+    "filename": "chair-sofa.png"
+  },
+  {
+    "name": "Chair Stool",
+    "filename": "chair-stool.png"
+  },
+  {
+    "name": "Chair Wooden",
+    "filename": "chair-wooden.png"
+  },
+  {
+    "name": "Chest Long",
+    "filename": "chest-long.png"
+  },
+  {
+    "name": "Chest Tiny",
+    "filename": "chest-tiny.png"
+  },
+  {
+    "name": "Chest",
+    "filename": "chest.png"
+  },
+  {
+    "name": "Clothes Rack",
+    "filename": "clothes rack.png"
+  },
+  {
+    "name": "Clutter Book",
+    "filename": "clutter-book.png"
+  },
+  {
+    "name": "Clutter Books 1",
+    "filename": "clutter-books-1.png"
+  },
+  {
+    "name": "Clutter Books 2",
+    "filename": "clutter-books-2.png"
+  },
+  {
+    "name": "Clutter Bowl",
+    "filename": "clutter-bowl.png"
+  },
+  {
+    "name": "Clutter Bra",
+    "filename": "clutter-bra.png"
+  },
+  {
+    "name": "Clutter Cauldron",
+    "filename": "clutter-cauldron.png"
+  },
+  {
+    "name": "Clutter Coat",
+    "filename": "clutter-coat.png"
+  },
+  {
+    "name": "Clutter Cup 1",
+    "filename": "clutter-cup-1.png"
+  },
+  {
+    "name": "Clutter Cup 2",
+    "filename": "clutter-cup-2.png"
+  },
+  {
+    "name": "Clutter Cups",
+    "filename": "clutter-cups.png"
+  },
+  {
+    "name": "Clutter Cushion",
+    "filename": "clutter-cushion.png"
+  },
+  {
+    "name": "Clutter Cutlery",
+    "filename": "clutter-cutlery.png"
+  },
+  {
+    "name": "Clutter Game Board",
+    "filename": "clutter-game board.png"
+  },
+  {
+    "name": "Clutter Globe",
+    "filename": "clutter-globe.png"
+  },
+  {
+    "name": "Clutter Goblet",
+    "filename": "clutter-goblet.png"
+  },
+  {
+    "name": "Clutter Kitchenware",
+    "filename": "clutter-kitchenware.png"
+  },
+  {
+    "name": "Clutter Laboratory",
+    "filename": "clutter-laboratory.png"
+  },
+  {
+    "name": "Clutter Meat",
+    "filename": "clutter-meat.png"
+  },
+  {
+    "name": "Clutter Parchment Stack",
+    "filename": "clutter-parchment stack.png"
+  },
+  {
+    "name": "Clutter Parchment",
+    "filename": "clutter-parchment.png"
+  },
+  {
+    "name": "Clutter Picture Frames",
+    "filename": "clutter-picture frames.png"
+  },
+  {
+    "name": "Clutter Poultry",
+    "filename": "clutter-poultry.png"
+  },
+  {
+    "name": "Clutter Stein",
+    "filename": "clutter-stein.png"
+  },
+  {
+    "name": "Clutter Vegetables",
+    "filename": "clutter-vegetables.png"
+  },
+  {
+    "name": "Clutter Writing",
+    "filename": "clutter-writing.png"
+  },
+  {
+    "name": "Covered 1",
+    "filename": "covered-1.png"
+  },
+  {
+    "name": "Covered 2",
+    "filename": "covered-2.png"
+  },
+  {
+    "name": "Covered 3",
+    "filename": "covered-3.png"
+  },
+  {
+    "name": "Crate",
+    "filename": "crate.png"
+  },
+  {
+    "name": "Curtains 1",
+    "filename": "curtains-1.png"
+  },
+  {
+    "name": "Curtains 2",
+    "filename": "curtains-2.png"
+  },
+  {
+    "name": "Hearth Fence",
+    "filename": "hearth fence.png"
+  },
+  {
+    "name": "Hearth 1",
+    "filename": "hearth-1.png"
+  },
+  {
+    "name": "Hearth 2",
+    "filename": "hearth-2.png"
+  },
+  {
+    "name": "Hearth 3",
+    "filename": "hearth-3.png"
+  },
+  {
+    "name": "Hearth Chimney",
+    "filename": "hearth-chimney.png"
+  },
+  {
+    "name": "Hearth Poker",
+    "filename": "hearth-poker.png"
+  },
+  {
+    "name": "Light Candelabrum 1",
+    "filename": "light-candelabrum-1.png"
+  },
+  {
+    "name": "Light Candelabrum 2",
+    "filename": "light-candelabrum-2.png"
+  },
+  {
+    "name": "Light Candle 1",
+    "filename": "light-candle-1.png"
+  },
+  {
+    "name": "Light Candle 2",
+    "filename": "light-candle-2.png"
+  },
+  {
+    "name": "Light Chandelier 1",
+    "filename": "light-chandelier-1.png"
+  },
+  {
+    "name": "Light Chandelier 2",
+    "filename": "light-chandelier-2.png"
+  },
+  {
+    "name": "Light Chandelier 3",
+    "filename": "light-chandelier-3.png"
+  },
+  {
+    "name": "Light Chandelier 4",
+    "filename": "light-chandelier-4.png"
+  },
+  {
+    "name": "Light Wall 1",
+    "filename": "light-wall-1.png"
+  },
+  {
+    "name": "Light Wall 2",
+    "filename": "light-wall-2.png"
+  },
+  {
+    "name": "Light Wall 3",
+    "filename": "light-wall-3.png"
+  },
+  {
+    "name": "Organ",
+    "filename": "organ.png"
+  },
+  {
+    "name": "Partition",
+    "filename": "partition.png"
+  },
+  {
+    "name": "Piano",
+    "filename": "piano.png"
+  },
+  {
+    "name": "Picture Frame 1",
+    "filename": "picture frame-1.png"
+  },
+  {
+    "name": "Picture Frame 2",
+    "filename": "picture frame-2.png"
+  },
+  {
+    "name": "Picture Frame 3",
+    "filename": "picture frame-3.png"
+  },
+  {
+    "name": "Picture Frame 4",
+    "filename": "picture frame-4.png"
+  },
+  {
+    "name": "Placemat Rectangle",
+    "filename": "placemat-rectangle.png"
+  },
+  {
+    "name": "Placemat Square",
+    "filename": "placemat-square.png"
+  },
+  {
+    "name": "Plants 1",
+    "filename": "plants-1.png"
+  },
+  {
+    "name": "Plants 2",
+    "filename": "plants-2.png"
+  },
+  {
+    "name": "Plants 3",
+    "filename": "plants-3.png"
+  },
+  {
+    "name": "Plants 4",
+    "filename": "plants-4.png"
+  },
+  {
+    "name": "Plants 5",
+    "filename": "plants-5.png"
+  },
+  {
+    "name": "Plants 6",
+    "filename": "plants-6.png"
+  },
+  {
+    "name": "Rug 1",
+    "filename": "rug-1.png"
+  },
+  {
+    "name": "Rug 2",
+    "filename": "rug-2.png"
+  },
+  {
+    "name": "Rug 3",
+    "filename": "rug-3.png"
+  },
+  {
+    "name": "Rug 4",
+    "filename": "rug-4.png"
+  },
+  {
+    "name": "Rug 5",
+    "filename": "rug-5.png"
+  },
+  {
+    "name": "Shelf",
+    "filename": "shelf.png"
+  },
+  {
+    "name": "Statue Bust",
+    "filename": "statue-bust.png"
+  },
+  {
+    "name": "Suit Of Armor",
+    "filename": "suit of armor.png"
+  },
+  {
+    "name": "Table Bedside",
+    "filename": "table-bedside.png"
+  },
+  {
+    "name": "Table Bend",
+    "filename": "table-bend.png"
+  },
+  {
+    "name": "Table Dining",
+    "filename": "table-dining.png"
+  },
+  {
+    "name": "Table Drawers",
+    "filename": "table-drawers.png"
+  },
+  {
+    "name": "Table Long Rounded",
+    "filename": "table-long-rounded.png"
+  },
+  {
+    "name": "Table Medium",
+    "filename": "table-medium.png"
+  },
+  {
+    "name": "Table Rounded Small",
+    "filename": "table-rounded-small.png"
+  },
+  {
+    "name": "Table Rounded",
+    "filename": "table-rounded.png"
+  },
+  {
+    "name": "Table Small 1",
+    "filename": "table-small-1.png"
+  },
+  {
+    "name": "Table Small 2",
+    "filename": "table-small-2.png"
+  },
+  {
+    "name": "Toilet 1",
+    "filename": "toilet-1.png"
+  },
+  {
+    "name": "Toilet 2",
+    "filename": "toilet-2.png"
+  },
+  {
+    "name": "Toilet Basin",
+    "filename": "toilet-basin.png"
+  },
+  {
+    "name": "Toilet Portable",
+    "filename": "toilet-portable.png"
+  },
+  {
+    "name": "Trophy 1",
+    "filename": "trophy-1.png"
+  },
+  {
+    "name": "Trophy 2",
+    "filename": "trophy-2.png"
+  },
+  {
+    "name": "Trophy 3",
+    "filename": "trophy-3.png"
+  },
+  {
+    "name": "Trophy 4",
+    "filename": "trophy-4.png"
+  },
+  {
+    "name": "Trophy 5",
+    "filename": "trophy-5.png"
+  },
+  {
+    "name": "Trophy 6",
+    "filename": "trophy-6.png"
+  },
+  {
+    "name": "Vanity",
+    "filename": "vanity.png"
+  },
+  {
+    "name": "Vase",
+    "filename": "vase.png"
+  },
+  {
+    "name": "Wall Door",
+    "filename": "wall-door.png"
+  },
+  {
+    "name": "Wall Filler",
+    "filename": "wall-filler.png"
+  },
+  {
+    "name": "Wall Secret Door",
+    "filename": "wall-secret door.png"
+  },
+  {
+    "name": "Wall Window Alt",
+    "filename": "wall-window-alt.png"
+  },
+  {
+    "name": "Wall Window",
+    "filename": "wall-window.png"
+  },
+  {
+    "name": "Wardrobe 1",
+    "filename": "wardrobe-1.png"
+  },
+  {
+    "name": "Wardrobe 2",
+    "filename": "wardrobe-2.png"
+  },
+  {
+    "name": "Wardrobe 3",
+    "filename": "wardrobe-3.png"
+  },
+  {
+    "name": "Webs 1",
+    "filename": "webs-1.png"
+  },
+  {
+    "name": "Webs 2",
+    "filename": "webs-2.png"
+  },
+  {
+    "name": "Webs 3",
+    "filename": "webs-3.png"
+  },
+  {
+    "name": "Webs 4",
+    "filename": "webs-4.png"
+  },
+  {
+    "name": "Webs 5",
+    "filename": "webs-5.png"
+  }
+]

@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <script src='../../loadSdk.js' ></script>
+        <style>
+            body {
+                display: flex;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                padding: 0;
+                margin: 0; 
+                user-select: none;
+                overflow: hidden;
+            }
+
+            .card-like {
+                background-color: var(--background-color, #333);
+                color: var(--color, #fff);
+
+                border-radius: 2vw;
+                padding: 6vw;
+                font-size: 10vw;
+                width: 100%;
+                border-width: 0;
+                cursor: pointer;
+                box-shadow: 1vw 1vw 1vw rgba(0,0,0,.3);
+            }
+
+            .card {
+                text-align: right;
+            }
+
+            #home-screen {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .is-hidden {
+                display: none !important;
+            }
+
+            .deck {
+                flex: 1;
+                position: relative;
+                margin: 6vw;
+            }
+
+            button {
+                font-weight: bold;
+            }
+
+            .stacked-card {
+                position: absolute;
+                transform: rotate(6deg);
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                width: initial;
+                height: initial;
+            }
+
+            .stacked-card + .stacked-card {
+                transform: rotate(3deg);
+            }
+
+            #deck {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+            }
+
+            #card-screen {
+                margin: 6vw;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="home-screen">
+            <div class="deck">
+                <div class="stacked-card card-like"></div>
+                <div class="stacked-card card-like"></div>
+                <button id='deck' class="card-like">Draw</button>
+            </div>
+        </div>
+        <div id="card-screen" class="card-like card is-hidden">
+            Sample card
+        </div>
+        <script src='./index.js'></script>
+    </body>
+</html>

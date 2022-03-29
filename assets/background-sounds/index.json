@@ -1,0 +1,30 @@
+[
+    {
+        "name":  "birds",
+        "filename":  "birds.mp3"
+    },
+    {
+        "name":  "cafe",
+        "filename":  "cafe.mp3"
+    },
+    {
+        "name":  "campfire",
+        "filename":  "campfire.mp3"
+    },
+    {
+        "name":  "farm",
+        "filename":  "farm.mp3"
+    },
+    {
+        "name":  "forest",
+        "filename":  "forest.mp3"
+    },
+    {
+        "name":  "ocean",
+        "filename":  "ocean.mp3"
+    },
+    {
+        "name":  "office",
+        "filename":  "office.mp3"
+    }
+]

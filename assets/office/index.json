@@ -1,0 +1,494 @@
+[
+  {
+    "filename": "texture1.jpg",
+    "name": "Light wood",
+    "group": "Flooring",
+    "content": {
+      "visuals": [
+        {
+          "id": "erCf9sUOlkNy_RG0c3-iM",
+          "isLocked": false,
+          "zIndex": 1099,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": -1691, "y": -431 },
+            "size": { "x": 480, "y": 640 },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/office/texture1.jpg",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": "",
+            "IMAGE_TILED": true
+          }
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "filename": "texture2.jpg",
+    "name": "Medium wood",
+    "group": "Flooring",
+    "content": {
+      "visuals": [
+        {
+          "id": "pgPCj0LQ5kuhAgDtcr2oI",
+          "isLocked": false,
+          "zIndex": 1101,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": -964, "y": -568 },
+            "size": { "x": 320, "y": 320 },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/office/texture2.jpg",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": "",
+            "IMAGE_TILED": true
+          }
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "filename": "texture4.jpg",
+    "name": "Hard wood",
+    "group": "Flooring",
+    "content": {"visuals":[{"id":"PGxYR7QRQcMNDVnAxhtVD","isLocked":false,"zIndex":1107,"layer":0,"renderer":"Raster","transform":{"position":{"x":-120,"y":-839},"size":{"x":512,"y":512},"rotation":0},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/texture4.jpg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":true}}],"groups":[]}
+  },
+  {
+    "filename": "texture3.jpg",
+    "name": "Checkers",
+    "group": "Flooring",
+    "content": {
+      "visuals": [
+        {
+          "id": "L3ys4GKna4qSdfLddbAtp",
+          "isLocked": false,
+          "zIndex": 1106,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": -719, "y": -322 },
+            "size": { "x": 800, "y": 800 },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/office/texture3.jpg",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": "",
+            "IMAGE_TILED": true
+          }
+        }
+      ],
+      "groups": []
+    }
+  },
+  {
+    "filename": "chair1.svg",
+    "name": "Chair1",
+    "group": "Chairs"
+  },
+  {
+    "name": "Chair",
+    "displayName": "Chair",
+    "displaySearch": "Chair",
+    "group": "Chairs",
+    "url": "https://fres-co.github.io/fresco-community/assets/office/chair2.svg",
+    "content": {
+      "visuals": [
+        {
+          "id": "-vDTiLIAqhaiF9j7qLLIR",
+          "isLocked": false,
+          "zIndex": -1623142523486,
+          "layer": 0,
+          "renderer": "SnapPoint",
+          "transform": {
+            "position": {
+              "x": 1110,
+              "y": 624
+            },
+            "size": {
+              "x": 100,
+              "y": 100
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_BEHAVIOUR": 2,
+            "TEXT_DISABLED": true,
+            "ACTION": null,
+            "TEXT": "",
+            "SPACE_NAME": "",
+            "ANCHOR_NAME": "",
+            "PASSCODE": "",
+            "TEXT_PLACEHOLDER": ""
+          }
+        },
+        {
+          "id": "mojf-RKVGKWLzmZE7vcA_",
+          "isLocked": false,
+          "zIndex": -1623142508016,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": {
+              "x": 1121,
+              "y": 619
+            },
+            "size": {
+              "x": 174,
+              "y": 168
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "TEXT_DISABLED": true,
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/office/chair2.svg",
+            "STROKE_COLOR": 13224393,
+            "BACKGROUND_COLOR": "",
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 10,
+            "ACTION": ""
+          }
+        }
+      ],
+      "groups": [
+        {
+          "id": "f-H7bLeU1_m8HU6YwAo05",
+          "zIndex": 1623142531807,
+          "isLocked": false,
+          "layer": 0,
+          "childIds": ["-vDTiLIAqhaiF9j7qLLIR", "mojf-RKVGKWLzmZE7vcA_"],
+          "transform": {
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "size": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0
+          },
+          "rotation": 0
+        }
+      ]
+    }
+  },
+  {
+    "filename": "chair3.svg",
+    "name": "Chair3",
+    "group": "Chairs"
+  },
+  {
+    "filename": "chair4.svg",
+    "name": "Chair4",
+    "group": "Chairs"
+  },
+  {
+    "filename": "chair5.svg",
+    "name": "Chair5",
+    "group": "Chairs"
+  },
+  {
+    "filename": "chair6.svg",
+    "name": "Chair6",
+    "group": "Chairs"
+  },
+  {
+    "filename": "plant1.svg",
+    "name": "Plant1",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant2.svg",
+    "name": "Plant2",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant3.svg",
+    "name": "Plant3",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant4.svg",
+    "name": "Plant4",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant5.svg",
+    "name": "Plant5",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant6.svg",
+    "name": "Plant6",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant7.svg",
+    "name": "Plant7",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant8.svg",
+    "name": "Plant8",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant9.svg",
+    "name": "Plant9",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant10.svg",
+    "name": "Plant10",
+    "group": "Plants"
+  },
+  {
+    "filename": "plant11.svg",
+    "name": "Plant11",
+    "group": "Plants"
+  },
+  {
+    "filename": "sofa-2p.svg",
+    "name": "Sofa for 2",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa-4p.svg",
+    "name": "Sofa for 4",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa-8p.svg",
+    "name": "Sofa for 8",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa-8p-2.svg",
+    "name": "Sofa for 8 (2)",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa-10p.svg",
+    "name": "Sofa for 10",
+    "group": "Sofas"
+  },
+  {
+    "filename": "table-4p.svg",
+    "name": "Table for 4",
+    "group": "Tables"
+  },
+  {
+    "filename": "table-4p-2.svg",
+    "name": "Table for 4 (2)",
+    "group": "Tables"
+  },
+  {
+    "filename": "table-6p.svg",
+    "name": "Table for 6",
+    "group": "Tables"
+  },
+  {
+    "filename": "table-8p.svg",
+    "name": "Table for 8",
+    "group": "Tables"
+  },
+  {
+    "filename": "table1.svg",
+    "name": "Table 1",
+    "group": "Tables"
+  },
+  {
+    "filename": "table2.svg",
+    "name": "Table 2",
+    "group": "Tables"
+  },
+  {
+    "filename": "table3.svg",
+    "name": "Table 3",
+    "group": "Tables"
+  },
+  {
+    "filename": "table4.svg",
+    "name": "Table 4",
+    "group": "Tables"
+  },
+  {
+    "filename": "table5.svg",
+    "name": "Table 5",
+    "group": "Tables"
+  },
+  {
+    "filename": "table6.svg",
+    "name": "Table 6",
+    "group": "Tables"
+  },
+  {
+    "filename": "bush.svg",
+    "name": "Bush",
+    "group": "Plants"
+  },
+  {
+    "filename": "cup-1.svg",
+    "name": "Cup 1",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-2.svg",
+    "name": "Cup 2",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-3.svg",
+    "name": "Cup 3",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-4.svg",
+    "name": "Cup 4",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-5.svg",
+    "name": "Cup 5",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-6.svg",
+    "name": "Cup 6",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-7.svg",
+    "name": "Cup 7",
+    "group": "Cups"
+  },
+  {
+    "filename": "cup-8.svg",
+    "name": "Cup 8",
+    "group": "Cups"
+  },
+  {
+    "filename": "desk-1.svg",
+    "name": "Desk 1",
+    "group": "Desks"
+  },
+  {
+    "filename": "desk-2.svg",
+    "name": "Desk 2",
+    "group": "Desks"
+  },
+  {
+    "filename": "pingpong-1.svg",
+    "name": "Ping Pong table"
+  },
+  {
+    "filename": "pingpong-2.svg",
+    "name": "Ping Pong table 2"
+  },
+  {
+    "filename": "watercooler01.svg",
+    "name": "Watercooler 1",
+    "group": "Watercoolers"
+  },
+  {
+    "filename": "watercooler02.svg",
+    "name": "Watercooler 2",
+    "group": "Watercoolers"
+  },
+  {
+    "filename": "watercooler03.svg",
+    "name": "Watercooler 3",
+    "group": "Watercoolers"
+  },
+  {
+    "filename": "whiteboard1.svg",
+    "name": "Whiteboard"
+  },
+  {
+    "filename": "fish-bowl.svg",
+    "name": "Fish bowl"
+  },
+  {
+    "filename": "sofa01.svg",
+    "name": "Sofa 3",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa02.svg",
+    "name": "Sofa 2",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa03.svg",
+    "name": "Sofa 3",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa04.svg",
+    "name": "Sofa 4",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa05.svg",
+    "name": "Sofa 5",
+    "group": "Sofas"
+  },
+  {
+    "filename": "sofa06.svg",
+    "name": "Sofa 6",
+    "group": "Sofas"
+  },
+  {
+    "name": "Lobby",
+    "displayName": "Lobby",
+    "displaySearch": "Lobby",
+    "group": "Rooms",
+    "url": "https://fres-co.github.io/fresco-community/inventory/room-lobby.png",
+    "content": {"visuals":[{"id":"LKZR18cxkt6M5Xx0ecEza","isLocked":false,"zIndex":482,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1349,"y":442},"size":{"x":100,"y":100},"rotation":0},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"entrance","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"W3vJiR_S4BZlTJ4EMBZZa","isLocked":false,"zIndex":483,"layer":0,"renderer":"Rectangle","transform":{"position":{"x":1837,"y":683},"size":{"x":1160,"y":660},"rotation":0},"appearance":{"COLOR":"#c2ac94","STROKE_COLOR":"#fde9d2","STROKE_THICKNESS":20,"BORDER_RADIUS":20,"TEXT_DISABLED":true,"BODY_TYPE":"PASSTHROUGH","OPACITY":100}},{"id":"E01nTfYkK_bjzbuj1IUbG","isLocked":false,"zIndex":484,"layer":0,"renderer":"Heading","transform":{"position":{"x":1328,"y":308},"size":{"x":142,"y":90},"rotation":0},"appearance":{"COLOR":"#737373","BORDER_RADIUS":20,"FONT_WEIGHT":"bold","TEXT_BEHAVIOUR":1,"TEXT":"Lobby","FONT_SIZE":36,"BACKGROUND_COLOR":"transparent","FONT_FAMILY":"Arial","TEXT_MULTILINE":true}},{"id":"-eDqeScsGtru6r3fI5gBz","isLocked":false,"zIndex":485,"layer":0,"renderer":"Raster","transform":{"position":{"x":2277,"y":464.5},"size":{"x":280,"y":219},"rotation":0},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/plant1.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"v6dPgbjamaQbzqp_ien9L","isLocked":false,"zIndex":-488,"layer":0,"renderer":"CameraFrame","transform":{"position":{"x":1840,"y":680},"size":{"x":1280,"y":800},"rotation":0},"appearance":{"TEXT_DISABLED":true,"APPEARANCE_CAMERA_MIN_ZOOM":0,"APPEARANCE_MARGIN":0}}],"groups":[]}
+  },
+  {
+    "name": "Conference Room",
+    "displayName": "Conference Room",
+    "displaySearch": "Conference Room",
+    "group": "Rooms",
+    "url": "https://fres-co.github.io/fresco-community/inventory/room-conference.png",
+    "content": {"visuals":[{"id":"GnCgzpYM3q5qIpB0-FZlq","isLocked":false,"zIndex":450,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1649,"y":656},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"VOwy8Obqc914HSykIZ0pr","isLocked":false,"zIndex":451,"layer":0,"renderer":"Raster","transform":{"position":{"x":1638,"y":661},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"6sYtrDTC0QL-glflTyjyU","isLocked":false,"zIndex":422,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":873,"y":280},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"5zfRi2jqsrQExAAC9scS3","isLocked":false,"zIndex":423,"layer":0,"renderer":"Raster","transform":{"position":{"x":862,"y":285},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"GjyNP9uk1hTBIoHn9d8XV","isLocked":false,"zIndex":424,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":873,"y":468},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"vf_Ujfen-9mVklJd71KYd","isLocked":false,"zIndex":425,"layer":0,"renderer":"Raster","transform":{"position":{"x":862,"y":473},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"xS9Va6vUP632glw-Op0uA","isLocked":false,"zIndex":426,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":873,"y":656},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"N9MftDMiM1T2oH2wH-vwG","isLocked":false,"zIndex":427,"layer":0,"renderer":"Raster","transform":{"position":{"x":862,"y":661},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"ZewDreCVj7jWT4_fKo-ro","isLocked":false,"zIndex":428,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1067,"y":280},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"qiqf3ApheQWfhNNkFASkw","isLocked":false,"zIndex":429,"layer":0,"renderer":"Raster","transform":{"position":{"x":1056,"y":285},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"QMo3F9w2OkdNWhLKh7MOd","isLocked":false,"zIndex":430,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1067,"y":468},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"fA_2trLpfirKzjOQI9NYX","isLocked":false,"zIndex":431,"layer":0,"renderer":"Raster","transform":{"position":{"x":1056,"y":473},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"2zCwsSVc6V5lZ6g3F9FOC","isLocked":false,"zIndex":432,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1067,"y":656},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"QZ7MjBaJRRTZI84n8jbrH","isLocked":false,"zIndex":433,"layer":0,"renderer":"Raster","transform":{"position":{"x":1056,"y":661},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"nLvXRwtrJXYLB3dxWk0gE","isLocked":false,"zIndex":434,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1261,"y":280},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"_aNiLQ1hRsXhFDoWsdr0z","isLocked":false,"zIndex":435,"layer":0,"renderer":"Raster","transform":{"position":{"x":1250,"y":285},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"EJUewLIX9ZljEDHsy2212","isLocked":false,"zIndex":436,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1261,"y":468},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"ud0_rLO_jkwR4QmH0jDaW","isLocked":false,"zIndex":437,"layer":0,"renderer":"Raster","transform":{"position":{"x":1250,"y":473},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"Hs7JcNiCqC2uKFmfEopxj","isLocked":false,"zIndex":438,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1261,"y":656},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"B8KyZ2VLc9IrZOccekg9F","isLocked":false,"zIndex":439,"layer":0,"renderer":"Raster","transform":{"position":{"x":1250,"y":661},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"i6M0aHn2ebEWHdhyIbt_K","isLocked":false,"zIndex":440,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1455,"y":280},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"w_L-jmUaLYp5xkPbaz-sy","isLocked":false,"zIndex":441,"layer":0,"renderer":"Raster","transform":{"position":{"x":1444,"y":285},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"_po11-XdrVAWj3N4QSztA","isLocked":false,"zIndex":442,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1455,"y":468},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"VKNIldDncUxSUHz83Qsj1","isLocked":false,"zIndex":443,"layer":0,"renderer":"Raster","transform":{"position":{"x":1444,"y":473},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"4EwPXkAmUNtuw9QbKYUwQ","isLocked":false,"zIndex":444,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1455,"y":656},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"Ogq8tvkbxgwbPfEIhMwrm","isLocked":false,"zIndex":445,"layer":0,"renderer":"Raster","transform":{"position":{"x":1444,"y":661},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"5qV19fNalezzxcXU7Hz2G","isLocked":false,"zIndex":446,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1649,"y":280},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"NJdn33l70GHafwvHWPINk","isLocked":false,"zIndex":447,"layer":0,"renderer":"Raster","transform":{"position":{"x":1638,"y":285},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"kBJ6Cb1imtM5GSvXIEGSI","isLocked":false,"zIndex":448,"layer":0,"renderer":"SnapPoint","transform":{"position":{"x":1649,"y":468},"size":{"x":100,"y":100},"rotation":180},"appearance":{"TEXT_BEHAVIOUR":2,"TEXT_DISABLED":true,"ACTION":null,"TEXT":"","SPACE_NAME":"","ANCHOR_NAME":"","PASSCODE":"","TEXT_PLACEHOLDER":""}},{"id":"8By7nim9Nfu0Nwx7AV5LG","isLocked":false,"zIndex":449,"layer":0,"renderer":"Raster","transform":{"position":{"x":1638,"y":473},"size":{"x":174,"y":168},"rotation":180},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair2.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"-okTVphQvPFBBURwmnWsL","isLocked":false,"zIndex":418,"layer":0,"renderer":"Rectangle","transform":{"position":{"x":1246,"y":62},"size":{"x":1160,"y":1520},"rotation":0},"appearance":{"COLOR":"#c2ac94","STROKE_COLOR":"#fde9d2","STROKE_THICKNESS":20,"BORDER_RADIUS":20,"TEXT_DISABLED":true,"BODY_TYPE":"PASSTHROUGH","OPACITY":100}},{"id":"MkUg-QWGBK45wlJJSsD4A","isLocked":false,"zIndex":419,"layer":0,"renderer":"ConversationZone","transform":{"position":{"x":1246,"y":62},"size":{"x":1100,"y":1460},"rotation":0},"appearance":{"TEXT_DISABLED":true}},{"id":"8hR_zq9giA_8YZfSLzTY6","isLocked":false,"zIndex":420,"layer":0,"renderer":"Screen","transform":{"position":{"x":1243,"y":-365.5},"size":{"x":834,"y":469},"rotation":0},"appearance":{"JITSI_ID":""}},{"id":"Mv8QZaQE1vM4so-dk1CAI","isLocked":false,"zIndex":421,"layer":0,"renderer":"Heading","transform":{"position":{"x":832,"y":-743},"size":{"x":332,"y":90},"rotation":0},"appearance":{"COLOR":"#737373","BORDER_RADIUS":20,"FONT_WEIGHT":"bold","TEXT_BEHAVIOUR":1,"TEXT":"Conference room","FONT_SIZE":36,"BACKGROUND_COLOR":"transparent","FONT_FAMILY":"Arial","TEXT_MULTILINE":true}},{"id":"rOp9F5fEpYouluaW1c2D-","isLocked":false,"zIndex":467,"layer":0,"renderer":"GlobalStage","transform":{"position":{"x":1737.5,"y":-74},"size":{"x":115,"y":114},"rotation":0},"appearance":{"TEXT_DISABLED":true}},{"id":"yth2UKahSUWhYZOIcCbEz","isLocked":false,"zIndex":-471,"layer":0,"renderer":"CameraFrame","transform":{"position":{"x":1246,"y":60},"size":{"x":1300,"y":1640},"rotation":0},"appearance":{"TEXT_DISABLED":true,"APPEARANCE_CAMERA_MIN_ZOOM":0,"APPEARANCE_MARGIN":0}}],"groups":[{"id":"24gO62fb_lhTznlEHGTJm","zIndex":463,"isLocked":false,"layer":0,"childIds":["GnCgzpYM3q5qIpB0-FZlq","VOwy8Obqc914HSykIZ0pr"],"transform":{"position":{"x":1638,"y":661},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"CKAydJPjzsa1EiCZGWTcC","zIndex":452,"isLocked":false,"layer":0,"childIds":["6sYtrDTC0QL-glflTyjyU","5zfRi2jqsrQExAAC9scS3"],"transform":{"position":{"x":862,"y":285},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"LhaKkMzlWB-jz10PidnBc","zIndex":453,"isLocked":false,"layer":0,"childIds":["GjyNP9uk1hTBIoHn9d8XV","vf_Ujfen-9mVklJd71KYd"],"transform":{"position":{"x":862,"y":473},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"mVha38CeY6NMzUVuZjN9-","zIndex":454,"isLocked":false,"layer":0,"childIds":["xS9Va6vUP632glw-Op0uA","N9MftDMiM1T2oH2wH-vwG"],"transform":{"position":{"x":862,"y":661},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"F3_yTrid0gaUqgg-sgL8-","zIndex":455,"isLocked":false,"layer":0,"childIds":["ZewDreCVj7jWT4_fKo-ro","qiqf3ApheQWfhNNkFASkw"],"transform":{"position":{"x":1056,"y":285},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"G-5zwL_CcVYz8tNkPb0RN","zIndex":456,"isLocked":false,"layer":0,"childIds":["QMo3F9w2OkdNWhLKh7MOd","fA_2trLpfirKzjOQI9NYX"],"transform":{"position":{"x":1056,"y":473},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"DZuwV1jP998z3Da83uEZ2","zIndex":457,"isLocked":false,"layer":0,"childIds":["2zCwsSVc6V5lZ6g3F9FOC","QZ7MjBaJRRTZI84n8jbrH"],"transform":{"position":{"x":1056,"y":661},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"AktB1TlUJBg7icPfxHob7","zIndex":458,"isLocked":false,"layer":0,"childIds":["nLvXRwtrJXYLB3dxWk0gE","_aNiLQ1hRsXhFDoWsdr0z"],"transform":{"position":{"x":1250,"y":285},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"Sx1qCqtKWw5lh5OZstIlb","zIndex":459,"isLocked":false,"layer":0,"childIds":["EJUewLIX9ZljEDHsy2212","ud0_rLO_jkwR4QmH0jDaW"],"transform":{"position":{"x":1250,"y":473},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"JAU0bh0R_e907Vrhp3MBd","zIndex":460,"isLocked":false,"layer":0,"childIds":["Hs7JcNiCqC2uKFmfEopxj","B8KyZ2VLc9IrZOccekg9F"],"transform":{"position":{"x":1250,"y":661},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"5wym_VIPEDJHRitCbV_hP","zIndex":461,"isLocked":false,"layer":0,"childIds":["i6M0aHn2ebEWHdhyIbt_K","w_L-jmUaLYp5xkPbaz-sy"],"transform":{"position":{"x":1444,"y":285},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"5t5TCHWeQwwJ9LviUENYz","zIndex":462,"isLocked":false,"layer":0,"childIds":["_po11-XdrVAWj3N4QSztA","VKNIldDncUxSUHz83Qsj1"],"transform":{"position":{"x":1444,"y":473},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"w8pgg647F2lbU4_WlCoEC","zIndex":464,"isLocked":false,"layer":0,"childIds":["4EwPXkAmUNtuw9QbKYUwQ","Ogq8tvkbxgwbPfEIhMwrm"],"transform":{"position":{"x":1444,"y":661},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"7u9UPK7HOv1dS74gT8z0x","zIndex":465,"isLocked":false,"layer":0,"childIds":["5qV19fNalezzxcXU7Hz2G","NJdn33l70GHafwvHWPINk"],"transform":{"position":{"x":1638,"y":285},"size":{"x":174,"y":168},"rotation":0},"rotation":0},{"id":"bRSX54wfiVfns0JMS7clM","zIndex":466,"isLocked":false,"layer":0,"childIds":["kBJ6Cb1imtM5GSvXIEGSI","8By7nim9Nfu0Nwx7AV5LG"],"transform":{"position":{"x":1638,"y":473},"size":{"x":174,"y":168},"rotation":0},"rotation":0}]}
+  },
+  {
+    "name": "Breakout Room #1",
+    "displayName": "Breakout Room #1",
+    "displaySearch": "Breakout Room #1",
+    "group": "Rooms",
+    "url": "https://fres-co.github.io/fresco-community/inventory/room-breakout1.png",
+    "content": {"visuals":[{"id":"RiLQdFKVVX9eJWMTCrqCi","isLocked":false,"zIndex":308,"layer":0,"renderer":"Rectangle","transform":{"position":{"x":1438,"y":392},"size":{"x":1160,"y":660},"rotation":0},"appearance":{"COLOR":"#c2ac94","STROKE_COLOR":"#fde9d2","STROKE_THICKNESS":20,"BORDER_RADIUS":20,"TEXT_DISABLED":true,"BODY_TYPE":"PASSTHROUGH","OPACITY":100}},{"id":"Gk3dCx6gvGypk9mdBmOhy","isLocked":false,"zIndex":309,"layer":0,"renderer":"Heading","transform":{"position":{"x":953,"y":17},"size":{"x":190,"y":90},"rotation":0},"appearance":{"COLOR":"#737373","BORDER_RADIUS":20,"FONT_WEIGHT":"bold","TEXT_BEHAVIOUR":1,"TEXT":"Breakout","FONT_SIZE":36,"BACKGROUND_COLOR":"transparent","FONT_FAMILY":"Arial","TEXT_MULTILINE":true}},{"id":"d6tULCCIH4FmN-OJDaFbB","isLocked":false,"zIndex":310,"layer":0,"renderer":"Browser","transform":{"position":{"x":1438,"y":392},"size":{"x":640,"y":480},"rotation":0},"appearance":{"TEXT_DISABLED":true,"STATE":{"tabs":[],"selectedTabId":"LvjMTNyzn0VP77nD4cDAK"}}},{"id":"PHQGuBGER3ak7wcjvgSH3","isLocked":false,"zIndex":311,"layer":0,"renderer":"Raster","transform":{"position":{"x":1931,"y":151},"size":{"x":146,"y":138},"rotation":0},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/plant7.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"9-d5PkTBxmM72PlO_yKV7","isLocked":false,"zIndex":312,"layer":0,"renderer":"Raster","transform":{"position":{"x":1931,"y":637},"size":{"x":180,"y":170},"rotation":0},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/plant4.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"OZ75v6YlYwm47fqVwxk2N","isLocked":false,"zIndex":-315,"layer":0,"renderer":"CameraFrame","transform":{"position":{"x":1440,"y":390},"size":{"x":1280,"y":780},"rotation":0},"appearance":{"TEXT_DISABLED":true,"APPEARANCE_CAMERA_MIN_ZOOM":0,"APPEARANCE_MARGIN":0}},{"id":"98iVi_IlQr3keE3CgQmOH","isLocked":false,"zIndex":316,"layer":0,"renderer":"Raster","transform":{"position":{"x":931.5,"y":151},"size":{"x":137,"y":150},"rotation":337.5},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/chair4.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}}],"groups":[]}
+  },
+  {
+    "name": "Breakout Room #2",
+    "displayName": "Breakout Room #2",
+    "displaySearch": "Breakout Room #2",
+    "group": "Rooms",
+    "url": "https://fres-co.github.io/fresco-community/inventory/room-breakout2.png",
+    "content": {"visuals":[{"id":"ZqOiysNTL7278GAgLy-RL","isLocked":false,"zIndex":499,"layer":0,"renderer":"Rectangle","transform":{"position":{"x":1563,"y":465},"size":{"x":1160,"y":660},"rotation":0},"appearance":{"COLOR":"#c2ac94","STROKE_COLOR":"#fde9d2","STROKE_THICKNESS":20,"BORDER_RADIUS":20,"TEXT_DISABLED":true,"BODY_TYPE":"PASSTHROUGH","OPACITY":100}},{"id":"E_Izvm3l_SKFNmKbZWbdC","isLocked":false,"zIndex":500,"layer":0,"renderer":"Heading","transform":{"position":{"x":1078,"y":90},"size":{"x":190,"y":90},"rotation":0},"appearance":{"COLOR":"#737373","BORDER_RADIUS":20,"FONT_WEIGHT":"bold","TEXT_BEHAVIOUR":1,"TEXT":"Breakout","FONT_SIZE":36,"BACKGROUND_COLOR":"transparent","FONT_FAMILY":"Arial","TEXT_MULTILINE":true}},{"id":"BS_hR859cymwWSfaklVvp","isLocked":false,"zIndex":501,"layer":0,"renderer":"Browser","transform":{"position":{"x":1563,"y":465},"size":{"x":640,"y":480},"rotation":0},"appearance":{"TEXT_DISABLED":true,"STATE":""}},{"id":"G_LQ4-a9Nr4YNvxHoKBKo","isLocked":false,"zIndex":502,"layer":0,"renderer":"Raster","transform":{"position":{"x":2042,"y":232.5},"size":{"x":152,"y":143},"rotation":0},"appearance":{"TEXT_DISABLED":true,"SOURCE":"https://fres-co.github.io/fresco-community/assets/office/plant8.svg","STROKE_COLOR":13224393,"BACKGROUND_COLOR":"","STROKE_THICKNESS":0,"BORDER_RADIUS":10,"ACTION":"","IMAGE_TILED":false}},{"id":"WVkOgfPuVBrMNwSqGiBRq","isLocked":false,"zIndex":-505,"layer":0,"renderer":"CameraFrame","transform":{"position":{"x":1570,"y":461},"size":{"x":1300,"y":800},"rotation":0},"appearance":{"TEXT_DISABLED":true,"APPEARANCE_CAMERA_MIN_ZOOM":0,"APPEARANCE_MARGIN":0}}],"groups":[]}
+  }
+]

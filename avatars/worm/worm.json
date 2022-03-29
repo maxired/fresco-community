@@ -1,0 +1,52 @@
+{
+    "imageSrc": "https://localhost:8080/worm/worm.png",
+    "spriteWidth": 60,
+    "spriteHeight": 60,
+    "offsetX": 0,
+    "offsetY": 0,
+    "idleX": 0,
+    "idleY": 0,
+    "animationSteps": 15,
+    "animationPrefix": "worm",
+    "animationDuration": ".5s",
+    "animations": [
+        {
+            "name": "right",
+            "orientationRange": [
+                0,
+                180
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": -1,
+                    "y": 0
+                },
+                {
+                    "percent": 100,
+                    "x": -1,
+                    "y": -15
+                }
+            ]
+        },
+        {
+            "name": "left",
+            "orientationRange": [
+                180,
+                360
+            ],
+            "keyframes": [
+                {
+                    "percent": 0,
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "percent": 100,
+                    "x": 0,
+                    "y": -15
+                }
+            ]
+        }
+    ]
+}

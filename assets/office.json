@@ -7,6 +7,10 @@
     "name": "Chair2"
 },
 {
+    "filename": "chair3.svg",
+    "name": "Chair3"
+},
+{
     "filename": "plant1.svg",
     "name": "Plant1"
 },
@@ -23,12 +27,48 @@
     "name": "Plant4"
 },
 {
+    "filename": "plant5.svg",
+    "name": "Plant5"
+},
+{
+    "filename": "plant6.svg",
+    "name": "Plant6"
+},
+{
+    "filename": "plant7.svg",
+    "name": "Plant7"
+},
+{
+    "filename": "plant8.svg",
+    "name": "Plant8"
+},
+{
+    "filename": "plant9.svg",
+    "name": "Plant9"
+},
+{
+    "filename": "plant10.svg",
+    "name": "Plant10"
+},
+{
+    "filename": "plant11.svg",
+    "name": "Plant11"
+},
+{
+    "filename": "sofa-2p.svg",
+    "name": "Sofa for 2"
+},
+{
     "filename": "sofa-4p.svg",
     "name": "Sofa for 4"
 },
 {
     "filename": "sofa-8p.svg",
     "name": "Sofa for 8"
+},
+{
+    "filename": "sofa-8p-2.svg",
+    "name": "Sofa for 8 (2)"
 },
 {
     "filename": "sofa-10p.svg",
@@ -39,10 +79,18 @@
     "name": "Table for 4"
 },
 {
+    "filename": "table-4p-2.svg",
+    "name": "Table for 4 (2)"
+},
+{
     "filename": "table-6p.svg",
     "name": "Table for 6"
 },
 {
     "filename": "table-8p.svg",
     "name": "Table for 8"
+},
+{
+    "filename": "bush.svg",
+    "name": "Bush"
 }]
