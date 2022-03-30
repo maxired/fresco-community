@@ -8,6 +8,14 @@ Implements an extension that allows a designer to ask a question and participant
 - Max answers per participant
 - Blur answers until participant answers
 
+## Add to your fresco space
+
+Paste this link into your space:
+
+```
+extension://fres-co.github.io/fresco-community/elements/answer-board/build/
+```
+
 ## Build
 
 Clone this repo then:
@@ -15,19 +23,16 @@ Clone this repo then:
 ```bash
 cd elements/answer-board
 npm i
-npm build
+npm run build
 ```
 
 ## Develop locally
 
-After building, run the following from root:
-
 ```bash
-npx http-server-ssl -S
+npm run build
+npm run serve
 ```
 
-Then:
+Browser will open, change `https://` to `extension://` and paste into a fresco space.
 
-1. Open the https link, accept the self-signed certificate.
-1. Navigate to elements/answer-board/build
-1. Change the url from `https://` to `extension://` and paste into a fresco space
+Note: Chromium's self-signed certificate warning prompt can be disabled for `localhost` via <chrome://flags/#allow-insecure-localhost>
