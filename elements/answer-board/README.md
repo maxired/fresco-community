@@ -33,4 +33,6 @@ npm run build
 npm run serve
 ```
 
-Browser will open, change `https://` to `extension://` and paste into a fresco space
+Browser will open, change `https://` to `extension://` and paste into a fresco space.
+
+Note: Chromium's self-signed certificate warning prompt can be disabled for `localhost` via <chrome://flags/#allow-insecure-localhost>
