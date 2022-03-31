@@ -4,10 +4,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --no-prerender --sw false",
-    "serve": "http-server-ssl build -S --port 8080 -o",
-    "dev": "preact watch",
-    "lint": "eslint src"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": "preact"
@@ -15,14 +14,12 @@
   "eslintIgnore": [
     "build/*"
   ],
-  "devDependencies": {
-    "eslint": "^7.17.0",
-    "eslint-config-preact": "^1.1.3",
-    "http-server-ssl": "^0.0.7",
-    "preact-cli": "^3.0.0"
-  },
   "dependencies": {
-    "preact": "^10.1.0",
-    "preact-render-to-string": "^5.1.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.7",
+    "vite": "^2.9.0"
   }
 }

@@ -1,5 +1,4 @@
-import "./style";
-import { useCallback, useEffect, useState } from "preact/hooks";
+import React, { useCallback, useEffect, useState } from "react";
 
 const MAX_ANSWER_CHARACTERS = 50;
 const ANSWERS_STORAGE = "answers";
