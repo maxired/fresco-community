@@ -78,7 +78,7 @@ fresco.onReady(function () {
             startTimer(targetTime, new Date().getTime());
         }
 
-        if (!fresco.element.permission.canEdit) {
+        if (!fresco.localParticipant.permission.canEdit) {
             button.setAttribute('disabled', true);
         } else {
             button.removeAttribute('disabled');
@@ -89,8 +89,8 @@ fresco.onReady(function () {
 
     fresco.initialize(defaultState, elementConfig);
     button.addEventListener('click', toggleTimer);
-    if (fresco.element.permission){
-        if (!fresco.element.permission.canEdit) {
+    if (fresco.localParticipant.permission) {
+        if (!fresco.localParticipant.permission.canEdit) {
             button.setAttribute('disabled', true);
         }
     }
