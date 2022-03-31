@@ -13,7 +13,7 @@ Implements an extension that allows a designer to ask a question and participant
 Paste this link into your space:
 
 ```
-extension://fres-co.github.io/fresco-community/elements/answer-board/build/
+extension://fres-co.github.io/fresco-community/elements/answer-board/dist/
 ```
 
 ## Build
