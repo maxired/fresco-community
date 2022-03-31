@@ -129,7 +129,7 @@ const Home = () => {
     });
   }, []);
 
-  if (!ready) {
+  if (!ready || !fresco.element.state) {
     return <h1>Initialising...</h1>;
   }
 
