@@ -16,7 +16,7 @@ The following extensions can be pasted directly into a fresco space:
 extension://fres-co.github.io/fresco-community/elements/timer
 ```
 
-[Docs](/elements/timer/)
+[Docs](elements/timer/)
 
 ### Card deck
 
@@ -24,7 +24,7 @@ extension://fres-co.github.io/fresco-community/elements/timer
 extension://fres-co.github.io/fresco-community/elements/card-deck
 ```
 
-[Docs](/elements/card-deck/)
+[Docs](elements/card-deck/)
 
 ### Answer board
 
@@ -32,4 +32,4 @@ extension://fres-co.github.io/fresco-community/elements/card-deck
 extension://fres-co.github.io/fresco-community/elements/answer-board/dist/
 ```
 
-[Docs](/elements/answer-board/)
+[Docs](elements/answer-board/)
