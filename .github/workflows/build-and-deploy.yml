@@ -11,10 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Build jekyll
-        uses: actions/jekyll-build-pages@v1
-
       - name: Install answer-board dependencies
         run: npm i
         working-directory: ./elements/answer-board
@@ -22,6 +18,9 @@ jobs:
       - name: Build answer-board
         run: npm run build
         working-directory: ./elements/answer-board
+
+      - name: Build jekyll
+        uses: actions/jekyll-build-pages@v1
 
       - name: Archive
         run: tar --dereference --hard-dereference --directory _site/ -cvf artifact.tar .
