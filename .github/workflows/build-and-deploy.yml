@@ -11,13 +11,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      ## START PREPARE ANSWER-BOARD ##
       - name: Install answer-board dependencies
-        run: npm i
         working-directory: ./elements/answer-board
+        run: npm i
 
       - name: Build answer-board
-        run: npm run build
         working-directory: ./elements/answer-board
+        run: npm run build
+
+      - name: Clean-up answer-board
+        working-directory: ./elements/answer-board
+        run: rm -rf node_modules && rm index.html
+      ## END PREPARE ANSWER-BOARD ##
 
       - name: Build jekyll
         uses: actions/jekyll-build-pages@v1
