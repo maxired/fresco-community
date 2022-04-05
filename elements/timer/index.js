@@ -77,9 +77,23 @@ fresco.onReady(function () {
             targetTime = fresco.element.state.startedAt + fresco.element.state.duration * 60 * 1000;
             startTimer(targetTime, new Date().getTime());
         }
+
+        if (!fresco.localParticipant.permission.canEdit) {
+            button.setAttribute('disabled', true);
+        } else {
+            button.removeAttribute('disabled');
+        }
+
+
     });
+
     fresco.initialize(defaultState, elementConfig);
     button.addEventListener('click', toggleTimer);
+    if (fresco.localParticipant.permission) {
+        if (!fresco.localParticipant.permission.canEdit) {
+            button.setAttribute('disabled', true);
+        }
+    }
 });
 
 

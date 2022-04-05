@@ -136,7 +136,7 @@ const Home = () => {
   const answers = fresco.element?.storage[ANSWERS_STORAGE] || [];
 
   const myAnswerCount = answers.filter(
-    (a) => a.ownerId === fresco.element.ownerId
+    (a) => a.ownerId === fresco.localParticipant.identityId
   ).length;
 
   const allowedAnswers = fresco.element.state.maxAnswersPerParticipant;
@@ -198,7 +198,7 @@ const Home = () => {
               }}
             >
               {answer.value}{" "}
-              {answer.ownerId === fresco.element.ownerId && (
+              {answer.ownerId === fresco.localParticipant.identityId && (
                 <button
                   onClick={(e) => deleteAnswer(e, answer.id)}
                   style={style.delete}
