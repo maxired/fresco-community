@@ -1,0 +1,54 @@
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+name: Build and Deploy
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      ## START PREPARE ANSWER-BOARD ##
+      - name: Install answer-board dependencies
+        working-directory: ./elements/answer-board
+        run: npm i
+
+      - name: Build answer-board
+        working-directory: ./elements/answer-board
+        run: npm run build
+
+      - name: Clean-up answer-board
+        working-directory: ./elements/answer-board
+        run: rm -rf node_modules && rm index.html
+      ## END PREPARE ANSWER-BOARD ##
+
+      - name: Build jekyll
+        uses: actions/jekyll-build-pages@v1
+
+      - name: Archive
+        run: tar --dereference --hard-dereference --directory _site/ -cvf artifact.tar .
+
+      - name: Upload
+        uses: actions/upload-artifact@main
+        with:
+          name: github-pages
+          path: ./artifact.tar
+          if-no-files-found: warn
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
