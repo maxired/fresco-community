@@ -33,7 +33,6 @@ const colors = [
   "#e93e44",
   "#36f75a",
   "#22ebcb",
-  "#5905f8",
 ];
 
 const style = {
