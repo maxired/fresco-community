@@ -93,6 +93,36 @@
         "group": "Flowers"
     },
     {
+        "name":  "butterfly 01",
+        "filename":  "butterfly-01.gif",
+        "group": "Animations"
+    },
+    {
+        "name":  "butterfly 02",
+        "filename":  "butterfly-02.gif",
+        "group": "Animations"
+    },
+    {
+        "name":  "fireflies 01",
+        "filename":  "fireflies-01.gif",
+        "group": "Animations"
+    },
+    {
+        "name":  "static fireflies 02",
+        "filename":  "fireflies-02.gif",
+        "group": "Animations"
+    },
+    {
+        "name":  "potion bubbles 01",
+        "filename":  "potion-bubbles-01.gif",
+        "group": "Animations"
+    },
+    {
+        "name":  "white fire 01",
+        "filename":  "fire-01.gif",
+        "group": "Animations"
+    },
+    {
         "name":  "food 01",
         "filename":  "food-01.png",
         "group": "Food"
@@ -456,12 +486,17 @@
         "group": "Tables"
     },
     {
-        "name":  "texture grass",
+        "name":  "grass",
         "filename":  "texture-grass.png",
         "group": "Flooring"
     },
     {
-        "name":  "texture sand",
+        "name":  "dark grass",
+        "filename":  "texture-dark-grass.png",
+        "group": "Flooring"
+    },
+    {
+        "name":  "sand",
         "filename":  "texture-sand.png",
         "group": "Flooring"
     },
@@ -499,6 +534,16 @@
         "name":  "tile patch 01",
         "filename":  "tile-patch-01.png",
         "group": "Tiles"
+    },
+    {
+        "name":  "swaying tree 01",
+        "filename":  "tree-01.gif",
+        "group": "Trees"
+    },
+    {
+        "name":  "swaying tree 02",
+        "filename":  "tree-02.gif",
+        "group": "Trees"
     },
     {
         "name":  "tree 01",

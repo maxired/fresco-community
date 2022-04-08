@@ -20,6 +20,10 @@
         "filename":  "forest.mp3"
     },
     {
+        "name":  "rain",
+        "filename":  "rain.mp3"
+    },
+    {
         "name":  "ocean",
         "filename":  "ocean.mp3"
     },
