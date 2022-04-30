@@ -32,16 +32,14 @@
         .plane {
             height: 100%;
             position: relative;
-            -webkit-transform: rotateX(60deg);
-            transform: rotateX(60deg);
-            -webkit-transform-style: preserve-3d;
+            transform: rotateX(30deg);
             transform-style: preserve-3d;
             width: 100%;
         }
 
         .standee {
             position: absolute;
-            transform: rotateX(-60deg) translateY(-50%);
+            transform: rotateX(-30deg) translateY(-50%);
             transform-style: preserve-3d;
         }
 
@@ -90,7 +88,7 @@
             transform-origin: bottom;
         }
 
-        #avatar {
+        .avatar {
             border-radius: 50%;
             border: 3px solid purple;
         }
@@ -107,7 +105,7 @@
                     
                     <img class="standee" style="top: 90%; left: 50%; height: 100px;" src="https://scholarlyoa.com/wp-content/uploads/2022/02/Whiteboard-Surface.png" />
 
-                    <img id="avatar" class="standee" style="top: 50%; left: 50%; height: 50px; width: 50px; background-color: red;" src="https://d1pi81kn5qe97t.cloudfront.net/public/idwsw-avjqs-52nwnkyft1651280920197.png" />
+                    <img id="avatar" class="standee avatar" style="top: 50%; left: 50%; height: 50px; width: 50px; background-color: red;" src="https://d1pi81kn5qe97t.cloudfront.net/public/idwsw-avjqs-52nwnkyft1651280920197.png" />
                 </div>
                 <div class='ground'>
                     <div class='ground-base'></div>
@@ -146,6 +144,22 @@
             zone.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
             innerPlane.appendChild(zone);
         }
+        // add 16 rectanbles around the centre
+        for (let i = 0; i < 16; i++) {
+            const x = randomIntFromInterval(10, 40);
+            const y = randomIntFromInterval(70, 90);
+            const avatar = document.createElement('img');
+            avatar.classList.add("standee");
+            avatar.classList.add("avatar");
+            avatar.src = `https://avatars.dicebear.com/api/avataaars/${i}.svg`;
+            avatar.style.height = `50px`;
+            avatar.style.backgroundColor = `#666`;
+            avatar.style.left = `${x}%`;
+            avatar.style.top = `${y}%`;
+            avatar.style.width = `50px`;
+            innerPlane.appendChild(avatar);
+        }
+
         // add 3 zones in random positions
         for (let i = 0; i < 3; i++) {
             addZone(randomIntFromInterval(margin, 80 - margin), randomIntFromInterval(margin, 80 - margin), 200, 100);
