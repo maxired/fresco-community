@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            background: aqua;
+            height: 100vh;
+            -webkit-perspective: 1100px;
+            perspective: 1100px;
+            width: 100vw;
+        }
+
+        .scene {
+            height: 80vmin;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            width: 80vmin;
+        }
+
+        .plane {
+            height: 100%;
+            position: relative;
+            -webkit-transform: rotateX(60deg);
+            transform: rotateX(60deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            width: 100%;
+        }
+
+        .standee {
+            position: absolute;
+            transform: rotateX(-60deg) translateY(-50%);
+            transform-style: preserve-3d;
+        }
+
+        .inner-plane {
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform-style: preserve-3d;
+            transform: translateX(calc(0%));
+        }
+
+        .ground {
+            bottom: 0;
+            display: block;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            -webkit-transform: translateZ(-1px);
+            transform: translateZ(-1px);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+
+        }
+
+        .ground-base {
+            background-color: #01c39a;
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: url('https://d1pi81kn5qe97t.cloudfront.net/public/IxhugoWZUBx7NhRHNrpNa.png') repeat;
+        }
+
+        .ground-foreground {
+            background: #308e6c;
+            bottom: 0;
+            height: 7%;
+            left: 0;
+            position: absolute;
+            right: 0;
+            -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+            -webkit-transform-origin: bottom;
+            transform-origin: bottom;
+        }
+
+        #avatar {
+            border-radius: 50%;
+            border: 3px solid purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='screen'>
+        <div class='scene'>
+            <div class='plane'>
+                <div class='inner-plane' id="inner-plane">
+                    <div class="standee" style="top: 100%; left: 0%; height: 50px; width: 50px; background-color: red;">
+                    </div>
+                    
+                    <img class="standee" style="top: 90%; left: 50%; height: 100px;" src="https://scholarlyoa.com/wp-content/uploads/2022/02/Whiteboard-Surface.png" />
+
+                    <img id="avatar" class="standee" style="top: 50%; left: 50%; height: 50px; width: 50px; background-color: red;" src="https://d1pi81kn5qe97t.cloudfront.net/public/idwsw-avjqs-52nwnkyft1651280920197.png" />
+                </div>
+                <div class='ground'>
+                    <div class='ground-base'></div>
+                    <div class='ground-foreground'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function randomIntFromInterval(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        const margin = 7;
+        const innerPlane = document.getElementById('inner-plane');
+        // add 20 trees in random positions
+        for (let i = 0; i < 20; i++) {
+            const tree = document.createElement('img');
+            tree.src = Math.random() < 0.5 ? 'https://fres-co.github.io/fresco-community/assets/atlantis/tree-01.gif' : 'https://fres-co.github.io/fresco-community/assets/atlantis/tree-02.gif';
+            tree.style.height = '150px';
+            tree.style.position = 'absolute';
+            tree.classList.add('standee');
+            tree.style.left = `${randomIntFromInterval(margin, 100 - margin)}%`;
+            tree.style.top = `${randomIntFromInterval(margin, 100 - margin)}%`;
+            innerPlane.appendChild(tree);
+        }
+
+        function addZone(x, y, width, height) {
+            const zone = document.createElement('div');
+            zone.style.height = `${height}px`;
+            zone.style.position = 'absolute';
+            zone.style.left = `${x}%`;
+            zone.style.top = `${y}%`;
+            zone.style.width = `${width}px`;
+            zone.style.borderRadius = '10px';
+            zone.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+            innerPlane.appendChild(zone);
+        }
+        // add 3 zones in random positions
+        for (let i = 0; i < 3; i++) {
+            addZone(randomIntFromInterval(margin, 80 - margin), randomIntFromInterval(margin, 80 - margin), 200, 100);
+        }
+        addZone(47, 86, 200, 100);
+
+        // make avatar move when keyboard arrows are pressed
+        document.addEventListener('keydown', (e) => {
+            const avatar = document.getElementById('avatar');
+            const left = parseInt(avatar.style.left.replace('%', ''));
+            const top = parseInt(avatar.style.top.replace('%', ''));
+            switch (e.keyCode) {
+                case 37:
+                    avatar.style.left = `${left - 1}%`;
+                    break;
+                case 38:
+                    avatar.style.top = `${top - 1}%`;
+                    break;
+                case 39:
+                    avatar.style.left = `${left + 1}%`;
+                    break;
+                case 40:
+                    avatar.style.top = `${top + 1}%`;
+                    break;
+            }
+        });
+    </script>
+</body>
+
+</html>
