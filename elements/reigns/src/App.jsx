@@ -3,25 +3,21 @@ import cards from "./cards.json";
 import { GameEngine } from "./GameEngine";
 
 const gameDefinition = {
+  deathMessage: 'You have been fired!',
   stats: [
     {
-      name: "religion",
-      icon: "./noun-religion-3562673.svg",
-      value: 50,
-    },
-    {
-      name: "military",
-      icon: "./noun-sword-fighting-2054626.svg",
-      value: 50,
-    },
-    {
-      name: "populace",
+      name: "End user",
       icon: "./noun-crowd-2383331.svg",
       value: 50,
     },
     {
-      name: "money",
+      name: "Boss",
       icon: "./noun-coins-1123601.svg",
+      value: 50,
+    },
+    {
+      name: "European commission",
+      icon: "./noun-sword-fighting-2054626.svg",
       value: 50,
     },
   ],
@@ -51,7 +47,10 @@ const Meters = ({ stats }) => {
 const Question = ({ card }) => {
   return (
     <div className="block question">
-      <img className="question__image" src={`/${card.bearer}.png`} />
+      <div className='question__image'>
+        <img src={`/${card.bearer}.png`} />
+        {card.bearer}
+      </div>
       <div className="question__text">{card.card}</div>
     </div>
   );
@@ -80,40 +79,45 @@ const NoAnswer = ({ text, onClick }) => {
 
 export default function App() {
   const [currentCard, setCard] = React.useState();
+  const [isDead, setIsDead] = React.useState(false);
   const [currentStats, setStats] = React.useState();
 
   const updateGameState = () => {
-    console.log('here');
     const gameState = gameEngine.getState();
     setCard(gameState.selectedCard);
+    // BUG: Useless to set stats as it is always the same object
     setStats(gameState.stats);
+    setIsDead(gameState.isDead);
   };
 
   useEffect(updateGameState, []);
 
   const answerNo = () => {
-    console.log("NO");
     gameEngine.answerNo();
     updateGameState();
   };
   const answerYes = () => {
-    console.log("YES");
     gameEngine.answerYes();
     updateGameState();
   };
 
+  if (isDead) {
+    return <div className='death'>{gameDefinition.deathMessage}</div>;
+  }
+
   if (!currentCard) {
     return null;
   }
+
 
   return (
     <>
       <Meters stats={currentStats} />
       <Question card={currentCard} />
       <div className="answers">
-        <NoAnswer text={currentCard.no ?? "No"} onClick={answerNo} />
+        <NoAnswer text={currentCard.answer_no || "No"} onClick={answerNo} />
         <NeutralZone />
-        <YesAnswer text={currentCard.yes ?? "Yes"} onClick={answerYes} />
+        <YesAnswer text={currentCard.answer_yes || "Yes"} onClick={answerYes} />
       </div>
     </>
   );

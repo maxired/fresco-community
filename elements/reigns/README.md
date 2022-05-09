@@ -1,8 +1,11 @@
 [x] Change meter visual
 [x] Load cards from json
-[ ] Pick next card to show
-[ ] Set stats on decision
-[ ] Decide on click
+[x] Pick next card to show
+[x] Set stats on decision
+[x] Decide on click
+[x] Death
+[x] Max 100
+[ ] Weighing
 
 # reigns
 
