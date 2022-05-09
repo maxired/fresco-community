@@ -30,6 +30,29 @@ body, #root {
 
 .meters img {
   height: 64px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.meter {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: .25rem;
+  overflow: hidden;
+}
+
+
+.meter__percent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #9E32D6;
 }
 
 .question {

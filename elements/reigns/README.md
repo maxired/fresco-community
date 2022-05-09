@@ -1,5 +1,5 @@
-[ ] Change meter visual
-[ ] Load cards from json
+[x] Change meter visual
+[x] Load cards from json
 [ ] Pick next card to show
 [ ] Set stats on decision
 [ ] Decide on click
