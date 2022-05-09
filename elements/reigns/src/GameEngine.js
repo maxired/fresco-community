@@ -38,6 +38,10 @@ export class GameEngine {
         this.state.selectedCard = null;
     }
 
+    setState(state) {
+        this.state = state;
+    }
+
     getState() {
         if (this.state.stats.filter(x => x.value === 0).length) {
             this.state.isDead = true;

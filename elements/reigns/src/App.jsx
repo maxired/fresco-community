@@ -1,114 +1,77 @@
-import React, { useEffect } from "react";
-import cards from "./cards.json";
+import React from "react";
+import cards from "./gdpr/cards.json";
+import gameDefinition from "./gdpr/game-definition.json";
 import { GameEngine } from "./GameEngine";
+import { Meters } from "./Meters";
+import { Question } from "./Question";
+import { NoAnswer } from "./NoAnswer";
+import { YesAnswer } from "./YesAnswer";
 
-const gameDefinition = {
-  deathMessage: 'You have been fired!',
-  stats: [
-    {
-      name: "End user",
-      icon: "./noun-crowd-2383331.svg",
-      value: 50,
-    },
-    {
-      name: "Boss",
-      icon: "./noun-coins-1123601.svg",
-      value: 50,
-    },
-    {
-      name: "European commission",
-      icon: "./noun-sword-fighting-2054626.svg",
-      value: 50,
-    },
-  ],
-  cards,
-};
-const gameEngine = new GameEngine(gameDefinition);
+const gameEngine = new GameEngine({...gameDefinition, cards });
 
-const Meter = ({ src, percent }) => {
-  return (
-    <div className="meter">
-      <div className="meter__percent" style={{ height: percent + "%" }} />
-      <img src={src} />
-    </div>
-  );
-};
+const useFresco = function (setCard, setIsDead, setStats) {
+  fresco.onReady(function () {
+    fresco.onStateChanged(function () {
+      const state = fresco.element.state;
+      console.log('state changed', state);
+      
+      const gameState = gameEngine.getState();
+      if (gameState.isDead !== state.isDead || !gameState.selectedCard || gameState.selectedCard?.card !== state.selectedCard?.card) {
+        console.log('state set', state);
+        gameEngine.setState(state);
+        setCard(state.selectedCard);
+        setIsDead(state.isDead);
+        setStats(state.stats);  
+      }
 
-const Meters = ({ stats }) => {
-  return (
-    <div className="block meters">
-      {stats.map((stat) => (
-        <Meter key={stat.icon} src={stat.icon} percent={stat.value} />
-      ))}
-    </div>
-  );
-};
+    });
 
-const Question = ({ card }) => {
-  return (
-    <div className="block question">
-      <div className='question__image'>
-        <img src={`/${card.bearer}.png`} />
-        {card.bearer}
-      </div>
-      <div className="question__text">{card.card}</div>
-    </div>
-  );
-};
-const YesAnswer = ({ text, onClick }) => {
-  return (
-    <div className="answer answer--yes" onClick={onClick}>
-      <div className="answer__zone"></div>
-      <div className="answer__text">{text}</div>
-    </div>
-  );
-};
+    const defaultState = {
+      selectedCard: null,
+      isDead: false,
+      stats: []
+    };
 
-const NeutralZone = () => {
-  return <div className="answer answer--neutral" />;
-};
-
-const NoAnswer = ({ text, onClick }) => {
-  return (
-    <div className="answer answer--no" onClick={onClick}>
-      <div className="answer__zone"></div>
-      <div className="answer__text">{text}</div>
-    </div>
-  );
+    fresco.initialize(defaultState, {
+      title: "Reigns"
+    });
+  });
 };
 
 export default function App() {
   const [currentCard, setCard] = React.useState();
   const [isDead, setIsDead] = React.useState(false);
-  const [currentStats, setStats] = React.useState();
+  const [currentStats, setStats] = React.useState([]);
+
+  useFresco(setCard, setIsDead, setStats);
 
   const updateGameState = () => {
     const gameState = gameEngine.getState();
+    console.log('updateGameState', gameState);
+    fresco.setState({ selectedCard: gameState.selectedCard, isDead: gameState.isDead, stats: gameState.stats });
     setCard(gameState.selectedCard);
-    // BUG: Useless to set stats as it is always the same object
-    setStats(gameState.stats);
     setIsDead(gameState.isDead);
-  };
-
-  useEffect(updateGameState, []);
+    setStats(gameState.stats);  
+};
 
   const answerNo = () => {
+    console.log('no');
     gameEngine.answerNo();
     updateGameState();
   };
   const answerYes = () => {
+    console.log('yes');
     gameEngine.answerYes();
     updateGameState();
   };
 
   if (isDead) {
-    return <div className='death'>{gameDefinition.deathMessage}</div>;
+    return <div className="death">{gameDefinition.deathMessage}</div>;
   }
 
   if (!currentCard) {
-    return null;
+    return <div className="death" onClick={updateGameState}>Click to start</div>;
   }
-
 
   return (
     <>
@@ -116,7 +79,7 @@ export default function App() {
       <Question card={currentCard} />
       <div className="answers">
         <NoAnswer text={currentCard.answer_no || "No"} onClick={answerNo} />
-        <NeutralZone />
+        <div className="answer answer--neutral" />
         <YesAnswer text={currentCard.answer_yes || "Yes"} onClick={answerYes} />
       </div>
     </>
