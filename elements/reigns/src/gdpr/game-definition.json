@@ -1,0 +1,20 @@
+{
+  "deathMessage": "You have been fired!",
+  "stats": [
+    {
+      "name": "End user",
+      "icon": "./noun-crowd-2383331.svg",
+      "value": 50
+    },
+    {
+      "name": "Boss",
+      "icon": "./noun-coins-1123601.svg",
+      "value": 50
+    },
+    {
+      "name": "European commission",
+      "icon": "./noun-sword-fighting-2054626.svg",
+      "value": 50
+    }
+  ]
+}
