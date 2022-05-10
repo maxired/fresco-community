@@ -1,86 +1,100 @@
-import React from "react";
+import React, { useEffect } from "react";
 import cards from "./gdpr/cards.json";
 import gameDefinition from "./gdpr/game-definition.json";
-import { GameEngine } from "./GameEngine";
 import { Meters } from "./Meters";
 import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
+import { NOT_STARTED, ENDED } from "./constants";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { answerNo, answerYes, initializeGame, startGame, updateGame  } from "./features/game/gameSlice";
 
-const gameEngine = new GameEngine({...gameDefinition, cards });
+const useFresco = function () {
+  const dispatch = useDispatch();
 
-const useFresco = function (setCard, setIsDead, setStats) {
-  fresco.onReady(function () {
-    fresco.onStateChanged(function () {
-      const state = fresco.element.state;
-      console.log('state changed', state);
-      
-      const gameState = gameEngine.getState();
-      if (gameState.isDead !== state.isDead || !gameState.selectedCard || gameState.selectedCard?.card !== state.selectedCard?.card) {
-        console.log('state set', state);
-        gameEngine.setState(state);
-        setCard(state.selectedCard);
-        setIsDead(state.isDead);
-        setStats(state.stats);  
-      }
+  useEffect(() => {
+    fresco.onReady(function () {
+      fresco.onStateChanged(function () {
+        const state = fresco.element.state;
+        console.log("onStateChanged", state);
+        dispatch(updateGame(state));
+      });
 
+      const defaultState = {
+        selectedCard: null,
+        phase: NOT_STARTED,
+        stats: [],
+      };
+
+      fresco.initialize(defaultState, { title: "Reigns" });
     });
+  }, []);
 
-    const defaultState = {
-      selectedCard: null,
-      isDead: false,
-      stats: []
-    };
-
-    fresco.initialize(defaultState, {
-      title: "Reigns"
+  const store = useStore();
+  const updateFrescoState = () => {
+    const state = store.getState();
+    console.log("updateFrescoGameState", state);
+    fresco.setState({
+      phase: state.game.phase,
+      selectedCard: state.game.selectedCard,
+      stats: state.game.stats,
     });
-  });
+  };
+  return updateFrescoState;
 };
 
 export default function App() {
-  const [currentCard, setCard] = React.useState();
-  const [isDead, setIsDead] = React.useState(false);
-  const [currentStats, setStats] = React.useState([]);
+  const phase = useSelector((state) => state.game.phase);
+  const selectedCard = useSelector((state) => state.game.selectedCard);
+  const currentStats = useSelector((state) => state.game.stats);
 
-  useFresco(setCard, setIsDead, setStats);
+  const dispatch = useDispatch();
 
-  const updateGameState = () => {
-    const gameState = gameEngine.getState();
-    console.log('updateGameState', gameState);
-    fresco.setState({ selectedCard: gameState.selectedCard, isDead: gameState.isDead, stats: gameState.stats });
-    setCard(gameState.selectedCard);
-    setIsDead(gameState.isDead);
-    setStats(gameState.stats);  
-};
+  useEffect(() => {
+    dispatch(initializeGame({ ...gameDefinition, cards }));
+  }, []);
+  const updateFrescoState = useFresco();
 
-  const answerNo = () => {
-    console.log('no');
-    gameEngine.answerNo();
-    updateGameState();
+  const doAnswerNo = () => {
+    dispatch(answerNo());
+    updateFrescoState();
   };
-  const answerYes = () => {
-    console.log('yes');
-    gameEngine.answerYes();
-    updateGameState();
+  const doAnswerYes = () => {
+    dispatch(answerYes());
+    updateFrescoState();
+  };
+  const doStartGame = () => {
+    dispatch(startGame());
+    updateFrescoState();
   };
 
-  if (isDead) {
-    return <div className="death">{gameDefinition.deathMessage}</div>;
+  if (phase === ENDED) {
+    return (
+      <div className="death" onClick={doStartGame}>
+        {gameDefinition.deathMessage}
+      </div>
+    );
   }
 
-  if (!currentCard) {
-    return <div className="death" onClick={updateGameState}>Click to start</div>;
+  if (phase === NOT_STARTED) {
+    return (
+      <div className="death" onClick={doStartGame}>
+        Click to start
+      </div>
+    );
   }
 
   return (
     <>
       <Meters stats={currentStats} />
-      <Question card={currentCard} />
+      <Question card={selectedCard} />
       <div className="answers">
-        <NoAnswer text={currentCard.answer_no || "No"} onClick={answerNo} />
+        <NoAnswer text={selectedCard.answer_no || "No"} onClick={doAnswerNo} />
         <div className="answer answer--neutral" />
-        <YesAnswer text={currentCard.answer_yes || "Yes"} onClick={answerYes} />
+        <YesAnswer
+          text={selectedCard.answer_yes || "Yes"}
+          onClick={doAnswerYes}
+        />
       </div>
     </>
   );
