@@ -5,15 +5,15 @@
 [x] Decide on click
 [x] Death
 [x] Max 100
-[ ] Store the state in the element
-[ ] Detect users position instead of relying on click
+[x] Store the state in the element
 
+[ ] Detect users position instead of relying on click
 [ ] set flags +chapter2 -chapter2
-[ ] conditions stat1>50 chapter2
-[ ] Pull images from noun project
+[ ] conditions chapter==true stat1>50 chapter2
 [ ] Reset positions to neutral zone
 [ ] Weighing
 [ ] Cooldown
+[ ] Pull images from noun project
 
 # reigns
 

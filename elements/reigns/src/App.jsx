@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import cards from "./gdpr/cards.json";
-import gameDefinition from "./gdpr/game-definition.json";
 import { Meters } from "./Meters";
 import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
-import { NOT_STARTED, ENDED } from "./constants";
+import { NOT_STARTED, ENDED, ERROR, LOADING } from "./constants";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { answerNo, answerYes, initializeGame, startGame, updateGame  } from "./features/game/gameSlice";
 
@@ -22,11 +20,19 @@ const useFresco = function () {
 
       const defaultState = {
         selectedCard: null,
-        phase: NOT_STARTED,
+        phase: LOADING,
         stats: [],
+        gameUrl: 'https://localhost:3001/games/gdpr.json',
       };
 
-      fresco.initialize(defaultState, { title: "Reigns" });
+      fresco.initialize(defaultState, { 
+        title: "Reigns", 
+        toolbarButtons: [
+        {
+          title: "Game url",
+          ui: { type: "string" },
+          property: "gameUrl",
+        }]});
     });
   }, []);
 
@@ -47,12 +53,16 @@ export default function App() {
   const phase = useSelector((state) => state.game.phase);
   const selectedCard = useSelector((state) => state.game.selectedCard);
   const currentStats = useSelector((state) => state.game.stats);
-
+  const gameUrl = useSelector((state) => state.game.gameUrl);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initializeGame({ ...gameDefinition, cards }));
-  }, []);
+    if (!gameUrl) {
+      return;
+    }
+    dispatch(initializeGame(gameUrl));
+  }, [gameUrl]);
   const updateFrescoState = useFresco();
 
   const doAnswerNo = () => {
@@ -67,6 +77,22 @@ export default function App() {
     dispatch(startGame());
     updateFrescoState();
   };
+
+  if (phase === LOADING) {
+    return (
+      <div className="death">
+        Loading...
+      </div>
+    );
+  }
+
+  if (phase === ERROR) {
+    return (
+      <div className="death">
+        ERROR :(
+      </div>
+    );
+  }
 
   if (phase === ENDED) {
     return (

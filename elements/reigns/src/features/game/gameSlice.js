@@ -1,5 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { NOT_STARTED, STARTED, ENDED } from '../../constants';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { LOADING, ERROR, NOT_STARTED, STARTED, ENDED } from '../../constants';
+
+export const initializeGame = createAsyncThunk(
+  'game/initializeGame',
+  async (gameUrl, thunkAPI) => {
+    const response = await fetch(gameUrl);
+    console.log('GAME', 'response', response);
+
+    const json = await response.json();
+    console.log('GAME', 'json', json);
+
+    return json;
+  }
+);
 
 function setValue(statUpdate, stat, state) {
   if (!statUpdate) { return; }
@@ -26,19 +39,18 @@ function selectNextCard(state) {
 export const gameSlice = createSlice({
   name: 'game',
   initialState: {
-    phase: NOT_STARTED,
+    phase: LOADING,
     selectedCard: null,
     stats: [],
+    gameUrl: null,
     definition: null,
   },
   reducers: {
-    initializeGame: (state, action) => {
-      state.definition = action.payload;
-    },
     updateGame: (state, action) => {
       state.phase = action.payload.phase;
       state.selectedCard = action.payload.selectedCard;
       state.stats = action.payload.stats;
+      state.gameUrl = action.payload.gameUrl;
     },
     startGame: (state) => {
       state.phase = STARTED;
@@ -62,7 +74,24 @@ export const gameSlice = createSlice({
       state.selectedCard = selectNextCard(state);
     }
   },
+  extraReducers(builder) {
+    builder
+      .addCase(initializeGame.pending, (state, action) => {
+        state.phase = LOADING;
+        console.log('GAME', 'loading');
+      })
+      .addCase(initializeGame.fulfilled, (state, action) => {
+        state.phase = NOT_STARTED;
+        state.definition = action.payload;
+
+        console.log('GAME', 'action.payload', action.payload);
+      })
+      .addCase(initializeGame.rejected, (state, action) => {
+        state.phase = ERROR;
+        console.log('GAME', 'failed', action);
+      })
+  }
 })
 
-export const { initializeGame, updateGame, startGame, answerNo, answerYes } = gameSlice.actions;
+export const { updateGame, startGame, answerNo, answerYes } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;
