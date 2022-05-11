@@ -3,20 +3,21 @@
   "stats": [
     {
       "name": "End user",
-      "icon": "./noun-crowd-2383331.svg",
+      "icon": "noun-crowd-2383331.svg",
       "value": 50
     },
     {
       "name": "Boss",
-      "icon": "./noun-coins-1123601.svg",
+      "icon": "noun-coins-1123601.svg",
       "value": 50
     },
     {
       "name": "European commission",
-      "icon": "./noun-sword-fighting-2054626.svg",
+      "icon": "noun-sword-fighting-2054626.svg",
       "value": 50
     }
   ],
+  "assetsUrl": "https://localhost:3001/games",
   "cards": [
     {
       "card": "What should you do next?",
