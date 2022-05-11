@@ -1,6 +1,6 @@
 import React from "react";
 
-export const NoAnswer = ({ text, onClick }) => {
+export const NoAnswer = ({ text, onClick }: { text: string; onClick: () => void; }) => {
     return (
       <div className="answer answer--no" onClick={onClick}>
         <div className="answer__zone"></div>

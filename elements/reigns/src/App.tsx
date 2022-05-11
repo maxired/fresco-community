@@ -3,9 +3,10 @@ import { Meters } from "./Meters";
 import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
-import { NOT_STARTED, ENDED, ERROR, LOADING } from "./constants";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { answerNo, answerYes, initializeGame, startGame, updateGame  } from "./features/game/gameSlice";
+import { GamePhase } from "./constants";
+import { IAppState } from "./features/game/types";
 
 const useFresco = function () {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const useFresco = function () {
 
       const defaultState = {
         selectedCard: null,
-        phase: LOADING,
+        phase: GamePhase.LOADING,
         stats: [],
         gameUrl: 'https://localhost:3001/games/gdpr.json',
       };
@@ -38,7 +39,7 @@ const useFresco = function () {
 
   const store = useStore();
   const updateFrescoState = () => {
-    const state = store.getState();
+    const state = store.getState() as IAppState;
     console.log("updateFrescoGameState", state);
     fresco.setState({
       phase: state.game.phase,
@@ -50,10 +51,11 @@ const useFresco = function () {
 };
 
 export default function App() {
-  const phase = useSelector((state) => state.game.phase);
-  const selectedCard = useSelector((state) => state.game.selectedCard);
-  const currentStats = useSelector((state) => state.game.stats);
-  const gameUrl = useSelector((state) => state.game.gameUrl);
+  const phase = useSelector((state: IAppState) => state.game.phase);
+  const selectedCard = useSelector((state: IAppState) => state.game.selectedCard);
+  const currentStats = useSelector((state: IAppState) => state.game.stats);
+  const gameUrl = useSelector((state: IAppState) => state.game.gameUrl);
+  const gameDefinition = useSelector((state: IAppState) => state.game.definition);
   
   const dispatch = useDispatch();
 
@@ -61,7 +63,7 @@ export default function App() {
     if (!gameUrl) {
       return;
     }
-    dispatch(initializeGame(gameUrl));
+    dispatch(initializeGame(gameUrl) as any);
   }, [gameUrl]);
   const updateFrescoState = useFresco();
 
@@ -78,7 +80,7 @@ export default function App() {
     updateFrescoState();
   };
 
-  if (phase === LOADING) {
+  if (phase === GamePhase.LOADING) {
     return (
       <div className="death">
         Loading...
@@ -86,7 +88,7 @@ export default function App() {
     );
   }
 
-  if (phase === ERROR) {
+  if (phase === GamePhase.ERROR) {
     return (
       <div className="death">
         ERROR :(
@@ -94,20 +96,24 @@ export default function App() {
     );
   }
 
-  if (phase === ENDED) {
+  if (phase === GamePhase.ENDED) {
     return (
       <div className="death" onClick={doStartGame}>
-        {gameDefinition.deathMessage}
+        {gameDefinition?.deathMessage}
       </div>
     );
   }
 
-  if (phase === NOT_STARTED) {
+  if (phase === GamePhase.NOT_STARTED) {
     return (
       <div className="death" onClick={doStartGame}>
         Click to start
       </div>
     );
+  }
+
+  if (!selectedCard) {
+    return null;
   }
 
   return (

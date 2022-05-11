@@ -1,8 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { IAppState, ICard } from "./features/game/types";
 
-export const Question = ({ card }) => {
-  const assetsUrl = useSelector((state) => state.game.definition?.assetsUrl);
+export const Question = ({ card }: { card: ICard | null }) => {
+  const assetsUrl = useSelector((state: IAppState) => state.game.definition?.assetsUrl);
+
+  if (!card) {
+    return null;
+  }
   return (
       <div className="block question">
         <div className="question__image">
