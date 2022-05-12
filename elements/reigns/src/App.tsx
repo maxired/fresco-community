@@ -84,11 +84,31 @@ export default function App() {
     updateFrescoState();
     teleport('neutral')
   };
+
   const doAnswerYes = () => {
     dispatch(answerYes());
     updateFrescoState();
     teleport('neutral')
   };
+
+  useEffect(() => {
+    if (phase === GamePhase.STARTED) {
+      const yesListener =  fresco.subscribeToGlobalEvent('custom.reign.yes', () => {
+        doAnswerYes()
+      })
+
+      const noListener =  fresco.subscribeToGlobalEvent('custom.reign.no', () => {
+        doAnswerNo()
+      })
+
+      return () => {
+        yesListener();
+        noListener()
+      }
+    }
+  }, [phase])
+ 
+
   const doStartGame = () => {
     dispatch(startGame());
     updateFrescoState();

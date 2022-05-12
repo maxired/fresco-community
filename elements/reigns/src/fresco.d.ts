@@ -14,6 +14,7 @@ type AppearanceValue = string | number | boolean | Record<string, AppearanceValu
 interface IFrescoSdk {
     onReady(callback: () => void): void;
     onStateChanged(callback: () => void): void;
+    subscribeToGlobalEvent(eventName: string, handler: (event: any) => void): () => void
     element: {
         state: any; 
         id: string;
