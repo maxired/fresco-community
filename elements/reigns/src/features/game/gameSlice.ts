@@ -33,7 +33,6 @@ const cardsByWeight = (cards: Card[]) =>
   cards.flatMap((card) => range(0, card.weight).map(() => card));
 
 function getAllValidCards(state: GameState) {
-  const definition = { ...state.definition};
 
   return state.definition ? cardsByWeight(state.definition.cards) : [];
 }
@@ -45,15 +44,13 @@ function selectNextCard(state: GameState) {
   return randomCard;
 }
 
-export const initialState: GameState = 
-  {
-    phase: GamePhase.LOADING,
-    selectedCard: null,
-    stats: [],
-    gameUrl: null,
-    definition: null,
-  }
-
+export const initialState: GameState = {
+  phase: GamePhase.LOADING,
+  selectedCard: null,
+  stats: [],
+  gameUrl: null,
+  definition: null,
+};
 
 export const gameSlice = createSlice({
   name: "game",
@@ -100,7 +97,12 @@ export const gameSlice = createSlice({
       .addCase(initializeGame.fulfilled, (state, action) => {
         state.phase = GamePhase.NOT_STARTED;
 
-        state.definition = validateGameDefinition(action.payload);
+        try {
+          state.definition = validateGameDefinition(action.payload);
+        } catch (e) {
+          console.error(e);
+          state.phase = GamePhase.ERROR;
+        }
 
         console.log("GAME", "action.payload", action.payload);
       })
