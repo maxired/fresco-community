@@ -1,12 +1,13 @@
-import { ICard, IGameDefinition } from "./types";
+import { Card, GameDefinition } from "./types";
 
 export const validateGameDefinition = (
-  definition: IGameDefinition
-): IGameDefinition => ({
+  definition: GameDefinition
+): GameDefinition => ({
   ...definition,
   ...validateCards(definition.cards),
 });
-const validateCards = (cards: ICard[] | undefined) => {
+
+export const validateCards = (cards: Card[] | undefined) => {
   if (!cards || cards.length === 0) {
     throw new Error("No cards found");
   }

@@ -5,7 +5,7 @@ const getState = ()  => ({
     ...initialState,
     selectedCard: { card: "a card"},
     definition: {
-      cards: [{ card: "another card" } as Card],
+      cards: [{ card: "another card", weight: 1 } as Card],
       stats: [{ value: 0, icon: "icon" }],
     } as GameDefinition,
   } as GameState
