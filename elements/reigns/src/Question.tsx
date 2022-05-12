@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { IAppState, ICard } from "./features/game/types";
+import { AppState, Card } from "./features/game/types";
 
-export const Question = ({ card }: { card: ICard | null }) => {
-  const assetsUrl = useSelector((state: IAppState) => state.game.definition?.assetsUrl);
+export const Question = ({ card }: { card: Card | null }) => {
+  const assetsUrl = useSelector((state: AppState) => state.game.definition?.assetsUrl);
 
   if (!card) {
     return null;

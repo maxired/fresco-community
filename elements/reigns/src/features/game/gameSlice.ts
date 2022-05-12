@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
-import { IGameState, IStat } from "./types";
+import { GameState, Stat } from "./types";
 
 export const initializeGame = createAsyncThunk(
   "game/initializeGame",
@@ -15,7 +15,7 @@ export const initializeGame = createAsyncThunk(
   }
 );
 
-function setValue(statUpdate: number, stat: IStat, state: IGameState) {
+function setValue(statUpdate: number, stat: Stat, state: GameState) {
   if (!statUpdate) {
     return;
   }
@@ -27,11 +27,11 @@ function setValue(statUpdate: number, stat: IStat, state: IGameState) {
   }
 }
 
-function getAllValidCards(state: IGameState) {
+function getAllValidCards(state: GameState) {
   return state.definition ? state.definition.cards : [];
 }
 
-function selectNextCard(state: IGameState) {
+function selectNextCard(state: GameState) {
   const validCards = getAllValidCards(state);
   const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
   console.log("New card selected", randomCard.card);
@@ -46,7 +46,7 @@ export const gameSlice = createSlice({
     stats: [],
     gameUrl: null,
     definition: null,
-  } as IGameState,
+  } as GameState,
   reducers: {
     updateGame: (state, action) => {
       state.phase = action.payload.phase;
@@ -54,14 +54,14 @@ export const gameSlice = createSlice({
       state.stats = action.payload.stats;
       state.gameUrl = action.payload.gameUrl;
     },
-    startGame: (state: IGameState) => {
+    startGame: (state: GameState) => {
       state.phase = GamePhase.STARTED;
       state.selectedCard = selectNextCard(state);
       state.stats = state.definition
-        ? state.definition.stats.map((stat: IStat) => ({ ...stat }))
+        ? state.definition.stats.map((stat: Stat) => ({ ...stat }))
         : [];
     },
-    answerNo: (state: IGameState) => {
+    answerNo: (state: GameState) => {
       if (state.selectedCard) {
         setValue(state.selectedCard.no_stat1, state.stats[0], state);
         setValue(state.selectedCard.no_stat2, state.stats[1], state);

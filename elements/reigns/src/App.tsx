@@ -6,7 +6,7 @@ import { YesAnswer } from "./YesAnswer";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { answerNo, answerYes, initializeGame, startGame, updateGame  } from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
-import { IAppState } from "./features/game/types";
+import { AppState } from "./features/game/types";
 
 const useFresco = function () {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const useFresco = function () {
         selectedCard: null,
         phase: GamePhase.LOADING,
         stats: [],
-        gameUrl: 'https://localhost:3001/games/gdpr.json',
+        gameUrl: 'games/gdpr.json',
       };
 
       fresco.initialize(defaultState, { 
@@ -37,9 +37,9 @@ const useFresco = function () {
     });
   }, []);
 
-  const store = useStore();
+  const store = useStore<AppState>();
   const updateFrescoState = () => {
-    const state = store.getState() as IAppState;
+    const state = store.getState();
     console.log("updateFrescoGameState", state);
     fresco.setState({
       phase: state.game.phase,
@@ -51,11 +51,11 @@ const useFresco = function () {
 };
 
 export default function App() {
-  const phase = useSelector((state: IAppState) => state.game.phase);
-  const selectedCard = useSelector((state: IAppState) => state.game.selectedCard);
-  const currentStats = useSelector((state: IAppState) => state.game.stats);
-  const gameUrl = useSelector((state: IAppState) => state.game.gameUrl);
-  const gameDefinition = useSelector((state: IAppState) => state.game.definition);
+  const phase = useSelector((state: AppState) => state.game.phase);
+  const selectedCard = useSelector((state: AppState) => state.game.selectedCard);
+  const currentStats = useSelector((state: AppState) => state.game.stats);
+  const gameUrl = useSelector((state: AppState) => state.game.gameUrl);
+  const gameDefinition = useSelector((state: AppState) => state.game.definition);
   
   const dispatch = useDispatch();
 

@@ -1,11 +1,11 @@
 import { GamePhase } from '../../constants';
 
-export interface IStat {
+export type Stat = {
     value: number;
     icon: string;
 }
 
-export interface ICard {
+export type Card = {
     card: string;
     bearer: string;
 
@@ -22,22 +22,22 @@ export interface ICard {
     no_stat4: number;
 }
 
-export interface IGameDefinition {
-    cards: ICard[];
-    stats: IStat[];
+export type GameDefinition = {
+    cards: Card[];
+    stats: Stat[];
     assetsUrl: string;
     deathMessage: string;
 }
 
 
-export interface IGameState {
+export type GameState = {
     phase: GamePhase;
-    selectedCard: ICard | null;
-    stats: IStat[];
+    selectedCard: Card | null;
+    stats: Stat[];
     gameUrl: string | null;
-    definition: IGameDefinition | null;
+    definition: GameDefinition | null;
 }
 
-export interface IAppState {
-    game: IGameState;
+export type AppState = {
+    game: GameState;
 }

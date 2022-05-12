@@ -1,8 +1,8 @@
 import { Meter } from "./Meter";
 import React from "react";
-import { IStat } from "./features/game/types";
+import { Stat } from "./features/game/types";
 
-export const Meters = ({ stats }: { stats: IStat[] }) => {
+export const Meters = ({ stats }: { stats: Stat[] }) => {
     return (
       <div className="block meters">
         {stats.map((stat) => (

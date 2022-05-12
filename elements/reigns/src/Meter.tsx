@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { IAppState } from "./features/game/types";
+import { AppState } from "./features/game/types";
 
 export const Meter = ({ src, percent }: { src: string; percent: number; }) => {
-  const assetsUrl = useSelector((state: IAppState) => state.game.definition?.assetsUrl);
+  const assetsUrl = useSelector((state: AppState) => state.game.definition?.assetsUrl);
 
   return (
     <div className="meter">
