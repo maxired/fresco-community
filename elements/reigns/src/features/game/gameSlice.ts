@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
 import { GameState, Stat } from "./types";
+import { range } from "lodash";
+import { validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
   "game/initializeGame",
@@ -27,8 +29,11 @@ function setValue(statUpdate: number, stat: Stat, state: GameState) {
   }
 }
 
+const cardsByWeight = (cards: ICard[]) =>
+  cards.flatMap((card) => range(0, card.weight).map(() => card));
+
 function getAllValidCards(state: GameState) {
-  return state.definition ? state.definition.cards : [];
+  return state.definition ? cardsByWeight(state.definition.cards) : [];
 }
 
 function selectNextCard(state: GameState) {
@@ -92,7 +97,8 @@ export const gameSlice = createSlice({
       })
       .addCase(initializeGame.fulfilled, (state, action) => {
         state.phase = GamePhase.NOT_STARTED;
-        state.definition = action.payload;
+
+        state.definition = validateGameDefinition(action.payload);
 
         console.log("GAME", "action.payload", action.payload);
       })
