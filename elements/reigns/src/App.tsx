@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import cards from "./gdpr/cards.json";
-import gameDefinition from "./gdpr/game-definition.json";
 import { Meters } from "./Meters";
 import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
-import { NOT_STARTED, ENDED } from "./constants";
 import { useSelector, useDispatch, useStore } from "react-redux";
 import { answerNo, answerYes, initializeGame, startGame, updateGame  } from "./features/game/gameSlice";
+import { GamePhase } from "./constants";
+import { AppState } from "./features/game/types";
 
 const useFresco = function () {
   const dispatch = useDispatch();
@@ -22,15 +21,23 @@ const useFresco = function () {
 
       const defaultState = {
         selectedCard: null,
-        phase: NOT_STARTED,
+        phase: GamePhase.LOADING,
         stats: [],
+        gameUrl: 'games/gdpr.json',
       };
 
-      fresco.initialize(defaultState, { title: "Reigns" });
+      fresco.initialize(defaultState, { 
+        title: "Reigns", 
+        toolbarButtons: [
+        {
+          title: "Game url",
+          ui: { type: "string" },
+          property: "gameUrl",
+        }]});
     });
   }, []);
 
-  const store = useStore();
+  const store = useStore<AppState>();
   const updateFrescoState = () => {
     const state = store.getState();
     console.log("updateFrescoGameState", state);
@@ -44,15 +51,20 @@ const useFresco = function () {
 };
 
 export default function App() {
-  const phase = useSelector((state) => state.game.phase);
-  const selectedCard = useSelector((state) => state.game.selectedCard);
-  const currentStats = useSelector((state) => state.game.stats);
-
+  const phase = useSelector((state: AppState) => state.game.phase);
+  const selectedCard = useSelector((state: AppState) => state.game.selectedCard);
+  const currentStats = useSelector((state: AppState) => state.game.stats);
+  const gameUrl = useSelector((state: AppState) => state.game.gameUrl);
+  const gameDefinition = useSelector((state: AppState) => state.game.definition);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initializeGame({ ...gameDefinition, cards }));
-  }, []);
+    if (!gameUrl) {
+      return;
+    }
+    dispatch(initializeGame(gameUrl) as any);
+  }, [gameUrl]);
   const updateFrescoState = useFresco();
 
   const doAnswerNo = () => {
@@ -68,20 +80,40 @@ export default function App() {
     updateFrescoState();
   };
 
-  if (phase === ENDED) {
+  if (phase === GamePhase.LOADING) {
     return (
-      <div className="death" onClick={doStartGame}>
-        {gameDefinition.deathMessage}
+      <div className="death">
+        Loading...
       </div>
     );
   }
 
-  if (phase === NOT_STARTED) {
+  if (phase === GamePhase.ERROR) {
+    return (
+      <div className="death">
+        ERROR :(
+      </div>
+    );
+  }
+
+  if (phase === GamePhase.ENDED) {
+    return (
+      <div className="death" onClick={doStartGame}>
+        {gameDefinition?.deathMessage}
+      </div>
+    );
+  }
+
+  if (phase === GamePhase.NOT_STARTED) {
     return (
       <div className="death" onClick={doStartGame}>
         Click to start
       </div>
     );
+  }
+
+  if (!selectedCard) {
+    return null;
   }
 
   return (

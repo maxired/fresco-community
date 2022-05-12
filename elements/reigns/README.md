@@ -1,20 +1,3 @@
-[x] Change meter visual
-[x] Load cards from json
-[x] Pick next card to show
-[x] Set stats on decision
-[x] Decide on click
-[x] Death
-[x] Max 100
-[ ] Store the state in the element
-[ ] Detect users position instead of relying on click
-
-[ ] set flags +chapter2 -chapter2
-[ ] conditions stat1>50 chapter2
-[ ] Pull images from noun project
-[ ] Reset positions to neutral zone
-[ ] Weighing
-[ ] Cooldown
-
 # reigns
 
 Implements an extension that allows a designer to re-create the reigns game on any topic.
