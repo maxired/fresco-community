@@ -38,15 +38,19 @@ function selectNextCard(state: GameState) {
   return randomCard;
 }
 
-export const gameSlice = createSlice({
-  name: "game",
-  initialState: {
+export const initialState: GameState = 
+  {
     phase: GamePhase.LOADING,
     selectedCard: null,
     stats: [],
     gameUrl: null,
     definition: null,
-  } as GameState,
+  }
+
+
+export const gameSlice = createSlice({
+  name: "game",
+  initialState,
   reducers: {
     updateGame: (state, action) => {
       state.phase = action.payload.phase;
