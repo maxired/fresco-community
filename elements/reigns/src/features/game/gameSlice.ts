@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
-import { Card, CardFlag, GameFlags, GameState, Stat } from "./types";
+import { Card, GameState, Stat } from "./types";
 import { getFlags, validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
