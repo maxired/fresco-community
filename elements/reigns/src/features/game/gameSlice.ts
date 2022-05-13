@@ -28,12 +28,12 @@ function setValue(statUpdate: number, stat: Stat, state: GameState) {
   }
 }
 
-const cardsByWeight = (cards: Card[]) =>
+const cardsDistributedByWeight = (cards: Card[]) =>
   cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
 
 function getAllValidCards(state: GameState) {
 
-  return state.definition ? cardsByWeight(state.definition.cards) : [];
+  return state.definition ? cardsDistributedByWeight(state.definition.cards) : [];
 }
 
 function selectNextCard(state: GameState) {
