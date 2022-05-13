@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
-import { Card, GameState, Stat } from "./types";
-import { validateGameDefinition } from "./validateGameDefinition";
+import { CardFlag, GameFlags, GameState, Stat } from "./types";
+import { getFlags, validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
   "game/initializeGame",
@@ -15,6 +15,14 @@ export const initializeGame = createAsyncThunk(
     return json;
   }
 );
+
+export const setFlags = (gameFlags: GameFlags, cardFlags: CardFlag[]) => {
+  const flags = {...gameFlags};
+  cardFlags.forEach(({key, value}) => {
+    flags[key] = value
+  })
+  return flags;
+}
 
 function setValue(statUpdate: number, stat: Stat, state: GameState) {
   if (!statUpdate) {
@@ -47,6 +55,7 @@ export const initialState: GameState = {
   phase: GamePhase.LOADING,
   selectedCard: null,
   stats: [],
+  flags: {},
   gameUrl: null,
   definition: null,
 };
@@ -74,6 +83,7 @@ export const gameSlice = createSlice({
         setValue(state.selectedCard.no_stat2, state.stats[1], state);
         setValue(state.selectedCard.no_stat3, state.stats[2], state);
         setValue(state.selectedCard.no_stat4, state.stats[3], state);
+        state.flags = setFlags(state.flags, getFlags(state.selectedCard, 'no_custom'))
       }
       state.selectedCard = selectNextCard(state);
     },
@@ -83,6 +93,7 @@ export const gameSlice = createSlice({
         setValue(state.selectedCard.yes_stat2, state.stats[1], state);
         setValue(state.selectedCard.yes_stat3, state.stats[2], state);
         setValue(state.selectedCard.yes_stat4, state.stats[3], state);
+        state.flags = setFlags(state.flags, getFlags(state.selectedCard, 'yes_custom'))
       }
       state.selectedCard = selectNextCard(state);
     },
