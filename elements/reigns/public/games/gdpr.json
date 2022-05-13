@@ -32,12 +32,12 @@
       "yes_stat2": 5,
       "yes_stat3": -10,
       "yes_stat4": 0,
-      "yes_custom": 0,
+      "yes_custom": "",
       "answer_no": "Absolutely not!",
       "no_stat1": -5,
       "no_stat2": -5,
       "no_stat3": 0,
-      "no_stat4": "",
+      "no_stat4": 0,
       "no_custom": ""
     },
     {
@@ -53,12 +53,12 @@
       "yes_stat2": -5,
       "yes_stat3": 10,
       "yes_stat4": 0,
-      "yes_custom": 0,
+      "yes_custom": "",
       "answer_no": "",
       "no_stat1": -10,
       "no_stat2": 0,
       "no_stat3": -10,
-      "no_stat4": "",
+      "no_stat4": 0,
       "no_custom": ""
     },
     {
@@ -74,12 +74,12 @@
       "yes_stat2": 0,
       "yes_stat3": 10,
       "yes_stat4": 0,
-      "yes_custom": 0,
+      "yes_custom": "",
       "answer_no": "Extract the data and archive it",
       "no_stat1": -5,
       "no_stat2": 0,
       "no_stat3": -10,
-      "no_stat4": "",
+      "no_stat4": 0,
       "no_custom": ""
     },
     {
@@ -95,12 +95,12 @@
       "yes_stat2": 0,
       "yes_stat3": -10,
       "yes_stat4": 0,
-      "yes_custom": 0,
+      "yes_custom": "",
       "answer_no": "Hell no!",
       "no_stat1": 0,
       "no_stat2": -5,
       "no_stat3": 0,
-      "no_stat4": "",
+      "no_stat4": 0,
       "no_custom": ""
     },
     {
@@ -115,13 +115,13 @@
       "yes_stat1": 5,
       "yes_stat2": -10,
       "yes_stat3": -5,
-      "yes_stat4": null,
-      "yes_custom": null,
+      "yes_stat4": 0,
+      "yes_custom": "",
       "answer_no": "Sshhh... Let's hope the news doesn't spread",
       "no_stat1": -5,
       "no_stat2": -5,
       "no_stat3": -5,
-      "no_stat4": "",
+      "no_stat4": 0,
       "no_custom": ""
     },
     {
@@ -136,13 +136,13 @@
       "yes_stat1": 0,
       "yes_stat2": -5,
       "yes_stat3": 10,
-      "yes_stat4": null,
-      "yes_custom": null,
+      "yes_stat4": 0,
+      "yes_custom": "",
       "answer_no": "Ignore this person. These guys are vultures.",
       "no_stat1": -5,
       "no_stat2": 0,
       "no_stat3": -10,
-      "no_stat4": "",
+      "no_stat4": 0,
       "no_custom": ""
     },
     {
@@ -157,13 +157,13 @@
       "yes_stat1": -5,
       "yes_stat2": 10,
       "yes_stat3": -5,
-      "yes_stat4": null,
-      "yes_custom": null,
+      "yes_stat4": 0,
+      "yes_custom": "",
       "answer_no": "Add a new button to start the cancelation process",
       "no_stat1": 5,
       "no_stat2": 0,
       "no_stat3": 10,
-      "no_stat4": "",
+      "no_stat4": 0,
       "no_custom": ""
     }
    ] 

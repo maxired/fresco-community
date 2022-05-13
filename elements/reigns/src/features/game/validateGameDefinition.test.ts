@@ -1,5 +1,7 @@
 import { Card } from "./types";
 import { validateCards, getFlags } from "./validateGameDefinition";
+import gdpr from "../../../public/games/gdpr.json";
+import dont_starve from "../../../public/games/dont-starve.json";
 
 describe("validateGameDefinition", () => {
   describe("validateCards", () => {
@@ -42,6 +44,19 @@ describe("validateGameDefinition", () => {
 
     it("should throw if value not boolean", () => {
       expect(() => validate("key1=not_a_boolean")).toThrow();
+    });
+  });
+
+  describe("games", () => {
+    it("should validate gdpr", () => {
+      const iterator = gdpr.cards.values();
+      const cards: Card[] = Array.from(iterator);
+      expect(() => validateCards(cards)).not.toThrow();
+    });
+    it("should validate dont_starve", () => {
+      const iterator = dont_starve.cards.values();
+      const cards: Card[] = Array.from(iterator);
+      expect(() => validateCards(cards)).not.toThrow();
     });
   });
 });
