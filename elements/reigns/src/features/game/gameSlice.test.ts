@@ -58,8 +58,8 @@ describe("gameReducer", () => {
         { card: "card2", weight: 5 } as Card,
       ]);
 
-      expect(result.filter(p => p.card === "card1").length).toBe(1);
-      expect(result.filter(p => p.card === "card2").length).toBe(5);
+      expect(result.filter((p) => p.card === "card1").length).toBe(1);
+      expect(result.filter((p) => p.card === "card2").length).toBe(5);
     });
   });
 });
@@ -67,14 +67,17 @@ describe("gameReducer", () => {
 describe("setFlags", () => {
   it("should set multiple flags", () => {
     const flags = setFlags({}, [
-      {key: 'chapter3', value: 'true'}, {key: 'queen_killed', value: 'false'} 
-    ])
-    expect(flags.chapter3).toBe('true');
-    expect(flags.queen_killed).toBe('false');
-  })
+      { key: "chapter3", value: "true" },
+      { key: "queen_killed", value: "false" },
+    ]);
+    expect(flags.chapter3).toBe("true");
+    expect(flags.queen_killed).toBe("false");
+  });
 
   it("should leave existing flags", () => {
-    const flags = setFlags({chapter3: 'true'}, [{key: 'queen_killed', value: 'false'} ]);
-    expect(flags.chapter3).toBe('true')
-  })
-})
+    const flags = setFlags({ chapter3: "true" }, [
+      { key: "queen_killed", value: "false" },
+    ]);
+    expect(flags.chapter3).toBe("true");
+  });
+});

@@ -1,51 +1,45 @@
 {
-    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/amongus/sprites.png",
-    "spriteWidth": 114,
-    "spriteHeight": 99,
-    "offsetX": -114,
-    "offsetY": 0,
-    "idleX": 114,
-    "idleY": 0,
-    "animationSteps": 4,
-    "animationDuration": ".5s",
-    "animations": [
+  "imageSrc": "https://fres-co.github.io/fresco-community/avatars/amongus/sprites.png",
+  "spriteWidth": 114,
+  "spriteHeight": 99,
+  "offsetX": -114,
+  "offsetY": 0,
+  "idleX": 114,
+  "idleY": 0,
+  "animationSteps": 4,
+  "animationDuration": ".5s",
+  "animations": [
+    {
+      "name": "right",
+      "orientationRange": [0, 180],
+      "keyframes": [
         {
-            "name": "right",
-            "orientationRange": [
-                0,
-                180
-            ],
-            "keyframes": [
-                {
-                    "percent": 0,
-                    "x": 0,
-                    "y": 0
-                },
-                {
-                    "percent": 100,
-                    "x": -4,
-                    "y": 0
-                }
-            ]
+          "percent": 0,
+          "x": 0,
+          "y": 0
         },
         {
-            "name": "left",
-            "orientationRange": [
-                180,
-                360
-            ],
-            "keyframes": [
-                {
-                    "percent": 0,
-                    "x": 0,
-                    "y": -1
-                },
-                {
-                    "percent": 100,
-                    "x": -4,
-                    "y": -1
-                }
-            ]
+          "percent": 100,
+          "x": -4,
+          "y": 0
         }
-    ]
+      ]
+    },
+    {
+      "name": "left",
+      "orientationRange": [180, 360],
+      "keyframes": [
+        {
+          "percent": 0,
+          "x": 0,
+          "y": -1
+        },
+        {
+          "percent": 100,
+          "x": -4,
+          "y": -1
+        }
+      ]
+    }
+  ]
 }

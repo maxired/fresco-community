@@ -17,12 +17,12 @@ export const initializeGame = createAsyncThunk(
 );
 
 export const setFlags = (gameFlags: GameFlags, cardFlags: CardFlag[]) => {
-  const flags = {...gameFlags};
-  cardFlags.forEach(({key, value}) => {
-    flags[key] = value
-  })
+  const flags = { ...gameFlags };
+  cardFlags.forEach(({ key, value }) => {
+    flags[key] = value;
+  });
   return flags;
-}
+};
 
 function setValue(statUpdate: number, stat: Stat, state: GameState) {
   if (!statUpdate) {
@@ -40,8 +40,9 @@ export const cardsDistributedByWeight = (cards: Card[]) =>
   cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
 
 function getAllValidCards(state: GameState) {
-
-  return state.definition ? cardsDistributedByWeight(state.definition.cards) : [];
+  return state.definition
+    ? cardsDistributedByWeight(state.definition.cards)
+    : [];
 }
 
 function selectNextCard(state: GameState) {
@@ -83,7 +84,10 @@ export const gameSlice = createSlice({
         setValue(state.selectedCard.no_stat2, state.stats[1], state);
         setValue(state.selectedCard.no_stat3, state.stats[2], state);
         setValue(state.selectedCard.no_stat4, state.stats[3], state);
-        state.flags = setFlags(state.flags, getFlags(state.selectedCard, 'no_custom'))
+        state.flags = setFlags(
+          state.flags,
+          getFlags(state.selectedCard, "no_custom")
+        );
       }
       state.selectedCard = selectNextCard(state);
     },
@@ -93,7 +97,10 @@ export const gameSlice = createSlice({
         setValue(state.selectedCard.yes_stat2, state.stats[1], state);
         setValue(state.selectedCard.yes_stat3, state.stats[2], state);
         setValue(state.selectedCard.yes_stat4, state.stats[3], state);
-        state.flags = setFlags(state.flags, getFlags(state.selectedCard, 'yes_custom'))
+        state.flags = setFlags(
+          state.flags,
+          getFlags(state.selectedCard, "yes_custom")
+        );
       }
       state.selectedCard = selectNextCard(state);
     },

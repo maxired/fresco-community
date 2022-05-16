@@ -1,4 +1,3 @@
-
 # Description
 
 This extension is a simple demo of a plugin showing all configurables options available to plugin
@@ -16,12 +15,14 @@ To add it to a fres.co space, copy the following snippet and paste in anywhere i
 ```
     127.0.0.1 dev-community.fres.co
 ```
+
 2. Set up your web server to respond to https://dev-community.fres.co/ (points to the root of the repo)
 
 # To add the timer to a fres.co space
 
 1. Copy the following snippet
-in dev
+   in dev
+
 ```
     extension://dev-community.fres.co/elements/configurables
 ```
@@ -33,5 +34,3 @@ in dev
 Although we have already deviated from Miro's SDK, it is a good reference.
 https://developers.miro.com/docs/how-to-start
 https://github.com/miroapp/app-examples/blob/master/miro.d.ts
-
-    

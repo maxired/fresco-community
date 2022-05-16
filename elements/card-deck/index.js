@@ -47,76 +47,88 @@
 //     background-color: #85BD42;
 // }
 
-const defaultCardList = 'Set the card list in the toolbar';
+const defaultCardList = "Set the card list in the toolbar";
 
-const homeScreen = document.getElementById('home-screen');
-const cardScreen = document.getElementById('card-screen');
-const deck = document.getElementById('deck');
+const homeScreen = document.getElementById("home-screen");
+const cardScreen = document.getElementById("card-screen");
+const deck = document.getElementById("deck");
 
 function drawCard() {
-    const cards = (!fresco.element ? defaultCardList : fresco.element.state.cardList).split('|');
-    // return a random card from the deck
-    const card = cards[Math.floor(Math.random() * cards.length)];
-    return card.trim();
+  const cards = (
+    !fresco.element ? defaultCardList : fresco.element.state.cardList
+  ).split("|");
+  // return a random card from the deck
+  const card = cards[Math.floor(Math.random() * cards.length)];
+  return card.trim();
 }
 
 function showCard(state) {
-    cardScreen.innerText = state.card;
-    document.body.style.setProperty('--background-color', state.backgroundColor || null);
-    document.body.style.setProperty('--color', state.color || null);
-    cardScreen.classList.remove('is-hidden');
-    homeScreen.classList.add('is-hidden');
+  cardScreen.innerText = state.card;
+  document.body.style.setProperty(
+    "--background-color",
+    state.backgroundColor || null
+  );
+  document.body.style.setProperty("--color", state.color || null);
+  cardScreen.classList.remove("is-hidden");
+  homeScreen.classList.add("is-hidden");
 }
 
-deck.addEventListener('click', () => {
-    const card = drawCard();
-    fresco.setState({ card });
-    showCard({ card });
+deck.addEventListener("click", () => {
+  const card = drawCard();
+  fresco.setState({ card });
+  showCard({ card });
 });
 
 function backToHome() {
-    cardScreen.classList.add('is-hidden');
-    homeScreen.classList.remove('is-hidden');
+  cardScreen.classList.add("is-hidden");
+  homeScreen.classList.remove("is-hidden");
 }
 
-cardScreen.addEventListener('click', () => {
-    fresco.setState({ card: null, deck: null });
-    backToHome();
+cardScreen.addEventListener("click", () => {
+  fresco.setState({ card: null, deck: null });
+  backToHome();
 });
 
 fresco.onReady(function () {
-    
-    fresco.onStateChanged(function () {
-        const state = fresco.element.state;
-        document.body.style.setProperty('--background-color', state.backgroundColor || null);
-        document.body.style.setProperty('--color', state.color || null);
-    
-        if (!state.card) {
-            backToHome();
-        } else {
-            showCard(state);
-        }
-    });
-    
-    const defaultState = { card: null, backgroundColor: '#333', color: '#fff', cardList: defaultCardList };
-    fresco.initialize(defaultState, { 
-        title: 'Deck of cards',
-        toolbarButtons: [{
-            title: 'Background color',
-            ui: { type: 'color' },
-            property: 'backgroundColor'
-        },
-        {
-            title: 'Text color',
-            ui: { type: 'color' },
-            property: 'color'
-        },
-        {
-            title: 'Card list (separated with |)',
-            ui: { type: 'string' },
-            property: 'cardList'
-        }] 
-    });
+  fresco.onStateChanged(function () {
+    const state = fresco.element.state;
+    document.body.style.setProperty(
+      "--background-color",
+      state.backgroundColor || null
+    );
+    document.body.style.setProperty("--color", state.color || null);
+
+    if (!state.card) {
+      backToHome();
+    } else {
+      showCard(state);
+    }
+  });
+
+  const defaultState = {
+    card: null,
+    backgroundColor: "#333",
+    color: "#fff",
+    cardList: defaultCardList,
+  };
+  fresco.initialize(defaultState, {
+    title: "Deck of cards",
+    toolbarButtons: [
+      {
+        title: "Background color",
+        ui: { type: "color" },
+        property: "backgroundColor",
+      },
+      {
+        title: "Text color",
+        ui: { type: "color" },
+        property: "color",
+      },
+      {
+        title: "Card list (separated with |)",
+        ui: { type: "string" },
+        property: "cardList",
+      },
+    ],
+  });
 });
-
-

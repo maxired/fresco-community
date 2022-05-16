@@ -1,53 +1,53 @@
-import { GamePhase } from '../../constants';
+import { GamePhase } from "../../constants";
 
 export type Stat = {
-    value: number;
-    icon: string;
-}
+  value: number;
+  icon: string;
+};
 
 export type CardFlag = {
-    key: string;
-    value: string;
-}
+  key: string;
+  value: string;
+};
 
 export type Card = {
-    card: string;
-    bearer: string;
-    weight: number;
+  card: string;
+  bearer: string;
+  weight: number;
 
-    answer_yes: string;
-    yes_stat1: number;
-    yes_stat2: number;
-    yes_stat3: number;
-    yes_stat4: number;
-    yes_custom: string;
+  answer_yes: string;
+  yes_stat1: number;
+  yes_stat2: number;
+  yes_stat3: number;
+  yes_stat4: number;
+  yes_custom: string;
 
-    answer_no: string;
-    no_stat1: number;
-    no_stat2: number;
-    no_stat3: number;
-    no_stat4: number;
-    no_custom: string;
-}
+  answer_no: string;
+  no_stat1: number;
+  no_stat2: number;
+  no_stat3: number;
+  no_stat4: number;
+  no_custom: string;
+};
 
 export type GameDefinition = {
-    cards: Card[];
-    stats: Stat[];
-    assetsUrl: string;
-    deathMessage: string;
-}
+  cards: Card[];
+  stats: Stat[];
+  assetsUrl: string;
+  deathMessage: string;
+};
 
 export type GameFlags = { [key: string]: string };
 
 export type GameState = {
-    phase: GamePhase;
-    selectedCard: Card | null;
-    stats: Stat[];
-    flags: GameFlags;
-    gameUrl: string | null;
-    definition: GameDefinition | null;
-}
+  phase: GamePhase;
+  selectedCard: Card | null;
+  stats: Stat[];
+  flags: GameFlags;
+  gameUrl: string | null;
+  definition: GameDefinition | null;
+};
 
 export type AppState = {
-    game: GameState;
-}
+  game: GameState;
+};

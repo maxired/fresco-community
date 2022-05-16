@@ -7,9 +7,10 @@ The main file which is fetched is the file `index.json`
 The `index.json` file is a JSON file containing an array of objects.
 Each object consists of one element that can be added to a Fres.co space.
 Each object should have the following properties :
- - name: a unique name for this element
- - url: an image URL to be used as a preview. It can be a string with either a full `https://` url, or a direct path within this directory.
- - content: an object describing the elements.
+
+- name: a unique name for this element
+- url: an image URL to be used as a preview. It can be a string with either a full `https://` url, or a direct path within this directory.
+- content: an object describing the elements.
 
 # Adding an element
 
@@ -18,6 +19,3 @@ The export functionality is available with a feature flag. The string `useCopyTo
 When present, a new export button will be present in the item edition toolbar. Pressing that button will copy the exported value of the object in your system clipboard.
 
 This copied string can then be pasted as the value of the `content` field of your new element in the index.json
-
-
-
