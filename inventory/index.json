@@ -143,5 +143,227 @@
       ],
       "groups": []
     }
+  },
+  {
+    "name": "Story quizz game",
+    "displayName": "Story quizz game",
+    "displaySearch": "Story quizz game",
+    "url": "story-quizz.png",
+    "content": {
+      "visuals": [
+        {
+          "id": "is4b_8wjucmz8cbnn-iqb",
+          "isLocked": false,
+          "zIndex": 15,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": {
+              "x": 1490,
+              "y": 355
+            },
+            "size": {
+              "x": 1020,
+              "y": 60
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "WALL",
+            "OPACITY": 100
+          }
+        },
+        {
+          "id": "mvrm76bkrp0x9vxh67nbx",
+          "isLocked": false,
+          "zIndex": 27,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": {
+              "x": 1490,
+              "y": 234
+            },
+            "size": {
+              "x": 1040,
+              "y": 640
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "NAME": "story-quizz",
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": {
+              "gameUrl": "games/gdpr.json"
+            },
+            "PROTECTED_STORAGE": {},
+            "PINNED": false,
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/dist/"
+          }
+        },
+        {
+          "id": "fqh9t0pvofof8gfhmvmbm",
+          "isLocked": false,
+          "zIndex": 16,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": {
+              "x": 1150,
+              "y": 435
+            },
+            "size": {
+              "x": 340,
+              "y": 220
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"avatar.entered.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"mezljzbhbdowtosc2lxop\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.no' })\"}}]}]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 100
+          }
+        },
+        {
+          "id": "gjifdpb4w0ukirobyei-l",
+          "isLocked": false,
+          "zIndex": 17,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": {
+              "x": 1830,
+              "y": 435
+            },
+            "size": {
+              "x": 340,
+              "y": 220
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"avatar.entered.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"v8k_3akjfshcvjw6xfcrp\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.yes' })\"}}]}]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 100
+          }
+        },
+        {
+          "id": "lzvhuurdcl2eqj1rrhafa",
+          "isLocked": false,
+          "zIndex": 18,
+          "layer": 0,
+          "renderer": "LandingZone",
+          "transform": {
+            "position": {
+              "x": 1490,
+              "y": 460
+            },
+            "size": {
+              "x": 260,
+              "y": 160
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT_DISABLED": true,
+            "TEXT": "story-quizz-neutral"
+          }
+        },
+        {
+          "id": "c42owvlya9upl-smfmlwz",
+          "isLocked": false,
+          "zIndex": 23,
+          "layer": 0,
+          "renderer": "ConversationZone",
+          "transform": {
+            "position": {
+              "x": 1490,
+              "y": 245
+            },
+            "size": {
+              "x": 1020,
+              "y": 600
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "AUTOMUTE": false,
+            "TEXT_DISABLED": true
+          }
+        },
+        {
+          "id": "bvueueb9rxgus49f_ah1o",
+          "isLocked": false,
+          "zIndex": 25,
+          "layer": 0,
+          "renderer": "CameraFrame",
+          "transform": {
+            "position": {
+              "x": 1490,
+              "y": 245
+            },
+            "size": {
+              "x": 1020,
+              "y": 600
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT_DISABLED": true,
+            "APPEARANCE_CAMERA_MIN_ZOOM": 0,
+            "APPEARANCE_MARGIN": 0
+          }
+        }
+      ],
+      "groups": [
+        {
+          "id": "npx8mpmtimznmdbboosg8",
+          "zIndex": 28,
+          "isLocked": false,
+          "layer": 0,
+          "childIds": [
+            "is4b_8wjucmz8cbnn-iqb",
+            "mvrm76bkrp0x9vxh67nbx",
+            "fqh9t0pvofof8gfhmvmbm",
+            "gjifdpb4w0ukirobyei-l",
+            "lzvhuurdcl2eqj1rrhafa",
+            "c42owvlya9upl-smfmlwz",
+            "bvueueb9rxgus49f_ah1o"
+          ],
+          "transform": {
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "size": {
+              "x": 0,
+              "y": 0
+            },
+            "rotation": 0
+          },
+          "rotation": 0
+        }
+      ]
+    }
   }
 ]
