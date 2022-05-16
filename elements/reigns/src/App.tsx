@@ -51,9 +51,7 @@ const useFresco = function () {
   const teleport = (target: string, targetPrefix = `${fresco.element.appearance.NAME}-`) => fresco.send({
     type: "extension/out/redux",
     payload: {
-      senderId: fresco.element.id,
       action: {
-        userId: undefined,
         type: "TELEPORT",
         payload: { anchorName: `${targetPrefix}${target}` },
     },
