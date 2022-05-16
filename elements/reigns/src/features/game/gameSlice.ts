@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
-import { Card, GameState, Stat } from "./types";
+import { selectNextCard } from "./selectNextCard";
+import { CardFlag, GameFlags, GameState, Stat } from "./types";
 import { getFlags, validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
@@ -34,22 +35,6 @@ function setValue(statUpdate: number, stat: Stat, state: GameState) {
   if (stat.value === 0) {
     state.phase = GamePhase.ENDED;
   }
-}
-
-export const cardsDistributedByWeight = (cards: Card[]) =>
-  cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
-
-function getAllValidCards(state: GameState) {
-  return state.definition
-    ? cardsDistributedByWeight(state.definition.cards)
-    : [];
-}
-
-function selectNextCard(state: GameState) {
-  const validCards = getAllValidCards(state);
-  const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
-  console.log("New card selected", randomCard.card);
-  return randomCard;
 }
 
 export const initialState: GameState = {
