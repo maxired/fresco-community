@@ -1,5 +1,9 @@
 import { Card } from "./types";
-import { validateCards, getFlags } from "./validateGameDefinition";
+import {
+  validateCards,
+  getFlags,
+  validateFlags,
+} from "./validateGameDefinition";
 import gdpr from "../../../public/games/gdpr.json";
 import dont_starve from "../../../public/games/dont-starve.json";
 
@@ -27,9 +31,33 @@ describe("validateGameDefinition", () => {
       expect(() => validateCards([{ weight: 101 } as Card])).toThrow();
     });
   });
+
+  describe("getFlags", () => {
+    const getCard = () =>
+      ({
+        yes_custom: "someFlag=true",
+        no_custom: "someOtherFlag=true",
+      } as Card);
+    it("should return empty array if no flags", () => {
+      expect(getFlags({} as Card, "yes_custom")).toEqual([]);
+    });
+
+    it("should return no flags", () => {
+      const result = getFlags(getCard(), "no_custom");
+      expect(result).toEqual([{ key: "someOtherFlag", value: "true" }]);
+    });
+
+    it("should return yes flags", () => {
+      const result = getFlags(getCard(), "yes_custom");
+      expect(result).toEqual([{ key: "someFlag", value: "true" }]);
+    });
+  });
   describe("validateFlags", () => {
     const validate = (flag: string) =>
-      getFlags({ yes_custom: flag } as Card, "yes_custom", 1);
+      validateFlags(
+        getFlags({ yes_custom: flag } as Card, "yes_custom"),
+        "yes_custom", 1
+      );
     it("should throw on multiple operators", () => {
       expect(() => validate("key==true")).toThrow();
     });
