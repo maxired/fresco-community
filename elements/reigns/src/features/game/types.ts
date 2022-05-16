@@ -5,6 +5,11 @@ export type Stat = {
     icon: string;
 }
 
+export type CardFlag = {
+    key: string;
+    value: string;
+}
+
 export type Card = {
     card: string;
     bearer: string;
@@ -15,12 +20,14 @@ export type Card = {
     yes_stat2: number;
     yes_stat3: number;
     yes_stat4: number;
+    yes_custom: string;
 
     answer_no: string;
     no_stat1: number;
     no_stat2: number;
     no_stat3: number;
     no_stat4: number;
+    no_custom: string;
 }
 
 export type GameDefinition = {
@@ -30,11 +37,13 @@ export type GameDefinition = {
     deathMessage: string;
 }
 
+export type GameFlags = { [key: string]: string };
 
 export type GameState = {
     phase: GamePhase;
     selectedCard: Card | null;
     stats: Stat[];
+    flags: GameFlags;
     gameUrl: string | null;
     definition: GameDefinition | null;
 }
