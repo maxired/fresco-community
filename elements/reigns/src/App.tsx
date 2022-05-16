@@ -4,7 +4,13 @@ import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
 import { useSelector, useDispatch, useStore } from "react-redux";
-import { answerNo, answerYes, initializeGame, startGame, updateGame  } from "./features/game/gameSlice";
+import {
+  answerNo,
+  answerYes,
+  initializeGame,
+  startGame,
+  updateGame,
+} from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
 import { AppState } from "./features/game/types";
 
@@ -23,17 +29,19 @@ const useFresco = function () {
         selectedCard: null,
         phase: GamePhase.LOADING,
         stats: [],
-        gameUrl: 'games/gdpr.json',
+        gameUrl: "games/gdpr.json",
       };
 
-      fresco.initialize(defaultState, { 
-        title: "Reigns", 
+      fresco.initialize(defaultState, {
+        title: "Reigns",
         toolbarButtons: [
-        {
-          title: "Game url",
-          ui: { type: "string" },
-          property: "gameUrl",
-        }]});
+          {
+            title: "Game url",
+            ui: { type: "string" },
+            property: "gameUrl",
+          },
+        ],
+      });
     });
   }, []);
 
@@ -48,25 +56,34 @@ const useFresco = function () {
     });
   };
 
-  const teleport = (target: string, targetPrefix = `${fresco.element.appearance.NAME}-`) => fresco.send({
-    type: "extension/out/redux",
-    payload: {
-      action: {
-        type: "TELEPORT",
-        payload: { anchorName: `${targetPrefix}${target}` },
-    },
-  }})
+  const teleport = (
+    target: string,
+    targetPrefix = `${fresco.element.appearance.NAME}-`
+  ) =>
+    fresco.send({
+      type: "extension/out/redux",
+      payload: {
+        action: {
+          type: "TELEPORT",
+          payload: { anchorName: `${targetPrefix}${target}` },
+        },
+      },
+    });
 
   return { updateFrescoState, teleport };
 };
 
 export default function App() {
   const phase = useSelector((state: AppState) => state.game.phase);
-  const selectedCard = useSelector((state: AppState) => state.game.selectedCard);
+  const selectedCard = useSelector(
+    (state: AppState) => state.game.selectedCard
+  );
   const currentStats = useSelector((state: AppState) => state.game.stats);
   const gameUrl = useSelector((state: AppState) => state.game.gameUrl);
-  const gameDefinition = useSelector((state: AppState) => state.game.definition);
-  
+  const gameDefinition = useSelector(
+    (state: AppState) => state.game.definition
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -75,37 +92,42 @@ export default function App() {
     }
     dispatch(initializeGame(gameUrl) as any);
   }, [gameUrl]);
-  const { updateFrescoState, teleport }= useFresco();
+  const { updateFrescoState, teleport } = useFresco();
 
   const doAnswerNo = () => {
     dispatch(answerNo());
     updateFrescoState();
-    teleport('neutral')
+    teleport("neutral");
   };
 
   const doAnswerYes = () => {
     dispatch(answerYes());
     updateFrescoState();
-    teleport('neutral')
+    teleport("neutral");
   };
 
   useEffect(() => {
     if (phase === GamePhase.STARTED) {
-      const yesListener =  fresco.subscribeToGlobalEvent('custom.reign.yes', () => {
-        doAnswerYes()
-      })
+      const yesListener = fresco.subscribeToGlobalEvent(
+        "custom.reign.yes",
+        () => {
+          doAnswerYes();
+        }
+      );
 
-      const noListener =  fresco.subscribeToGlobalEvent('custom.reign.no', () => {
-        doAnswerNo()
-      })
+      const noListener = fresco.subscribeToGlobalEvent(
+        "custom.reign.no",
+        () => {
+          doAnswerNo();
+        }
+      );
 
       return () => {
         yesListener();
-        noListener()
-      }
+        noListener();
+      };
     }
-  }, [phase])
- 
+  }, [phase]);
 
   const doStartGame = () => {
     dispatch(startGame());
@@ -113,19 +135,11 @@ export default function App() {
   };
 
   if (phase === GamePhase.LOADING) {
-    return (
-      <div className="death">
-        Loading...
-      </div>
-    );
+    return <div className="death">Loading...</div>;
   }
 
   if (phase === GamePhase.ERROR) {
-    return (
-      <div className="death">
-        ERROR :(
-      </div>
-    );
+    return <div className="death">ERROR :(</div>;
   }
 
   if (phase === GamePhase.ENDED) {

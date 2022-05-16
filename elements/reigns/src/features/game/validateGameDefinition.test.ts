@@ -56,7 +56,8 @@ describe("validateGameDefinition", () => {
     const validate = (flag: string) =>
       validateFlags(
         getFlags({ yes_custom: flag } as Card, "yes_custom"),
-        "yes_custom", 1
+        "yes_custom",
+        1
       );
     it("should throw on multiple operators", () => {
       expect(() => validate("key==true")).toThrow();

@@ -1,90 +1,78 @@
 {
-    "imageSrc": "https://fres-co.github.io/fresco-community/avatars/birds/mosquito.png",
-    "spriteWidth": 85,
-    "spriteHeight": 63,
-    "offsetX": 0,
-    "offsetY": 0,
-    "idleX": 0,
-    "idleY": 0,
-    "animationSteps": 13,
-    "animationPrefix": "mosquito",
-    "animationDuration": ".5s",
-    "animations": [
+  "imageSrc": "https://fres-co.github.io/fresco-community/avatars/birds/mosquito.png",
+  "spriteWidth": 85,
+  "spriteHeight": 63,
+  "offsetX": 0,
+  "offsetY": 0,
+  "idleX": 0,
+  "idleY": 0,
+  "animationSteps": 13,
+  "animationPrefix": "mosquito",
+  "animationDuration": ".5s",
+  "animations": [
+    {
+      "name": "right",
+      "orientationRange": [0, 180],
+      "keyframes": [
         {
-            "name": "right",
-            "orientationRange": [
-                0,
-                180
-            ],
-            "keyframes": [
-                {
-                    "percent": 0,
-                    "x": 0,
-                    "y": 0
-                },
-                {
-                    "percent": 100,
-                    "x": -13,
-                    "y": 0
-                }
-            ]
+          "percent": 0,
+          "x": 0,
+          "y": 0
         },
         {
-            "name": "left",
-            "orientationRange": [
-                180,
-                360
-            ],
-            "keyframes": [
-                {
-                    "percent": 0,
-                    "x": 0,
-                    "y": -1
-                },
-                {
-                    "percent": 100,
-                    "x": -13,
-                    "y": -1
-                }
-            ]
-        },
-        {
-            "name": "idle-right",
-            "orientationRange": [
-                0,
-                180
-            ],
-            "keyframes": [
-                {
-                    "percent": 0,
-                    "x": 0,
-                    "y": 0
-                },
-                {
-                    "percent": 100,
-                    "x": -13,
-                    "y": 0
-                }
-            ]
-        },
-        {
-            "name": "idle-left",
-            "orientationRange": [
-                180,
-                360
-            ],
-            "keyframes": [
-                {
-                    "percent": 0,
-                    "x": 0,
-                    "y": -1
-                },
-                {
-                    "percent": 100,
-                    "x": -13,
-                    "y": -1
-                }
-            ]
+          "percent": 100,
+          "x": -13,
+          "y": 0
         }
-    ]
+      ]
+    },
+    {
+      "name": "left",
+      "orientationRange": [180, 360],
+      "keyframes": [
+        {
+          "percent": 0,
+          "x": 0,
+          "y": -1
+        },
+        {
+          "percent": 100,
+          "x": -13,
+          "y": -1
+        }
+      ]
+    },
+    {
+      "name": "idle-right",
+      "orientationRange": [0, 180],
+      "keyframes": [
+        {
+          "percent": 0,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "percent": 100,
+          "x": -13,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "name": "idle-left",
+      "orientationRange": [180, 360],
+      "keyframes": [
+        {
+          "percent": 0,
+          "x": 0,
+          "y": -1
+        },
+        {
+          "percent": 100,
+          "x": -13,
+          "y": -1
+        }
+      ]
+    }
+  ]
 }

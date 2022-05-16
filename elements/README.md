@@ -32,26 +32,28 @@ here a complete list of keys available on it:
 - `storage`: the storage object, see next section
 
 also some depreacted key that have been moved:
-- `participantId`: Moved into `fresco.localParticipant.id`
-- `isLocalParticipantInside`: Moved into  `fresco.localParticipant.isInsideElement`
-- `totalParticipantsCount`:  Replaced by into  `fresco.remoteParticipants.length`
 
+- `participantId`: Moved into `fresco.localParticipant.id`
+- `isLocalParticipantInside`: Moved into `fresco.localParticipant.isInsideElement`
+- `totalParticipantsCount`: Replaced by into `fresco.remoteParticipants.length`
 
 ## fresco.space
- - `id`: the curren fresco space id, also knows as diagramId
+
+- `id`: the curren fresco space id, also knows as diagramId
 
 ## fresco.localParticipant
- - `id`: current id of the local participant. not persistant across sessions
- - `permission`: an object with permission of local user inside the space
-    - `canAccess`: boolean; Whether the user is allowd to access the space. should always be true at this point;
-    - `canEdit`: boolean; Whether the user can make any modification to the space;
-    - `canLock`: boolean; Whether the user edit locked objects;
-    - `canConfig`: boolean; Whether the user can update the space settings;
+
+- `id`: current id of the local participant. not persistant across sessions
+- `permission`: an object with permission of local user inside the space
+  - `canAccess`: boolean; Whether the user is allowd to access the space. should always be true at this point;
+  - `canEdit`: boolean; Whether the user can make any modification to the space;
+  - `canLock`: boolean; Whether the user edit locked objects;
+  - `canConfig`: boolean; Whether the user can update the space settings;
 - `isInsideElement`: a flag to know if the local participant position is inside the shape bounds.
 
 ## fresco.remoteParticipants
- - `length` : the number of remote participants
 
+- `length` : the number of remote participants
 
 ## State, configuration and storage
 

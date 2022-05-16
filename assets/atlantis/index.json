@@ -1,628 +1,627 @@
 [
-    {
-        "name":  "amphitheater 01",
-        "filename":  "amphitheater-01.png",
-        "group": "Amphitheaters"
-    },
-    {
-        "name":  "amphitheater 02",
-        "filename":  "amphitheater-02.png",
-        "group": "Amphitheaters"
-    },
-    {
-        "name":  "bucket 01",
-        "filename":  "bucket-01.png",
-        "group": "Buckets"
-    },
-    {
-        "name":  "bucket 02",
-        "filename":  "bucket-02.png",
-        "group": "Buckets"
-    },
-    {
-        "name":  "cake 01",
-        "filename":  "cake-01.png",
-        "group": "Cakes"
-    },
-    {
-        "name":  "cake 02",
-        "filename":  "cake-02.png",
-        "group": "Cakes"
-    },
-    {
-        "name":  "column 01",
-        "filename":  "column-01.png",
-        "group": "Columns"
-    },
-    {
-        "name":  "column 02",
-        "filename":  "column-02.png",
-        "group": "Columns"
-    },
-    {
-        "name":  "column 03",
-        "filename":  "column-03.png",
-        "group": "Columns"
-    },
-    {
-        "name":  "column 04",
-        "filename":  "column-04.png",
-        "group": "Columns"
-    },
-    {
-        "name":  "column 05",
-        "filename":  "column-05.png",
-        "group": "Columns"
-    },
-    {
-        "name":  "cup coffee plate",
-        "filename":  "cup-coffee-plate.png",
-        "group": "Cups"
-    },
-    {
-        "name":  "cup coffee",
-        "filename":  "cup-coffee.png",
-        "group": "Cups"
-    },
-    {
-        "name":  "cup empty",
-        "filename":  "cup-empty.png",
-        "group": "Cups"
-    },
-    {
-        "name":  "cup plate",
-        "filename":  "cup-plate.png",
-        "group": "Cups"
-    },
-    {
-        "name":  "decoration 01",
-        "filename":  "decoration-01.png"
-    },
-    {
-        "name":  "decoration 02",
-        "filename":  "decoration-02.png"
-    },
-    {
-        "name":  "flowers 01",
-        "filename":  "flowers-01.png",
-        "group": "Flowers"
-    },
-    {
-        "name":  "flowers 02",
-        "filename":  "flowers-02.png",
-        "group": "Flowers"
-    },
-    {
-        "name":  "butterfly 01",
-        "filename":  "butterfly-01.gif",
-        "group": "Animations"
-    },
-    {
-        "name":  "butterfly 02",
-        "filename":  "butterfly-02.gif",
-        "group": "Animations"
-    },
-    {
-        "name":  "fireflies 01",
-        "filename":  "fireflies-01.gif",
-        "group": "Animations"
-    },
-    {
-        "name":  "static fireflies 02",
-        "filename":  "fireflies-02.gif",
-        "group": "Animations"
-    },
-    {
-        "name":  "potion bubbles 01",
-        "filename":  "potion-bubbles-01.gif",
-        "group": "Animations"
-    },
-    {
-        "name":  "white fire 01",
-        "filename":  "fire-01.gif",
-        "group": "Animations"
-    },
-    {
-        "name":  "food 01",
-        "filename":  "food-01.png",
-        "group": "Food"
-    },
-    {
-        "name":  "food 02",
-        "filename":  "food-02.png",
-        "group": "Food"
-    },
-    {
-        "name":  "food 03",
-        "filename":  "food-03.png",
-        "group": "Food"
-    },
-    {
-        "name":  "food 04",
-        "filename":  "food-04.png",
-        "group": "Food"
-    },
-    {
-        "name":  "grass 01",
-        "filename":  "grass-01.png",
-        "group": "Grass"
-    },
-    {
-        "name":  "grass 02",
-        "filename":  "grass-02.png",
-        "group": "Grass"
-    },
-    {
-        "name":  "mushroom 01",
-        "filename":  "mushroom-01.png",
-        "group": "Mushrooms"
-    },
-    {
-        "name":  "mushroom 02",
-        "filename":  "mushroom-02.png",
-        "group": "Mushrooms"
-    },
-    {
-        "name":  "patch 01",
-        "filename":  "patch-01.png",
-        "group": "Patches"
-
-    },
-    {
-        "name":  "patch 02",
-        "filename":  "patch-02.png",
-        "group": "Patches"
-    },
-    {
-        "name":  "patch 03",
-        "filename":  "patch-03.png",
-        "group": "Patches"
-    },
-    {
-        "name":  "patch 04",
-        "filename":  "patch-04.png",
-        "group": "Patches"
-    },
-    {
-        "name":  "patch 05",
-        "filename":  "patch-05.png",
-        "group": "Patches"
-    },
-    {
-        "name":  "photo frame",
-        "filename":  "photo-frame.png",
-        "group": "Screens"
-    },
-    {
-        "name":  "plant 01",
-        "filename":  "plant-01.png",
-        "group": "Plants"
-    },
-    {
-        "name":  "plant 02",
-        "filename":  "plant-02.png",
-        "group": "Plants"
-    },
-    {
-        "name":  "plant 03",
-        "filename":  "plant-03.png",
-        "group": "Plants"
-    },
-    {
-        "name":  "plant 04",
-        "filename":  "plant-04.png",
-        "group": "Plants"
-    },
-    {
-        "name":  "plant 05",
-        "filename":  "plant-05.png",
-        "group": "Plants"
-    },
-    {
-        "name":  "plate",
-        "filename":  "plate.png"
-    },
-    {
-        "name":  "puddle 01",
-        "filename":  "puddle-01.png"
-    },
-    {
-        "name":  "puddle 02",
-        "filename":  "puddle-02.png"
-    },
-    {
-        "name":  "rock 01",
-        "filename":  "rock-01.png",
-        "group": "Rocks"
-    },
-    {
-        "name":  "rock 02",
-        "filename":  "rock-02.png",
-        "group": "Rocks"
-    },
-    {
-        "name":  "sand",
-        "filename":  "Sand.png",
-        "group": "Patches"
-    },
-    {
-        "name":  "screen 01",
-        "filename":  "screen-01.png",
-        "group": "Screens"
-    },
-    {
-        "name":  "screen 02",
-        "filename":  "screen-02.png",
-        "group": "Screens"
-    },
-    {
-        "name":  "seat 01",
-        "filename":  "seat-01.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 02",
-        "filename":  "seat-02.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 03",
-        "filename":  "seat-03.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 04",
-        "filename":  "seat-04.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 05",
-        "filename":  "seat-05.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 06",
-        "filename":  "seat-06.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 07",
-        "filename":  "seat-07.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 08",
-        "filename":  "seat-08.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 09",
-        "filename":  "seat-09.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 10",
-        "filename":  "seat-10.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 11",
-        "filename":  "seat-11.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 12",
-        "filename":  "seat-12.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 13",
-        "filename":  "seat-13.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seat 14",
-        "filename":  "seat-14.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seater 01",
-        "filename":  "seater-01.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "seater 02",
-        "filename":  "seater-02.png",
-        "group": "Seats"
-    },
-    {
-        "name":  "stargate 02",
-        "filename":  "stargate-02.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 04",
-        "filename":  "stargate-04.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 05",
-        "filename":  "stargate-05.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 06",
-        "filename":  "stargate-06.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 07",
-        "filename":  "stargate-07.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 08",
-        "filename":  "stargate-08.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 09",
-        "filename":  "stargate-09.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 10",
-        "filename":  "stargate-10.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 11",
-        "filename":  "stargate-11.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 12",
-        "filename":  "stargate-12.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 13",
-        "filename":  "stargate-13.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 14",
-        "filename":  "stargate-14.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 15",
-        "filename":  "stargate-15.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 16",
-        "filename":  "stargate-16.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "stargate 17",
-        "filename":  "stargate-17.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "Stargate01",
-        "filename":  "Stargate01.png",
-        "group": "Stargates"
-    },
-    {
-        "name":  "statue 01",
-        "filename":  "statue-01.png",
-        "group": "Statues"
-    },
-    {
-        "name":  "statue 02",
-        "filename":  "statue-02.png",
-        "group": "Statues"
-    },
-    {
-        "name":  "statue 03",
-        "filename":  "statue-03.png",
-        "group": "Statues"
-    },
-    {
-        "name":  "stone block 01",
-        "filename":  "stone-block-01.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "stone block 02",
-        "filename":  "stone-block-02.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 01",
-        "filename":  "table-01.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 02",
-        "filename":  "table-02.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 03",
-        "filename":  "table-03.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 04",
-        "filename":  "table-04.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 05",
-        "filename":  "table-05.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 06",
-        "filename":  "table-06.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 07",
-        "filename":  "table-07.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 08",
-        "filename":  "table-08.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "table 09",
-        "filename":  "table-09.png",
-        "group": "Tables"
-    },
-    {
-        "name":  "grass",
-        "filename":  "texture-grass.png",
-        "group": "Flooring"
-    },
-    {
-        "name":  "dark grass",
-        "filename":  "texture-dark-grass.png",
-        "group": "Flooring"
-    },
-    {
-        "name":  "sand",
-        "filename":  "texture-sand.png",
-        "group": "Flooring"
-    },
-    {
-        "name":  "texture water",
-        "filename":  "texture-water.png",
-        "group": "Flooring"
-    },
-    {
-        "name":  "tile 01",
-        "filename":  "tile-01.png",
-        "group": "Tiles"
-    },
-    {
-        "name":  "tile 02",
-        "filename":  "tile-02.png",
-        "group": "Tiles"
-    },
-    {
-        "name":  "tile 03",
-        "filename":  "tile-03.png",
-        "group": "Tiles"
-    },
-    {
-        "name":  "tile 04",
-        "filename":  "tile-04.png",
-        "group": "Tiles"
-    },
-    {
-        "name":  "tile 05",
-        "filename":  "tile-05.png",
-        "group": "Tiles"
-    },
-    {
-        "name":  "tile patch 01",
-        "filename":  "tile-patch-01.png",
-        "group": "Tiles"
-    },
-    {
-        "name":  "swaying tree 01",
-        "filename":  "tree-01.gif",
-        "group": "Trees"
-    },
-    {
-        "name":  "swaying tree 02",
-        "filename":  "tree-02.gif",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 01",
-        "filename":  "tree-01.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 02",
-        "filename":  "tree-02.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 03",
-        "filename":  "tree-03.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 04",
-        "filename":  "tree-04.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 05",
-        "filename":  "tree-05.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 06",
-        "filename":  "tree-06.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 07",
-        "filename":  "tree-07.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "tree 08",
-        "filename":  "tree-08.png",
-        "group": "Trees"
-    },
-    {
-        "name":  "vase 01",
-        "filename":  "vase-01.png",
-        "group": "Vases"
-    },
-    {
-        "name":  "vase 02",
-        "filename":  "vase-02.png",
-        "group": "Vases"
-    },
-    {
-        "name":  "vase 03",
-        "filename":  "vase-03.png",
-        "group": "Vases"
-    },
-    {
-        "name":  "vase 04",
-        "filename":  "vase-04.png",
-        "group": "Vases"
-    },
-    {
-        "name":  "vase 05",
-        "filename":  "vase-05.png",
-        "group": "Vases"
-    },
-    {
-        "name":  "vase 06",
-        "filename":  "vase-06.png",
-        "group": "Vases"
-    },
-    {
-        "name":  "vase 07",
-        "filename":  "vase-07.png",
-        "group": "Vases"
-    },
-    {
-        "name":  "vase 08",
-        "filename":  "vase-08.png",
-        "group": "Vases"
-    }
+  {
+    "name": "amphitheater 01",
+    "filename": "amphitheater-01.png",
+    "group": "Amphitheaters"
+  },
+  {
+    "name": "amphitheater 02",
+    "filename": "amphitheater-02.png",
+    "group": "Amphitheaters"
+  },
+  {
+    "name": "bucket 01",
+    "filename": "bucket-01.png",
+    "group": "Buckets"
+  },
+  {
+    "name": "bucket 02",
+    "filename": "bucket-02.png",
+    "group": "Buckets"
+  },
+  {
+    "name": "cake 01",
+    "filename": "cake-01.png",
+    "group": "Cakes"
+  },
+  {
+    "name": "cake 02",
+    "filename": "cake-02.png",
+    "group": "Cakes"
+  },
+  {
+    "name": "column 01",
+    "filename": "column-01.png",
+    "group": "Columns"
+  },
+  {
+    "name": "column 02",
+    "filename": "column-02.png",
+    "group": "Columns"
+  },
+  {
+    "name": "column 03",
+    "filename": "column-03.png",
+    "group": "Columns"
+  },
+  {
+    "name": "column 04",
+    "filename": "column-04.png",
+    "group": "Columns"
+  },
+  {
+    "name": "column 05",
+    "filename": "column-05.png",
+    "group": "Columns"
+  },
+  {
+    "name": "cup coffee plate",
+    "filename": "cup-coffee-plate.png",
+    "group": "Cups"
+  },
+  {
+    "name": "cup coffee",
+    "filename": "cup-coffee.png",
+    "group": "Cups"
+  },
+  {
+    "name": "cup empty",
+    "filename": "cup-empty.png",
+    "group": "Cups"
+  },
+  {
+    "name": "cup plate",
+    "filename": "cup-plate.png",
+    "group": "Cups"
+  },
+  {
+    "name": "decoration 01",
+    "filename": "decoration-01.png"
+  },
+  {
+    "name": "decoration 02",
+    "filename": "decoration-02.png"
+  },
+  {
+    "name": "flowers 01",
+    "filename": "flowers-01.png",
+    "group": "Flowers"
+  },
+  {
+    "name": "flowers 02",
+    "filename": "flowers-02.png",
+    "group": "Flowers"
+  },
+  {
+    "name": "butterfly 01",
+    "filename": "butterfly-01.gif",
+    "group": "Animations"
+  },
+  {
+    "name": "butterfly 02",
+    "filename": "butterfly-02.gif",
+    "group": "Animations"
+  },
+  {
+    "name": "fireflies 01",
+    "filename": "fireflies-01.gif",
+    "group": "Animations"
+  },
+  {
+    "name": "static fireflies 02",
+    "filename": "fireflies-02.gif",
+    "group": "Animations"
+  },
+  {
+    "name": "potion bubbles 01",
+    "filename": "potion-bubbles-01.gif",
+    "group": "Animations"
+  },
+  {
+    "name": "white fire 01",
+    "filename": "fire-01.gif",
+    "group": "Animations"
+  },
+  {
+    "name": "food 01",
+    "filename": "food-01.png",
+    "group": "Food"
+  },
+  {
+    "name": "food 02",
+    "filename": "food-02.png",
+    "group": "Food"
+  },
+  {
+    "name": "food 03",
+    "filename": "food-03.png",
+    "group": "Food"
+  },
+  {
+    "name": "food 04",
+    "filename": "food-04.png",
+    "group": "Food"
+  },
+  {
+    "name": "grass 01",
+    "filename": "grass-01.png",
+    "group": "Grass"
+  },
+  {
+    "name": "grass 02",
+    "filename": "grass-02.png",
+    "group": "Grass"
+  },
+  {
+    "name": "mushroom 01",
+    "filename": "mushroom-01.png",
+    "group": "Mushrooms"
+  },
+  {
+    "name": "mushroom 02",
+    "filename": "mushroom-02.png",
+    "group": "Mushrooms"
+  },
+  {
+    "name": "patch 01",
+    "filename": "patch-01.png",
+    "group": "Patches"
+  },
+  {
+    "name": "patch 02",
+    "filename": "patch-02.png",
+    "group": "Patches"
+  },
+  {
+    "name": "patch 03",
+    "filename": "patch-03.png",
+    "group": "Patches"
+  },
+  {
+    "name": "patch 04",
+    "filename": "patch-04.png",
+    "group": "Patches"
+  },
+  {
+    "name": "patch 05",
+    "filename": "patch-05.png",
+    "group": "Patches"
+  },
+  {
+    "name": "photo frame",
+    "filename": "photo-frame.png",
+    "group": "Screens"
+  },
+  {
+    "name": "plant 01",
+    "filename": "plant-01.png",
+    "group": "Plants"
+  },
+  {
+    "name": "plant 02",
+    "filename": "plant-02.png",
+    "group": "Plants"
+  },
+  {
+    "name": "plant 03",
+    "filename": "plant-03.png",
+    "group": "Plants"
+  },
+  {
+    "name": "plant 04",
+    "filename": "plant-04.png",
+    "group": "Plants"
+  },
+  {
+    "name": "plant 05",
+    "filename": "plant-05.png",
+    "group": "Plants"
+  },
+  {
+    "name": "plate",
+    "filename": "plate.png"
+  },
+  {
+    "name": "puddle 01",
+    "filename": "puddle-01.png"
+  },
+  {
+    "name": "puddle 02",
+    "filename": "puddle-02.png"
+  },
+  {
+    "name": "rock 01",
+    "filename": "rock-01.png",
+    "group": "Rocks"
+  },
+  {
+    "name": "rock 02",
+    "filename": "rock-02.png",
+    "group": "Rocks"
+  },
+  {
+    "name": "sand",
+    "filename": "Sand.png",
+    "group": "Patches"
+  },
+  {
+    "name": "screen 01",
+    "filename": "screen-01.png",
+    "group": "Screens"
+  },
+  {
+    "name": "screen 02",
+    "filename": "screen-02.png",
+    "group": "Screens"
+  },
+  {
+    "name": "seat 01",
+    "filename": "seat-01.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 02",
+    "filename": "seat-02.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 03",
+    "filename": "seat-03.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 04",
+    "filename": "seat-04.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 05",
+    "filename": "seat-05.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 06",
+    "filename": "seat-06.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 07",
+    "filename": "seat-07.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 08",
+    "filename": "seat-08.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 09",
+    "filename": "seat-09.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 10",
+    "filename": "seat-10.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 11",
+    "filename": "seat-11.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 12",
+    "filename": "seat-12.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 13",
+    "filename": "seat-13.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seat 14",
+    "filename": "seat-14.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seater 01",
+    "filename": "seater-01.png",
+    "group": "Seats"
+  },
+  {
+    "name": "seater 02",
+    "filename": "seater-02.png",
+    "group": "Seats"
+  },
+  {
+    "name": "stargate 02",
+    "filename": "stargate-02.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 04",
+    "filename": "stargate-04.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 05",
+    "filename": "stargate-05.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 06",
+    "filename": "stargate-06.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 07",
+    "filename": "stargate-07.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 08",
+    "filename": "stargate-08.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 09",
+    "filename": "stargate-09.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 10",
+    "filename": "stargate-10.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 11",
+    "filename": "stargate-11.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 12",
+    "filename": "stargate-12.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 13",
+    "filename": "stargate-13.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 14",
+    "filename": "stargate-14.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 15",
+    "filename": "stargate-15.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 16",
+    "filename": "stargate-16.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "stargate 17",
+    "filename": "stargate-17.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "Stargate01",
+    "filename": "Stargate01.png",
+    "group": "Stargates"
+  },
+  {
+    "name": "statue 01",
+    "filename": "statue-01.png",
+    "group": "Statues"
+  },
+  {
+    "name": "statue 02",
+    "filename": "statue-02.png",
+    "group": "Statues"
+  },
+  {
+    "name": "statue 03",
+    "filename": "statue-03.png",
+    "group": "Statues"
+  },
+  {
+    "name": "stone block 01",
+    "filename": "stone-block-01.png",
+    "group": "Tables"
+  },
+  {
+    "name": "stone block 02",
+    "filename": "stone-block-02.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 01",
+    "filename": "table-01.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 02",
+    "filename": "table-02.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 03",
+    "filename": "table-03.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 04",
+    "filename": "table-04.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 05",
+    "filename": "table-05.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 06",
+    "filename": "table-06.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 07",
+    "filename": "table-07.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 08",
+    "filename": "table-08.png",
+    "group": "Tables"
+  },
+  {
+    "name": "table 09",
+    "filename": "table-09.png",
+    "group": "Tables"
+  },
+  {
+    "name": "grass",
+    "filename": "texture-grass.png",
+    "group": "Flooring"
+  },
+  {
+    "name": "dark grass",
+    "filename": "texture-dark-grass.png",
+    "group": "Flooring"
+  },
+  {
+    "name": "sand",
+    "filename": "texture-sand.png",
+    "group": "Flooring"
+  },
+  {
+    "name": "texture water",
+    "filename": "texture-water.png",
+    "group": "Flooring"
+  },
+  {
+    "name": "tile 01",
+    "filename": "tile-01.png",
+    "group": "Tiles"
+  },
+  {
+    "name": "tile 02",
+    "filename": "tile-02.png",
+    "group": "Tiles"
+  },
+  {
+    "name": "tile 03",
+    "filename": "tile-03.png",
+    "group": "Tiles"
+  },
+  {
+    "name": "tile 04",
+    "filename": "tile-04.png",
+    "group": "Tiles"
+  },
+  {
+    "name": "tile 05",
+    "filename": "tile-05.png",
+    "group": "Tiles"
+  },
+  {
+    "name": "tile patch 01",
+    "filename": "tile-patch-01.png",
+    "group": "Tiles"
+  },
+  {
+    "name": "swaying tree 01",
+    "filename": "tree-01.gif",
+    "group": "Trees"
+  },
+  {
+    "name": "swaying tree 02",
+    "filename": "tree-02.gif",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 01",
+    "filename": "tree-01.png",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 02",
+    "filename": "tree-02.png",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 03",
+    "filename": "tree-03.png",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 04",
+    "filename": "tree-04.png",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 05",
+    "filename": "tree-05.png",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 06",
+    "filename": "tree-06.png",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 07",
+    "filename": "tree-07.png",
+    "group": "Trees"
+  },
+  {
+    "name": "tree 08",
+    "filename": "tree-08.png",
+    "group": "Trees"
+  },
+  {
+    "name": "vase 01",
+    "filename": "vase-01.png",
+    "group": "Vases"
+  },
+  {
+    "name": "vase 02",
+    "filename": "vase-02.png",
+    "group": "Vases"
+  },
+  {
+    "name": "vase 03",
+    "filename": "vase-03.png",
+    "group": "Vases"
+  },
+  {
+    "name": "vase 04",
+    "filename": "vase-04.png",
+    "group": "Vases"
+  },
+  {
+    "name": "vase 05",
+    "filename": "vase-05.png",
+    "group": "Vases"
+  },
+  {
+    "name": "vase 06",
+    "filename": "vase-06.png",
+    "group": "Vases"
+  },
+  {
+    "name": "vase 07",
+    "filename": "vase-07.png",
+    "group": "Vases"
+  },
+  {
+    "name": "vase 08",
+    "filename": "vase-08.png",
+    "group": "Vases"
+  }
 ]

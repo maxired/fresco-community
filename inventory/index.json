@@ -41,20 +41,107 @@
     "displayName": "Icebreakers 1",
     "displaySearch": "Icebreakers 1",
     "url": "icebreakers-green.png",
-    "content": {"visuals":[{"id":"slnoztrtxs1-v4j17vnav","isLocked":false,"zIndex":21,"layer":0,"renderer":"IFrame","transform":{"position":{"x":-55.5,"y":396.5},"size":{"x":329,"y":353},"rotation":0},"appearance":{"NAME":"","TEXT_BEHAVIOUR":2,"STATE":{"card":null,"backgroundColor":"#85bd42","color":"#ffffff","cardList":"What has been the highlight of your week so far?|What is the strangest food you have ever eaten?|How well would you get along with your clone?|What is the oddest thing that has ever happened to you?|What is one of your favorite topics of conversation?|What is the best, worst or funniest job you have ever had?|What is an interesting skill that you have?","deck":null},"PINNED":false,"SOURCE":"https://fres-co.github.io/fresco-community/elements/card-deck/index.htm"}}],"groups":[]}
+    "content": {
+      "visuals": [
+        {
+          "id": "slnoztrtxs1-v4j17vnav",
+          "isLocked": false,
+          "zIndex": 21,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": { "x": -55.5, "y": 396.5 },
+            "size": { "x": 329, "y": 353 },
+            "rotation": 0
+          },
+          "appearance": {
+            "NAME": "",
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": {
+              "card": null,
+              "backgroundColor": "#85bd42",
+              "color": "#ffffff",
+              "cardList": "What has been the highlight of your week so far?|What is the strangest food you have ever eaten?|How well would you get along with your clone?|What is the oddest thing that has ever happened to you?|What is one of your favorite topics of conversation?|What is the best, worst or funniest job you have ever had?|What is an interesting skill that you have?",
+              "deck": null
+            },
+            "PINNED": false,
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/card-deck/index.htm"
+          }
+        }
+      ],
+      "groups": []
+    }
   },
   {
     "name": "Icebreakers 2",
     "displayName": "Icebreakers 2",
     "displaySearch": "Icebreakers 2",
     "url": "icebreakers-blue.png",
-    "content": {"visuals":[{"id":"sdfjgqhlumxsr9fsbrymx","isLocked":false,"zIndex":25,"layer":0,"renderer":"IFrame","transform":{"position":{"x":-55.5,"y":769.5},"size":{"x":329,"y":353},"rotation":0},"appearance":{"NAME":"","TEXT_BEHAVIOUR":2,"STATE":{"card":null,"backgroundColor":"#006ed0","color":"#ffffff","cardList":"What things hold you back from doing what you really want to do?|What is one thing you want to accomplish in your lifetime?|If you had 10 years left to live, how would you live your life differently?|What is one personality trait you admire in others?|What is one thing life is teaching you right now?|What is an idea you strongly believe in?|What has been your greatest achievement?|How did you learn your most important lesson in life?|What is a time you learned something from a failure?|What is one thing or situation that scares you?|What are people usually surprised to find out about you?|What are you grateful for?|If you could give one piece of advice to a large group of people, what would it be?","deck":null},"PINNED":false,"SOURCE":"https://fres-co.github.io/fresco-community/elements/card-deck/index.htm"}}],"groups":[]}
+    "content": {
+      "visuals": [
+        {
+          "id": "sdfjgqhlumxsr9fsbrymx",
+          "isLocked": false,
+          "zIndex": 25,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": { "x": -55.5, "y": 769.5 },
+            "size": { "x": 329, "y": 353 },
+            "rotation": 0
+          },
+          "appearance": {
+            "NAME": "",
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": {
+              "card": null,
+              "backgroundColor": "#006ed0",
+              "color": "#ffffff",
+              "cardList": "What things hold you back from doing what you really want to do?|What is one thing you want to accomplish in your lifetime?|If you had 10 years left to live, how would you live your life differently?|What is one personality trait you admire in others?|What is one thing life is teaching you right now?|What is an idea you strongly believe in?|What has been your greatest achievement?|How did you learn your most important lesson in life?|What is a time you learned something from a failure?|What is one thing or situation that scares you?|What are people usually surprised to find out about you?|What are you grateful for?|If you could give one piece of advice to a large group of people, what would it be?",
+              "deck": null
+            },
+            "PINNED": false,
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/card-deck/index.htm"
+          }
+        }
+      ],
+      "groups": []
+    }
   },
   {
     "name": "Icebreakers 3",
     "displayName": "Icebreakers 3",
     "displaySearch": "Icebreakers 3",
     "url": "icebreakers-purple.png",
-    "content": {"visuals":[{"id":"cszyalg5bf9wuab_v3pmg","isLocked":false,"zIndex":28,"layer":0,"renderer":"IFrame","transform":{"position":{"x":-515.5,"y":896.5},"size":{"x":329,"y":353},"rotation":0},"appearance":{"NAME":"","TEXT_BEHAVIOUR":2,"STATE":{"card":null,"backgroundColor":"#8b3c91","color":"#ffffff","cardList":"What is one of your greatest motivators in life?|What is the most adventurous thing you have ever done?|What has been one of your favorite moments in life?|What is a talent or skill you have always wanted? And why?|How would you like to be remembered?|What is something you know really well?|What is something you would like to do more of?","deck":null},"PINNED":false,"SOURCE":"https://fres-co.github.io/fresco-community/elements/card-deck/index.htm"}}],"groups":[]}
+    "content": {
+      "visuals": [
+        {
+          "id": "cszyalg5bf9wuab_v3pmg",
+          "isLocked": false,
+          "zIndex": 28,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": { "x": -515.5, "y": 896.5 },
+            "size": { "x": 329, "y": 353 },
+            "rotation": 0
+          },
+          "appearance": {
+            "NAME": "",
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": {
+              "card": null,
+              "backgroundColor": "#8b3c91",
+              "color": "#ffffff",
+              "cardList": "What is one of your greatest motivators in life?|What is the most adventurous thing you have ever done?|What has been one of your favorite moments in life?|What is a talent or skill you have always wanted? And why?|How would you like to be remembered?|What is something you know really well?|What is something you would like to do more of?",
+              "deck": null
+            },
+            "PINNED": false,
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/card-deck/index.htm"
+          }
+        }
+      ],
+      "groups": []
+    }
   }
 ]
