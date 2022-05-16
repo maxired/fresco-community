@@ -3,6 +3,7 @@ import {
   validateCards,
   getFlags,
   validateFlags,
+  getConditions,
 } from "./validateGameDefinition";
 import gdpr from "../../../public/games/gdpr.json";
 import dont_starve from "../../../public/games/dont-starve.json";
@@ -32,8 +33,8 @@ describe("validateGameDefinition", () => {
     });
 
     it("should throw if bad conditions", () => {
-      expect(
-        () => validateCards([
+      expect(() =>
+        validateCards([
           {
             card: "some card",
             weight: 1,
@@ -44,8 +45,8 @@ describe("validateGameDefinition", () => {
     });
 
     it("should pass if good conditions", () => {
-      expect(
-        () => validateCards([
+      expect(() =>
+        validateCards([
           {
             card: "some card",
             weight: 1,
@@ -103,12 +104,12 @@ describe("validateGameDefinition", () => {
   describe("validateConditions", () => {
     const validate = (flag: string) =>
       validateFlags(
-        getFlags({ conditions: flag } as Card, "conditions"),
+        getConditions({ conditions: flag } as Card),
         "conditions",
         1
       );
     it("should throw on multiple operators", () => {
-      expect(() => validate("key==true==")).toThrow();
+      expect(() => validate("a==b==true")).toThrow();
     });
 
     it("should allow multiple flags separated by space", () => {

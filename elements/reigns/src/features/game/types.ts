@@ -28,6 +28,8 @@ export type Card = {
   no_stat3: number;
   no_stat4: number;
   no_custom: string;
+
+  conditions: string;
 };
 
 export type GameDefinition = {

@@ -28,6 +28,7 @@ export const validateCards = (cards: Card[] | undefined) => {
 
     validateFlags(getFlags(card, "yes_custom"), "yes_custom", i + 1);
     validateFlags(getFlags(card, "no_custom"), "no_custom", i + 1);
+    validateFlags(getConditions(card), "conditions", i + 1);
   }
 
   return cards;
@@ -35,7 +36,9 @@ export const validateCards = (cards: Card[] | undefined) => {
 
 const FLAG_SEPARATOR = " ";
 const FLAG_KEY_VALUE_SEPARATOR = "=";
-type FlagFields = "yes_custom" | "no_custom";
+const CONDITION_KEY_VALUE_SEPARATOR = "==";
+
+type FlagFields = keyof Pick<Card, "yes_custom" | "no_custom" | "conditions">;
 
 export const validateFlags = (
   flags: CardFlag[],
@@ -57,15 +60,25 @@ export const validateFlags = (
   }
 };
 
-export const getFlags = (card: Card, field: FlagFields): CardFlag[] => {
+export const getConditions = (card: Card) =>
+  getKeyValues(card, "conditions", CONDITION_KEY_VALUE_SEPARATOR);
+
+export const getFlags = (
+  card: Card,
+  field: Extract<FlagFields, "no_custom" | "yes_custom">
+) => getKeyValues(card, field, FLAG_KEY_VALUE_SEPARATOR);
+
+const getKeyValues = (
+  card: Card,
+  field: FlagFields,
+  keyValueSeparator: string
+): CardFlag[] => {
   if (!card[field]) {
     return [];
   }
 
-  const flags = card[field].split(FLAG_SEPARATOR).map((flag) => {
-    const [key, value] = flag.split(FLAG_KEY_VALUE_SEPARATOR);
+  return card[field].split(FLAG_SEPARATOR).map((flag) => {
+    const [key, value] = flag.split(keyValueSeparator);
     return { key, value };
   });
-
-  return flags;
 };
