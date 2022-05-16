@@ -28,7 +28,7 @@ function setValue(statUpdate: number, stat: Stat, state: GameState) {
   }
 }
 
-const cardsDistributedByWeight = (cards: Card[]) =>
+export const cardsDistributedByWeight = (cards: Card[]) =>
   cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
 
 function getAllValidCards(state: GameState) {
