@@ -1,10 +1,19 @@
 import { Card, GameFlags, GameState } from "./types";
+import { getConditions } from "./validateGameDefinition";
 
 export const cardsDistributedByWeight = (cards: Card[]) =>
   cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
 
-export const cardsRestrictedByFlags = (cards: Card[], flags: GameFlags) =>
-  cards.filter((card) => card);
+export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
+  cards.filter((card) => {
+    if (!card.conditions) return card;
+    const conditions = getConditions(card);
+    return conditions.every(({ key, value }) => {
+      const flag = gameFlags[key];
+      if (flag === undefined) return false;
+      return flag === value;
+    });
+  });
 
 const getAllValidCards = (state: GameState) => {
   if (!state.definition) {
