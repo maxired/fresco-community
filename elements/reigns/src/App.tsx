@@ -47,7 +47,19 @@ const useFresco = function () {
       stats: state.game.stats,
     });
   };
-  return updateFrescoState;
+
+  const teleport = (target: string, targetPrefix = `${fresco.element.appearance.NAME}-`) => fresco.send({
+    type: "extension/out/redux",
+    payload: {
+      senderId: fresco.element.id,
+      action: {
+        userId: undefined,
+        type: "TELEPORT",
+        payload: { anchorName: `${targetPrefix}${target}` },
+    },
+  }})
+
+  return { updateFrescoState, teleport };
 };
 
 export default function App() {
@@ -65,16 +77,38 @@ export default function App() {
     }
     dispatch(initializeGame(gameUrl) as any);
   }, [gameUrl]);
-  const updateFrescoState = useFresco();
+  const { updateFrescoState, teleport }= useFresco();
 
   const doAnswerNo = () => {
     dispatch(answerNo());
     updateFrescoState();
+    teleport('neutral')
   };
+
   const doAnswerYes = () => {
     dispatch(answerYes());
     updateFrescoState();
+    teleport('neutral')
   };
+
+  useEffect(() => {
+    if (phase === GamePhase.STARTED) {
+      const yesListener =  fresco.subscribeToGlobalEvent('custom.reign.yes', () => {
+        doAnswerYes()
+      })
+
+      const noListener =  fresco.subscribeToGlobalEvent('custom.reign.no', () => {
+        doAnswerNo()
+      })
+
+      return () => {
+        yesListener();
+        noListener()
+      }
+    }
+  }, [phase])
+ 
+
   const doStartGame = () => {
     dispatch(startGame());
     updateFrescoState();
