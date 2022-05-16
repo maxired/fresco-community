@@ -8,6 +8,7 @@ export type Stat = {
 export type Card = {
     card: string;
     bearer: string;
+    weight: number;
 
     answer_yes: string;
     yes_stat1: number;

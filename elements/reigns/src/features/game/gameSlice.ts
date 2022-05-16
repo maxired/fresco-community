@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
-import { GameState, Stat } from "./types";
+import { Card, GameState, Stat } from "./types";
+import { validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
   "game/initializeGame",
@@ -27,8 +28,12 @@ function setValue(statUpdate: number, stat: Stat, state: GameState) {
   }
 }
 
+export const cardsDistributedByWeight = (cards: Card[]) =>
+  cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
+
 function getAllValidCards(state: GameState) {
-  return state.definition ? state.definition.cards : [];
+
+  return state.definition ? cardsDistributedByWeight(state.definition.cards) : [];
 }
 
 function selectNextCard(state: GameState) {
@@ -38,15 +43,13 @@ function selectNextCard(state: GameState) {
   return randomCard;
 }
 
-export const initialState: GameState = 
-  {
-    phase: GamePhase.LOADING,
-    selectedCard: null,
-    stats: [],
-    gameUrl: null,
-    definition: null,
-  }
-
+export const initialState: GameState = {
+  phase: GamePhase.LOADING,
+  selectedCard: null,
+  stats: [],
+  gameUrl: null,
+  definition: null,
+};
 
 export const gameSlice = createSlice({
   name: "game",
@@ -92,7 +95,13 @@ export const gameSlice = createSlice({
       })
       .addCase(initializeGame.fulfilled, (state, action) => {
         state.phase = GamePhase.NOT_STARTED;
-        state.definition = action.payload;
+
+        try {
+          state.definition = validateGameDefinition(action.payload);
+        } catch (e) {
+          console.error(e);
+          state.phase = GamePhase.ERROR;
+        }
 
         console.log("GAME", "action.payload", action.payload);
       })
