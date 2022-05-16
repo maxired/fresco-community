@@ -10,7 +10,9 @@ export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
     const conditions = getConditions(card);
     return conditions.every(({ key, value }) => {
       const flag = gameFlags[key];
-      if (flag === undefined) return false;
+      if (flag === undefined) {
+        return value === "false";
+      }
       return flag === value;
     });
   });

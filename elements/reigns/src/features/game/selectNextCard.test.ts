@@ -52,12 +52,12 @@ describe("selectNextCard", () => {
       expect(result).toHaveLength(0);
     });
 
-    it("should exclude cards affected by flag==false when game flag is not set", () => {
+    it("should return cards affected by flag==false when game flag is not set", () => {
       const result = cardsRestrictedByFlags(
         [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
         {}
       );
-      expect(result).toHaveLength(0);
+      expect(result).toHaveLength(1);
     });
 
     it("should include cards unaffected by flags", () => {
