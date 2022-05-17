@@ -49,6 +49,15 @@ describe("gameSlice", () => {
         );
         expect(result.phase).toBe(GamePhase.ERROR);
       });
+      it("should not set NOT_STARTED if already started", () => {
+        const result = gameReducer(
+          {
+            phase: GamePhase.STARTED,
+          } as GameState,
+          initializeGame.fulfilled(getState().definition, "", "")
+        );
+        expect(result.phase).toBe(GamePhase.STARTED);
+      });
     });
   });
 

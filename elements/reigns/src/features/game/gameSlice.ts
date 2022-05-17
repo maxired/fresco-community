@@ -97,7 +97,9 @@ export const gameSlice = createSlice({
         console.log("GAME", "loading");
       })
       .addCase(initializeGame.fulfilled, (state, action) => {
-        state.phase = GamePhase.NOT_STARTED;
+        if (state.phase === GamePhase.LOADING) {
+          state.phase = GamePhase.NOT_STARTED;
+        }
 
         try {
           state.definition = validateGameDefinition(action.payload);
