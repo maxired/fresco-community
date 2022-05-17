@@ -12,7 +12,12 @@ export const useFresco = function () {
       fresco.onStateChanged(function () {
         const state = fresco.element.state;
         console.log("onStateChanged", state);
-        dispatch(updateGame(state));
+        dispatch(
+          updateGame({
+            ...state,
+            isController: fresco.localParticipant.isController,
+          })
+        );
       });
 
       const defaultState = {

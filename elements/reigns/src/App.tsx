@@ -16,6 +16,9 @@ import { useFresco } from "./useFresco";
 
 export default function App() {
   const phase = useSelector((state: AppState) => state.game.phase);
+  const isController = useSelector(
+    (state: AppState) => state.game.isController
+  );
   const selectedCard = useSelector(
     (state: AppState) => state.game.selectedCard
   );
@@ -36,15 +39,23 @@ export default function App() {
   const { updateFrescoState, teleport } = useFresco();
 
   const doAnswerNo = () => {
-    dispatch(answerNo());
-    updateFrescoState();
-    teleport("neutral");
+    // TODO: host will call this in FRES-1112
+    if (isController) {
+      dispatch(answerNo());
+      updateFrescoState();
+      // TODO: teleport everyone
+      teleport("neutral");
+    }
   };
 
   const doAnswerYes = () => {
-    dispatch(answerYes());
-    updateFrescoState();
-    teleport("neutral");
+    // TODO: host will call this in FRES-1112
+    if (isController) {
+      dispatch(answerYes());
+      updateFrescoState();
+      // TODO: teleport everyone
+      teleport("neutral");
+    }
   };
 
   useEffect(() => {
