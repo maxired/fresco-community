@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, useEffect, useRef } from "react";
 import { Meters } from "./Meters";
 import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
@@ -14,37 +14,98 @@ import {
 import { GamePhase } from "./constants";
 import { AppState } from "./features/game/types";
 
-const useFresco = function () {
+const FRESCO_STORAGE_PARTICIPANT_LOGS_TABLE = "participants_log";
+
+const useOnFrescoStateUpdate = () => {
   const dispatch = useDispatch();
+  const prevLocalParticipantRef = useRef<{
+    id: string | null;
+    isInsideElement: boolean | null;
+  }>({ id: null, isInsideElement: null });
 
-  useEffect(() => {
-    fresco.onReady(function () {
-      fresco.onStateChanged(function () {
-        const state = fresco.element.state;
-        console.log("onStateChanged", state);
-        dispatch(updateGame(state));
+  return (updateFrescoState: () => void) => {
+    const state = fresco.element.state;
+    dispatch(updateGame(state));
+
+    if (
+      fresco.localParticipant.id !== prevLocalParticipantRef.current.id ||
+      fresco.localParticipant.isInsideElement !==
+        prevLocalParticipantRef.current.isInsideElement
+    ) {
+      fresco.storage.add(FRESCO_STORAGE_PARTICIPANT_LOGS_TABLE, {
+        id: fresco.localParticipant.id,
+        isInsideElement: fresco.localParticipant.isInsideElement,
       });
-
-      const defaultState = {
-        selectedCard: null,
-        phase: GamePhase.LOADING,
-        stats: [],
-        gameUrl: "games/gdpr.json",
+      prevLocalParticipantRef.current = {
+        ...fresco.localParticipant,
       };
+    }
 
-      fresco.initialize(defaultState, {
-        title: "Reigns",
-        toolbarButtons: [
-          {
-            title: "Game url",
-            ui: { type: "string" },
-            property: "gameUrl",
-          },
-        ],
-      });
-    });
-  }, []);
+    const partipantsState = (
+      fresco.element.storage?.[FRESCO_STORAGE_PARTICIPANT_LOGS_TABLE] ?? []
+    ).reduce((memo, entry) => {
+      if (
+        !entry.value ||
+        !entry.value.id ||
+        !(
+          fresco.remoteParticipants.ids.includes(entry.value.id) ||
+          fresco.localParticipant.id === entry.value.id
+        ) // only computing logs for currently connected participants
+      ) {
+        return memo;
+      }
 
+      const log = entry.value;
+      if (!memo[log.id]) {
+        memo[log.id] = { ...log };
+        return memo;
+      }
+
+      memo[log.id] = { ...memo[log.id], ...log };
+      return memo;
+    }, {});
+
+    const doCheckVote = (
+      partipantsState: Record<string, { answer: string }>
+    ) => {
+      const results = Object.values(partipantsState).reduce(
+        (memo, participant) => {
+          if (participant.answer === "yes") {
+            memo.answerYes++;
+          } else if (participant.answer === "no") {
+            memo.answerNo++;
+          } else {
+            memo.waitingForAnswer++;
+          }
+
+          return memo;
+        },
+        {
+          answerNo: 0,
+          answerYes: 0,
+          waitingForAnswer: 0,
+        }
+      );
+
+      if (results.waitingForAnswer === 0) {
+        if (results.answerNo > results.answerYes && results.answerNo > 0) {
+          dispatch(answerNo());
+          updateFrescoState();
+        } else if (
+          results.answerYes > results.answerNo &&
+          results.answerYes > 0
+        ) {
+          dispatch(answerYes());
+          updateFrescoState();
+        }
+      }
+    };
+
+    doCheckVote(partipantsState);
+  };
+};
+
+const useFresco = function (onUpdate: (updateState: () => void) => void) {
   const store = useStore<AppState>();
   const updateFrescoState = () => {
     const state = store.getState();
@@ -70,6 +131,30 @@ const useFresco = function () {
       },
     });
 
+  useEffect(() => {
+    fresco.onReady(function () {
+      fresco.onStateChanged(() => onUpdate(updateFrescoState));
+
+      const defaultState = {
+        selectedCard: null,
+        phase: GamePhase.LOADING,
+        stats: [],
+        gameUrl: "games/gdpr.json",
+      };
+
+      fresco.initialize(defaultState, {
+        title: "Reigns",
+        toolbarButtons: [
+          {
+            title: "Game url",
+            ui: { type: "string" },
+            property: "gameUrl",
+          },
+        ],
+      });
+    });
+  }, []);
+
   return { updateFrescoState, teleport };
 };
 
@@ -84,6 +169,22 @@ export default function App() {
     (state: AppState) => state.game.definition
   );
 
+  const localParticipantVote = (answer: string) =>
+    fresco.storage.add(FRESCO_STORAGE_PARTICIPANT_LOGS_TABLE, {
+      id: fresco.localParticipant.id,
+      answer,
+    });
+
+  const prevSelectionCardRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    // reseting vote on card change
+    if (prevSelectionCardRef.current !== selectedCard?.selectionId) {
+      prevSelectionCardRef.current = selectedCard?.selectionId;
+      localParticipantVote("");
+      teleport("neutral");
+    }
+  }, [selectedCard]);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -92,33 +193,22 @@ export default function App() {
     }
     dispatch(initializeGame(gameUrl) as any);
   }, [gameUrl]);
-  const { updateFrescoState, teleport } = useFresco();
 
-  const doAnswerNo = () => {
-    dispatch(answerNo());
-    updateFrescoState();
-    teleport("neutral");
-  };
-
-  const doAnswerYes = () => {
-    dispatch(answerYes());
-    updateFrescoState();
-    teleport("neutral");
-  };
+  const { updateFrescoState, teleport } = useFresco(useOnFrescoStateUpdate());
 
   useEffect(() => {
     if (phase === GamePhase.STARTED) {
       const yesListener = fresco.subscribeToGlobalEvent(
         "custom.reign.yes",
         () => {
-          doAnswerYes();
+          localParticipantVote("yes");
         }
       );
 
       const noListener = fresco.subscribeToGlobalEvent(
         "custom.reign.no",
         () => {
-          doAnswerNo();
+          localParticipantVote("no");
         }
       );
 
@@ -167,12 +257,9 @@ export default function App() {
       <Meters stats={currentStats} />
       <Question card={selectedCard} />
       <div className="answers">
-        <NoAnswer text={selectedCard.answer_no || "No"} onClick={doAnswerNo} />
+        <NoAnswer text={selectedCard.answer_no || "No"} />
         <div className="answer answer--neutral" />
-        <YesAnswer
-          text={selectedCard.answer_yes || "Yes"}
-          onClick={doAnswerYes}
-        />
+        <YesAnswer text={selectedCard.answer_yes || "Yes"} />
       </div>
     </>
   );

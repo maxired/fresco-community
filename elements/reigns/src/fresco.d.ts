@@ -27,8 +27,21 @@ interface IFrescoSdk {
     id: string;
     name: string;
     appearance: Record<string, AppearanceValue>;
+    storage: Records<string, AppearanceValue[]>;
+  };
+  localParticipant: {
+    id: string;
+    identityId: string;
+    isInsideElement: boolean;
+  };
+  remoteParticipants: {
+    ids: string[];
   };
   setState(state: any): void;
+  storage: {
+    add: (tableName: string, value: AppearanceValue) => void;
+    remove: (tableName: string, id: string) => void;
+  };
   initialize(defaultState: any, options: IInitializeOptions): void;
   send(action: { type: string; payload: any }): void;
 }

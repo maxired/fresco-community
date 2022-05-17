@@ -41,9 +41,13 @@ export type GameDefinition = {
 
 export type GameFlags = { [key: string]: string };
 
+interface SelectedCard extends Card {
+  selectionId: string;
+}
+
 export type GameState = {
   phase: GamePhase;
-  selectedCard: Card | null;
+  selectedCard: SelectedCard | null;
   stats: Stat[];
   flags: GameFlags;
   gameUrl: string | null;
