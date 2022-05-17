@@ -60,10 +60,18 @@ describe("selectNextCard", () => {
       expect(result).toHaveLength(1);
     });
 
-    it("should include cards unaffected by flags", () => {
+    it("should return cards without conditions when flags are active", () => {
       const result = cardsRestrictedByFlags(
         [{ card: "a card", weight: 1 } as Card],
         { flag: "true" }
+      );
+      expect(result).toHaveLength(1);
+    });
+
+    it("should return cards without conditions when flags are inactive", () => {
+      const result = cardsRestrictedByFlags(
+        [{ card: "a card", weight: 1 } as Card],
+        {}
       );
       expect(result).toHaveLength(1);
     });
