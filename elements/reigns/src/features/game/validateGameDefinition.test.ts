@@ -3,6 +3,7 @@ import {
   validateCards,
   getFlags,
   validateFlags,
+  getConditions,
 } from "./validateGameDefinition";
 import gdpr from "../../../public/games/gdpr.json";
 import dont_starve from "../../../public/games/dont-starve.json";
@@ -29,6 +30,30 @@ describe("validateGameDefinition", () => {
 
     it("should throw if weight higher than 100", () => {
       expect(() => validateCards([{ weight: 101 } as Card])).toThrow();
+    });
+
+    it("should throw if bad conditions", () => {
+      expect(() =>
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+            conditions: "some rubbish",
+          } as Card,
+        ])
+      ).toThrow();
+    });
+
+    it("should pass if good conditions", () => {
+      expect(() =>
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+            conditions: "someCondition==true",
+          } as Card,
+        ])
+      ).not.toThrow();
     });
   });
 
@@ -73,6 +98,30 @@ describe("validateGameDefinition", () => {
 
     it("should throw if value not boolean", () => {
       expect(() => validate("key1=not_a_boolean")).toThrow();
+    });
+  });
+
+  describe("validateConditions", () => {
+    const validate = (flag: string) =>
+      validateFlags(
+        getConditions({ conditions: flag } as Card),
+        "conditions",
+        1
+      );
+    it("should throw on multiple operators", () => {
+      expect(() => validate("a==b==true")).toThrow();
+    });
+
+    it("should allow multiple flags separated by space", () => {
+      expect(() => validate("key1==true key2==true")).not.toThrow();
+    });
+
+    it("should throw if duplicate flag", () => {
+      expect(() => validate("key1==true key1==true")).toThrow();
+    });
+
+    it("should throw if value not boolean", () => {
+      expect(() => validate("key1==not_a_boolean")).toThrow();
     });
   });
 
