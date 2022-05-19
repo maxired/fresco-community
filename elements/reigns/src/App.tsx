@@ -27,7 +27,10 @@ export default function App() {
     (state: AppState) => state.game.definition
   );
 
-  usePersistIsMounted();
+  const { updateFrescoState, teleport, sdkLoaded } = useFresco();
+
+  console.log("sdkLoaded", sdkLoaded);
+  usePersistIsMounted(sdkLoaded);
 
   const dispatch = useDispatch();
 
@@ -37,7 +40,6 @@ export default function App() {
     }
     dispatch(initializeGame(gameUrl) as any);
   }, [gameUrl]);
-  const { updateFrescoState, teleport } = useFresco();
 
   const doAnswerNo = () => {
     // TODO: host will call this in FRES-1112

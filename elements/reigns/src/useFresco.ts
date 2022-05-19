@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useStore } from "react-redux";
 import { updateGame } from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
@@ -8,26 +8,31 @@ import {
   PersistedState,
 } from "./features/game/types";
 import { IS_MOUNTED_TABLE } from "./usePersistIsMounted";
+import { getSdk } from "./sdk";
 
 export const useFresco = function () {
   const dispatch = useDispatch();
+  const [sdkLoaded, setSdkLoaded] = useState(false);
+
+  const sdk = getSdk();
 
   useEffect(() => {
-    fresco.onReady(function () {
-      fresco.onStateChanged(function () {
-        const state: PersistedState = fresco.element.state;
+    sdk.onReady(function () {
+      setSdkLoaded(true);
+      sdk.onStateChanged(function () {
+        const state: PersistedState = sdk.element.state;
         console.log(
           "storage",
-          fresco.element.storage,
+          sdk.element.storage,
           "remote participants",
-          fresco.remoteParticipants
+          sdk.remoteParticipants
         );
         dispatch(
           updateGame({
             ...state,
-            remoteParticipants: fresco.remoteParticipants,
-            mounted: fresco.element.storage[IS_MOUNTED_TABLE],
-            localParticipant: fresco.localParticipant,
+            remoteParticipants: sdk.remoteParticipants,
+            mounted: sdk.element.storage[IS_MOUNTED_TABLE],
+            localParticipant: sdk.localParticipant,
           })
         );
       });
@@ -39,7 +44,7 @@ export const useFresco = function () {
         gameUrl: "games/gdpr.json",
       };
 
-      fresco.initialize(defaultState, {
+      sdk.initialize(defaultState, {
         title: "Reigns",
         toolbarButtons: [
           {
@@ -61,14 +66,14 @@ export const useFresco = function () {
       selectedCard: state.game.selectedCard,
       stats: state.game.stats,
     };
-    fresco.setState(toPersist);
+    sdk.setState(toPersist);
   };
 
   const teleport = (
     target: string,
-    targetPrefix = `${fresco.element.appearance.NAME}-`
+    targetPrefix = `${sdk.element.appearance.NAME}-`
   ) =>
-    fresco.send({
+    sdk.send({
       type: "extension/out/redux",
       payload: {
         action: {
@@ -78,5 +83,5 @@ export const useFresco = function () {
       },
     });
 
-  return { updateFrescoState, teleport };
+  return { updateFrescoState, teleport, sdkLoaded };
 };

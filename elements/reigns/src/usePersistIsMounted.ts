@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 
 export const IS_MOUNTED_TABLE = "is-element-mounted";
-export const usePersistIsMounted = () => {
+export const usePersistIsMounted = (sdkLoaded: boolean) => {
   useEffect(() => {
+    if (!sdkLoaded) return;
+
     const dispatchIsMounted = () =>
       fresco.storage.add(IS_MOUNTED_TABLE, fresco.localParticipant.id);
     const dispatchIsUnmounted = () => {
@@ -26,5 +28,5 @@ export const usePersistIsMounted = () => {
     return () => {
       dispatchIsUnmounted();
     };
-  }, []);
+  }, [sdkLoaded]);
 };

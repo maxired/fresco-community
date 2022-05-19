@@ -50,6 +50,7 @@ interface IFrescoSdk {
   storage: {
     add: (tableName: string, value: AppearanceValue) => void;
     remove: (tableName: string, id: string) => void;
+    clear: (tableName: string) => void;
   };
 }
 

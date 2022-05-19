@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
+import { determineHost } from "./determineHost";
 import { selectNextCard } from "./selectNextCard";
 import { Card, CardFlag, GameFlags, GameState, Stat } from "./types";
 import { getFlags, validateGameDefinition } from "./validateGameDefinition";
@@ -47,21 +48,6 @@ export const initialState: GameState = {
   host: null,
 };
 
-const determineHost = (
-  mounted: ProtectedStorageItem[],
-  remoteParticipants: Participant[],
-  localParticipant: Participant
-) => {
-  const mountedIds = mounted.map(({ value }) => value);
-  const connectedAndMounted = [...remoteParticipants, localParticipant].filter(
-    (p) => mountedIds.includes(p.id)
-  );
-  const ordered = [...connectedAndMounted].sort((a, b) =>
-    b.id.localeCompare(a.id)
-  );
-  return ordered[0];
-};
-
 export const gameSlice = createSlice({
   name: "game",
   initialState,
@@ -82,11 +68,12 @@ export const gameSlice = createSlice({
       state.selectedCard = action.payload.selectedCard;
       state.stats = action.payload.stats;
       state.gameUrl = action.payload.gameUrl;
-      state.host = determineHost(
-        action.payload.mounted,
-        action.payload.remoteParticipants,
-        action.payload.localParticipant
-      );
+      state.host = determineHost({
+        mounted: action.payload.mounted,
+        remoteParticipants: action.payload.remoteParticipants,
+        localParticipant: action.payload.localParticipant,
+        previousHost: state.host,
+      });
     },
     startGame: (state: GameState) => {
       state.phase = GamePhase.STARTED;
