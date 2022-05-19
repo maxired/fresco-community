@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
 import { selectNextCard } from "./selectNextCard";
-import { CardFlag, GameFlags, GameState, Stat } from "./types";
+import { Card, CardFlag, GameFlags, GameState, Stat } from "./types";
 import { getFlags, validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
@@ -44,19 +44,31 @@ export const initialState: GameState = {
   flags: {},
   gameUrl: null,
   definition: null,
-  isController: false,
+  
+};
 };
 
 export const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    updateGame: (state, action) => {
+    updateGame: (
+      state,
+      action: PayloadAction<{
+        phase: GamePhase;
+        selectedCard: Card | null;
+        gameUrl: string;
+        stats: Stat[];
+        mounted: { id: string }[];
+        remoteParticipants: Participant[];
+        localParticipant: Participant;
+      }>
+    ) => {
       state.phase = action.payload.phase;
       state.selectedCard = action.payload.selectedCard;
       state.stats = action.payload.stats;
       state.gameUrl = action.payload.gameUrl;
-      state.isController = action.payload.isController;
+
     },
     startGame: (state: GameState) => {
       state.phase = GamePhase.STARTED;

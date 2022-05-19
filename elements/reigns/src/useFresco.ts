@@ -2,7 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useStore } from "react-redux";
 import { updateGame } from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
-import { AppState } from "./features/game/types";
+import {
+  AppState,
+  PersistedGameState,
+  PersistedState,
+} from "./features/game/types";
 
 export const useFresco = function () {
   const dispatch = useDispatch();
@@ -10,12 +14,19 @@ export const useFresco = function () {
   useEffect(() => {
     fresco.onReady(function () {
       fresco.onStateChanged(function () {
-        const state = fresco.element.state;
-        console.log("onStateChanged", state);
+        const state: PersistedState = fresco.element.state;
+        console.log(
+          "storage",
+          fresco.element.storage,
+          "remote participants",
+          fresco.remoteParticipants
+        );
         dispatch(
           updateGame({
             ...state,
-            isController: fresco.localParticipant.isController,
+            remoteParticipants: fresco.remoteParticipants,
+            mounted: fresco.element.storage["is-extension-mounted"],
+            localParticipant: fresco.localParticipant,
           })
         );
       });
@@ -44,11 +55,12 @@ export const useFresco = function () {
   const updateFrescoState = () => {
     const state = store.getState();
     console.log("updateFrescoGameState", state);
-    fresco.setState({
+    const toPersist: PersistedGameState = {
       phase: state.game.phase,
       selectedCard: state.game.selectedCard,
       stats: state.game.stats,
-    });
+    };
+    fresco.setState(toPersist);
   };
 
   const teleport = (

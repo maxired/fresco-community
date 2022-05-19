@@ -15,6 +15,17 @@ type AppearanceValue =
   | boolean
   | Record<string, AppearanceValue>;
 
+type Participant = {
+  name: string;
+  id: string;
+};
+
+type ProtectedStorageItem = {
+  ownerId: string;
+  id: string;
+  value: ProtectedStorageValueType;
+};
+
 interface IFrescoSdk {
   onReady(callback: () => void): void;
   onStateChanged(callback: () => void): void;
@@ -27,14 +38,15 @@ interface IFrescoSdk {
     id: string;
     name: string;
     appearance: Record<string, AppearanceValue>;
+    storage: {
+      [tableName: string]: ProtectedStorageItem[];
+    };
   };
   setState(state: any): void;
   initialize(defaultState: any, options: IInitializeOptions): void;
   send(action: { type: string; payload: any }): void;
-  localParticipant: {
-    id: string;
-    isController: boolean;
-  };
+  localParticipant: Participant;
+  remoteParticipants: Participant[];
 }
 
 declare var fresco: IFrescoSdk;
