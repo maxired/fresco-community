@@ -57,7 +57,7 @@ export type GameState = Omit<PersistedState, "gameUrl"> & {
   gameUrl: string | null;
   flags: GameFlags;
   definition: GameDefinition | null;
-
+  host: Participant | null;
 };
 
 export type AppState = {

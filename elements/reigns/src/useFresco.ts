@@ -7,6 +7,7 @@ import {
   PersistedGameState,
   PersistedState,
 } from "./features/game/types";
+import { IS_MOUNTED_TABLE } from "./usePersistIsMounted";
 
 export const useFresco = function () {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export const useFresco = function () {
           updateGame({
             ...state,
             remoteParticipants: fresco.remoteParticipants,
-            mounted: fresco.element.storage["is-extension-mounted"],
+            mounted: fresco.element.storage[IS_MOUNTED_TABLE],
             localParticipant: fresco.localParticipant,
           })
         );

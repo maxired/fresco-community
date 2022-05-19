@@ -13,17 +13,23 @@ import {
 import { GamePhase } from "./constants";
 import { AppState } from "./features/game/types";
 import { useFresco } from "./useFresco";
+import { usePersistIsMounted } from "./usePersistIsMounted";
 
 export default function App() {
   const phase = useSelector((state: AppState) => state.game.phase);
   const selectedCard = useSelector(
     (state: AppState) => state.game.selectedCard
   );
+  const host = useSelector(
+    (state: AppState) => state.game.host?.name || "None"
+  );
   const currentStats = useSelector((state: AppState) => state.game.stats);
   const gameUrl = useSelector((state: AppState) => state.game.gameUrl);
   const gameDefinition = useSelector(
     (state: AppState) => state.game.definition
   );
+
+  usePersistIsMounted();
 
   const dispatch = useDispatch();
 
@@ -113,6 +119,7 @@ export default function App() {
 
   return (
     <>
+      <div>The host is {host}</div>
       <Meters stats={currentStats} />
       <Question card={selectedCard} />
       <div className="answers">

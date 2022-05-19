@@ -44,8 +44,22 @@ export const initialState: GameState = {
   flags: {},
   gameUrl: null,
   definition: null,
-  
+  host: null,
 };
+
+const determineHost = (
+  mounted: ProtectedStorageItem[],
+  remoteParticipants: Participant[],
+  localParticipant: Participant
+) => {
+  const mountedIds = mounted.map(({ value }) => value);
+  const connectedAndMounted = [...remoteParticipants, localParticipant].filter(
+    (p) => mountedIds.includes(p.id)
+  );
+  const ordered = [...connectedAndMounted].sort((a, b) =>
+    b.id.localeCompare(a.id)
+  );
+  return ordered[0];
 };
 
 export const gameSlice = createSlice({
@@ -59,7 +73,7 @@ export const gameSlice = createSlice({
         selectedCard: Card | null;
         gameUrl: string;
         stats: Stat[];
-        mounted: { id: string }[];
+        mounted: ProtectedStorageItem[];
         remoteParticipants: Participant[];
         localParticipant: Participant;
       }>
@@ -68,7 +82,11 @@ export const gameSlice = createSlice({
       state.selectedCard = action.payload.selectedCard;
       state.stats = action.payload.stats;
       state.gameUrl = action.payload.gameUrl;
-
+      state.host = determineHost(
+        action.payload.mounted,
+        action.payload.remoteParticipants,
+        action.payload.localParticipant
+      );
     },
     startGame: (state: GameState) => {
       state.phase = GamePhase.STARTED;
