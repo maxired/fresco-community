@@ -20,9 +20,7 @@ export default function App() {
   const selectedCard = useSelector(
     (state: AppState) => state.game.selectedCard
   );
-  const host = useSelector(
-    (state: AppState) => state.game.host?.name || "None"
-  );
+  const host = useSelector((state: AppState) => state.game.host);
   const currentStats = useSelector((state: AppState) => state.game.stats);
   const gameUrl = useSelector((state: AppState) => state.game.gameUrl);
   const gameDefinition = useSelector(
@@ -43,7 +41,7 @@ export default function App() {
 
   const doAnswerNo = () => {
     // TODO: host will call this in FRES-1112
-    if (true) {
+    if (host && fresco.localParticipant.id === host?.id) {
       dispatch(answerNo());
       updateFrescoState();
       // TODO: teleport everyone
@@ -53,7 +51,7 @@ export default function App() {
 
   const doAnswerYes = () => {
     // TODO: host will call this in FRES-1112
-    if (true) {
+    if (host && fresco.localParticipant.id === host?.id) {
       dispatch(answerYes());
       updateFrescoState();
       // TODO: teleport everyone
@@ -89,6 +87,12 @@ export default function App() {
     updateFrescoState();
   };
 
+  const doRestartGame = () => {
+    if (host && fresco.localParticipant.id === host?.id) {
+      doStartGame();
+    }
+  };
+
   if (phase === GamePhase.LOADING) {
     return <div className="death">Loading...</div>;
   }
@@ -99,9 +103,12 @@ export default function App() {
 
   if (phase === GamePhase.ENDED) {
     return (
-      <div className="death" onClick={doStartGame}>
-        {gameDefinition?.deathMessage}
-      </div>
+      <>
+        <div className="death">
+          {gameDefinition?.deathMessage}
+          <YesAnswer text="Play again" onClick={doRestartGame} />
+        </div>
+      </>
     );
   }
 
@@ -119,7 +126,7 @@ export default function App() {
 
   return (
     <>
-      <div>The host is {host}</div>
+      <div>The host is {host?.name}</div>
       <Meters stats={currentStats} />
       <Question card={selectedCard} />
       <div className="answers">
