@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GamePhase } from "../../constants";
-import { determineHost } from "./determineHost";
 import { selectNextCard } from "./selectNextCard";
 import { Card, CardFlag, GameFlags, GameState, Stat } from "./types";
 import { getFlags, validateGameDefinition } from "./validateGameDefinition";
@@ -45,7 +44,6 @@ export const initialState: GameState = {
   flags: {},
   gameUrl: null,
   definition: null,
-  host: null,
 };
 
 export const gameSlice = createSlice({
@@ -59,21 +57,12 @@ export const gameSlice = createSlice({
         selectedCard: Card | null;
         gameUrl: string;
         stats: Stat[];
-        mounted: ProtectedStorageItem[];
-        remoteParticipants: Participant[];
-        localParticipant: Participant;
       }>
     ) => {
       state.phase = action.payload.phase;
       state.selectedCard = action.payload.selectedCard;
       state.stats = action.payload.stats;
       state.gameUrl = action.payload.gameUrl;
-      state.host = determineHost({
-        mounted: action.payload.mounted,
-        remoteParticipants: action.payload.remoteParticipants,
-        localParticipant: action.payload.localParticipant,
-        previousHost: state.host,
-      });
     },
     startGame: (state: GameState) => {
       state.phase = GamePhase.STARTED;

@@ -1,4 +1,5 @@
 import { GamePhase } from "../../constants";
+import { HostState } from "../host/hostSlice";
 
 export type Stat = {
   value: number;
@@ -57,9 +58,4 @@ export type GameState = Omit<PersistedState, "gameUrl"> & {
   gameUrl: string | null;
   flags: GameFlags;
   definition: GameDefinition | null;
-  host: Participant | null;
-};
-
-export type AppState = {
-  game: GameState;
 };

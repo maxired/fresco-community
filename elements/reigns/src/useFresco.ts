@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useStore } from "react-redux";
 import { updateGame } from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
-import {
-  AppState,
-  PersistedGameState,
-  PersistedState,
-} from "./features/game/types";
-import { IS_MOUNTED_TABLE } from "./usePersistIsMounted";
+import { PersistedGameState, PersistedState } from "./features/game/types";
 import { getSdk } from "./sdk";
+import { updateHost } from "./features/host/hostSlice";
+import { AppState } from "./store";
 
 export const useFresco = function () {
   const dispatch = useDispatch();
@@ -18,23 +15,11 @@ export const useFresco = function () {
 
   useEffect(() => {
     sdk.onReady(function () {
-      setSdkLoaded(true);
       sdk.onStateChanged(function () {
+        if (!sdkLoaded) setSdkLoaded(true);
         const state: PersistedState = sdk.element.state;
-        console.log(
-          "storage",
-          sdk.element.storage,
-          "remote participants",
-          sdk.remoteParticipants
-        );
-        dispatch(
-          updateGame({
-            ...state,
-            remoteParticipants: sdk.remoteParticipants,
-            mounted: sdk.element.storage[IS_MOUNTED_TABLE],
-            localParticipant: sdk.localParticipant,
-          })
-        );
+        dispatch(updateGame(state));
+        dispatch(updateHost());
       });
 
       const defaultState = {

@@ -47,10 +47,13 @@ interface IFrescoSdk {
   send(action: { type: string; payload: any }): void;
   localParticipant: Participant;
   remoteParticipants: Participant[];
+  didSyncRemoteParticipants: boolean;
   storage: {
     add: (tableName: string, value: AppearanceValue) => void;
     remove: (tableName: string, id: string) => void;
     clear: (tableName: string) => void;
+    set: (tableName: string, id: string, value: AppearanceValue) => void;
+    get: (tableName: string, id: string) => ProtectedStorageItem | null;
   };
 }
 

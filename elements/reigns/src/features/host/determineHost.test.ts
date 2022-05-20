@@ -1,10 +1,8 @@
-import { determineHost } from "./determineHost";
+import { determineHost, GAME_TABLE, HOST_KEY } from "./determineHost";
 import { getSdk } from "../../sdk";
 
 const mockStorage = {
-  clear: jest.fn(),
-  add: jest.fn(),
-  remove: jest.fn(),
+  set: jest.fn(),
 };
 jest.mock("../../sdk", () => ({
   getSdk: () =>
@@ -29,7 +27,7 @@ describe("determineHost", () => {
       ],
       remoteParticipants: [createParticipant("b"), createParticipant("a")],
       localParticipant: createParticipant("c"),
-      previousHost: null,
+      currentHost: null,
     });
     expect(host?.id).toBe("a");
   });
@@ -38,7 +36,7 @@ describe("determineHost", () => {
       mounted: [createStorageItem("a"), createStorageItem("b")],
       remoteParticipants: [],
       localParticipant: createParticipant("b"),
-      previousHost: null,
+      currentHost: null,
     });
     expect(host?.id).toBe("b");
   });
@@ -48,7 +46,7 @@ describe("determineHost", () => {
       mounted: [createStorageItem("b")],
       remoteParticipants: [createParticipant("a")],
       localParticipant: createParticipant("b"),
-      previousHost: null,
+      currentHost: null,
     });
     expect(host?.id).toBe("b");
   });
@@ -58,7 +56,7 @@ describe("determineHost", () => {
       mounted: [createStorageItem("a"), createStorageItem("b")],
       remoteParticipants: [createParticipant("b")],
       localParticipant: createParticipant("a"),
-      previousHost: createParticipant("b"),
+      currentHost: createParticipant("b"),
     });
     expect(host?.id).toBe("b");
   });
@@ -67,7 +65,7 @@ describe("determineHost", () => {
       mounted: [createStorageItem("a")],
       remoteParticipants: [createParticipant("b")],
       localParticipant: createParticipant("a"),
-      previousHost: createParticipant("b"),
+      currentHost: createParticipant("b"),
     });
     expect(host?.id).toBe("a");
   });
@@ -78,10 +76,11 @@ describe("determineHost", () => {
         mounted: [createStorageItem("a")],
         remoteParticipants: [createParticipant("b")],
         localParticipant: createParticipant("a"),
-        previousHost: createParticipant("b"),
+        currentHost: createParticipant("b"),
       });
-      expect(mockStorage.add).toBeCalledWith(
-        "host",
+      expect(mockStorage.set).toBeCalledWith(
+        GAME_TABLE,
+        HOST_KEY,
         expect.objectContaining({ id: "a" })
       );
     });
@@ -91,9 +90,9 @@ describe("determineHost", () => {
         mounted: [createStorageItem("a")],
         remoteParticipants: [createParticipant("a")],
         localParticipant: createParticipant("b"),
-        previousHost: createParticipant("a"),
+        currentHost: createParticipant("a"),
       });
-      expect(mockStorage.add).not.toBeCalled();
+      expect(mockStorage.set).not.toBeCalled();
     });
   });
 });

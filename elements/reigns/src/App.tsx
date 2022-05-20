@@ -11,16 +11,16 @@ import {
   startGame,
 } from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
-import { AppState } from "./features/game/types";
 import { useFresco } from "./useFresco";
-import { usePersistIsMounted } from "./usePersistIsMounted";
+import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
+import { AppState } from "./store";
 
 export default function App() {
   const phase = useSelector((state: AppState) => state.game.phase);
   const selectedCard = useSelector(
     (state: AppState) => state.game.selectedCard
   );
-  const host = useSelector((state: AppState) => state.game.host);
+  const host = useSelector((state: AppState) => state.host.currentHost);
   const currentStats = useSelector((state: AppState) => state.game.stats);
   const gameUrl = useSelector((state: AppState) => state.game.gameUrl);
   const gameDefinition = useSelector(
@@ -29,7 +29,6 @@ export default function App() {
 
   const { updateFrescoState, teleport, sdkLoaded } = useFresco();
 
-  console.log("sdkLoaded", sdkLoaded);
   usePersistIsMounted(sdkLoaded);
 
   const dispatch = useDispatch();
