@@ -1,0 +1,20 @@
+name: PR Checks
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  test-reigns:
+    name: Test reigns
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install reigns dependencies
+        working-directory: ./elements/reigns
+        run: npm i
+
+      - name: Test reigns
+        working-directory: ./elements/reigns
+        run: npm run test
