@@ -47,7 +47,6 @@ interface IFrescoSdk {
   send(action: { type: string; payload: any }): void;
   localParticipant: Participant;
   remoteParticipants: Participant[];
-  didSyncRemoteParticipants: boolean;
   storage: {
     add: (tableName: string, value: AppearanceValue) => void;
     remove: (tableName: string, id: string) => void;

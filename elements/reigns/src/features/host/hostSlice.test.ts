@@ -22,7 +22,6 @@ const mockSdk = (
     ...storageOverride,
   };
   jest.spyOn(sdk, "getSdk").mockReturnValue({
-    didSyncRemoteParticipants: true,
     localParticipant: {
       id: "my-id",
       name: "my-name",
@@ -42,19 +41,6 @@ const mockSdk = (
 
 describe("hostSlice", () => {
   describe("updateHost", () => {
-    it("should not determine host if remote clients not yet synced", () => {
-      mockSdk({ didSyncRemoteParticipants: false });
-      const spy = jest.spyOn(determineHost, "determineHost");
-      reducer({ currentHost: null, isMounted: true }, updateHost());
-      expect(spy).not.toBeCalled();
-    });
-    it("should determine host if remote clients have synced", () => {
-      mockSdk({ didSyncRemoteParticipants: true });
-      const spy = jest.spyOn(determineHost, "determineHost");
-      reducer({ currentHost: null, isMounted: true }, updateHost());
-      expect(spy).toBeCalled();
-    });
-
     it("should persist isMounted if not persisted", () => {
       mockSdk(undefined, {
         [IS_MOUNTED_TABLE]: [],

@@ -30,9 +30,7 @@ const hostSlice = createSlice({
         currentHost: sdk.storage.get(GAME_TABLE, HOST_KEY)?.value,
       };
 
-      if (sdk.didSyncRemoteParticipants) {
-        state.currentHost = determineHost(hostParams);
-      }
+      state.currentHost = determineHost(hostParams);
 
       if (
         state.isMounted &&
