@@ -14,7 +14,7 @@ export const determineHost = ({
   localParticipant: Participant;
   currentHost: Participant | null;
 }) => {
-  const mountedIds = mounted.map(({ value }) => value);
+  const mountedIds = mounted.map(({ id }) => id);
   const connectedAndMounted = [...remoteParticipants, localParticipant].filter(
     (p) => mountedIds.includes(p.id)
   );

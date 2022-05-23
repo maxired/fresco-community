@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { determineHost, GAME_TABLE, HOST_KEY } from "./determineHost";
 import { getSdk } from "../../sdk";
-import {
-  IS_MOUNTED_TABLE,
-  persistIsMounted,
-  persistIsUnMounted,
-} from "./persistIsMounted";
+import { IS_MOUNTED_TABLE, persistIsMounted } from "./persistIsMounted";
 
 export type HostState = {
   currentHost: Participant | null;
@@ -34,20 +30,18 @@ const hostSlice = createSlice({
 
       if (
         state.isMounted &&
-        !hostParams.mounted.find(
-          (p) => p.value === hostParams.localParticipant.id
-        )
+        !hostParams.mounted.find((p) => p.id === hostParams.localParticipant.id)
       ) {
         // storage was cleared
-        persistIsMounted();
+        persistIsMounted(true);
       }
     },
     setMounted: (state, action: PayloadAction<boolean>) => {
       state.isMounted = action.payload;
       if (action.payload) {
-        persistIsMounted();
+        persistIsMounted(true);
       } else {
-        persistIsUnMounted();
+        persistIsMounted(false);
       }
     },
   },

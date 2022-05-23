@@ -10,16 +10,19 @@ export const usePersistIsMounted = (sdkLoaded: boolean) => {
 
     dispatch(setMounted(true));
 
-    document.addEventListener("visibilitychange", () => {
+    const onVisibilityChange = () => {
       const isVisible = document?.visibilityState === "visible";
       if (isVisible) {
         dispatch(setMounted(true));
       } else {
         dispatch(setMounted(false));
       }
-    });
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
     return () => {
       dispatch(setMounted(false));
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, [sdkLoaded]);
 };

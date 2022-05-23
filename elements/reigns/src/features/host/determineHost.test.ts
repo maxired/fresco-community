@@ -15,8 +15,7 @@ describe("determineHost", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  const createStorageItem = (value: string) =>
-    ({ value } as ProtectedStorageItem);
+  const createStorageItem = (id: string) => ({ id } as ProtectedStorageItem);
   const createParticipant = (id: string): Participant => ({ id, name: id });
   it("chooses an eligible host by alphabetic id order", () => {
     const host = determineHost({

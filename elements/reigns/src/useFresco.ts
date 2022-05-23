@@ -11,9 +11,8 @@ export const useFresco = function () {
   const dispatch = useDispatch();
   const [sdkLoaded, setSdkLoaded] = useState(false);
 
-  const sdk = getSdk();
-
   useEffect(() => {
+    const sdk = getSdk();
     sdk.onReady(function () {
       sdk.onStateChanged(function () {
         if (!sdkLoaded) setSdkLoaded(true);
@@ -51,22 +50,24 @@ export const useFresco = function () {
       selectedCard: state.game.selectedCard,
       stats: state.game.stats,
     };
-    sdk.setState(toPersist);
+    getSdk().setState(toPersist);
   };
 
-  const teleport = (
-    target: string,
-    targetPrefix = `${sdk.element.appearance.NAME}-`
-  ) =>
+  const teleport = (target: string, targetPrefix?: string) => {
+    const sdk = getSdk();
+    const defaultTargetPrefix = `${sdk.element.appearance.NAME}-`;
     sdk.send({
       type: "extension/out/redux",
       payload: {
         action: {
           type: "TELEPORT",
-          payload: { anchorName: `${targetPrefix}${target}` },
+          payload: {
+            anchorName: `${targetPrefix ?? defaultTargetPrefix}${target}`,
+          },
         },
       },
     });
+  };
 
   return { updateFrescoState, teleport, sdkLoaded };
 };
