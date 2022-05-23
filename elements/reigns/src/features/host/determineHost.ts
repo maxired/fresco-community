@@ -2,6 +2,7 @@ import { getSdk } from "../../sdk";
 
 export const HOST_KEY = "host";
 export const GAME_TABLE = "game";
+const DEBUG = false;
 export const determineHost = ({
   mounted,
   remoteParticipants,
@@ -22,20 +23,23 @@ export const determineHost = ({
   );
   const keepHost =
     currentHost && ordered.map((p) => p.id).includes(currentHost.id);
-  console[keepHost ? "log" : "warn"](
-    `Mounted: ${mountedIds.join(", ")}`,
-    `\nEligible participants: ${JSON.stringify(
-      ordered.map((p) => ({ id: p.id, name: p.name }))
-    )}`,
-    `\nCurrent host: ${currentHost?.name}`,
-    `\nChange host: ${keepHost ? "No" : "Yes"}`
-  );
+
+  if (DEBUG) {
+    console[keepHost ? "log" : "warn"](
+      `Mounted: ${mountedIds.join(", ")}`,
+      `\nEligible participants: ${JSON.stringify(
+        ordered.map((p) => ({ id: p.id, name: p.name }))
+      )}`,
+      `\nCurrent host: ${JSON.stringify(currentHost)}`,
+      `\nChange host: ${keepHost ? "No" : "Yes"}`
+    );
+  }
 
   if (keepHost) {
     return currentHost;
   }
   const newHost = ordered[0];
-  if (!newHost) console.warn("There is no eligible host");
+  if (DEBUG && !newHost) console.log("There is no eligible host");
 
   if (newHost && newHost.id === localParticipant.id) {
     const { storage } = getSdk();
