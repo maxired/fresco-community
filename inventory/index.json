@@ -211,7 +211,7 @@
         {
           "id": "fqh9t0pvofof8gfhmvmbm",
           "isLocked": false,
-          "zIndex": 16,
+          "zIndex": 160,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
@@ -233,13 +233,13 @@
             "BORDER_RADIUS": 0,
             "TEXT_DISABLED": true,
             "BODY_TYPE": "PASSTHROUGH",
-            "OPACITY": 100
+            "OPACITY": 0
           }
         },
         {
           "id": "gjifdpb4w0ukirobyei-l",
           "isLocked": false,
-          "zIndex": 17,
+          "zIndex": 170,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
@@ -261,7 +261,7 @@
             "BORDER_RADIUS": 0,
             "TEXT_DISABLED": true,
             "BODY_TYPE": "PASSTHROUGH",
-            "OPACITY": 100
+            "OPACITY": 0
           }
         },
         {
