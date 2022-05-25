@@ -26,6 +26,8 @@ type ProtectedStorageItem = {
   value: ProtectedStorageValueType;
 };
 
+type ItemTableValue = Record<string, unknown> | string | boolean | undefined;
+
 interface IFrescoSdk {
   onReady(callback: () => void): void;
   onStateChanged(callback: () => void): void;
@@ -53,6 +55,9 @@ interface IFrescoSdk {
     clear: (tableName: string) => void;
     set: (tableName: string, id: string, value: AppearanceValue) => void;
     get: (tableName: string, id: string) => ProtectedStorageItem | null;
+  };
+  realtime: {
+    put: (tableName: string, key: string, value: ItemTableValue) => void;
   };
 }
 
