@@ -23,7 +23,7 @@ export const useFresco = function () {
 
       const defaultState = {
         selectedCard: null,
-        phase: GamePhase.LOADING,
+        phase: GamePhase.NOT_STARTED,
         stats: [],
         gameUrl: "games/gdpr.json",
       };

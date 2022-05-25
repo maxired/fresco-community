@@ -10,13 +10,14 @@ import {
   initializeGame,
   startGame,
 } from "./features/game/gameSlice";
-import { GamePhase } from "./constants";
+import { GamePhase, Loading } from "./constants";
 import { useFresco } from "./useFresco";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
 import { AppState } from "./store";
 
 export default function App() {
   const phase = useSelector((state: AppState) => state.game.phase);
+  const loading = useSelector((state: AppState) => state.game.loading);
   const selectedCard = useSelector(
     (state: AppState) => state.game.selectedCard
   );
@@ -40,9 +41,11 @@ export default function App() {
     dispatch(initializeGame(gameUrl) as any);
   }, [gameUrl]);
 
+  const isHost = host && fresco.localParticipant.id === host?.id;
+
   const doAnswerNo = () => {
     // TODO: host will call this in FRES-1112
-    if (host && fresco.localParticipant.id === host?.id) {
+    if (isHost) {
       dispatch(answerNo());
       updateFrescoState();
       // TODO: teleport everyone
@@ -52,7 +55,7 @@ export default function App() {
 
   const doAnswerYes = () => {
     // TODO: host will call this in FRES-1112
-    if (host && fresco.localParticipant.id === host?.id) {
+    if (isHost) {
       dispatch(answerYes());
       updateFrescoState();
       // TODO: teleport everyone
@@ -83,22 +86,20 @@ export default function App() {
     }
   }, [phase]);
 
-  const doStartGame = () => {
-    dispatch(startGame());
-    updateFrescoState();
-  };
-
   const doRestartGame = () => {
-    if (host && fresco.localParticipant.id === host?.id) {
-      doStartGame();
+    if (isHost) {
+      dispatch(startGame());
+      updateFrescoState();
     }
   };
 
-  if (phase === GamePhase.LOADING) {
+  console.log("App.tsx, phase:", phase, "loading:", loading);
+
+  if (loading === Loading.InProgress) {
     return <div className="death">Loading...</div>;
   }
 
-  if (phase === GamePhase.ERROR) {
+  if (loading === Loading.Error) {
     return <div className="death">ERROR :(</div>;
   }
 
@@ -115,8 +116,8 @@ export default function App() {
 
   if (phase === GamePhase.NOT_STARTED) {
     return (
-      <div className="death" onClick={doStartGame}>
-        Click to start
+      <div className="death" onClick={doRestartGame}>
+        {isHost ? "Click to start" : "Waiting for host to start"}
       </div>
     );
   }

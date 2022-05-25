@@ -1,4 +1,4 @@
-import { GamePhase } from "../../constants";
+import { GamePhase, Loading } from "../../constants";
 import { HostState } from "../host/hostSlice";
 
 export type Stat = {
@@ -55,6 +55,7 @@ export type PersistedGameState = {
 export type PersistedState = Configuration & PersistedGameState;
 
 export type GameState = Omit<PersistedState, "gameUrl"> & {
+  loading: Loading;
   gameUrl: string | null;
   flags: GameFlags;
   definition: GameDefinition | null;
