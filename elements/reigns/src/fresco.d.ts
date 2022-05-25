@@ -26,7 +26,13 @@ type ProtectedStorageItem = {
   value: ProtectedStorageValueType;
 };
 
-type ItemTableValue = Record<string, unknown> | string | boolean | undefined;
+type RealtimeValue = Record<string, unknown> | string | boolean | undefined;
+
+type RealtimeKeyValues = { [key: string]: RealtimeValue } ;
+
+type RealtimeTables = {
+  [tableName: string]: RealtimeKeyValues;
+};
 
 interface IFrescoSdk {
   onReady(callback: () => void): void;
@@ -44,6 +50,7 @@ interface IFrescoSdk {
       [tableName: string]: ProtectedStorageItem[];
     };
   };
+  realtime: RealtimeTables;
   setState(state: any): void;
   initialize(defaultState: any, options: IInitializeOptions): void;
   send(action: { type: string; payload: any }): void;
@@ -55,9 +62,11 @@ interface IFrescoSdk {
     clear: (tableName: string) => void;
     set: (tableName: string, id: string, value: AppearanceValue) => void;
     get: (tableName: string, id: string) => ProtectedStorageItem | null;
-  };
-  realtime: {
-    put: (tableName: string, key: string, value: ItemTableValue) => void;
+    realtime: {
+      set: (tableName: string, key: string, value: RealtimeValue) => void;
+      get: (tableName: string, key: string) => RealtimeValue;
+      all: (tableName: string) => RealtimeKeyValues;
+    };
   };
 }
 

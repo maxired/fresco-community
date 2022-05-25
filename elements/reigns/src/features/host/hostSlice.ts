@@ -21,16 +21,19 @@ const hostSlice = createSlice({
       const sdk = getSdk();
       const hostParams: Parameters<typeof determineHost>[0] = {
         remoteParticipants: sdk.remoteParticipants,
-        mounted: sdk.element.storage[IS_MOUNTED_TABLE],
+        mounted: sdk.storage.realtime.all(IS_MOUNTED_TABLE),
         localParticipant: sdk.localParticipant,
-        currentHost: sdk.storage.get(GAME_TABLE, HOST_KEY)?.value,
+        currentHost: sdk.storage.realtime.get(
+          GAME_TABLE,
+          HOST_KEY
+        ) as Participant,
       };
 
       state.currentHost = determineHost(hostParams);
 
       if (
         state.isMounted &&
-        !hostParams.mounted.find((p) => p.id === hostParams.localParticipant.id)
+        !sdk.storage.realtime.get(IS_MOUNTED_TABLE, sdk.localParticipant.id)
       ) {
         // storage was cleared
         persistIsMounted(true);

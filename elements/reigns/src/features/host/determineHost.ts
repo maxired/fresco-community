@@ -9,12 +9,12 @@ export const determineHost = ({
   localParticipant,
   currentHost,
 }: {
-  mounted: ProtectedStorageItem[];
+  mounted: RealtimeKeyValues;
   remoteParticipants: Participant[];
   localParticipant: Participant;
   currentHost: Participant | null;
 }) => {
-  const mountedIds = mounted.map(({ id }) => id);
+  const mountedIds = Object.keys(mounted).filter((p) => mounted[p]);
   const connectedAndMounted = [...remoteParticipants, localParticipant].filter(
     (p) => mountedIds.includes(p.id)
   );
@@ -43,7 +43,7 @@ export const determineHost = ({
 
   if (newHost && newHost.id === localParticipant.id) {
     const { storage } = getSdk();
-    storage.set(GAME_TABLE, HOST_KEY, {
+    storage.realtime.set(GAME_TABLE, HOST_KEY, {
       name: localParticipant.name,
       id: localParticipant.id,
     });

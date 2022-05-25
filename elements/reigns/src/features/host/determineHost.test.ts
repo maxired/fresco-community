@@ -1,13 +1,15 @@
 import { determineHost, GAME_TABLE, HOST_KEY } from "./determineHost";
 import { getSdk } from "../../sdk";
 
-const mockStorage = {
+const mockRealtime = {
   set: jest.fn(),
 };
 jest.mock("../../sdk", () => ({
   getSdk: () =>
     ({
-      storage: mockStorage,
+      storage: {
+        realtime: mockRealtime,
+      },
     } as unknown as IFrescoSdk),
 }));
 
@@ -15,15 +17,10 @@ describe("determineHost", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  const createStorageItem = (id: string) => ({ id } as ProtectedStorageItem);
   const createParticipant = (id: string): Participant => ({ id, name: id });
   it("chooses an eligible host by alphabetic id order", () => {
     const host = determineHost({
-      mounted: [
-        createStorageItem("b"),
-        createStorageItem("a"),
-        createStorageItem("c"),
-      ],
+      mounted: { b: true, a: true, c: true },
       remoteParticipants: [createParticipant("b"), createParticipant("a")],
       localParticipant: createParticipant("c"),
       currentHost: null,
@@ -32,7 +29,7 @@ describe("determineHost", () => {
   });
   it("should exclude disconnected players", () => {
     const host = determineHost({
-      mounted: [createStorageItem("a"), createStorageItem("b")],
+      mounted: { a: true, b: true },
       remoteParticipants: [],
       localParticipant: createParticipant("b"),
       currentHost: null,
@@ -42,7 +39,7 @@ describe("determineHost", () => {
 
   it("should exclude unmounted players", () => {
     const host = determineHost({
-      mounted: [createStorageItem("b")],
+      mounted: { b: true },
       remoteParticipants: [createParticipant("a")],
       localParticipant: createParticipant("b"),
       currentHost: null,
@@ -52,7 +49,7 @@ describe("determineHost", () => {
 
   it("should choose previous host if still eligible", () => {
     const host = determineHost({
-      mounted: [createStorageItem("a"), createStorageItem("b")],
+      mounted: { a: true, b: true },
       remoteParticipants: [createParticipant("b")],
       localParticipant: createParticipant("a"),
       currentHost: createParticipant("b"),
@@ -61,7 +58,7 @@ describe("determineHost", () => {
   });
   it("should choose new host if previous host not eligible", () => {
     const host = determineHost({
-      mounted: [createStorageItem("a")],
+      mounted: { a: true },
       remoteParticipants: [createParticipant("b")],
       localParticipant: createParticipant("a"),
       currentHost: createParticipant("b"),
@@ -72,12 +69,12 @@ describe("determineHost", () => {
   describe("on host change", () => {
     it("should persist new host if current user", () => {
       const host = determineHost({
-        mounted: [createStorageItem("a")],
+        mounted: { a: true },
         remoteParticipants: [createParticipant("b")],
         localParticipant: createParticipant("a"),
         currentHost: createParticipant("b"),
       });
-      expect(mockStorage.set).toBeCalledWith(
+      expect(mockRealtime.set).toBeCalledWith(
         GAME_TABLE,
         HOST_KEY,
         expect.objectContaining({ id: "a" })
@@ -86,12 +83,12 @@ describe("determineHost", () => {
 
     it("should not persist new host, if new host is another user", () => {
       const host = determineHost({
-        mounted: [createStorageItem("a")],
+        mounted: { a: true },
         remoteParticipants: [createParticipant("a")],
         localParticipant: createParticipant("b"),
         currentHost: createParticipant("a"),
       });
-      expect(mockStorage.set).not.toBeCalled();
+      expect(mockRealtime.set).not.toBeCalled();
     });
   });
 });
