@@ -1,4 +1,4 @@
-import { reducer, updateHost } from "./hostSlice";
+import { reducer, frescoUpdate } from "./hostSlice";
 import { IS_MOUNTED_TABLE } from "./persistIsMounted";
 import * as determineHost from "./determineHost";
 import * as sdk from "../../sdk";
@@ -40,7 +40,10 @@ describe("hostSlice", () => {
         [IS_MOUNTED_TABLE]: {},
       });
       const spy = jest.spyOn(mounted, "persistIsMounted");
-      reducer({ currentHost: null, isMounted: true }, updateHost());
+      reducer(
+        { currentHost: null, isMounted: true, frescoUpdateCount: 0 },
+        frescoUpdate()
+      );
       expect(spy).toBeCalled();
     });
   });

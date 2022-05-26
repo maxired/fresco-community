@@ -78,6 +78,14 @@ body,
   background-color: #9e32d6;
 }
 
+.answer--neutral {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  font-size: 32px;
+}
+
 .answer {
   flex: 1;
   padding: 1rem;

@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useStore } from "react-redux";
-import { updateGame } from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
-import { PersistedGameState, PersistedState } from "./features/game/types";
+import { frescoUpdate } from "./features/host/hostSlice";
+import { PersistedGameState } from "./features/game/types";
 import { getSdk } from "./sdk";
-import { updateHost } from "./features/host/hostSlice";
 import { AppState } from "./store";
 
-export const useFresco = function () {
+export const useFresco = function (
+  onUpdate: (updateState: () => void) => void
+) {
   const dispatch = useDispatch();
   const [sdkLoaded, setSdkLoaded] = useState(false);
 
   useEffect(() => {
     const sdk = getSdk();
     sdk.onReady(function () {
-      sdk.onStateChanged(function () {
+      sdk.onStateChanged(() => {
         if (!sdkLoaded) setSdkLoaded(true);
-        const state: PersistedState = sdk.element.state;
-        dispatch(updateGame(state));
-        dispatch(updateHost());
+        onUpdate(updateFrescoState);
+        dispatch(frescoUpdate());
       });
 
       const defaultState = {

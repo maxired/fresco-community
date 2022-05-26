@@ -28,7 +28,7 @@ type ProtectedStorageItem = {
 
 type RealtimeValue = Record<string, unknown> | string | boolean | undefined;
 
-type RealtimeKeyValues = { [key: string]: RealtimeValue } ;
+type RealtimeKeyValues = { [key: string]: RealtimeValue };
 
 type RealtimeTables = {
   [tableName: string]: RealtimeKeyValues;
@@ -54,7 +54,10 @@ interface IFrescoSdk {
   setState(state: any): void;
   initialize(defaultState: any, options: IInitializeOptions): void;
   send(action: { type: string; payload: any }): void;
-  localParticipant: Participant;
+  localParticipant: Participant & {
+    identityId: string;
+    isInsideElement: boolean;
+  };
   remoteParticipants: Participant[];
   storage: {
     add: (tableName: string, value: AppearanceValue) => void;

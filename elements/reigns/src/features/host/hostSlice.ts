@@ -6,18 +6,20 @@ import { IS_MOUNTED_TABLE, persistIsMounted } from "./persistIsMounted";
 export type HostState = {
   currentHost: Participant | null;
   isMounted: boolean;
+  frescoUpdateCount: number;
 };
 
 const initialState: HostState = {
   currentHost: null,
   isMounted: true,
+  frescoUpdateCount: 0,
 };
 
 const hostSlice = createSlice({
   name: "host",
   initialState,
   reducers: {
-    updateHost: (state) => {
+    frescoUpdate: (state) => {
       const sdk = getSdk();
       const hostParams: Parameters<typeof determineHost>[0] = {
         remoteParticipants: sdk.remoteParticipants,
@@ -30,6 +32,7 @@ const hostSlice = createSlice({
       };
 
       state.currentHost = determineHost(hostParams);
+      state.frescoUpdateCount = state.frescoUpdateCount + 1;
 
       if (
         state.isMounted &&
@@ -52,5 +55,5 @@ const hostSlice = createSlice({
 
 export const {
   reducer,
-  actions: { updateHost, setMounted },
+  actions: { frescoUpdate, setMounted },
 } = hostSlice;

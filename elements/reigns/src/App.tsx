@@ -1,19 +1,18 @@
-import React, { useEffect } from "react";
+import React, { Dispatch, useEffect } from "react";
 import { Meters } from "./Meters";
 import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  answerNo,
-  answerYes,
-  initializeGame,
-  startGame,
-} from "./features/game/gameSlice";
+import { useSelector, useDispatch, useStore } from "react-redux";
+import { initializeGame, startGame } from "./features/game/gameSlice";
 import { GamePhase, Loading } from "./constants";
 import { useFresco } from "./useFresco";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
 import { AppState } from "./store";
+import { useOnFrescoStateUpdate } from "./features/voting/useOnFrescoStateUpdate";
+import { useVoteListener } from "./features/voting/useVoteListener";
+import { useCollateVotes } from "./features/voting/useCollateVotes";
+import { getSdk } from "./sdk";
 
 export default function App() {
   const phase = useSelector((state: AppState) => state.game.phase);
@@ -28,10 +27,6 @@ export default function App() {
     (state: AppState) => state.game.definition
   );
 
-  const { updateFrescoState, teleport, sdkLoaded } = useFresco();
-
-  usePersistIsMounted(sdkLoaded);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,50 +36,16 @@ export default function App() {
     dispatch(initializeGame(gameUrl) as any);
   }, [gameUrl]);
 
-  const isHost = host && fresco.localParticipant.id === host?.id;
+  const onFrescoStateUpdate = useOnFrescoStateUpdate();
 
-  const doAnswerNo = () => {
-    // TODO: host will call this in FRES-1112
-    if (isHost) {
-      dispatch(answerNo());
-      updateFrescoState();
-      // TODO: teleport everyone
-      teleport("neutral");
-    }
-  };
+  const { updateFrescoState, teleport, sdkLoaded } =
+    useFresco(onFrescoStateUpdate);
 
-  const doAnswerYes = () => {
-    // TODO: host will call this in FRES-1112
-    if (isHost) {
-      dispatch(answerYes());
-      updateFrescoState();
-      // TODO: teleport everyone
-      teleport("neutral");
-    }
-  };
+  usePersistIsMounted(sdkLoaded);
 
-  useEffect(() => {
-    if (phase === GamePhase.STARTED) {
-      const yesListener = fresco.subscribeToGlobalEvent(
-        "custom.reign.yes",
-        () => {
-          doAnswerYes();
-        }
-      );
+  useVoteListener(phase, selectedCard, teleport);
 
-      const noListener = fresco.subscribeToGlobalEvent(
-        "custom.reign.no",
-        () => {
-          doAnswerNo();
-        }
-      );
-
-      return () => {
-        yesListener();
-        noListener();
-      };
-    }
-  }, [phase]);
+  const answerCountdown = useCollateVotes(sdkLoaded, updateFrescoState);
 
   const doRestartGame = () => {
     if (isHost) {
@@ -92,6 +53,8 @@ export default function App() {
       updateFrescoState();
     }
   };
+
+  const isHost = host && getSdk().localParticipant.id === host?.id;
 
   if (loading === Loading.InProgress) {
     return <div className="death">Loading...</div>;
@@ -106,7 +69,7 @@ export default function App() {
       <>
         <div className="death">
           {gameDefinition?.deathMessage}
-          <YesAnswer text="Play again" onClick={doRestartGame} />
+          {isHost && <div onClick={doRestartGame}>Click to play again</div>}
         </div>
       </>
     );
@@ -130,12 +93,13 @@ export default function App() {
       <Meters stats={currentStats} />
       <Question card={selectedCard} />
       <div className="answers">
-        <NoAnswer text={selectedCard.answer_no || "No"} onClick={doAnswerNo} />
-        <div className="answer answer--neutral" />
-        <YesAnswer
-          text={selectedCard.answer_yes || "Yes"}
-          onClick={doAnswerYes}
-        />
+        <NoAnswer text={selectedCard.answer_no || "No"} />
+        <div className="answer answer--neutral">
+          {answerCountdown && (
+            <div className="countdown">{answerCountdown.countdown}...</div>
+          )}
+        </div>
+        <YesAnswer text={selectedCard.answer_yes || "Yes"} />
       </div>
     </>
   );

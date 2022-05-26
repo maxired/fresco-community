@@ -45,9 +45,13 @@ type Configuration = {
   gameUrl: string;
 };
 
+export type SelectedCard = Card & {
+  selectionId: string;
+};
+
 export type PersistedGameState = {
   phase: GamePhase;
-  selectedCard: Card | null;
+  selectedCard: SelectedCard | null;
   stats: Stat[];
 };
 

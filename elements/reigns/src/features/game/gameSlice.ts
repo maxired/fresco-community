@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GamePhase, Loading } from "../../constants";
 import { selectNextCard } from "./selectNextCard";
-import { Card, CardFlag, GameFlags, GameState, Stat } from "./types";
+import { CardFlag, GameFlags, GameState, SelectedCard, Stat } from "./types";
 import { getFlags, validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
@@ -55,7 +55,7 @@ export const gameSlice = createSlice({
       state,
       action: PayloadAction<{
         phase: GamePhase;
-        selectedCard: Card | null;
+        selectedCard: SelectedCard | null;
         gameUrl: string;
         stats: Stat[];
       }>

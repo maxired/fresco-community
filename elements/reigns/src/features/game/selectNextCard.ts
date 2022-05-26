@@ -31,5 +31,9 @@ const getAllValidCards = (state: GameState) => {
 export const selectNextCard = (state: GameState) => {
   const validCards = getAllValidCards(state);
   const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
-  return randomCard;
+
+  return {
+    ...randomCard,
+    selectionId: `${Date.now() - Math.floor(Math.random() * 1000)}`,
+  };
 };
