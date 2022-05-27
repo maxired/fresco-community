@@ -25,8 +25,10 @@ export const votingSlice = createSlice({
   reducers: {
     updateVote: (state: VotingState) => {
       const sdk = getSdk();
-      const answerCountdown = sdk.storage.get(GAME_TABLE, ANSWER_KEY)
-        ?.value as AnswerCountdown;
+      const answerCountdown = sdk.storage.realtime.get(
+        GAME_TABLE,
+        ANSWER_KEY
+      ) as AnswerCountdown;
       if (answerCountdown) {
         state.answer = answerCountdown.answer;
         state.countdown = answerCountdown.countdown;

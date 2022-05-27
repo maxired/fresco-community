@@ -38,7 +38,7 @@ const persistIsInsideElement = (
     sdk.localParticipant.isInsideElement !==
       prevLocalParticipantRef.current.isInsideElement
   ) {
-    sdk.storage.set(
+    sdk.storage.realtime.set(
       PARTICIPANT_INSIDE_TABLE,
       sdk.localParticipant.id,
       sdk.localParticipant.isInsideElement

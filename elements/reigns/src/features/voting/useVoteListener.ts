@@ -14,7 +14,11 @@ export const useVoteListener = (
   const persistParticipantVote = (answer: Answer | null) => {
     const sdk = getSdk();
     console.warn("Setting vote to", answer);
-    sdk.storage.set(PARTICIPANT_VOTE_TABLE, sdk.localParticipant.id, answer);
+    sdk.storage.realtime.set(
+      PARTICIPANT_VOTE_TABLE,
+      sdk.localParticipant.id,
+      answer ?? undefined
+    );
   };
 
   const prevSelectionCardRef = useRef<string | undefined>(undefined);

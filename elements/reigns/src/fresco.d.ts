@@ -69,6 +69,7 @@ interface IFrescoSdk {
       set: (tableName: string, key: string, value: RealtimeValue) => void;
       get: (tableName: string, key: string) => RealtimeValue;
       all: (tableName: string) => RealtimeKeyValues;
+      clear: (tableName: string) => void;
     };
   };
 }

@@ -19,7 +19,7 @@ export const useCollateVotes = (
   const countdown = useSelector((state: AppState) => state.voting.countdown);
 
   const persistAnswer = (value: AnswerCountdown | null) => {
-    getSdk().storage.set(GAME_TABLE, ANSWER_KEY, value);
+    getSdk().storage.realtime.set(GAME_TABLE, ANSWER_KEY, value || undefined);
   };
 
   const [waitForTeleport, setWaitForTeleport] = useState(false);
@@ -88,7 +88,7 @@ export const useCollateVotes = (
           console.warn("starting teleport");
           updateFrescoState();
           setWaitForTeleport(true);
-          getSdk().storage.clear(PARTICIPANT_VOTE_TABLE);
+          getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);
         }
 
         console.warn("countdown", newCount);
@@ -150,12 +150,14 @@ const getParticipantVotes = (): Vote[] => {
     ...sdk.remoteParticipants,
   ]
     // include only players inside the extension
-    .filter((p) => sdk.storage.get(PARTICIPANT_INSIDE_TABLE, p.id)?.value)
+    .filter((p) => sdk.storage.realtime.get(PARTICIPANT_INSIDE_TABLE, p.id))
     .map((participant) => {
       return {
         ...participant,
-        answer: sdk.storage.get(PARTICIPANT_VOTE_TABLE, participant.id)
-          ?.value as Answer | null,
+        answer: sdk.storage.realtime.get(
+          PARTICIPANT_VOTE_TABLE,
+          participant.id
+        ) as Answer | null,
       };
     });
   return votes;
