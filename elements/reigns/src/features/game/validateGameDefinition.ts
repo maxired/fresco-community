@@ -38,7 +38,10 @@ const FLAG_SEPARATOR = " ";
 const FLAG_KEY_VALUE_SEPARATOR = "=";
 const CONDITION_KEY_VALUE_SEPARATOR = "==";
 
-type FlagFields = keyof Pick<Card, "yes_custom" | "no_custom" | "conditions">;
+export type FlagFields = keyof Pick<
+  Card,
+  "yes_custom" | "no_custom" | "conditions"
+>;
 
 export const validateFlags = (
   flags: CardFlag[],

@@ -11,10 +11,7 @@ import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
 
 const COUNTDOWN_SECONDS = 5;
 
-export const useCollateVotes = (
-  isSdkLoaded: boolean,
-  updateFrescoState: () => void
-) => {
+export const useCollateVotes = (isSdkLoaded: boolean) => {
   const answer = useSelector((state: AppState) => state.voting.answer);
   const countdown = useSelector((state: AppState) => state.voting.countdown);
 
@@ -68,7 +65,6 @@ export const useCollateVotes = (
         const newCount = countdown - 1;
         if (newCount < -1) {
           setWaitForTeleport(false);
-          persistAnswer(null);
 
           console.warn("finished teleport");
           return;
@@ -86,7 +82,8 @@ export const useCollateVotes = (
               throw new Error("Unknown answer");
           }
           console.warn("starting teleport");
-          updateFrescoState();
+          persistAnswer(null);
+          // TODO persist? updateFrescoState();
           setWaitForTeleport(true);
           getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);
         }

@@ -38,19 +38,17 @@ export default function App() {
 
   const onFrescoStateUpdate = useOnFrescoStateUpdate();
 
-  const { updateFrescoState, teleport, sdkLoaded } =
-    useFresco(onFrescoStateUpdate);
+  const { teleport, sdkLoaded } = useFresco(onFrescoStateUpdate);
 
   usePersistIsMounted(sdkLoaded);
 
-  useVoteListener(phase, selectedCard, teleport);
+  useVoteListener(phase, teleport);
 
-  const answerCountdown = useCollateVotes(sdkLoaded, updateFrescoState);
+  const answerCountdown = useCollateVotes(sdkLoaded);
 
   const doRestartGame = () => {
     if (isHost) {
       dispatch(startGame());
-      updateFrescoState();
     }
   };
 

@@ -41,18 +41,16 @@ export type GameDefinition = {
 
 export type GameFlags = { [key: string]: string };
 
-type Configuration = {
+export type Configuration = {
   gameUrl: string;
-};
-
-export type SelectedCard = Card & {
-  selectionId: string;
 };
 
 export type PersistedGameState = {
   phase: GamePhase;
-  selectedCard: SelectedCard | null;
+  selectedCard: Card | null;
   stats: Stat[];
+  round: number;
+  flags: GameFlags;
 };
 
 export type PersistedState = Configuration & PersistedGameState;
@@ -60,6 +58,5 @@ export type PersistedState = Configuration & PersistedGameState;
 export type GameState = Omit<PersistedState, "gameUrl"> & {
   loading: Loading;
   gameUrl: string | null;
-  flags: GameFlags;
   definition: GameDefinition | null;
 };

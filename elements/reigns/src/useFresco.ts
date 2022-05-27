@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useStore } from "react-redux";
+import { useDispatch } from "react-redux";
 import { GamePhase } from "./constants";
 import { frescoUpdate } from "./features/host/hostSlice";
-import { PersistedGameState } from "./features/game/types";
 import { getSdk } from "./sdk";
-import { AppState } from "./store";
 
-export const useFresco = function (
-  onUpdate: (updateState: () => void) => void
-) {
+export const useFresco = function (onUpdate: () => void) {
   const dispatch = useDispatch();
   const [sdkLoaded, setSdkLoaded] = useState(false);
 
@@ -17,7 +13,7 @@ export const useFresco = function (
     sdk.onReady(function () {
       sdk.onStateChanged(() => {
         if (!sdkLoaded) setSdkLoaded(true);
-        onUpdate(updateFrescoState);
+        onUpdate();
         dispatch(frescoUpdate());
       });
 
@@ -41,33 +37,23 @@ export const useFresco = function (
     });
   }, []);
 
-  const store = useStore<AppState>();
-  const updateFrescoState = () => {
-    const state = store.getState();
-    console.log("updateFrescoGameState", state);
-    const toPersist: PersistedGameState = {
-      phase: state.game.phase,
-      selectedCard: state.game.selectedCard,
-      stats: state.game.stats,
-    };
-    getSdk().setState(toPersist);
-  };
-
   const teleport = (target: string, targetPrefix?: string) => {
     const sdk = getSdk();
-    const defaultTargetPrefix = `${sdk.element.appearance.NAME}-`;
-    sdk.send({
-      type: "extension/out/redux",
-      payload: {
-        action: {
-          type: "TELEPORT",
-          payload: {
-            anchorName: `${targetPrefix ?? defaultTargetPrefix}${target}`,
+    if (sdk.element.appearance) {
+      const defaultTargetPrefix = `${sdk.element.appearance.NAME}-`;
+      sdk.send({
+        type: "extension/out/redux",
+        payload: {
+          action: {
+            type: "TELEPORT",
+            payload: {
+              anchorName: `${targetPrefix ?? defaultTargetPrefix}${target}`,
+            },
           },
         },
-      },
-    });
+      });
+    }
   };
 
-  return { updateFrescoState, teleport, sdkLoaded };
+  return { teleport, sdkLoaded };
 };

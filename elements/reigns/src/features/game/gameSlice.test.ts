@@ -5,7 +5,6 @@ import {
   gameReducer,
   initializeGame,
   initialState,
-  setFlags,
   startGame,
 } from "./gameSlice";
 import { Card, GameDefinition, GameState } from "./types";
@@ -58,24 +57,6 @@ describe("gameSlice", () => {
         );
         expect(result.phase).toBe(GamePhase.STARTED);
       });
-    });
-  });
-
-  describe("setFlags", () => {
-    it("should set multiple flags", () => {
-      const flags = setFlags({}, [
-        { key: "chapter3", value: "true" },
-        { key: "queen_killed", value: "false" },
-      ]);
-      expect(flags.chapter3).toBe("true");
-      expect(flags.queen_killed).toBe("false");
-    });
-
-    it("should leave existing flags", () => {
-      const flags = setFlags({ chapter3: "true" }, [
-        { key: "queen_killed", value: "false" },
-      ]);
-      expect(flags.chapter3).toBe("true");
     });
   });
 

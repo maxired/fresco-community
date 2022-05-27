@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
-import { SelectedCard } from "../game/types";
+import { AppState } from "../../store";
 import { Answer } from "./votingSlice";
 
 export const PARTICIPANT_VOTE_TABLE = "participants-vote";
 
 export const useVoteListener = (
   phase: GamePhase,
-  selectedCard: SelectedCard | null,
   teleport: (target: string, targetPrefix?: string) => void
 ) => {
   const persistParticipantVote = (answer: Answer | null) => {
@@ -21,14 +21,12 @@ export const useVoteListener = (
     );
   };
 
-  const prevSelectionCardRef = useRef<string | undefined>(undefined);
+  const round = useSelector((state: AppState) => state.game.round);
+
   useEffect(() => {
-    // resetting vote on card change
-    if (prevSelectionCardRef.current !== selectedCard?.selectionId) {
-      prevSelectionCardRef.current = selectedCard?.selectionId;
-      teleport("neutral");
-    }
-  }, [selectedCard]);
+    // teleport to neutral zone at the beginning of each round
+    teleport("neutral");
+  }, [round]);
 
   useEffect(() => {
     if (phase === GamePhase.STARTED) {

@@ -1,10 +1,12 @@
-import { MutableRefObject, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { updateGame } from "../game/gameSlice";
-import { getSdk } from "../../sdk";
-import { PersistedState } from "../game/types";
+import { GAME_STATE_KEY, updateConfig, updateGame } from "../game/gameSlice";
 import { frescoUpdate } from "../host/hostSlice";
 import { updateVote } from "./votingSlice";
+import { persistIsInsideElement } from "./persistIsInsideElement";
+import { getSdk } from "../../sdk";
+import { GAME_TABLE } from "../host/determineHost";
+import { PersistedGameState } from "../game/types";
 
 export const PARTICIPANT_INSIDE_TABLE = "participants-inside";
 
@@ -16,35 +18,26 @@ export const useOnFrescoStateUpdate = () => {
   }>({ id: null, isInsideElement: null });
   return () => {
     const sdk = getSdk();
-    const state: PersistedState = sdk.element.state;
-
-    dispatch(updateGame(state));
+    const state = sdk.storage.realtime.get(
+      GAME_TABLE,
+      GAME_STATE_KEY
+    ) as PersistedGameState;
+    if (state) {
+      dispatch(
+        updateGame({
+          flags: state.flags,
+          phase: state.phase,
+          round: state.round,
+          selectedCard: state.selectedCard,
+          stats: state.stats,
+        })
+      );
+    }
+    if (sdk.element.state) {
+      dispatch(updateConfig({ gameUrl: sdk.element.state.gameUrl }));
+    }
     dispatch(frescoUpdate());
     dispatch(updateVote());
-
     persistIsInsideElement(prevLocalParticipantRef);
   };
-};
-
-const persistIsInsideElement = (
-  prevLocalParticipantRef: MutableRefObject<{
-    id: string | null;
-    isInsideElement: boolean | null;
-  }>
-) => {
-  const sdk = getSdk();
-  if (
-    sdk.localParticipant.id !== prevLocalParticipantRef.current.id ||
-    sdk.localParticipant.isInsideElement !==
-      prevLocalParticipantRef.current.isInsideElement
-  ) {
-    sdk.storage.realtime.set(
-      PARTICIPANT_INSIDE_TABLE,
-      sdk.localParticipant.id,
-      sdk.localParticipant.isInsideElement
-    );
-    prevLocalParticipantRef.current = {
-      ...sdk.localParticipant,
-    };
-  }
 };
