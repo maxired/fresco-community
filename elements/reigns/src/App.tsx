@@ -93,8 +93,6 @@ export default function App() {
     }
   };
 
-  console.log("App.tsx, phase:", phase, "loading:", loading);
-
   if (loading === Loading.InProgress) {
     return <div className="death">Loading...</div>;
   }
