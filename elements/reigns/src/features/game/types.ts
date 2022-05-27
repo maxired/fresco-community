@@ -1,5 +1,4 @@
 import { GamePhase, Loading } from "../../constants";
-import { HostState } from "../host/hostSlice";
 
 export type Stat = {
   value: number;

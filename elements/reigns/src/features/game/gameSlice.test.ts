@@ -1,4 +1,4 @@
-import { GamePhase } from "../../constants";
+import { GamePhase, Loading } from "../../constants";
 import {
   answerNo,
   answerYes,
@@ -47,7 +47,7 @@ describe("gameSlice", () => {
           {} as GameState,
           initializeGame.fulfilled(getState([]).definition, "", "")
         );
-        expect(result.phase).toBe(GamePhase.ERROR);
+        expect(result.loading).toBe(Loading.Error);
       });
       it("should not set NOT_STARTED if already started", () => {
         const result = gameReducer(
