@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { determineHost, GAME_TABLE, HOST_KEY } from "./determineHost";
+import { determineHost, HOST_KEY } from "./determineHost";
 import { getSdk } from "../../sdk";
 import { IS_MOUNTED_TABLE, persistIsMounted } from "./persistIsMounted";
+import { GAME_TABLE } from "../game/Game";
 
 export type HostState = {
   currentHost: Participant | null;

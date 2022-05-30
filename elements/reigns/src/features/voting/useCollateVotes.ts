@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { answerNo, answerYes } from "../game/gameSlice";
-import { GAME_TABLE } from "../host/determineHost";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { Answer, AnswerCountdown, ANSWER_KEY } from "./votingSlice";
 import { getSdk } from "../../sdk";
 import { AppState } from "../../store";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
 import { useTimeout } from "./useTimeout";
 import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
+import { Game, GAME_TABLE } from "../game/Game";
 
 const COUNTDOWN_SECONDS = 5;
 
 export const useCollateVotes = (isSdkLoaded: boolean) => {
   const answer = useSelector((state: AppState) => state.voting.answer);
   const countdown = useSelector((state: AppState) => state.voting.countdown);
+  const store = useStore<AppState>();
 
   const persistAnswer = (value: AnswerCountdown | null) => {
     getSdk().storage.realtime.set(GAME_TABLE, ANSWER_KEY, value || undefined);
@@ -71,12 +71,13 @@ export const useCollateVotes = (isSdkLoaded: boolean) => {
         }
 
         if (newCount === 0) {
+          const game = new Game();
           switch (answer) {
             case "Yes":
-              dispatch(answerYes());
+              game.answerYes(store.getState().game);
               break;
             case "No":
-              dispatch(answerNo());
+              game.answerNo(store.getState().game);
               break;
             default:
               throw new Error("Unknown answer");

@@ -4,7 +4,7 @@ import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
 import { useSelector, useDispatch, useStore } from "react-redux";
-import { initializeGame, startGame } from "./features/game/gameSlice";
+import { initializeGame } from "./features/game/gameSlice";
 import { GamePhase, Loading } from "./constants";
 import { useFresco } from "./useFresco";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
@@ -13,6 +13,7 @@ import { useOnFrescoStateUpdate } from "./features/voting/useOnFrescoStateUpdate
 import { useVoteListener } from "./features/voting/useVoteListener";
 import { useCollateVotes } from "./features/voting/useCollateVotes";
 import { getSdk } from "./sdk";
+import { Game } from "./features/game/Game";
 
 export default function App() {
   const phase = useSelector((state: AppState) => state.game.phase);
@@ -46,9 +47,11 @@ export default function App() {
 
   const answerCountdown = useCollateVotes(sdkLoaded);
 
+  const store = useStore<AppState>();
+
   const doRestartGame = () => {
     if (isHost) {
-      dispatch(startGame());
+      new Game().startGame(store.getState().game);
     }
   };
 

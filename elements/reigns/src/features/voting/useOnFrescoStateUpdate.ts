@@ -1,12 +1,11 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { GAME_STATE_KEY, updateConfig, updateGame } from "../game/gameSlice";
+import { updateConfig, updateGame } from "../game/gameSlice";
 import { frescoUpdate } from "../host/hostSlice";
 import { updateVote } from "./votingSlice";
 import { persistIsInsideElement } from "./persistIsInsideElement";
 import { getSdk } from "../../sdk";
-import { GAME_TABLE } from "../host/determineHost";
-import { PersistedGameState } from "../game/types";
+import { Game } from "../game/Game";
 
 export const PARTICIPANT_INSIDE_TABLE = "participants-inside";
 
@@ -17,11 +16,7 @@ export const useOnFrescoStateUpdate = () => {
     isInsideElement: boolean | null;
   }>({ id: null, isInsideElement: null });
   return () => {
-    const sdk = getSdk();
-    const state = sdk.storage.realtime.get(
-      GAME_TABLE,
-      GAME_STATE_KEY
-    ) as PersistedGameState;
+    const state = new Game().retrieve();
     if (state) {
       dispatch(
         updateGame({
@@ -33,6 +28,7 @@ export const useOnFrescoStateUpdate = () => {
         })
       );
     }
+    const sdk = getSdk();
     if (sdk.element.state) {
       dispatch(updateConfig({ gameUrl: sdk.element.state.gameUrl }));
     }

@@ -1,18 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GamePhase, Loading } from "../../constants";
-import { selectNextCard } from "./selectNextCard";
-import { Configuration, GameState, PersistedGameState, Stat } from "./types";
+import { Configuration, GameState, PersistedGameState } from "./types";
 import { validateGameDefinition } from "./validateGameDefinition";
-import { getSdk } from "../../sdk";
-import { GAME_TABLE } from "../host/determineHost";
-import { selectAnswer, selectNo, selectYes } from "./selectAnswer";
-
-export const GAME_STATE_KEY = "state";
-
-export const persistState = (state: PersistedGameState) => {
-  const sdk = getSdk();
-  sdk.storage.realtime.set(GAME_TABLE, GAME_STATE_KEY, state);
-};
 
 export const initializeGame = createAsyncThunk(
   "game/initializeGame",
@@ -43,42 +32,19 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     updateGame: (state, action: PayloadAction<PersistedGameState>) => {
-      return {
-        ...state,
-        ...action.payload,
-      };
+      state.phase = action.payload.phase;
+      state.flags = action.payload.flags;
+      state.round = action.payload.round;
+      state.selectedCard = action.payload.selectedCard;
+      state.stats = action.payload.stats;
     },
     updateConfig: (state, action: PayloadAction<Configuration>) => {
-      return {
-        ...state,
-        ...action.payload,
-      };
-    },
-    startGame: (state: GameState) => {
-      persistState({
-        phase: GamePhase.STARTED,
-        selectedCard: selectNextCard(state.definition, state.flags),
-        stats: state.definition
-          ? state.definition.stats.map((stat: Stat) => ({ ...stat }))
-          : [],
-        round: state.round++,
-        flags: {},
-      });
-    },
-    answerNo: (state: GameState) => {
-      if (state.selectedCard) {
-        persistState(selectAnswer(state, "no_custom"));
-      }
-    },
-    answerYes: (state) => {
-      if (state.selectedCard) {
-        persistState(selectAnswer(state, "yes_custom"));
-      }
+      state.gameUrl = action.payload.gameUrl;
     },
   },
   extraReducers(builder) {
     builder
-      .addCase(initializeGame.pending, (state, action) => {
+      .addCase(initializeGame.pending, (state) => {
         state.loading = Loading.InProgress;
         console.log("GAME", "loading");
       })
@@ -101,6 +67,5 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { updateGame, startGame, answerNo, answerYes, updateConfig } =
-  gameSlice.actions;
+export const { updateGame, updateConfig } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

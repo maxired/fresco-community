@@ -1,41 +1,58 @@
 import { GamePhase, Loading } from "../../constants";
+import { Game } from "./Game";
+import { gameReducer, initializeGame } from "./gameSlice";
+import { mockSdk } from "./mocks";
 import {
-  answerNo,
-  answerYes,
-  gameReducer,
-  initializeGame,
-  initialState,
-  startGame,
-} from "./gameSlice";
+  createCard,
+  createGameDefinition,
+  createGameState,
+} from "./objectMother";
 import { Card, GameDefinition, GameState } from "./types";
 
-const getState = (cards?: Card[]) =>
-  ({
-    ...initialState,
-    selectedCard: { card: "a card" },
-    definition: {
-      cards: cards || [{ card: "another card", weight: 1 } as Card],
-      stats: [{ value: 0, icon: "icon" }],
-    } as GameDefinition,
-  } as GameState);
-
 describe("gameSlice", () => {
+  beforeEach(() => {
+    mockSdk();
+  });
   describe("gameReducer", () => {
     describe("startGame", () => {
       it("should select a card", () => {
-        const result = gameReducer(getState(), startGame());
+        const result = new Game()
+          .startGame(
+            createGameState(
+              createGameDefinition({
+                cards: [createCard({ card: "another card" })],
+              })
+            )
+          )
+          .retrieve();
         expect(result.selectedCard?.card).toBe("another card");
       });
     });
     describe("answerYes", () => {
       it("should select a card", () => {
-        const result = gameReducer(getState(), answerYes());
+        const result = new Game()
+          .answerYes(
+            createGameState(
+              createGameDefinition({
+                cards: [createCard({ card: "another card" })],
+              })
+            )
+          )
+          .retrieve();
         expect(result.selectedCard?.card).toBe("another card");
       });
     });
     describe("answerNo", () => {
       it("should select a card", () => {
-        const result = gameReducer(getState(), answerNo());
+        const result = new Game()
+          .answerNo(
+            createGameState(
+              createGameDefinition({
+                cards: [createCard({ card: "another card" })],
+              })
+            )
+          )
+          .retrieve();
         expect(result.selectedCard?.card).toBe("another card");
       });
     });
@@ -44,7 +61,7 @@ describe("gameSlice", () => {
       it("should enter error state if validation fails", () => {
         const result = gameReducer(
           {} as GameState,
-          initializeGame.fulfilled(getState([]).definition, "", "")
+          initializeGame.fulfilled(createGameDefinition({ cards: [] }), "", "")
         );
         expect(result.loading).toBe(Loading.Error);
       });
@@ -53,7 +70,7 @@ describe("gameSlice", () => {
           {
             phase: GamePhase.STARTED,
           } as GameState,
-          initializeGame.fulfilled(getState().definition, "", "")
+          initializeGame.fulfilled(createGameState().definition, "", "")
         );
         expect(result.phase).toBe(GamePhase.STARTED);
       });
@@ -62,36 +79,33 @@ describe("gameSlice", () => {
 
   describe("conditions", () => {
     it("can step through conditions", () => {
-      const card1 = {
+      const card1 = createCard({
         conditions: "dragon_killed==false",
         card: "Kill the dragon?",
         yes_custom: "dragon_killed=true",
-        weight: 1,
-      } as Card;
+      });
 
-      const card2 = {
+      const card2 = createCard({
         conditions: "dragon_killed==true",
         card: "Have a feast?",
-        weight: 1,
-      } as Card;
+      });
 
-      const gameState = {
-        definition: {
+      const gameState = createGameState(
+        createGameDefinition({
           cards: [card1, card2],
           deathMessage: "You died",
           assetsUrl: "test",
           stats: [{ value: 0, icon: "icon" }],
-        },
-        flags: {},
-      } as GameState;
+        })
+      );
 
-      const turn1 = gameReducer(gameState, startGame());
+      const turn1 = new Game().startGame(gameState).retrieve();
       expect(turn1.selectedCard?.card).toBe("Kill the dragon?");
 
-      const turn2 = gameReducer(turn1, answerNo());
+      const turn2 = new Game().answerNo({ ...gameState, ...turn1 }).retrieve();
       expect(turn2.selectedCard?.card).toBe("Kill the dragon?");
 
-      const turn3 = gameReducer(turn2, answerYes());
+      const turn3 = new Game().answerYes({ ...gameState, ...turn1 }).retrieve();
       expect(turn3.selectedCard?.card).toBe("Have a feast?");
     });
   });

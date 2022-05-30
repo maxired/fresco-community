@@ -1,7 +1,7 @@
 import { getSdk } from "../../sdk";
+import { GAME_TABLE } from "../game/Game";
 
 export const HOST_KEY = "host";
-export const GAME_TABLE = "game";
 const DEBUG = false;
 export const determineHost = ({
   mounted,

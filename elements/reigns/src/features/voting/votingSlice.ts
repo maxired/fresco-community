@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getSdk } from "../../sdk";
-import { GAME_TABLE } from "../host/determineHost";
+import { GAME_TABLE } from "../game/Game";
 
 type VotingState = {
   answer: Answer | null;

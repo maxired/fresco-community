@@ -1,46 +1,13 @@
 import { GamePhase } from "../../constants";
-import { selectAnswer, setFlags } from "./selectAnswer";
-import { Card, GameDefinition, PersistedGameState } from "./types";
-
-const createCard = (): Card => ({
-  card: "my card",
-  bearer: "some text",
-  weight: 0,
-  answer_yes: "Yes!",
-  yes_stat1: 0,
-  yes_stat2: 0,
-  yes_stat3: 0,
-  yes_stat4: 0,
-  yes_custom: "",
-  answer_no: "No!",
-  no_stat1: 0,
-  no_stat2: 0,
-  no_stat3: 0,
-  no_stat4: 0,
-  no_custom: "",
-  conditions: "",
-});
-
-const createGameDefinition = (): GameDefinition => ({
-  cards: [createCard()],
-  stats: [
-    {
-      icon: "some icon",
-      value: 5,
-    },
-  ],
-  assetsUrl: "whatever",
-  deathMessage: "You died",
-});
-
-const createGameState = (): PersistedGameState => ({
-  round: 0,
-  flags: {},
-  phase: GamePhase.STARTED,
-  selectedCard: {},
-});
+import { Game } from "./Game";
+import { mockSdk } from "./mocks";
+import { createCard, createGameState } from "./objectMother";
+import { setFlags } from "./selectAnswer";
 
 describe("selectAnswer", () => {
+  beforeEach(() => {
+    mockSdk();
+  });
   describe("setFlags", () => {
     it("should set multiple flags", () => {
       const flags = setFlags({}, [
@@ -58,5 +25,54 @@ describe("selectAnswer", () => {
       expect(flags.chapter3).toBe("true");
     });
   });
-  it("should increment round", () => {});
+  it("should increment round at start", () => {
+    const result = new Game()
+      .startGame(createGameState(undefined, { round: 1 }))
+      .retrieve();
+    expect(result.round).toBe(2);
+  });
+  it("should increment round on yes", () => {
+    const result = new Game()
+      .answerYes(createGameState(undefined, { round: 1 }))
+      .retrieve();
+    expect(result.round).toBe(2);
+  });
+  it("should increment round on no", () => {
+    const result = new Game()
+      .answerNo(createGameState(undefined, { round: 1 }))
+      .retrieve();
+    expect(result.round).toBe(2);
+  });
+  it("should end game if a card reduces a stat to zero", () => {
+    const result = new Game()
+      .answerYes(
+        createGameState(undefined, {
+          selectedCard: createCard({
+            yes_stat1: -1,
+          }),
+          stats: [{ value: 1, icon: "whatever" }],
+          phase: GamePhase.STARTED,
+        })
+      )
+      .retrieve();
+    expect(result.phase).toBe(GamePhase.ENDED);
+  });
+  it("should not end game if a stat is already zero and not updated by a card", () => {
+    const result = new Game()
+      .answerYes(
+        createGameState(undefined, {
+          selectedCard: createCard({
+            yes_stat1: -1,
+            yes_stat2: 0,
+          }),
+          stats: [
+            { value: 4, icon: "whatever" },
+            { value: 0, icon: "whatever" },
+          ],
+          phase: GamePhase.STARTED,
+        })
+      )
+      .retrieve();
+    expect(result.phase).toBe(GamePhase.STARTED);
+  });
 });
