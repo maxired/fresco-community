@@ -18,3 +18,7 @@ jobs:
       - name: Test reigns
         working-directory: ./elements/reigns
         run: npm run test
+
+      - name: Typecheck reigns
+        working-directory: ./elements/reigns
+        run: npm run check:types

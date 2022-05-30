@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GamePhase } from "../../constants";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GamePhase, Loading } from "../../constants";
 import { selectNextCard } from "./selectNextCard";
-import { CardFlag, GameFlags, GameState, Stat } from "./types";
+import { Card, CardFlag, GameFlags, GameState, Stat } from "./types";
 import { getFlags, validateGameDefinition } from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
@@ -38,7 +38,8 @@ function setValue(statUpdate: number, stat: Stat, state: GameState) {
 }
 
 export const initialState: GameState = {
-  phase: GamePhase.LOADING,
+  loading: Loading.InProgress,
+  phase: GamePhase.NOT_STARTED,
   selectedCard: null,
   stats: [],
   flags: {},
@@ -50,7 +51,15 @@ export const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    updateGame: (state, action) => {
+    updateGame: (
+      state,
+      action: PayloadAction<{
+        phase: GamePhase;
+        selectedCard: Card | null;
+        gameUrl: string;
+        stats: Stat[];
+      }>
+    ) => {
       state.phase = action.payload.phase;
       state.selectedCard = action.payload.selectedCard;
       state.stats = action.payload.stats;
@@ -93,25 +102,23 @@ export const gameSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(initializeGame.pending, (state, action) => {
-        state.phase = GamePhase.LOADING;
+        state.loading = Loading.InProgress;
         console.log("GAME", "loading");
       })
       .addCase(initializeGame.fulfilled, (state, action) => {
-        if (state.phase === GamePhase.LOADING) {
-          state.phase = GamePhase.NOT_STARTED;
-        }
+        state.loading = Loading.Ended;
 
         try {
           state.definition = validateGameDefinition(action.payload);
         } catch (e) {
           console.error(e);
-          state.phase = GamePhase.ERROR;
+          state.loading = Loading.Error;
         }
 
         console.log("GAME", "action.payload", action.payload);
       })
       .addCase(initializeGame.rejected, (state, action) => {
-        state.phase = GamePhase.ERROR;
+        state.loading = Loading.Error;
         console.log("GAME", "failed", action);
       });
   },

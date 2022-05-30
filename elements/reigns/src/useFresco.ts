@@ -1,28 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useStore } from "react-redux";
 import { updateGame } from "./features/game/gameSlice";
 import { GamePhase } from "./constants";
-import { AppState } from "./features/game/types";
+import { PersistedGameState, PersistedState } from "./features/game/types";
+import { getSdk } from "./sdk";
+import { updateHost } from "./features/host/hostSlice";
+import { AppState } from "./store";
 
 export const useFresco = function () {
   const dispatch = useDispatch();
+  const [sdkLoaded, setSdkLoaded] = useState(false);
 
   useEffect(() => {
-    fresco.onReady(function () {
-      fresco.onStateChanged(function () {
-        const state = fresco.element.state;
-        console.log("onStateChanged", state);
+    const sdk = getSdk();
+    sdk.onReady(function () {
+      sdk.onStateChanged(function () {
+        if (!sdkLoaded) setSdkLoaded(true);
+        const state: PersistedState = sdk.element.state;
         dispatch(updateGame(state));
+        dispatch(updateHost());
       });
 
       const defaultState = {
         selectedCard: null,
-        phase: GamePhase.LOADING,
+        phase: GamePhase.NOT_STARTED,
         stats: [],
         gameUrl: "games/gdpr.json",
       };
 
-      fresco.initialize(defaultState, {
+      sdk.initialize(defaultState, {
         title: "Reigns",
         toolbarButtons: [
           {
@@ -39,26 +45,29 @@ export const useFresco = function () {
   const updateFrescoState = () => {
     const state = store.getState();
     console.log("updateFrescoGameState", state);
-    fresco.setState({
+    const toPersist: PersistedGameState = {
       phase: state.game.phase,
       selectedCard: state.game.selectedCard,
       stats: state.game.stats,
-    });
+    };
+    getSdk().setState(toPersist);
   };
 
-  const teleport = (
-    target: string,
-    targetPrefix = `${fresco.element.appearance.NAME}-`
-  ) =>
-    fresco.send({
+  const teleport = (target: string, targetPrefix?: string) => {
+    const sdk = getSdk();
+    const defaultTargetPrefix = `${sdk.element.appearance.NAME}-`;
+    sdk.send({
       type: "extension/out/redux",
       payload: {
         action: {
           type: "TELEPORT",
-          payload: { anchorName: `${targetPrefix}${target}` },
+          payload: {
+            anchorName: `${targetPrefix ?? defaultTargetPrefix}${target}`,
+          },
         },
       },
     });
+  };
 
-  return { updateFrescoState, teleport };
+  return { updateFrescoState, teleport, sdkLoaded };
 };

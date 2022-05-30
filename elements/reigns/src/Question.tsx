@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { AppState, Card } from "./features/game/types";
+import { Card } from "./features/game/types";
+import { AppState } from "./store";
 
 export const Question = ({ card }: { card: Card | null }) => {
   const assetsUrl = useSelector(

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "./features/game/types";
+import { AppState } from "./store";
 
 export const Meter = ({ src, percent }: { src: string; percent: number }) => {
   const assetsUrl = useSelector(
