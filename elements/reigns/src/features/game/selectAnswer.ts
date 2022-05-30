@@ -29,15 +29,13 @@ export const selectAnswer = (
   const stats = cardStats.map((cardStatValue, ix) => {
     const currentStat = state.stats[ix];
     if (!cardStatValue) return currentStat;
-    return {
-      icon: currentStat.icon,
-      value: updateValue(cardStatValue, currentStat.value),
-    };
+    const newValue = updateValue(cardStatValue, currentStat);
+    return newValue;
   });
 
   const flags = setFlags(state.flags, getFlags(state.selectedCard!, cardFlag));
 
-  const phase = stats.filter((_, ix) => cardStats[ix]).some((p) => p.value <= 0)
+  const phase = stats.filter((_, ix) => cardStats[ix]).some((v) => v <= 0)
     ? GamePhase.ENDED
     : GamePhase.STARTED;
 

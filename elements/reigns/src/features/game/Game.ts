@@ -25,9 +25,9 @@ export class Game {
       phase: GamePhase.STARTED,
       selectedCard: selectNextCard(state.definition, state.flags),
       stats: state.definition
-        ? state.definition.stats.map((stat: Stat) => ({ ...stat }))
+        ? state.definition.stats.map(({ value }) => value)
         : [],
-      round: ++state.round,
+      round: state.round + 1,
       flags: {},
     });
     return this;

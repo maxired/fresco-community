@@ -84,14 +84,14 @@ export default function App() {
     );
   }
 
-  if (!selectedCard) {
+  if (!selectedCard || !gameDefinition) {
     return null;
   }
 
   return (
     <>
       <div>The host is {host?.name}</div>
-      <Meters stats={currentStats} />
+      <Meters definition={gameDefinition} stats={currentStats} />
       <Question card={selectedCard} />
       <div className="answers">
         <NoAnswer text={selectedCard.answer_no || "No"} />

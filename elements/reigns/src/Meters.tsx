@@ -1,12 +1,17 @@
 import { Meter } from "./Meter";
-import React from "react";
-import { Stat } from "./features/game/types";
+import { GameDefinition } from "./features/game/types";
 
-export const Meters = ({ stats }: { stats: Stat[] }) => {
+export const Meters = ({
+  definition,
+  stats,
+}: {
+  definition: GameDefinition;
+  stats: number[];
+}) => {
   return (
     <div className="block meters">
-      {stats.map((stat) => (
-        <Meter key={stat.icon} src={stat.icon} percent={stat.value} />
+      {definition.stats.map((stat, ix) => (
+        <Meter key={stat.icon} src={stat.icon} percent={stats[ix]} />
       ))}
     </div>
   );

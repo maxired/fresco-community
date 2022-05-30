@@ -48,7 +48,7 @@ export type Configuration = {
 export type PersistedGameState = {
   phase: GamePhase;
   selectedCard: Card | null;
-  stats: Stat[];
+  stats: number[];
   round: number;
   flags: GameFlags;
 };

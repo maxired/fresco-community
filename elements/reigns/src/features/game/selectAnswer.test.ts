@@ -50,7 +50,7 @@ describe("selectAnswer", () => {
           selectedCard: createCard({
             yes_stat1: -1,
           }),
-          stats: [{ value: 1, icon: "whatever" }],
+          stats: [1],
           phase: GamePhase.STARTED,
         })
       )
@@ -65,10 +65,7 @@ describe("selectAnswer", () => {
             yes_stat1: -1,
             yes_stat2: 0,
           }),
-          stats: [
-            { value: 4, icon: "whatever" },
-            { value: 0, icon: "whatever" },
-          ],
+          stats: [4, 0],
           phase: GamePhase.STARTED,
         })
       )
