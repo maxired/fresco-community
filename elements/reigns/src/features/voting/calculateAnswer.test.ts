@@ -21,7 +21,7 @@ describe("calculateAnswer", () => {
   });
   it("should return nothing if no one has answered", () => {
     const result = calculateAnswer();
-    expect(result.answer).toBeUndefined();
+    expect(result.answer).toBeNull();
     expect(result.everyoneVoted).toBe(false);
   });
   it("should choose answer if > 50% votes", () => {
@@ -34,7 +34,7 @@ describe("calculateAnswer", () => {
   it("should not choose answer if < 50% votes", () => {
     persistParticipantVote(getSdk().localParticipant.id, "Yes");
     const result = calculateAnswer();
-    expect(result.answer).toBeUndefined();
+    expect(result.answer).toBeNull();
     expect(result.everyoneVoted).toBe(false);
   });
   it("should choose an answer once everyone has voted", () => {
@@ -61,7 +61,7 @@ describe("calculateAnswer", () => {
     persistParticipantVote(getSdk().localParticipant.id, "Yes");
     persistParticipantVote("remote1", "No");
     const result = calculateAnswer();
-    expect(result.answer).toBeUndefined();
+    expect(result.answer).toBeNull();
     expect(result.everyoneVoted).toBe(true);
   });
 });

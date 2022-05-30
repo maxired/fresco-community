@@ -56,6 +56,6 @@ export const persistParticipantVote = (
   sdk.storage.realtime.set(
     PARTICIPANT_VOTE_TABLE,
     participantId,
-    answer ?? undefined
+    answer ?? null
   );
 };

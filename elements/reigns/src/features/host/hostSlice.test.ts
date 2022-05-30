@@ -1,4 +1,4 @@
-import { frescoUpdate, reducer } from "./hostSlice";
+import { updateHost, reducer } from "./hostSlice";
 import { IS_MOUNTED_TABLE } from "./persistIsMounted";
 import * as mounted from "./persistIsMounted";
 import { mockSdk } from "../game/mocks";
@@ -12,7 +12,7 @@ describe("hostSlice", () => {
       const spy = jest.spyOn(mounted, "persistIsMounted");
       reducer(
         { currentHost: null, isMounted: true, frescoUpdateCount: 0 },
-        frescoUpdate()
+        updateHost()
       );
       expect(spy).toBeCalled();
     });

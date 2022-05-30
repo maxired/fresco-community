@@ -2,41 +2,39 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getSdk } from "../../sdk";
 import { GAME_TABLE } from "../game/Game";
 
-type VotingState = {
+export type VotingState = {
   answer: Answer | null;
   countdown: number | null;
 };
 
-export const ANSWER_KEY = "answer-countdown";
+export const ROUND_RESOLUTION_KEY = "round-resolution";
 
 export type Answer = "Yes" | "No";
 
-export type AnswerCountdown = {
-  answer: Answer;
-  countdown: number;
+export const getLatestVote = () => {
+  const result = (getSdk().storage.realtime.get(
+    GAME_TABLE,
+    ROUND_RESOLUTION_KEY
+  ) ?? {}) as VotingState;
+  return result;
 };
 
 export const votingSlice = createSlice({
   name: "voting",
   initialState: {
-    answer: null,
     countdown: null,
+    answer: null,
   },
   reducers: {
     updateVote: (state: VotingState) => {
-      const sdk = getSdk();
-      const answerCountdown = sdk.storage.realtime.get(
-        GAME_TABLE,
-        ANSWER_KEY
-      ) as AnswerCountdown;
-      if (answerCountdown) {
-        state.answer = answerCountdown.answer;
-        state.countdown = answerCountdown.countdown;
+      const result = getLatestVote();
+      if (result) {
+        state.answer = result.answer;
+        state.countdown = result.countdown;
       } else {
         state.answer = null;
         state.countdown = null;
       }
-      console.log("Current vote", state.answer, state.countdown);
     },
   },
 });

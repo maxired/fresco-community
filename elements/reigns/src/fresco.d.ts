@@ -26,7 +26,12 @@ type ProtectedStorageItem = {
   value: ProtectedStorageValueType;
 };
 
-type RealtimeValue = Record<string, unknown> | string | boolean | undefined;
+type RealtimeValue =
+  | Record<string, unknown>
+  | string
+  | boolean
+  | undefined
+  | null;
 
 type RealtimeKeyValues = { [key: string]: RealtimeValue };
 

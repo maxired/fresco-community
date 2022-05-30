@@ -20,7 +20,7 @@ const hostSlice = createSlice({
   name: "host",
   initialState,
   reducers: {
-    frescoUpdate: (state) => {
+    updateHost: (state) => {
       const sdk = getSdk();
       const hostParams: Parameters<typeof determineHost>[0] = {
         remoteParticipants: sdk.remoteParticipants,
@@ -56,5 +56,5 @@ const hostSlice = createSlice({
 
 export const {
   reducer,
-  actions: { frescoUpdate, setMounted },
+  actions: { updateHost, setMounted },
 } = hostSlice;

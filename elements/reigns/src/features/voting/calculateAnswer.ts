@@ -34,7 +34,7 @@ export const calculateAnswer = (): CollatedVote => {
     const moreThanHalfAnswered =
       results.answerNo + results.answerYes > results.waitingForAnswer;
     if (results.answerNo === results.answerYes || !moreThanHalfAnswered) {
-      return { answer: undefined, everyoneVoted };
+      return { answer: null, everyoneVoted };
     }
     return {
       answer: results.answerNo > results.answerYes ? "No" : "Yes",
@@ -42,10 +42,10 @@ export const calculateAnswer = (): CollatedVote => {
     };
   }
 
-  return { answer: undefined, everyoneVoted };
+  return { answer: null, everyoneVoted };
 };
 type CollatedVote = {
-  answer: Answer | undefined;
+  answer: Answer | null;
   everyoneVoted: boolean;
 };
 type Vote = Participant & { answer: Answer | null };

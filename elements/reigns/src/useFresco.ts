@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { GamePhase } from "./constants";
-import { frescoUpdate } from "./features/host/hostSlice";
+import { updateHost } from "./features/host/hostSlice";
 import { getSdk } from "./sdk";
 
 export const useFresco = function (onUpdate: () => void) {
@@ -14,7 +14,7 @@ export const useFresco = function (onUpdate: () => void) {
       sdk.onStateChanged(() => {
         if (!sdkLoaded) setSdkLoaded(true);
         onUpdate();
-        dispatch(frescoUpdate());
+        dispatch(updateHost());
       });
 
       const defaultState = {

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-export const useTimeout = (
+export const useInterval = (
   action: () => void,
   delayInMilliseconds: number,
   deps: any[] = []
 ) => {
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       action();
     }, delayInMilliseconds);
     return () => clearTimeout(timer);

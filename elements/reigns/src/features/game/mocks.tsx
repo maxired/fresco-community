@@ -34,10 +34,12 @@ export const mockSdk = (
           return data[tableName] && data[tableName][key];
         },
         all: (tableName: string) => data[tableName],
+        clear: (tableName: string) => {
+          data[tableName] = {};
+        },
         data,
       },
     },
     ...sdkOverride,
   } as unknown as IFrescoSdk);
 };
-

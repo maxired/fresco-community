@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { updateConfig, updateGame } from "../game/gameSlice";
-import { frescoUpdate } from "../host/hostSlice";
+import { updateHost } from "../host/hostSlice";
 import { updateVote } from "./votingSlice";
 import { persistIsInsideElement } from "./persistIsInsideElement";
 import { getSdk } from "../../sdk";
@@ -32,7 +32,7 @@ export const useOnFrescoStateUpdate = () => {
     if (sdk.element.state) {
       dispatch(updateConfig({ gameUrl: sdk.element.state.gameUrl }));
     }
-    dispatch(frescoUpdate());
+    dispatch(updateHost());
     dispatch(updateVote());
     persistIsInsideElement(prevLocalParticipantRef);
   };

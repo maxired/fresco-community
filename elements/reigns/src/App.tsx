@@ -28,6 +28,8 @@ export default function App() {
     (state: AppState) => state.game.definition
   );
 
+  const countdown = useSelector((state: AppState) => state.voting.countdown);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,7 +47,7 @@ export default function App() {
 
   useVoteListener(phase, teleport);
 
-  const answerCountdown = useCollateVotes(sdkLoaded);
+  useCollateVotes(sdkLoaded);
 
   const store = useStore<AppState>();
 
@@ -96,8 +98,8 @@ export default function App() {
       <div className="answers">
         <NoAnswer text={selectedCard.answer_no || "No"} />
         <div className="answer answer--neutral">
-          {answerCountdown && (answerCountdown.countdown ?? 0) > 0 && (
-            <div className="countdown">{answerCountdown.countdown}...</div>
+          {(countdown ?? 0) > 0 && (
+            <div className="countdown">{countdown}...</div>
           )}
         </div>
         <YesAnswer text={selectedCard.answer_yes || "Yes"} />
