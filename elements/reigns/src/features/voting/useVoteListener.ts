@@ -11,16 +11,6 @@ export const useVoteListener = (
   phase: GamePhase,
   teleport: (target: string, targetPrefix?: string) => void
 ) => {
-  const persistParticipantVote = (answer: Answer | null) => {
-    const sdk = getSdk();
-    console.warn("Setting vote to", answer);
-    sdk.storage.realtime.set(
-      PARTICIPANT_VOTE_TABLE,
-      sdk.localParticipant.id,
-      answer ?? undefined
-    );
-  };
-
   const round = useSelector((state: AppState) => state.game.round);
 
   useEffect(() => {
@@ -33,18 +23,18 @@ export const useVoteListener = (
       const sdk = getSdk();
       const yesListener = sdk.subscribeToGlobalEvent("custom.reign.yes", () => {
         console.log("vote yes");
-        persistParticipantVote("Yes");
+        persistParticipantVote(sdk.localParticipant.id, "Yes");
       });
 
       const noListener = sdk.subscribeToGlobalEvent("custom.reign.no", () => {
         console.log("vote no");
-        persistParticipantVote("No");
+        persistParticipantVote(sdk.localParticipant.id, "No");
       });
 
       const removeVoteListener = sdk.subscribeToGlobalEvent(
         "custom.reign.remove-vote",
         () => {
-          persistParticipantVote(null);
+          persistParticipantVote(sdk.localParticipant.id, null);
         }
       );
 
@@ -55,4 +45,17 @@ export const useVoteListener = (
       };
     }
   }, [phase]);
+};
+
+export const persistParticipantVote = (
+  participantId: string,
+  answer: Answer | null
+) => {
+  const sdk = getSdk();
+  console.warn("Setting vote to", answer);
+  sdk.storage.realtime.set(
+    PARTICIPANT_VOTE_TABLE,
+    participantId,
+    answer ?? undefined
+  );
 };

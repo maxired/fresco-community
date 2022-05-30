@@ -1,10 +1,14 @@
+import { AnyAction, Store } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
 import * as sdk from "../../sdk";
+import { AppState } from "../../store";
+import React from "react";
 
 export const mockSdk = (
   sdkOverride: Partial<IFrescoSdk> = {},
   realtimeOverride: RealtimeTables = {}
 ) => {
-  const realtime: RealtimeTables = {
+  const data: RealtimeTables = {
     ...realtimeOverride,
   };
   jest.spyOn(sdk, "getSdk").mockReturnValue({
@@ -20,18 +24,20 @@ export const mockSdk = (
             return;
           }
 
-          if (!realtime[tableName]) {
-            realtime[tableName] = {};
+          if (!data[tableName]) {
+            data[tableName] = {};
           }
 
-          realtime[tableName][key] = value;
+          data[tableName][key] = value;
         },
         get: (tableName: string, key: string) => {
-          return realtime[tableName] && realtime[tableName][key];
+          return data[tableName] && data[tableName][key];
         },
-        all: (tableName: string) => realtime[tableName],
+        all: (tableName: string) => data[tableName],
+        data,
       },
     },
     ...sdkOverride,
   } as unknown as IFrescoSdk);
 };
+

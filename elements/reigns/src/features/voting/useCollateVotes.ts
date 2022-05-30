@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSelector, useStore } from "react-redux";
-import { Answer, AnswerCountdown, ANSWER_KEY } from "./votingSlice";
+import { AnswerCountdown, ANSWER_KEY } from "./votingSlice";
 import { getSdk } from "../../sdk";
 import { AppState } from "../../store";
-import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
 import { useTimeout } from "./useTimeout";
 import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
 import { Game, GAME_TABLE } from "../game/Game";
+import { calculateAnswer } from "./calculateAnswer";
 
-const COUNTDOWN_SECONDS = 5;
+export const COUNTDOWN_SECONDS = 5;
 
 export const useCollateVotes = (isSdkLoaded: boolean) => {
   const answer = useSelector((state: AppState) => state.voting.answer);
@@ -35,16 +35,16 @@ export const useCollateVotes = (isSdkLoaded: boolean) => {
 
     const newAnswer = calculateAnswer();
 
-    if (!newAnswer) {
+    if (!newAnswer.answer) {
       if (answer) {
         // stop countdown
         persistAnswer(null);
       }
     } else {
       // start (or restart) countdown
-      if (!answer || answer != newAnswer) {
+      if (!answer || answer != newAnswer.answer) {
         persistAnswer({
-          answer: newAnswer,
+          answer: newAnswer.answer,
           countdown: COUNTDOWN_SECONDS,
         });
       }
@@ -91,62 +91,4 @@ export const useCollateVotes = (isSdkLoaded: boolean) => {
   );
 
   return waitForTeleport || !answer ? null : { answer, countdown };
-};
-
-const calculateAnswer = (): Answer | undefined => {
-  const votes = getParticipantVotes();
-
-  console.log(
-    `Votes\n${votes.map((vote) => `${vote.name}: ${vote.answer}`).join("\n")}`
-  );
-
-  const results = votes.reduce(
-    (memo, participant) => {
-      if (participant.answer === "Yes") {
-        memo.answerYes++;
-      } else if (participant.answer === "No") {
-        memo.answerNo++;
-      } else {
-        memo.waitingForAnswer++;
-      }
-
-      return memo;
-    },
-    {
-      answerNo: 0,
-      answerYes: 0,
-      waitingForAnswer: 0,
-    }
-  );
-
-  if (results.waitingForAnswer === 0) {
-    if (results.answerNo > results.answerYes && results.answerNo > 0) {
-      return "No";
-    } else if (results.answerYes > results.answerNo && results.answerYes > 0) {
-      return "Yes";
-    }
-  }
-};
-
-type Vote = Participant & { answer: Answer | null };
-
-const getParticipantVotes = (): Vote[] => {
-  const sdk = getSdk();
-  const votes = [
-    // include only connected players
-    { id: sdk.localParticipant.id, name: sdk.localParticipant.name },
-    ...sdk.remoteParticipants,
-  ]
-    // include only players inside the extension
-    .filter((p) => sdk.storage.realtime.get(PARTICIPANT_INSIDE_TABLE, p.id))
-    .map((participant) => {
-      return {
-        ...participant,
-        answer: sdk.storage.realtime.get(
-          PARTICIPANT_VOTE_TABLE,
-          participant.id
-        ) as Answer | null,
-      };
-    });
-  return votes;
 };
