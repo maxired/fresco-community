@@ -7,11 +7,7 @@ export const initializeGame = createAsyncThunk(
   "game/initializeGame",
   async (gameUrl: string) => {
     const response = await fetch(gameUrl);
-    console.log("GAME", "response", response);
-
     const json = await response.json();
-    console.log("GAME", "json", json);
-
     return json;
   }
 );

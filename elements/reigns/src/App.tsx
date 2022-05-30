@@ -96,7 +96,7 @@ export default function App() {
       <div className="answers">
         <NoAnswer text={selectedCard.answer_no || "No"} />
         <div className="answer answer--neutral">
-          {answerCountdown && (
+          {answerCountdown && (answerCountdown.countdown ?? 0) > 0 && (
             <div className="countdown">{answerCountdown.countdown}...</div>
           )}
         </div>

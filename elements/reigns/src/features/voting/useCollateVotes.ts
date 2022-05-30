@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
+import { useSelector, useStore } from "react-redux";
 import { Answer, AnswerCountdown, ANSWER_KEY } from "./votingSlice";
 import { getSdk } from "../../sdk";
 import { AppState } from "../../store";
@@ -20,7 +20,6 @@ export const useCollateVotes = (isSdkLoaded: boolean) => {
   };
 
   const [waitForTeleport, setWaitForTeleport] = useState(false);
-  const dispatch = useDispatch();
 
   const frescoUpdate = useSelector(
     (state: AppState) => state.host.frescoUpdateCount
@@ -54,19 +53,13 @@ export const useCollateVotes = (isSdkLoaded: boolean) => {
 
   useTimeout(
     () => {
-      console.log(
-        "answerCountdown",
-        JSON.stringify({ answer, countdown }),
-        "waitForTeleport",
-        waitForTeleport
-      );
+      console.log(JSON.stringify({ answer, countdown, waitForTeleport }));
       if (!isHost) return;
       if (answer && countdown !== null) {
         const newCount = countdown - 1;
+        // let the count go to -1 to allow for teleport time across clients
         if (newCount < -1) {
           setWaitForTeleport(false);
-
-          console.warn("finished teleport");
           return;
         }
 
@@ -82,14 +75,11 @@ export const useCollateVotes = (isSdkLoaded: boolean) => {
             default:
               throw new Error("Unknown answer");
           }
-          console.warn("starting teleport");
           persistAnswer(null);
-          // TODO persist? updateFrescoState();
           setWaitForTeleport(true);
           getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);
         }
 
-        console.warn("countdown", newCount);
         persistAnswer({
           answer,
           countdown: newCount,
