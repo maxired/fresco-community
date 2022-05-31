@@ -14,7 +14,7 @@ import { COUNTDOWN_SECONDS, resolveRound } from "./resolveRound";
 import { createGameState } from "../game/objectMother";
 import { persistAnswer } from "./persistAnswer";
 
-describe("useCollateViews", () => {
+describe("useCollateVotes", () => {
   let sdk: IFrescoSdk;
   beforeEach(() => {
     mockSdk({
