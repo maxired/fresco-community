@@ -9,7 +9,7 @@ export const useInterval = (
     const timer = setInterval(() => {
       action();
     }, delayInMilliseconds);
-    return () => clearTimeout(timer);
+    return () => clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delayInMilliseconds, action, ...deps]);
 };
