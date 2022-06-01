@@ -51,13 +51,13 @@ export default function App() {
 
   const store = useStore<AppState>();
 
+  const isHost = host && getSdk().localParticipant.id === host?.id;
+
   const doRestartGame = () => {
     if (isHost) {
       new Game().startGame(store.getState().game);
     }
   };
-
-  const isHost = host && getSdk().localParticipant.id === host?.id;
 
   if (loading === Loading.InProgress) {
     return <div className="death">Loading...</div>;
