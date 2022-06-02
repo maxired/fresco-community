@@ -1,5 +1,5 @@
-import { determineHost, GAME_TABLE, HOST_KEY } from "./determineHost";
-import { getSdk } from "../../sdk";
+import { determineHost, HOST_KEY } from "./determineHost";
+import { GAME_TABLE } from "../game/Game";
 
 const mockRealtime = {
   set: jest.fn(),

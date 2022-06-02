@@ -1,4 +1,4 @@
-import { Card, GameFlags, GameState } from "./types";
+import { Card, GameDefinition, GameFlags, GameState } from "./types";
 import { getConditions } from "./validateGameDefinition";
 
 export const cardsDistributedByWeight = (cards: Card[]) =>
@@ -17,19 +17,25 @@ export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
     });
   });
 
-const getAllValidCards = (state: GameState) => {
-  if (!state.definition) {
+const getAllValidCards = (
+  definition: GameDefinition | null,
+  flags: GameFlags
+) => {
+  if (!definition) {
     return [];
   }
-  const restrictedByFlags = cardsRestrictedByFlags(
-    state.definition.cards,
-    state.flags
-  );
+  const restrictedByFlags = cardsRestrictedByFlags(definition.cards, flags);
   return cardsDistributedByWeight(restrictedByFlags);
 };
 
-export const selectNextCard = (state: GameState) => {
-  const validCards = getAllValidCards(state);
+export const selectNextCard = (
+  definition: GameDefinition | null,
+  flags: GameFlags
+) => {
+  const validCards = getAllValidCards(definition, flags);
   const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
-  return randomCard;
+
+  return {
+    ...randomCard,
+  };
 };

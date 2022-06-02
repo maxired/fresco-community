@@ -1,14 +1,8 @@
 import React from "react";
 
-export const NoAnswer = ({
-  text,
-  onClick,
-}: {
-  text: string;
-  onClick: () => void;
-}) => {
+export const NoAnswer = ({ text }: { text: string }) => {
   return (
-    <div className="answer answer--no" onClick={onClick}>
+    <div className="answer answer--no">
       <div className="answer__zone"></div>
       <div className="answer__text">{text}</div>
     </div>

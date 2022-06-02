@@ -1,16 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { determineHost, GAME_TABLE, HOST_KEY } from "./determineHost";
+import { determineHost, HOST_KEY } from "./determineHost";
 import { getSdk } from "../../sdk";
 import { IS_MOUNTED_TABLE, persistIsMounted } from "./persistIsMounted";
+import { GAME_TABLE } from "../game/Game";
 
 export type HostState = {
   currentHost: Participant | null;
   isMounted: boolean;
+  frescoUpdateCount: number;
 };
 
 const initialState: HostState = {
   currentHost: null,
   isMounted: true,
+  frescoUpdateCount: 0,
 };
 
 const hostSlice = createSlice({
@@ -30,6 +33,7 @@ const hostSlice = createSlice({
       };
 
       state.currentHost = determineHost(hostParams);
+      state.frescoUpdateCount = state.frescoUpdateCount + 1;
 
       if (
         state.isMounted &&
