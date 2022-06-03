@@ -9,6 +9,7 @@ export const useFresco = function (onUpdate: () => void) {
   const [sdkLoaded, setSdkLoaded] = useState(false);
 
   useEffect(() => {
+    if (sdkLoaded) return;
     getSdk().onReady(function () {
       if (!sdkLoaded) setSdkLoaded(true);
       const sdk = getSdk();
