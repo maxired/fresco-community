@@ -2,12 +2,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setMounted } from "./hostSlice";
 
-export const usePersistIsMounted = (sdkLoaded: boolean) => {
+export const usePersistIsMounted = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!sdkLoaded) return;
-
     dispatch(setMounted(true));
 
     const onVisibilityChange = () => {
@@ -24,5 +22,5 @@ export const usePersistIsMounted = (sdkLoaded: boolean) => {
       dispatch(setMounted(false));
       document.removeEventListener("visibilitychange", onVisibilityChange);
     };
-  }, [sdkLoaded]);
+  }, []);
 };

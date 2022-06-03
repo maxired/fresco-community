@@ -7,10 +7,25 @@ import { Answer } from "./votingSlice";
 
 export const PARTICIPANT_VOTE_TABLE = "participants-vote";
 
-export const useVoteListener = (
-  phase: GamePhase,
-  teleport: (target: string, targetPrefix?: string) => void
-) => {
+const teleport = (target: string, targetPrefix?: string) => {
+  const sdk = getSdk();
+  if (sdk.element.appearance) {
+    const defaultTargetPrefix = `${sdk.element.appearance.NAME}-`;
+    sdk.send({
+      type: "extension/out/redux",
+      payload: {
+        action: {
+          type: "TELEPORT",
+          payload: {
+            anchorName: `${targetPrefix ?? defaultTargetPrefix}${target}`,
+          },
+        },
+      },
+    });
+  }
+};
+
+export const useVoteListener = (phase: GamePhase) => {
   const round = useSelector((state: AppState) => state.game.round);
 
   useEffect(() => {
