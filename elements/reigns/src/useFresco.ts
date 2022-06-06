@@ -9,10 +9,11 @@ export const useFresco = function (onUpdate: () => void) {
   const [sdkLoaded, setSdkLoaded] = useState(false);
 
   useEffect(() => {
-    const sdk = getSdk();
-    sdk.onReady(function () {
+    if (sdkLoaded) return;
+    getSdk().onReady(function () {
+      if (!sdkLoaded) setSdkLoaded(true);
+      const sdk = getSdk();
       sdk.onStateChanged(() => {
-        if (!sdkLoaded) setSdkLoaded(true);
         onUpdate();
         dispatch(updateHost());
       });
@@ -35,25 +36,7 @@ export const useFresco = function (onUpdate: () => void) {
         ],
       });
     });
-  }, []);
+  }, [sdkLoaded]);
 
-  const teleport = (target: string, targetPrefix?: string) => {
-    const sdk = getSdk();
-    if (sdk.element.appearance) {
-      const defaultTargetPrefix = `${sdk.element.appearance.NAME}-`;
-      sdk.send({
-        type: "extension/out/redux",
-        payload: {
-          action: {
-            type: "TELEPORT",
-            payload: {
-              anchorName: `${targetPrefix ?? defaultTargetPrefix}${target}`,
-            },
-          },
-        },
-      });
-    }
-  };
-
-  return { teleport, sdkLoaded };
+  return { sdkLoaded };
 };

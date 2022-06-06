@@ -5,12 +5,11 @@ import { GamePhase } from "../../constants";
 import { resolveRound } from "./resolveRound";
 import { getIsHost } from "../host/persistence";
 
-export const useCollateVotes = (isSdkLoaded: boolean) => {
+export const useCollateVotes = () => {
   const store = useStore<AppState>();
 
   useInterval(
     () => {
-      if (!isSdkLoaded) return;
       const state = store.getState();
       const isHost = getIsHost(state.host);
       if (!isHost) return;
