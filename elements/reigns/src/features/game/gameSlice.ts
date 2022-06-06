@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GamePhase, Loading } from "../../constants";
+import { parseCardsFromCsv } from "./parseCardsFromCsv";
 import { Configuration, GameState, PersistedGameState } from "./types";
-import { validateGameDefinition } from "./validateGameDefinition";
+import {
+  validateCards,
+  validateGameDefinition,
+} from "./validateGameDefinition";
 
 export const initializeGame = createAsyncThunk(
   "game/initializeGame",
@@ -38,7 +42,19 @@ export const gameSlice = createSlice({
       state.phase = action.payload;
     },
     updateConfig: (state, action: PayloadAction<Configuration>) => {
-      state.gameUrl = action.payload.gameUrl;
+      try {
+        const cards = parseCardsFromCsv(action.payload.designerCardsJson);
+        if (cards) {
+          validateCards(cards);
+          state.designerCards = cards;
+        } else {
+          state.designerCards = undefined;
+        }
+        state.gameUrl = action.payload.gameUrl;
+      } catch (e) {
+        console.error(e);
+        state.loading = Loading.Error;
+      }
     },
   },
   extraReducers(builder) {

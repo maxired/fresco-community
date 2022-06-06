@@ -19,20 +19,25 @@ export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
 
 const getAllValidCards = (
   definition: GameDefinition | null,
-  flags: GameFlags
+  flags: GameFlags,
+  designerCards: Card[] | null = null
 ) => {
   if (!definition) {
     return [];
   }
-  const restrictedByFlags = cardsRestrictedByFlags(definition.cards, flags);
+  const restrictedByFlags = cardsRestrictedByFlags(
+    designerCards ?? definition.cards,
+    flags
+  );
   return cardsDistributedByWeight(restrictedByFlags);
 };
 
 export const selectNextCard = (
   definition: GameDefinition | null,
-  flags: GameFlags
+  flags: GameFlags,
+  designerCards: Card[] | undefined
 ) => {
-  const validCards = getAllValidCards(definition, flags);
+  const validCards = getAllValidCards(definition, flags, designerCards);
   const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
 
   return {

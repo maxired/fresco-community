@@ -43,6 +43,8 @@ export type GameFlags = { [key: string]: string };
 
 export type Configuration = {
   gameUrl: string;
+  designerCardsJson?: string;
+  designerCards?: Card[];
 };
 
 export type PersistedGameState = {

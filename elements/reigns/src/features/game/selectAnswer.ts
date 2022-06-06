@@ -41,7 +41,11 @@ export const selectAnswer = (
 
   const round = state.round + 1;
 
-  const selectedCard = selectNextCard(state.definition, flags);
+  const selectedCard = selectNextCard(
+    state.definition,
+    flags,
+    state.designerCards
+  );
 
   return {
     phase,

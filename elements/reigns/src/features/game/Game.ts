@@ -45,7 +45,11 @@ export class Game {
     this.clearVotes();
     this.persist({
       phase: GamePhase.STARTED,
-      selectedCard: selectNextCard(state.definition, state.flags),
+      selectedCard: selectNextCard(
+        state.definition,
+        state.flags,
+        state.designerCards
+      ),
       stats: state.definition
         ? state.definition.stats.map(({ value }) => value)
         : [],

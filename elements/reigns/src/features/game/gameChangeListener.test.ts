@@ -6,6 +6,8 @@ import { mockSdk } from "./mocks";
 import { createGameState } from "./objectMother";
 import { setHost } from "../host/persistence";
 import { HostState } from "../host/hostSlice";
+import { Card, GameState } from "./types";
+import { Game } from "./Game";
 
 describe("gameChangeListener", () => {
   beforeEach(() => {
@@ -14,6 +16,7 @@ describe("gameChangeListener", () => {
         ["some-participant"]: "Yes",
       },
     });
+    jest.clearAllMocks();
   });
   describe("detectGameChange", () => {
     it("should not clear votes not host", () => {
@@ -29,7 +32,9 @@ describe("gameChangeListener", () => {
             currentHost: otherHost,
           } as HostState,
         } as AppState,
-        "new-url"
+        {
+          game: { gameUrl: "new-url" } as GameState,
+        } as AppState
       );
 
       const votes = Object.keys(
@@ -48,7 +53,9 @@ describe("gameChangeListener", () => {
             currentHost: localParticipant,
           } as HostState,
         } as AppState,
-        "new-url"
+        {
+          game: { gameUrl: "new-url" } as GameState,
+        } as AppState
       );
 
       const votes = Object.keys(
@@ -68,13 +75,90 @@ describe("gameChangeListener", () => {
             currentHost: localParticipant,
           } as HostState,
         } as AppState,
-        "new-url"
+        {
+          game: { gameUrl: "new-url" } as GameState,
+        } as AppState
       );
 
       const votes = Object.keys(
         getSdk().storage.realtime.all(PARTICIPANT_VOTE_TABLE)
       );
       expect(votes).toHaveLength(0);
+    });
+
+    it("should change if designer cards updates from empty", () => {
+      const localParticipant = getSdk().localParticipant as Participant;
+      setHost(localParticipant);
+      const gameChangedSpy = jest.spyOn(Game.prototype, "changeGame");
+
+      detectGameChange(
+        {
+          game: createGameState(undefined, { gameUrl: "old-url" }),
+          host: {
+            currentHost: localParticipant,
+          } as HostState,
+        } as AppState,
+        {
+          game: {
+            gameUrl: "new-url",
+            designerCards: [{ card: "A new card" }],
+          } as GameState,
+        } as AppState
+      );
+
+      expect(gameChangedSpy).toHaveBeenCalled();
+    });
+
+    it("should change if designer cards update", () => {
+      const localParticipant = getSdk().localParticipant as Participant;
+      setHost(localParticipant);
+      const gameChangedSpy = jest.spyOn(Game.prototype, "changeGame");
+
+      detectGameChange(
+        {
+          game: createGameState(undefined, {
+            gameUrl: "old-url",
+            designerCards: [{ card: "A different card" } as Card],
+          }),
+          host: {
+            currentHost: localParticipant,
+          } as HostState,
+        } as AppState,
+        {
+          game: {
+            gameUrl: "new-url",
+            designerCards: [{ card: "A new card" }],
+          } as GameState,
+        } as AppState
+      );
+
+      expect(gameChangedSpy).toHaveBeenCalled();
+    });
+
+    it("should not change if designer cards stays the same", () => {
+      const localParticipant = getSdk().localParticipant as Participant;
+      setHost(localParticipant);
+      const gameChangedSpy = jest.spyOn(Game.prototype, "changeGame");
+
+      detectGameChange(
+        {
+          game: createGameState(undefined, {
+            gameUrl: "same-url",
+            designerCards: [{ card: "The same card" } as Card],
+          }),
+          host: {
+            currentHost: localParticipant,
+          } as HostState,
+        } as AppState,
+        {
+          game: {
+            gameUrl: "same-url",
+            designerCards: [{ card: "The same card" }],
+          } as GameState,
+        } as AppState
+      );
+
+      expect(gameChangedSpy).not.toHaveBeenCalled();
     });
   });
 });
