@@ -1,6 +1,10 @@
+type ConfigurableProps = {
+  [key: string]: unknown;
+};
+
 interface IToolbarButton {
   title: string;
-  ui: { type: string };
+  ui: { type: string } & ConfigurableProps;
   property: string;
 }
 

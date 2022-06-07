@@ -33,7 +33,12 @@ export const useOnFrescoStateUpdate = () => {
     }
     const sdk = getSdk();
     if (sdk.element.state) {
-      dispatch(updateConfig({ gameUrl: sdk.element.state.gameUrl }));
+      dispatch(
+        updateConfig({
+          gameUrl: sdk.element.state.gameUrl,
+          designerCardsCsv: sdk.element.state.cards,
+        })
+      );
     }
     dispatch(updateHost());
     dispatch(updateVote());

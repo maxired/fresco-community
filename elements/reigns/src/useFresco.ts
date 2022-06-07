@@ -23,6 +23,7 @@ export const useFresco = function (onUpdate: () => void) {
         phase: GamePhase.NOT_STARTED,
         stats: [],
         gameUrl: "games/gdpr.json",
+        cards: null,
       };
 
       sdk.initialize(defaultState, {
@@ -32,6 +33,11 @@ export const useFresco = function (onUpdate: () => void) {
             title: "Game url",
             ui: { type: "string" },
             property: "gameUrl",
+          },
+          {
+            title: "Cards",
+            ui: { type: "string", multiLine: true },
+            property: "cards",
           },
         ],
       });

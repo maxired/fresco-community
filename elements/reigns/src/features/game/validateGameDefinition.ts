@@ -49,12 +49,12 @@ export const validateFlags = (
   cardNumber: number
 ) => {
   const allowedValues = ["true", "false"];
-  flags.forEach((flag, ix) => {
+  flags.forEach((flag) => {
     if (!allowedValues.includes(flag.value)) {
       throw new Error(
-        `Card ${
-          ix + 1
-        } has invalid ${field}, value must be ${allowedValues.join(" or ")}`
+        `Card ${cardNumber} has invalid ${field}, value must be ${allowedValues.join(
+          " or "
+        )}, but found ${flag.value}`
       );
     }
   });

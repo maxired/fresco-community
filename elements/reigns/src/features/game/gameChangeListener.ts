@@ -7,6 +7,7 @@ import { AppDispatch, AppState } from "../../store";
 import { updateConfig } from "./gameSlice";
 import { getIsHost } from "../host/persistence";
 import { Game } from "./Game";
+import { isEqual } from "lodash";
 
 export const gameChangeListenerMiddleware = createListenerMiddleware();
 
@@ -17,17 +18,20 @@ const startAppListening =
 startAppListening({
   actionCreator: updateConfig,
   effect: (action, listenerApi) => {
-    detectGameChange(listenerApi.getOriginalState(), action.payload.gameUrl);
+    detectGameChange(listenerApi.getOriginalState(), listenerApi.getState());
   },
 });
 
-export const detectGameChange = (state: AppState, gameUrl: string) => {
-  const isHost = getIsHost(state.host);
+export const detectGameChange = (previous: AppState, current: AppState) => {
+  const isHost = getIsHost(previous.host);
 
   if (!isHost) return;
-  if (!state.game.gameUrl) return;
+  if (!previous.game.gameUrl) return;
 
-  if (gameUrl !== state.game.gameUrl) {
+  if (
+    current.game.gameUrl !== previous.game.gameUrl ||
+    !isEqual(current.game.designerCards, previous.game.designerCards)
+  ) {
     new Game().changeGame();
   }
 };
