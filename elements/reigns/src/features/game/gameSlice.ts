@@ -43,7 +43,7 @@ export const gameSlice = createSlice({
     },
     updateConfig: (state, action: PayloadAction<Configuration>) => {
       try {
-        const cards = parseCardsFromCsv(action.payload.designerCardsJson);
+        const cards = parseCardsFromCsv(action.payload.designerCardsCsv);
         if (cards) {
           validateCards(cards);
           state.designerCards = cards;

@@ -36,7 +36,7 @@ export const useOnFrescoStateUpdate = () => {
       dispatch(
         updateConfig({
           gameUrl: sdk.element.state.gameUrl,
-          designerCardsJson: sdk.element.state.cards,
+          designerCardsCsv: sdk.element.state.cards,
         })
       );
     }
