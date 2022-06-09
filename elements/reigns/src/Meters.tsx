@@ -11,7 +11,12 @@ export const Meters = ({
   return (
     <div className="block meters">
       {definition.stats.map((stat, ix) => (
-        <Meter key={stat.icon} src={stat.icon} percent={stats[ix]} />
+        <Meter
+          key={stat.icon}
+          src={stat.icon}
+          percent={stats[ix]}
+          name={stat.name}
+        />
       ))}
     </div>
   );

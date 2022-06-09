@@ -3,6 +3,7 @@ import { GamePhase, Loading } from "../../constants";
 export type Stat = {
   value: number;
   icon: string;
+  name: string;
 };
 
 export type CardFlag = {
