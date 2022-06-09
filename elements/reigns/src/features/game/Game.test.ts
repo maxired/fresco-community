@@ -102,7 +102,7 @@ describe("Game", () => {
           cards: [card1, card2],
           deathMessage: "You died",
           assetsUrl: "test",
-          stats: [{ value: 0, icon: "icon" }],
+          stats: [{ value: 0, icon: "icon", name: "stat" }],
         })
       );
 

@@ -41,6 +41,7 @@ export const createGameDefinition = (
   cards: [createCard()],
   stats: [
     {
+      name: "my stat",
       icon: "some icon",
       value: 5,
     },
