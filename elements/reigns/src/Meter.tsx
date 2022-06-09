@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "./store";
 
@@ -16,9 +15,12 @@ export const Meter = ({
   );
 
   return (
-    <div className="meter" title={name}>
-      <div className="meter__percent" style={{ height: percent + "%" }} />
-      <img src={`${assetsUrl}/${src}`} />
+    <div className="meter">
+      <div className="meter__icon">
+        <div className="meter__percent" style={{ height: percent + "%" }} />
+        <img src={`${assetsUrl}/${src}`} />
+      </div>
+      <div className="meter__name">{name}</div>
     </div>
   );
 };
