@@ -167,10 +167,20 @@ button {
   margin-right: 1rem;
   border-radius: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  flex-shrink: 0;
 }
 
-.question__image img {
-  height: 30vh;
+.question__image_img {
+  background-image: var(--url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex: 1;
+  content: ' ';
+  width: 100%;
 }
 
 .death {

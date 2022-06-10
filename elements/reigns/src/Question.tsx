@@ -13,8 +13,8 @@ export const Question = ({ card }: { card: Card | null }) => {
   }
   return (
     <div className="block question">
-      <div className="question__image">
-        <img src={`${assetsUrl}/${card.bearer}.png`} />
+      <div className="question__image" >
+        <div className="question__image_img"  style={{ '--url': `url(${assetsUrl}/${card.bearer}.png)`} as any} />
         <div className='question__bearer'>{card.bearer}</div>
       </div>
       <div className='question__text-wrap'>
