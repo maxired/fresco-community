@@ -56,6 +56,8 @@ describe("selectAnswer", () => {
       )
       .retrieve();
     expect(result.phase).toBe(GamePhase.ENDED);
+    expect(result.flags).toStrictEqual({});
+    expect(result.selectedCard).toBe(null);
   });
   it("should not end game if a stat is already zero and not updated by a card", () => {
     const result = new Game()
