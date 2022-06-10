@@ -17,7 +17,6 @@ export const Meter = ({
   );
 
     const [currentAnimation, setCurrentAnimation] = useState("");
-    const [trailingPercent, setTrailingPercent] = useState(percent);
     const previousPercent = useRef(0);
 
     useEffect(() => {
@@ -25,17 +24,15 @@ export const Meter = ({
         // to the meter element to make it change color
         if (percent > previousPercent.current) {
             setCurrentAnimation("meter__icon--grow");
-            setTrailingPercent(percent);
         } else {
             setCurrentAnimation("meter__icon--shrink");
-            setTrailingPercent(previousPercent.current);
         }
 
         const timeout = setTimeout(() => {
             setCurrentAnimation("");
             // css animation is .5s
             // we wait 1s so that the color lingers a bit longer
-        }, 2000);
+        }, 3000);
         
         previousPercent.current = percent;
         return () => clearTimeout(timeout);
@@ -44,7 +41,6 @@ export const Meter = ({
   return (
     <div className="meter">
       <div className={clsx("meter__icon", currentAnimation)}>
-        <div className="meter__percent percent--trail" style={{ height: trailingPercent + "%" }} />
         <div className="meter__percent" style={{ height: percent + "%" }} />
         <img src={`${assetsUrl}/${src}`} />
       </div>
