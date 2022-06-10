@@ -1,12 +1,46 @@
-# Set up
+# Configure the hosts file
 
-1. Add an entry in hosts:
+1. Open & Edit your hosts file
+
+- On mac (in terminal):
+```
+    sudo vi /etc/hosts
+```
+- On Windows:
+```
+    c:\windows\system32\drivers\etc\hosts
+```
+
+2. Add an entry in hosts
 
 ```
     127.0.0.1 dev-community.fres.co
 ```
 
-2. Set up your web server to respond to https://dev-community.fres.co/ (points to the root of the repo)
+4. Test the connection with Ping
+
+```
+    ping dev-community.fres.co
+```
+
+#### If the Ping respond, the connection is established ✅
+
+# Set up your web server
+To respond to https://dev-community.fres.co/ 
+
+1. Into points to the root of the repo, install & launch https-localhost
+
+```
+    npx https-localhost
+```
+
+2. Go to your element to test the HTTPS server, example:
+
+```
+    https://dev-community.fres.co/elements/timer/index.htm
+```
+
+#### If you see the timer, the server is connected ✅
 
 # To add the timer to a fres.co space
 
