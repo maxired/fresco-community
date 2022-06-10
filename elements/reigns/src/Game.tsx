@@ -63,7 +63,7 @@ export const Game = () => {
 
   return (
     <>
-      <div>The host is {currentHost?.name}</div>
+      <div onClick={doRestartGame}>The host is {currentHost?.name}</div>
       <Meters definition={gameDefinition} stats={currentStats} />
       <Question card={selectedCard} />
       <div className="answers">

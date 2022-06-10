@@ -47,6 +47,21 @@ body,
   position: relative;
   padding: 0.25rem;
 }
+
+.meter__icon--grow .meter__percent { 
+  background-color: green;
+}
+
+.meter__icon--shrink .meter__percent { 
+  background-color: red;
+}
+
+.meter__icon--grow .percent--trail,
+.meter__icon--shrink .percent--trail { 
+  background-color: white;
+}
+
+
 .meter {
   position: relative;
 }
@@ -73,6 +88,11 @@ body,
   left: 0;
   right: 0;
   background-color: #9e32d6;
+  transition: height .5s ease-in, background-color .5s ease-in;
+}
+
+.percent--trail {
+  transition: background-color .5s ease-in;
 }
 
 .question {
@@ -138,3 +158,4 @@ body,
   font-size: 6vw;
   color: #e200a4;
 }
+
