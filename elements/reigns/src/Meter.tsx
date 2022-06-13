@@ -16,28 +16,28 @@ export const Meter = ({
     (state: AppState) => state.game.definition?.assetsUrl
   );
 
-    const [currentAnimation, setCurrentAnimation] = useState("");
-    const previousPercent = useRef(0);
+  const [currentAnimation, setCurrentAnimation] = useState("");
+  const previousPercent = useRef(0);
 
-    useEffect(() => {
-        // Whenever percent changes, we want to add a class
-        // to the meter element to make it change color
-        if (percent > previousPercent.current) {
-            setCurrentAnimation("meter__icon--grow");
-        } else {
-            setCurrentAnimation("meter__icon--shrink");
-        }
+  useEffect(() => {
+    // Whenever percent changes, we want to add a class
+    // to the meter element to make it change color
+    if (percent > previousPercent.current) {
+      setCurrentAnimation("meter__icon--grow");
+    } else {
+      setCurrentAnimation("meter__icon--shrink");
+    }
 
-        const timeout = setTimeout(() => {
-            setCurrentAnimation("");
-            // css animation is .5s
-            // we wait 1s so that the color lingers a bit longer
-        }, 3000);
-        
-        previousPercent.current = percent;
-        return () => clearTimeout(timeout);
-    }, [percent]);
-  
+    const timeout = setTimeout(() => {
+      setCurrentAnimation("");
+      // css animation is .5s
+      // we wait 1s so that the color lingers a bit longer
+    }, 3000);
+
+    previousPercent.current = percent;
+    return () => clearTimeout(timeout);
+  }, [percent]);
+
   return (
     <div className="meter">
       <div className={clsx("meter__icon", currentAnimation)}>

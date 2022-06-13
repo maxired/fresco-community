@@ -1,5 +1,5 @@
-import React from "react";
-import { Meters } from "./Meters";
+import React, { useEffect } from "react";
+import { Header } from "./Header";
 import { Question } from "./Question";
 import { NoAnswer } from "./NoAnswer";
 import { YesAnswer } from "./YesAnswer";
@@ -16,6 +16,7 @@ export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
   const countdown = useSelector((state: AppState) => state.voting.countdown);
   const phase = useSelector((state: AppState) => state.game.phase);
+  const round = useSelector((state: AppState) => state.game.round);
   const selectedCard = useSelector(
     (state: AppState) => state.game.selectedCard
   );
@@ -32,6 +33,13 @@ export const Game = () => {
 
   useCollateVotes();
 
+  useEffect(() => {
+    if (phase === GamePhase.ENDED) {
+      const audio = new Audio("error.mp3");
+      audio.play();
+    }
+  }, [phase]);
+
   const doRestartGame = () => {
     if (isHost) {
       new GamePersistence().startGame(store.getState().game);
@@ -40,19 +48,26 @@ export const Game = () => {
 
   if (phase === GamePhase.ENDED) {
     return (
-      <>
+      <div className="game-half first-half">
         <div className="death">
-          {gameDefinition?.deathMessage}
-          {isHost && <div onClick={doRestartGame}>Click to play again</div>}
+          <div className="round">
+            {gameDefinition?.roundName} {round}
+          </div>
+          <div className="death__message">{gameDefinition?.deathMessage}</div>
+          {isHost && <button onClick={doRestartGame}>Play again</button>}
         </div>
-      </>
+      </div>
     );
   }
 
   if (phase === GamePhase.NOT_STARTED) {
     return (
-      <div className="death" onClick={doRestartGame}>
-        {isHost ? "Click to start" : "Waiting for host to start"}
+      <div className="game-half first-half">
+        <div className="death">
+          <div className="death__message">{gameDefinition?.gameName}</div>
+          {isHost && <button onClick={doRestartGame}>Start game</button>}
+          {!isHost && <div>Waiting for host to start...</div>}
+        </div>
       </div>
     );
   }
@@ -63,10 +78,15 @@ export const Game = () => {
 
   return (
     <>
-      <div onClick={doRestartGame}>The host is {currentHost?.name}</div>
-      <Meters definition={gameDefinition} stats={currentStats} />
-      <Question card={selectedCard} />
-      <div className="answers">
+      <div className="game-half first-half" onClick={doRestartGame}>
+        <Header
+          definition={gameDefinition}
+          stats={currentStats}
+          round={round}
+        />
+        <Question card={selectedCard} />
+      </div>
+      <div className="game-half answers">
         <NoAnswer text={selectedCard.answer_no || "No"} />
         <div className="answer answer--neutral">
           {(countdown ?? 0) > 0 && (
