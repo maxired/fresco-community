@@ -24,14 +24,16 @@ body,
 }
 
 .header {
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #313e47;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #313e47;
 }
 
-.header__side { flex: 1; }
+.header__side {
+  flex: 1;
+}
 
 .header .round {
   text-align: right;
@@ -108,24 +110,24 @@ button {
 }
 
 .first-half {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .question {
   flex: 1;
   display: flex;
   color: #fff;
+  overflow: hidden;
 }
 
 .question__text-wrap {
   display: flex;
   align-items: center;
-}
-
-.question__text {
+  flex-grow: 1;
   font-size: 4vw;
+  overflow: hidden;
 }
 
 .question__bearer {
@@ -179,7 +181,7 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   flex: 1;
-  content: ' ';
+  content: " ";
   width: 100%;
 }
 
@@ -190,9 +192,9 @@ button {
   transform: translate(-50%, -50%);
 
   font-size: 6vw;
-  
+
   width: 100%;
-  color: #fff;  
+  color: #fff;
   text-align: center;
 }
 
@@ -204,4 +206,8 @@ button {
 .game-half {
   height: 50%;
   position: relative;
+}
+
+.textFitAlignVert {
+  max-height: 100%;
 }
