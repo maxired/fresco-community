@@ -17,13 +17,13 @@
     127.0.0.1 dev-community.fres.co
 ```
 
-4. Test the connection with Ping
+4. Test the host resolution with Ping
 
 ```
     ping dev-community.fres.co
 ```
 
-#### If the Ping respond, the connection is established ✅
+**If the Ping respond, the host resolution is correctly configured ✅**
 
 # Set up your web server
 To respond to https://dev-community.fres.co/ 
@@ -40,7 +40,7 @@ To respond to https://dev-community.fres.co/
     https://dev-community.fres.co/elements/timer/index.htm
 ```
 
-#### If you see the timer, the server is connected ✅
+**If you see the timer, the server is correctly launched ✅**
 
 # To add the timer to a fres.co space
 
