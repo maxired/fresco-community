@@ -9,7 +9,7 @@
       "value": 50
     },
     {
-      "name": "Customer satifaction",
+      "name": "Customer satisfaction",
       "icon": "noun-crowd-2383331.svg",
       "value": 50
     },
@@ -48,7 +48,7 @@
       "no_custom": "started=true info=true"
     },
     {
-      "card": "Our new data officer! We are collectiong data from our customers and you are in charge of them.",
+      "card": "Our new data officer! We are collecting data from our customers and you are in charge of them.",
       "id": "",
       "bearer": "coworker",
       "conditions": "info==true",
@@ -181,7 +181,7 @@
       "churn": 120,
       "weight": 1,
       "override_yes": "",
-      "answer_yes": "Juste ignore it, that type of comment can affect the team.",
+      "answer_yes": "Just ignore it, that type of comment can affect the team.",
       "yes_stat1": 0,
       "yes_stat2": -10,
       "yes_stat3": 0,
@@ -384,7 +384,7 @@
       "no_custom": "step14=true step13=false"
     },
     {
-      "card": "Coworkers don't know each other, we should plan a teambuilding activity.",
+      "card": "Coworkers don't know each other, we should plan a team building activity.",
       "id": "",
       "bearer": "manager",
       "conditions": "step14==true",
@@ -845,5 +845,5 @@
       "no_stat4": 0,
       "no_custom": "end=true"
     }
-   ]
+  ]
 }
