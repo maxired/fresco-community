@@ -18,18 +18,13 @@ export const Question = ({ card }: { card: Card | null }) => {
     }
 
     domCardRef.current.innerHTML = `${card.card}`; // textfit will modify the dom node. We don't want React to also modify it's content to prevent conflict
-
-    requestAnimationFrame(
-      () =>
-        domCardRef.current &&
-        textfit(domCardRef.current, {
-          alignHoriz: false,
-          alignVert: true,
-          reProcess: true,
-          multiLine: true,
-          maxFontSize: 1000,
-        })
-    );
+    textfit(domCardRef.current, {
+      alignHoriz: false,
+      alignVert: true,
+      reProcess: true,
+      multiLine: true,
+      maxFontSize: 1000,
+    });
   }, [card && card.card]);
 
   if (!card) {
