@@ -4,8 +4,48 @@ export const validateGameDefinition = (
   definition: GameDefinition
 ): GameDefinition => ({
   ...definition,
+  assetsUrl: validateAssetsUrl(definition.assetsUrl),
   ...validateCards(definition.cards),
 });
+
+const urlWithoutTrailingSlash = (url: string) => {
+  if (!url) return "";
+
+  if (url.slice(-1) !== "/") {
+    return url;
+  }
+
+  return url.slice(0, -1);
+};
+
+export const validateAssetsUrl = (url: string) => {
+  debugger;
+  if (!url) return "";
+
+  if (
+    url.startsWith("http://") ||
+    url.startsWith("https://") ||
+    url.startsWith("/")
+  ) {
+    return urlWithoutTrailingSlash(url);
+  }
+
+  const isFolder = document.location.pathname.slice(-1) === "/";
+  if (isFolder) {
+    return urlWithoutTrailingSlash(
+      `${urlWithoutTrailingSlash(document.location.pathname)}/${url}`
+    );
+  }
+
+  const [_path, ...reversedFolders] = document.location.pathname
+    .split("/")
+    .reverse();
+
+  debugger;
+  return urlWithoutTrailingSlash(
+    `${reversedFolders.reverse().join("/")}/${url}`
+  );
+};
 
 export const validateCards = (cards: Card[] | undefined) => {
   if (!cards || cards.length === 0) {
