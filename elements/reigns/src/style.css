@@ -1,3 +1,8 @@
+:root {
+  --color-primary: #9e32d6;
+  --color-error: #e200a4;
+}
+
 html,
 body {
   font: 16px "Helvetica Neue", arial, sans-serif;
@@ -15,12 +20,41 @@ body,
 }
 
 .block {
-  margin-bottom: 1rem;
   padding: 1rem;
 }
 
-.meters {
+.header {
   color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #313e47;
+}
+
+.header__side {
+  flex: 1;
+}
+
+.header .round {
+  text-align: right;
+}
+
+.round {
+  color: #fff;
+  font-size: 2rem;
+}
+
+button {
+  color: #fff;
+  border-width: 0;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  padding: 1rem;
+  font-size: 2rem;
+  border-radius: 1rem;
+}
+
+.meters {
   margin-bottom: 0;
   text-align: center;
   width: 400px;
@@ -72,16 +106,28 @@ body,
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #9e32d6;
+  background-color: var(--color-primary);
+}
+
+.first-half {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .question {
+  flex: 1;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
+  overflow: hidden;
 }
-.question__text {
-  font-size: 5vw;
+
+.question__text-wrap {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  font-size: 4vw;
+  overflow: hidden;
 }
 
 .question__bearer {
@@ -94,11 +140,11 @@ body,
 }
 
 .answer--no {
-  background-color: #e200a4;
+  background-color: var(--color-error);
 }
 
 .answer--yes {
-  background-color: #9e32d6;
+  background-color: var(--color-primary);
 }
 
 .answer--neutral {
@@ -123,10 +169,20 @@ body,
   margin-right: 1rem;
   border-radius: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  flex-shrink: 0;
 }
 
-.question__image img {
-  height: 200px;
+.question__image_img {
+  background-image: var(--url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex: 1;
+  content: " ";
+  width: 100%;
 }
 
 .death {
@@ -136,5 +192,22 @@ body,
   transform: translate(-50%, -50%);
 
   font-size: 6vw;
-  color: #e200a4;
+
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+
+.death__message {
+  color: var(--color-error);
+  margin-bottom: 2rem;
+}
+
+.game-half {
+  height: 50%;
+  position: relative;
+}
+
+.textFitAlignVert {
+  max-height: 100%;
 }
