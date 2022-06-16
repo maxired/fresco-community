@@ -15,6 +15,7 @@ export type Card = {
   card: string;
   bearer: string;
   weight: number;
+  cooldown: number;
 
   answer_yes: string;
   yes_stat1: number;
@@ -56,6 +57,7 @@ export type PersistedGameState = {
   stats: number[];
   round: number;
   flags: GameFlags;
+  previouslySelectedCards: Pick<Card, "card" | "cooldown">[]; // array sorted in the revers order, recently viewed card have the lowest index
 };
 
 export type PersistedState = Configuration & PersistedGameState;

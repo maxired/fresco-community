@@ -38,7 +38,8 @@
       "no_stat2": -5,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": ""
+      "no_custom": "",
+      "cooldown": 1
     },
     {
       "card": "You meet a spider",
@@ -59,7 +60,8 @@
       "no_stat2": 0,
       "no_stat3": -10,
       "no_stat4": 0,
-      "no_custom": ""
+      "no_custom": "",
+      "cooldown": 1
     },
     {
       "card": "You gathered some resources",
@@ -80,7 +82,8 @@
       "no_stat2": 0,
       "no_stat3": -10,
       "no_stat4": 0,
-      "no_custom": ""
+      "no_custom": "",
+      "cooldown": 1
     },
     {
       "card": "Winter is coming",
@@ -101,7 +104,8 @@
       "no_stat2": -5,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": ""
+      "no_custom": "",
+      "cooldown": 1
     },
     {
       "card": "Summer is coming",
@@ -122,7 +126,8 @@
       "no_stat2": -5,
       "no_stat3": -5,
       "no_stat4": 0,
-      "no_custom": ""
+      "no_custom": "",
+      "cooldown": 1
     },
     {
       "card": "You are very hot",
@@ -143,7 +148,8 @@
       "no_stat2": 0,
       "no_stat3": -10,
       "no_stat4": 0,
-      "no_custom": ""
+      "no_custom": "",
+      "cooldown": 1
     },
     {
       "card": "You found a shovel!",
@@ -164,7 +170,8 @@
       "no_stat2": 0,
       "no_stat3": 10,
       "no_stat4": 0,
-      "no_custom": ""
+      "no_custom": "",
+      "cooldown": 1
     }
   ]
 }

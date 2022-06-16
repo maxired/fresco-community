@@ -32,6 +32,7 @@ export const createCard = (cardOverride: Partial<Card> = {}): Card => ({
   no_stat4: 0,
   no_custom: "",
   conditions: "",
+  cooldown: 0,
   ...cardOverride,
 });
 
@@ -46,8 +47,8 @@ export const createGameDefinition = (
       value: 5,
     },
   ],
-  roundName: 'Day',
-  gameName: 'My Game',
+  roundName: "Day",
+  gameName: "My Game",
   assetsUrl: "whatever",
   deathMessage: "You died",
   ...override,

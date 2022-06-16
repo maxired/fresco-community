@@ -20,7 +20,9 @@ export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
 const getAllValidCards = (
   definition: GameDefinition | null,
   flags: GameFlags,
-  designerCards: Card[] | null = null
+  designerCards: Card[] | null = null,
+  round: number,
+  previouslySelectedCards: Pick<Card, "card" | "cooldown">[]
 ) => {
   if (!definition) {
     return [];
@@ -29,18 +31,72 @@ const getAllValidCards = (
     designerCards ?? definition.cards,
     flags
   );
-  return cardsDistributedByWeight(restrictedByFlags);
+
+  const coolCards = filterHotCards(
+    round,
+    restrictedByFlags,
+    previouslySelectedCards
+  );
+
+  return cardsDistributedByWeight(coolCards);
 };
 
 export const selectNextCard = (
   definition: GameDefinition | null,
   flags: GameFlags,
-  designerCards: Card[] | undefined
+  designerCards: Card[] | undefined,
+  previouslySelectedCards: Pick<Card, "card" | "cooldown">[],
+  round: number
 ) => {
-  const validCards = getAllValidCards(definition, flags, designerCards);
+  const validCards = getAllValidCards(
+    definition,
+    flags,
+    designerCards,
+    round,
+    previouslySelectedCards
+  );
   const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
 
   return {
     ...randomCard,
   };
 };
+
+export const filterHotCards = (
+  round: number,
+  allCards: Card[],
+  hotCards: Pick<Card, "card" | "cooldown">[]
+) => {
+  if (round < 2) {
+    return allCards;
+  }
+
+  const coldCards = allCards.filter(filterHotCard(hotCards, round));
+
+  if (coldCards.length > 0) {
+    return coldCards;
+  }
+
+  return allCards;
+};
+
+function filterHotCard(
+  hotCards: Pick<Card, "card" | "cooldown">[],
+  round: number
+): (value: Card, index: number, array: Card[]) => unknown {
+  return (card) => {
+    const lastPlayedIndex = hotCards.findIndex(
+      (hotCard) => hotCard.card === card.card
+    );
+    if (lastPlayedIndex === -1) {
+      //card was not played
+      return true;
+    }
+    const hotCard = hotCards[lastPlayedIndex];
+
+    const cooldownValue = hotCard.cooldown ?? Infinity;
+    const lastVisibleRound = hotCards.length - (lastPlayedIndex + 1);
+
+    return round > lastVisibleRound + cooldownValue;
+  };
+}
