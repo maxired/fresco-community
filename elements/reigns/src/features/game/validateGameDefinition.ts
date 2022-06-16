@@ -1,11 +1,23 @@
+import { getRootAssetsUrl } from "./gameDefinitionUtils";
 import { Card, CardFlag, GameDefinition } from "./types";
 
 export const validateGameDefinition = (
   definition: GameDefinition
 ): GameDefinition => ({
   ...definition,
+  assetsUrl: getRootAssetsUrl(definition.assetsUrl),
   ...validateCards(definition.cards),
 });
+
+export const urlWithoutTrailingSlash = (url: string) => {
+  if (!url) return "";
+
+  if (url.slice(-1) !== "/") {
+    return url;
+  }
+
+  return url.slice(0, -1);
+};
 
 export const validateCards = (cards: Card[] | undefined) => {
   if (!cards || cards.length === 0) {
