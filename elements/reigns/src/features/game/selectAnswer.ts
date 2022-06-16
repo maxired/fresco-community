@@ -33,15 +33,15 @@ export const selectAnswer = (
     return newValue;
   });
 
-  const flags = setFlags(state.flags, getFlags(state.selectedCard!, cardFlag));
-
   const phase = stats.filter((_, ix) => cardStats[ix]).some((v) => v <= 0)
     ? GamePhase.ENDED
     : GamePhase.STARTED;
 
+  const flags = phase === GamePhase.ENDED ? {} : setFlags(state.flags, getFlags(state.selectedCard!, cardFlag));
+
   const round = state.round + 1;
 
-  const selectedCard = selectNextCard(
+  const selectedCard = phase === GamePhase.ENDED ? null : selectNextCard(
     state.definition,
     flags,
     state.designerCards

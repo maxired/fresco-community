@@ -32,7 +32,7 @@ body,
 }
 
 .header__side {
-  flex: 1;
+  flex-grow: 1;
 }
 
 .header .round {
@@ -90,6 +90,19 @@ button {
   background-color: red;
 }
 
+@media only screen and (max-width: 600px) {
+  .meters {
+    width: 200px;
+  }
+  .meter__icon {
+    width: 32px;
+    height: 32px;
+  }
+  .meters img {
+    height: 32px;
+  }
+}
+
 .meter {
   position: relative;
 }
@@ -129,15 +142,16 @@ button {
   flex: 1;
   display: flex;
   color: #fff;
+  overflow: hidden;
+  min-height: 1px;
 }
 
 .question__text-wrap {
   display: flex;
   align-items: center;
-}
-
-.question__text {
+  flex-grow: 1;
   font-size: 4vw;
+  overflow: hidden;
 }
 
 .question__bearer {
@@ -191,7 +205,7 @@ button {
   background-repeat: no-repeat;
   background-position: center;
   flex: 1;
-  content: ' ';
+  content: " ";
   width: 100%;
 }
 
@@ -216,4 +230,8 @@ button {
 .game-half {
   height: 50%;
   position: relative;
+}
+
+.textFitAlignVert {
+  max-height: 100%;
 }
