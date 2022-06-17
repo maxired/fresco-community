@@ -18,6 +18,7 @@ export const useOnFrescoStateUpdate = () => {
   }>({ id: null, isInsideElement: null });
   return () => {
     const state = new Game().retrieve();
+
     if (state) {
       dispatch(
         updateGame({

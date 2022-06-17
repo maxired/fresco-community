@@ -45,16 +45,6 @@ export const selectAnswer = (
 
   const round = state.round + 1;
 
-  const selectedCard =
-    phase === GamePhase.ENDED
-      ? null
-      : selectNextCard(
-          state.definition,
-          flags,
-          state.designerCards,
-          state.previouslySelectedCards
-        );
-
   const previouslySelectedCards =
     phase === GamePhase.ENDED
       ? []
@@ -68,6 +58,20 @@ export const selectAnswer = (
         ]
       : state.previouslySelectedCards;
 
+  const selectedCard =
+    phase === GamePhase.ENDED
+      ? null
+      : selectNextCard(
+          state.definition,
+          flags,
+          state.designerCards,
+          previouslySelectedCards
+        );
+
+  console.log(
+    "maxired will persist previouslySelectedCards",
+    previouslySelectedCards
+  );
   return {
     phase,
     round,
