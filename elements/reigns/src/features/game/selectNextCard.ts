@@ -1,5 +1,6 @@
 import { Card, GameDefinition, GameFlags, GameState } from "./types";
 import { getConditions } from "./validateGameDefinition";
+import * as self from './selectNextCard';
 
 export const cardsDistributedByWeight = (cards: Card[]) =>
   cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
@@ -21,7 +22,6 @@ const getAllValidCards = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | null = null,
-  round: number,
   previouslySelectedCards: Pick<Card, "card" | "cooldown">[]
 ) => {
   if (!definition) {
@@ -33,7 +33,6 @@ const getAllValidCards = (
   );
 
   const coolCards = filterHotCards(
-    round,
     restrictedByFlags,
     previouslySelectedCards
   );
@@ -46,15 +45,14 @@ export const selectNextCard = (
   flags: GameFlags,
   designerCards: Card[] | undefined,
   previouslySelectedCards: Pick<Card, "card" | "cooldown">[],
-  round: number
 ) => {
   const validCards = getAllValidCards(
     definition,
     flags,
     designerCards,
-    round,
     previouslySelectedCards
   );
+
   const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
 
   return {
@@ -63,15 +61,15 @@ export const selectNextCard = (
 };
 
 export const filterHotCards = (
-  round: number,
   allCards: Card[],
   hotCards: Pick<Card, "card" | "cooldown">[]
 ) => {
-  if (round < 2) {
+
+  if (hotCards.length === 0) {
     return allCards;
   }
 
-  const coldCards = allCards.filter(filterHotCard(hotCards, round));
+  const coldCards = allCards.filter(self.filterHotCardFactory(hotCards));
 
   if (coldCards.length > 0) {
     return coldCards;
@@ -80,22 +78,23 @@ export const filterHotCards = (
   return allCards;
 };
 
-function filterHotCard(
+export function filterHotCardFactory(
   hotCards: Pick<Card, "card" | "cooldown">[],
-  round: number
-): (value: Card, index: number, array: Card[]) => unknown {
+): (value: Card) => unknown {
+  const round =  hotCards.length + 1;
+
   return (card) => {
     const lastPlayedIndex = hotCards.findIndex(
       (hotCard) => hotCard.card === card.card
     );
     if (lastPlayedIndex === -1) {
-      //card was not played
+      // card was not never selected
       return true;
     }
     const hotCard = hotCards[lastPlayedIndex];
 
     const cooldownValue = hotCard.cooldown ?? Infinity;
-    const lastVisibleRound = hotCards.length - (lastPlayedIndex + 1);
+    const lastVisibleRound = hotCards.length - lastPlayedIndex;
 
     return round > lastVisibleRound + cooldownValue;
   };

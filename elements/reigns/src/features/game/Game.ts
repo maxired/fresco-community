@@ -49,8 +49,7 @@ export class Game {
         state.definition,
         state.flags,
         state.designerCards,
-        state.previouslySelectedCards,
-        state.round
+        state.previouslySelectedCards
       ),
       stats: state.definition
         ? state.definition.stats.map(({ value }) => value)

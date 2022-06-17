@@ -53,7 +53,6 @@ export const selectAnswer = (
           flags,
           state.designerCards,
           state.previouslySelectedCards,
-          state.round
         );
 
   const previouslySelectedCards =
