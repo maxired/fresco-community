@@ -1,6 +1,6 @@
 import { Card, GameDefinition, GameFlags, GameState } from "./types";
 import { getConditions } from "./validateGameDefinition";
-import * as self from './selectNextCard';
+import * as self from "./selectNextCard";
 
 export const cardsDistributedByWeight = (cards: Card[]) =>
   cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
@@ -32,10 +32,7 @@ const getAllValidCards = (
     flags
   );
 
-  const coolCards = filterHotCards(
-    restrictedByFlags,
-    previouslySelectedCards
-  );
+  const coolCards = filterHotCards(restrictedByFlags, previouslySelectedCards);
 
   return cardsDistributedByWeight(coolCards);
 };
@@ -44,7 +41,7 @@ export const selectNextCard = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | undefined,
-  previouslySelectedCards: Pick<Card, "card" | "cooldown">[],
+  previouslySelectedCards: Pick<Card, "card" | "cooldown">[]
 ) => {
   const validCards = getAllValidCards(
     definition,
@@ -64,7 +61,6 @@ export const filterHotCards = (
   allCards: Card[],
   hotCards: Pick<Card, "card" | "cooldown">[]
 ) => {
-
   if (hotCards.length === 0) {
     return allCards;
   }
@@ -79,9 +75,9 @@ export const filterHotCards = (
 };
 
 export function filterHotCardFactory(
-  hotCards: Pick<Card, "card" | "cooldown">[],
+  hotCards: Pick<Card, "card" | "cooldown">[]
 ): (value: Card) => unknown {
-  const round =  hotCards.length + 1;
+  const round = hotCards.length + 1;
 
   return (card) => {
     const lastPlayedIndex = hotCards.findIndex(

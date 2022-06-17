@@ -66,7 +66,7 @@ describe("Game", () => {
         expect(game.retrieve().flags.chapter3).toBe("true");
 
         game.startGame(state);
-        
+
         expect(game.retrieve().flags.chapter3).toBe(undefined);
       });
     });

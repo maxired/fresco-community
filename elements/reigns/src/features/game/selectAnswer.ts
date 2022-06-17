@@ -52,7 +52,7 @@ export const selectAnswer = (
           state.definition,
           flags,
           state.designerCards,
-          state.previouslySelectedCards,
+          state.previouslySelectedCards
         );
 
   const previouslySelectedCards =
