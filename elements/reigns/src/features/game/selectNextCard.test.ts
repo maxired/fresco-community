@@ -93,45 +93,39 @@ describe("isCardCooling", () => {
   });
 
   it("returns true when card was proposed and no cooldown", () => {
-    const cardIsCooling = isCardCooling([{ card: "foo" } as Card], {
-      card: "foo",
-    } as Card);
+    const card = { card: "foo" } as Card;
+    const cardIsCooling = isCardCooling([card], card);
 
     expect(cardIsCooling).toBe(true);
   });
 
+  it("returns false when card reference is different", () => {
+    const card = { card: "foo" } as Card;
+    const cardIsCooling = isCardCooling([card], { ...card });
+
+    expect(cardIsCooling).toBe(false);
+  });
+
   it("returns false when card was just played and cooldown is 0", () => {
-    const cardIsCooling = isCardCooling(
-      [{ card: "foo", cooldown: 0 } as Card],
-      {
-        card: "foo",
-      } as Card
-    );
+    const card = { card: "foo", cooldown: 0 } as Card;
+    const cardIsCooling = isCardCooling([card], card);
 
     expect(cardIsCooling).toBe(false);
   });
 
   it("returns true when card was just played and cooldown is 1", () => {
-    const cardIsCooling = isCardCooling(
-      [{ card: "foo", cooldown: 1 } as Card],
-      {
-        card: "foo",
-      } as Card
-    );
+    const card = { card: "foo", cooldown: 1 } as Card;
+    const cardIsCooling = isCardCooling([card], card);
 
     expect(cardIsCooling).toBe(true);
   });
 
   it("returns false when card was previously played and cooldown is 1", () => {
-    const cardIsCooling = isCardCooling(
-      [
-        { card: "bar", cooldown: 1 } as Card,
-        { card: "foo", cooldown: 1 } as Card,
-      ],
-      {
-        card: "foo",
-      } as Card
-    );
+    const cards = [
+      { card: "bar", cooldown: 1 } as Card,
+      { card: "foo", cooldown: 1 } as Card,
+    ];
+    const cardIsCooling = isCardCooling(cards, cards[1]);
 
     expect(cardIsCooling).toBe(false);
   });
