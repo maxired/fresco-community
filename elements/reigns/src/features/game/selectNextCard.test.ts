@@ -5,8 +5,8 @@ import { Card } from "./types";
 const {
   cardsDistributedByWeight,
   cardsRestrictedByFlags,
-  filterHotCardFactory,
-  filterHotCards,
+  isCardCooling,
+  removeCoolingCards,
 } = selectNextCard;
 
 describe("selectNextCard", () => {
@@ -83,77 +83,73 @@ describe("selectNextCard", () => {
   });
 });
 
-describe("filterHotCardFactory", () => {
-  it("returns a function", () => {
-    const filterHotCard = filterHotCardFactory([]);
-    expect(typeof filterHotCard).toBe("function");
+describe("isCardCooling", () => {
+  it("returns false when no cards was proposed", () => {
+    const cardIsCooling = isCardCooling([], {
+      card: "foo",
+    } as Card);
+
+    expect(cardIsCooling).toBe(false);
   });
 
-  describe("returned function", () => {
-    it("returns true when no hot cards", () => {
-      const shouldFilterHotCard = filterHotCardFactory([])({
+  it("returns true when card was proposed and no cooldown", () => {
+    const cardIsCooling = isCardCooling([{ card: "foo" } as Card], {
+      card: "foo",
+    } as Card);
+
+    expect(cardIsCooling).toBe(true);
+  });
+
+  it("returns false when card was just played and cooldown is 0", () => {
+    const cardIsCooling = isCardCooling(
+      [{ card: "foo", cooldown: 0 } as Card],
+      {
         card: "foo",
-      } as Card);
+      } as Card
+    );
 
-      expect(shouldFilterHotCard).toBe(true);
-    });
+    expect(cardIsCooling).toBe(false);
+  });
 
-    it("returns false when card was played and no cooldown", () => {
-      const shouldFilterHotCard = filterHotCardFactory([
-        { card: "foo" } as Card,
-      ])({
+  it("returns true when card was just played and cooldown is 1", () => {
+    const cardIsCooling = isCardCooling(
+      [{ card: "foo", cooldown: 1 } as Card],
+      {
         card: "foo",
-      } as Card);
+      } as Card
+    );
 
-      expect(shouldFilterHotCard).toBe(false);
-    });
+    expect(cardIsCooling).toBe(true);
+  });
 
-    it("returns true when card was just played and cooldown is 0", () => {
-      const shouldFilterHotCard = filterHotCardFactory([
-        { card: "foo", cooldown: 0 } as Card,
-      ])({
-        card: "foo",
-      } as Card);
-
-      expect(shouldFilterHotCard).toBe(true);
-    });
-
-    it("returns false when card was just played and cooldown is 1", () => {
-      const shouldFilterHotCard = filterHotCardFactory([
-        { card: "foo", cooldown: 1 } as Card,
-      ])({
-        card: "foo",
-      } as Card);
-
-      expect(shouldFilterHotCard).toBe(false);
-    });
-
-    it("returns true when card was previously played and cooldown is 1", () => {
-      const shouldFilterHotCard = filterHotCardFactory([
+  it("returns false when card was previously played and cooldown is 1", () => {
+    const cardIsCooling = isCardCooling(
+      [
         { card: "bar", cooldown: 1 } as Card,
         { card: "foo", cooldown: 1 } as Card,
-      ])({
+      ],
+      {
         card: "foo",
-      } as Card);
+      } as Card
+    );
 
-      expect(shouldFilterHotCard).toBe(true);
-    });
+    expect(cardIsCooling).toBe(false);
   });
 });
 
-describe("filterHotCards", () => {
+describe("removeCoolingCards", () => {
   it("returns original cards array for first round", () => {
     const cards = [
       { card: "card1", cooldown: 1 } as Card,
       { card: "card2" } as Card,
     ];
 
-    const filteredCards = filterHotCards(cards, []);
+    const filteredCards = removeCoolingCards(cards, []);
 
     expect(filteredCards).toEqual(cards);
   });
 
-  it("removes cards where filterHotCardFactory function returns false", () => {
+  it("removes cards where isCardCooling function returns true", () => {
     const cards = [
       { card: "card1", cooldown: 1 } as Card,
       { card: "card2" } as Card,
@@ -162,11 +158,13 @@ describe("filterHotCards", () => {
     ];
 
     jest
-      .spyOn(selectNextCard, "filterHotCardFactory")
-      .mockImplementationOnce(
-        () => (card: Card) => card.card === "card1" || card.card === "card4"
+      .spyOn(selectNextCard, "isCardCooling")
+      .mockImplementation(
+        (_, card: Card) => card.card === "card2" || card.card === "card3"
       );
-    const filteredCards = filterHotCards(cards, [{ card: "hotcards" } as Card]);
+    const filteredCards = removeCoolingCards(cards, [
+      { card: "hotcards" } as Card,
+    ]);
 
     expect(filteredCards).toEqual([cards[0], cards[3]]);
   });

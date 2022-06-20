@@ -68,10 +68,6 @@ export const selectAnswer = (
           previouslySelectedCards
         );
 
-  console.log(
-    "maxired will persist previouslySelectedCards",
-    previouslySelectedCards
-  );
   return {
     phase,
     round,

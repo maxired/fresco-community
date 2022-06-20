@@ -32,9 +32,12 @@ const getAllValidCards = (
     flags
   );
 
-  const coolCards = filterHotCards(restrictedByFlags, previouslySelectedCards);
+  const availableCards = removeCoolingCards(
+    restrictedByFlags,
+    previouslySelectedCards
+  );
 
-  return cardsDistributedByWeight(coolCards);
+  return cardsDistributedByWeight(availableCards);
 };
 
 export const selectNextCard = (
@@ -57,15 +60,17 @@ export const selectNextCard = (
   };
 };
 
-export const filterHotCards = (
+export const removeCoolingCards = (
   allCards: Card[],
-  hotCards: Pick<Card, "card" | "cooldown">[]
+  previousCardRounds: Pick<Card, "card" | "cooldown">[]
 ) => {
-  if (hotCards.length === 0) {
+  if (previousCardRounds.length === 0) {
     return allCards;
   }
 
-  const coldCards = allCards.filter(self.filterHotCardFactory(hotCards));
+  const coldCards = allCards.filter(
+    (card) => !self.isCardCooling(previousCardRounds, card)
+  );
 
   if (coldCards.length > 0) {
     return coldCards;
@@ -74,24 +79,23 @@ export const filterHotCards = (
   return allCards;
 };
 
-export function filterHotCardFactory(
-  hotCards: Pick<Card, "card" | "cooldown">[]
-): (value: Card) => unknown {
-  const round = hotCards.length + 1;
+export function isCardCooling(
+  previousCardRounds: Pick<Card, "card" | "cooldown">[],
+  card: Card
+): boolean {
+  const round = previousCardRounds.length + 1;
 
-  return (card) => {
-    const lastPlayedIndex = hotCards.findIndex(
-      (hotCard) => hotCard.card === card.card
-    );
-    if (lastPlayedIndex === -1) {
-      // card was not never selected
-      return true;
-    }
-    const hotCard = hotCards[lastPlayedIndex];
+  const lastPlayedIndex = previousCardRounds.findIndex(
+    (hotCard) => hotCard.card === card.card
+  );
+  if (lastPlayedIndex === -1) {
+    // card was not never selected
+    return false;
+  }
+  const hotCard = previousCardRounds[lastPlayedIndex];
 
-    const cooldownValue = hotCard.cooldown ?? Infinity;
-    const lastVisibleRound = hotCards.length - lastPlayedIndex;
+  const cooldownValue = hotCard.cooldown ?? Infinity;
+  const lastVisibleRound = previousCardRounds.length - lastPlayedIndex;
 
-    return round > lastVisibleRound + cooldownValue;
-  };
+  return !(round > lastVisibleRound + cooldownValue);
 }
