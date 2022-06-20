@@ -22,7 +22,7 @@ const getAllValidCards = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | null = null,
-  previouslySelectedCards: Pick<Card, "card" | "cooldown">[]
+  previouslySelectedCards: Card[]
 ) => {
   if (!definition) {
     return [];
@@ -44,7 +44,7 @@ export const selectNextCard = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | undefined,
-  previouslySelectedCards: Pick<Card, "card" | "cooldown">[]
+  previouslySelectedCards: Card[]
 ) => {
   const validCards = getAllValidCards(
     definition,
@@ -62,7 +62,7 @@ export const selectNextCard = (
 
 export const removeCoolingCards = (
   allCards: Card[],
-  previousCardRounds: Pick<Card, "card" | "cooldown">[]
+  previousCardRounds: Card[]
 ) => {
   if (previousCardRounds.length === 0) {
     return allCards;
@@ -79,22 +79,19 @@ export const removeCoolingCards = (
   return allCards;
 };
 
-export function isCardCooling(
-  previousCardRounds: Pick<Card, "card" | "cooldown">[],
-  card: Card
-): boolean {
+export function isCardCooling(previousCardRounds: Card[], card: Card): boolean {
   const round = previousCardRounds.length + 1;
 
   const lastPlayedIndex = previousCardRounds.findIndex(
-    (hotCard) => hotCard.card === card.card
+    (previousCard) => previousCard === card
   );
   if (lastPlayedIndex === -1) {
     // card was not never selected
     return false;
   }
-  const hotCard = previousCardRounds[lastPlayedIndex];
+  const previousCard = previousCardRounds[lastPlayedIndex];
 
-  const cooldownValue = hotCard.cooldown ?? Infinity;
+  const cooldownValue = previousCard.cooldown ?? Infinity;
   const lastVisibleRound = previousCardRounds.length - lastPlayedIndex;
 
   return !(round > lastVisibleRound + cooldownValue);

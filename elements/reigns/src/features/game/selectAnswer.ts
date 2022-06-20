@@ -49,13 +49,7 @@ export const selectAnswer = (
     phase === GamePhase.ENDED
       ? []
       : state.selectedCard
-      ? [
-          {
-            card: state.selectedCard.card,
-            cooldown: state.selectedCard.cooldown,
-          },
-          ...state.previouslySelectedCards,
-        ]
+      ? [state.selectedCard, ...state.previouslySelectedCards]
       : state.previouslySelectedCards;
 
   const selectedCard =

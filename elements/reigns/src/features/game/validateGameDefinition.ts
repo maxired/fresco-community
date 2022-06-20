@@ -19,7 +19,7 @@ export const urlWithoutTrailingSlash = (url: string) => {
   return url.slice(0, -1);
 };
 
-export const validateCards = (cards: Card[] | undefined) => {
+export const validateCards = (cards: Card[] | undefined): Card[] => {
   if (!cards || cards.length === 0) {
     throw new Error("No cards found");
   }

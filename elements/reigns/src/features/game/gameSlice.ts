@@ -47,8 +47,7 @@ export const gameSlice = createSlice({
       try {
         const cards = parseCardsFromCsv(action.payload.designerCardsCsv);
         if (cards) {
-          validateCards(cards);
-          state.designerCards = cards;
+          state.designerCards = validateCards(cards);
         } else {
           state.designerCards = undefined;
         }

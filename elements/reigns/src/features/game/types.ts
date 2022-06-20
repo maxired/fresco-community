@@ -57,7 +57,7 @@ export type PersistedGameState = {
   stats: number[];
   round: number;
   flags: GameFlags;
-  previouslySelectedCards: Pick<Card, "card" | "cooldown">[]; // array sorted in the revers order, recently viewed card have the lowest index
+  previouslySelectedCards: Card[]; // array sorted in the reverse order, recently viewed card have the lowest index
 };
 
 export type PersistedState = Configuration & PersistedGameState;
