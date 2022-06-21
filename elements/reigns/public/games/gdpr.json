@@ -28,7 +28,7 @@
   "cards": [
     {
       "card": "Hello, you seem to be our new data officer, nice to meet you.",
-      "id": "",
+      "id": "card-1",
       "bearer": "coworker",
       "conditions": "started==false",
       "cooldown": 2,
@@ -50,7 +50,7 @@
     },
     {
       "card": "Our new data officer! We are collecting data from our customers and you are in charge of them.",
-      "id": "",
+      "id": "card-2",
       "bearer": "coworker",
       "conditions": "info==true",
       "cooldown": 2,
@@ -72,7 +72,7 @@
     },
     {
       "card": "As you know, our company produces rubber ducks. Welcome aboard!",
-      "id": "",
+      "id": "card-3",
       "bearer": "coworker",
       "conditions": "step2==true",
       "cooldown": 2,
@@ -94,7 +94,7 @@
     },
     {
       "card": "We have a long week ahead, the team have a few questions for you.",
-      "id": "",
+      "id": "card-4",
       "bearer": "coworker",
       "conditions": "step3==true",
       "cooldown": 2,
@@ -116,7 +116,7 @@
     },
     {
       "card": "You are in charge so be careful, your answer have an impact on company resources.",
-      "id": "",
+      "id": "card-5",
       "bearer": "coworker",
       "conditions": "step3bis==true",
       "cooldown": 2,
@@ -138,7 +138,7 @@
     },
     {
       "card": "Customers want a brand new plastic duck, we should create a new one. ",
-      "id": "",
+      "id": "card-6",
       "bearer": "customer-support",
       "conditions": "step4==true",
       "cooldown": 2,
@@ -160,7 +160,7 @@
     },
     {
       "card": "A customer is complaining about our product, she says her duck sank on first use.",
-      "id": "",
+      "id": "card-7",
       "bearer": "customer-support",
       "conditions": "step5==true",
       "cooldown": 2,
@@ -182,7 +182,7 @@
     },
     {
       "card": "Some customers post offensive comments on our website.",
-      "id": "",
+      "id": "card-8",
       "bearer": "customer-support",
       "conditions": "step6==true",
       "cooldown": 2,
@@ -204,7 +204,7 @@
     },
     {
       "card": "The new blue duck is taking time to produce.",
-      "id": "",
+      "id": "card-9",
       "bearer": "manager",
       "conditions": "step7==true blueduck==true",
       "cooldown": 2,
@@ -226,7 +226,7 @@
     },
     {
       "card": "People in the team are spending too much time on social media during work hours. ",
-      "id": "",
+      "id": "card-10",
       "bearer": "IT",
       "conditions": "step8==true blueduck==true",
       "cooldown": 2,
@@ -248,7 +248,7 @@
     },
     {
       "card": "People in the team are spending too much time on social media during work hours. ",
-      "id": "",
+      "id": "card-11",
       "bearer": "IT",
       "conditions": "step7==true blueduck==false",
       "cooldown": 2,
@@ -270,7 +270,7 @@
     },
     {
       "card": "We want to know if customers are happy with our ducks. ",
-      "id": "",
+      "id": "card-12",
       "bearer": "producer",
       "conditions": "step9==true",
       "cooldown": 2,
@@ -292,7 +292,7 @@
     },
     {
       "card": "We now have data to process, we should hire someone to do it.",
-      "id": "",
+      "id": "card-13",
       "bearer": "IT",
       "conditions": "step10==true",
       "cooldown": 2,
@@ -314,7 +314,7 @@
     },
     {
       "card": "We found two potential candidates to manage the database, which one should we hire?",
-      "id": "",
+      "id": "card-14",
       "bearer": "manager",
       "conditions": "step11==true hire1==true",
       "cooldown": 2,
@@ -336,7 +336,7 @@
     },
     {
       "card": "I have a customer on the phone, he wants to change the address he gave in his profile.",
-      "id": "",
+      "id": "card-15",
       "bearer": "customer-support",
       "conditions": "step12==true hire1==true",
       "cooldown": 2,
@@ -358,7 +358,7 @@
     },
     {
       "card": "I have a customer on the phone, he wants to change the address he gave in his profile.",
-      "id": "",
+      "id": "card-16",
       "bearer": "customer-support",
       "conditions": "step12==true hire1==false",
       "cooldown": 2,
@@ -380,7 +380,7 @@
     },
     {
       "card": "Customers can have their data modified at any time. This is called the right to edit.",
-      "id": "",
+      "id": "card-17",
       "bearer": "the-duck",
       "conditions": "step13==true",
       "cooldown": 2,
@@ -402,7 +402,7 @@
     },
     {
       "card": "Coworkers don't know each other, we should plan a team building activity.",
-      "id": "",
+      "id": "card-18",
       "bearer": "manager",
       "conditions": "step14==true",
       "cooldown": 2,
@@ -424,7 +424,7 @@
     },
     {
       "card": "Another company wants to buy our data, they can pay good money for it.",
-      "id": "",
+      "id": "card-19",
       "bearer": "CEO",
       "conditions": "step15==true",
       "cooldown": 2,
@@ -446,7 +446,7 @@
     },
     {
       "card": "Sarah, our head of marketing, has strange web pages appearing on her screen. ",
-      "id": "",
+      "id": "card-20",
       "bearer": "coworker",
       "conditions": "step16==true",
       "cooldown": 2,
@@ -468,7 +468,7 @@
     },
     {
       "card": "She has to launch the new marketing campaign today, promoting our last duck. It will be difficult without her laptop.",
-      "id": "",
+      "id": "card-21",
       "bearer": "coworker",
       "conditions": "step17==true check==true",
       "cooldown": 2,
@@ -490,7 +490,7 @@
     },
     {
       "card": "A customer wants his data removed from our database.",
-      "id": "",
+      "id": "card-22",
       "bearer": "IT",
       "conditions": "step18==true",
       "cooldown": 2,
@@ -512,7 +512,7 @@
     },
     {
       "card": "Actually we can't find him in our database.",
-      "id": "",
+      "id": "card-23",
       "bearer": "IT",
       "conditions": "step19==true",
       "cooldown": 2,
@@ -534,7 +534,7 @@
     },
     {
       "card": "I still find no data from this user on our database, I spent the day checking.",
-      "id": "",
+      "id": "card-24",
       "bearer": "IT",
       "conditions": "step20==true",
       "cooldown": 2,
@@ -556,7 +556,7 @@
     },
     {
       "card": "Customers can have their data deleted from our database at any time. This is called the right to be forgotten.",
-      "id": "",
+      "id": "card-25",
       "bearer": "the-duck",
       "conditions": "step21==true",
       "cooldown": 2,
@@ -578,7 +578,7 @@
     },
     {
       "card": "Our antivirus software is a bit old, we should buy a new one.",
-      "id": "",
+      "id": "card-26",
       "bearer": "IT",
       "conditions": "step22==true",
       "cooldown": 2,
@@ -600,7 +600,7 @@
     },
     {
       "card": "A lawyer reviewed our privacy policy and he said that some parts are missing. ",
-      "id": "",
+      "id": "card-27",
       "bearer": "manager",
       "conditions": "step23==true",
       "cooldown": 2,
@@ -622,7 +622,7 @@
     },
     {
       "card": "Customers must have an accessible and complete privacy policy. This is called the right to be informed.",
-      "id": "",
+      "id": "card-28",
       "bearer": "the-duck",
       "conditions": "step24==true",
       "cooldown": 2,
@@ -644,7 +644,7 @@
     },
     {
       "card": "It has been a year since we started collecting data. What are we going to do with the old data?",
-      "id": "",
+      "id": "card-29",
       "bearer": "IT",
       "conditions": "step25==true",
       "cooldown": 2,
@@ -666,7 +666,7 @@
     },
     {
       "card": "You receive a strange email: \"You're screwed.\"",
-      "id": "",
+      "id": "card-30",
       "bearer": "Unknown",
       "conditions": "step26==true sale==true",
       "cooldown": 2,
@@ -688,7 +688,7 @@
     },
     {
       "card": "I stole your data and I will make it public unless you pay what I ask for.",
-      "id": "",
+      "id": "card-31",
       "bearer": "Unknown",
       "conditions": "step27==true sale==true",
       "cooldown": 2,
@@ -710,7 +710,7 @@
     },
     {
       "card": "Ok then, we'll see.",
-      "id": "",
+      "id": "card-32",
       "bearer": "Unknown",
       "conditions": "step28==true sale==true pay==false",
       "cooldown": 2,
@@ -732,7 +732,7 @@
     },
     {
       "card": "This is the right decision.",
-      "id": "",
+      "id": "card-33",
       "bearer": "Unknown",
       "conditions": "step28==true sale==true pay==true",
       "cooldown": 2,
@@ -754,7 +754,7 @@
     },
     {
       "card": "There is a huge leak of our data on the internet. Can you explain?",
-      "id": "",
+      "id": "card-34",
       "bearer": "CEO",
       "conditions": "step29==true sale==true",
       "cooldown": 2,
@@ -776,7 +776,7 @@
     },
     {
       "card": "Christine is starting to act weirdly, she is talking to our ducks.",
-      "id": "",
+      "id": "card-35",
       "bearer": "manager",
       "conditions": "step26==true christine==true sale==false",
       "cooldown": 2,
@@ -798,7 +798,7 @@
     },
     {
       "card": "Someone forgot to lock the office yesterday, Some of our laptops went missing!",
-      "id": "",
+      "id": "card-36",
       "bearer": "coworker",
       "conditions": "step31==true",
       "cooldown": 2,
@@ -820,7 +820,7 @@
     },
     {
       "card": "We found out that Christine was the last one to leave the office yesterday.",
-      "id": "",
+      "id": "card-37",
       "bearer": "coworker",
       "conditions": "step32==true",
       "cooldown": 2,
@@ -842,7 +842,7 @@
     },
     {
       "card": "Unfortunately, this breach in our data is too big of a mistake and the company decides to let you go.",
-      "id": "",
+      "id": "card-38",
       "bearer": "coworker",
       "conditions": "lose==true",
       "cooldown": 2,
@@ -864,7 +864,7 @@
     },
     {
       "card": "I wanted to congratulate about your work. You are doing great!",
-      "id": "",
+      "id": "card-39",
       "bearer": "CEO",
       "conditions": "step26==true sale==false christine==false",
       "cooldown": 2,

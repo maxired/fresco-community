@@ -21,7 +21,7 @@
   "cards": [
     {
       "card": "What should you do next?",
-      "id": "",
+      "id": "card-1",
       "bearer": "entrepreneur",
       "conditions": "",
       "cooldown": 2,
@@ -43,7 +43,7 @@
     },
     {
       "card": "You meet a spider",
-      "id": "",
+      "id": "card-2",
       "bearer": "customer-support",
       "conditions": "",
       "cooldown": 2,
@@ -65,7 +65,7 @@
     },
     {
       "card": "You gathered some resources",
-      "id": "",
+      "id": "card-3",
       "bearer": "developer",
       "conditions": "",
       "cooldown": 2,
@@ -87,7 +87,7 @@
     },
     {
       "card": "Winter is coming",
-      "id": "",
+      "id": "card-4",
       "bearer": "customer-support",
       "conditions": "",
       "cooldown": 2,
@@ -109,7 +109,7 @@
     },
     {
       "card": "Summer is coming",
-      "id": "",
+      "id": "card-5",
       "bearer": "developer",
       "conditions": "",
       "cooldown": 2,
@@ -131,7 +131,7 @@
     },
     {
       "card": "You are very hot",
-      "id": "",
+      "id": "card-6",
       "bearer": "customer-support",
       "conditions": "",
       "cooldown": 2,
@@ -153,7 +153,7 @@
     },
     {
       "card": "You found a shovel!",
-      "id": "",
+      "id": "card-7",
       "bearer": "customer-support",
       "conditions": "",
       "cooldown": 2,
