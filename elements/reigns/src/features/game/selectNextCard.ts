@@ -83,8 +83,9 @@ export function isCardCooling(previousCardRounds: Card[], card: Card): boolean {
   const round = previousCardRounds.length + 1;
 
   const lastPlayedIndex = previousCardRounds.findIndex(
-    (previousCard) => previousCard === card
+    (previousCard) => previousCard.id === card.id
   );
+
   if (lastPlayedIndex === -1) {
     // card was not never selected
     return false;

@@ -13,6 +13,7 @@ export type CardFlag = {
 
 export type Card = {
   card: string;
+  id: string;
   bearer: string;
   weight: number;
   cooldown: number;

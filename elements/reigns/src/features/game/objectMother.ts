@@ -17,6 +17,7 @@ export const createGameState = (
 
 export const createCard = (cardOverride: Partial<Card> = {}): Card => ({
   card: "my card",
+  id: `created-card-${Date.now()}-${Math.floor(Math.random()* 1000)}`,
   bearer: "some text",
   weight: 1,
   answer_yes: "Yes!",
