@@ -45,8 +45,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "started=true info=true",
-      "cooldown": 1
+      "no_custom": "started=true info=true"
     },
     {
       "card": "Our new data officer! We are collecting data from our customers and you are in charge of them.",
@@ -67,8 +66,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step2=true step1=false info=false",
-      "cooldown": 1
+      "no_custom": "step2=true step1=false info=false"
     },
     {
       "card": "As you know, our company produces rubber ducks. Welcome aboard!",
@@ -89,8 +87,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step3=true step2=false",
-      "cooldown": 1
+      "no_custom": "step3=true step2=false"
     },
     {
       "card": "We have a long week ahead, the team have a few questions for you.",
@@ -111,8 +108,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step3bis=true step3=false",
-      "cooldown": 1
+      "no_custom": "step3bis=true step3=false"
     },
     {
       "card": "You are in charge so be careful, your answer have an impact on company resources.",
@@ -133,8 +129,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step4=true step3bis=false",
-      "cooldown": 1
+      "no_custom": "step4=true step3bis=false"
     },
     {
       "card": "Customers want a brand new plastic duck, we should create a new one. ",
@@ -155,8 +150,7 @@
       "no_stat2": -10,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "blueduck=false step5=true step4=false",
-      "cooldown": 1
+      "no_custom": "blueduck=false step5=true step4=false"
     },
     {
       "card": "A customer is complaining about our product, she says her duck sank on first use.",
@@ -177,8 +171,7 @@
       "no_stat2": -15,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step6=true step5=false",
-      "cooldown": 1
+      "no_custom": "step6=true step5=false"
     },
     {
       "card": "Some customers post offensive comments on our website.",
@@ -199,8 +192,7 @@
       "no_stat2": 10,
       "no_stat3": 0,
       "no_stat4": -10,
-      "no_custom": "step7=true step6=false",
-      "cooldown": 1
+      "no_custom": "step7=true step6=false"
     },
     {
       "card": "The new blue duck is taking time to produce.",
@@ -221,8 +213,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": -15,
-      "no_custom": "step8=true step7=false",
-      "cooldown": 1
+      "no_custom": "step8=true step7=false"
     },
     {
       "card": "People in the team are spending too much time on social media during work hours. ",
@@ -243,8 +234,7 @@
       "no_stat2": 0,
       "no_stat3": -15,
       "no_stat4": 15,
-      "no_custom": "step9=true step8=false",
-      "cooldown": 1
+      "no_custom": "step9=true step8=false"
     },
     {
       "card": "People in the team are spending too much time on social media during work hours. ",
@@ -265,8 +255,7 @@
       "no_stat2": 0,
       "no_stat3": -15,
       "no_stat4": 15,
-      "no_custom": "step9=true step7=false",
-      "cooldown": 1
+      "no_custom": "step9=true step7=false"
     },
     {
       "card": "We want to know if customers are happy with our ducks. ",
@@ -287,8 +276,7 @@
       "no_stat2": 10,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step10=true step9=false",
-      "cooldown": 1
+      "no_custom": "step10=true step9=false"
     },
     {
       "card": "We now have data to process, we should hire someone to do it.",
@@ -309,8 +297,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": -15,
-      "no_custom": "step12=true hire1=false step10=false christine=true",
-      "cooldown": 1
+      "no_custom": "step12=true hire1=false step10=false christine=true"
     },
     {
       "card": "We found two potential candidates to manage the database, which one should we hire?",
@@ -331,8 +318,7 @@
       "no_stat2": 0,
       "no_stat3": 15,
       "no_stat4": 10,
-      "no_custom": "step12=true step11=false",
-      "cooldown": 1
+      "no_custom": "step12=true step11=false"
     },
     {
       "card": "I have a customer on the phone, he wants to change the address he gave in his profile.",
@@ -353,8 +339,7 @@
       "no_stat2": -10,
       "no_stat3": -15,
       "no_stat4": 0,
-      "no_custom": "step13=true step12=false",
-      "cooldown": 1
+      "no_custom": "step13=true step12=false"
     },
     {
       "card": "I have a customer on the phone, he wants to change the address he gave in his profile.",
@@ -375,8 +360,7 @@
       "no_stat2": -10,
       "no_stat3": -15,
       "no_stat4": 0,
-      "no_custom": "step13=true step12=false",
-      "cooldown": 1
+      "no_custom": "step13=true step12=false"
     },
     {
       "card": "Customers can have their data modified at any time. This is called the right to edit.",
@@ -397,8 +381,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step14=true step13=false",
-      "cooldown": 1
+      "no_custom": "step14=true step13=false"
     },
     {
       "card": "Coworkers don't know each other, we should plan a team building activity.",
@@ -419,8 +402,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": -10,
-      "no_custom": "step15=true step14=false",
-      "cooldown": 1
+      "no_custom": "step15=true step14=false"
     },
     {
       "card": "Another company wants to buy our data, they can pay good money for it.",
@@ -441,8 +423,7 @@
       "no_stat2": 0,
       "no_stat3": 15,
       "no_stat4": 0,
-      "no_custom": "step16=true sale=false step15=false",
-      "cooldown": 1
+      "no_custom": "step16=true sale=false step15=false"
     },
     {
       "card": "Sarah, our head of marketing, has strange web pages appearing on her screen. ",
@@ -463,8 +444,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 10,
-      "no_custom": "step18=true step16=false",
-      "cooldown": 1
+      "no_custom": "step18=true step16=false"
     },
     {
       "card": "She has to launch the new marketing campaign today, promoting our last duck. It will be difficult without her laptop.",
@@ -485,8 +465,7 @@
       "no_stat2": 25,
       "no_stat3": -15,
       "no_stat4": 0,
-      "no_custom": "step18=true step17=false",
-      "cooldown": 1
+      "no_custom": "step18=true step17=false"
     },
     {
       "card": "A customer wants his data removed from our database.",
@@ -507,8 +486,7 @@
       "no_stat2": -15,
       "no_stat3": -10,
       "no_stat4": 0,
-      "no_custom": "step19=true step18=false",
-      "cooldown": 1
+      "no_custom": "step19=true step18=false"
     },
     {
       "card": "Actually we can't find him in our database.",
@@ -529,8 +507,7 @@
       "no_stat2": 0,
       "no_stat3": 10,
       "no_stat4": 0,
-      "no_custom": "step20=true step19=false",
-      "cooldown": 1
+      "no_custom": "step20=true step19=false"
     },
     {
       "card": "I still find no data from this user on our database, I spent the day checking.",
@@ -551,8 +528,7 @@
       "no_stat2": 0,
       "no_stat3": 10,
       "no_stat4": -15,
-      "no_custom": "step21=true step20=false",
-      "cooldown": 1
+      "no_custom": "step21=true step20=false"
     },
     {
       "card": "Customers can have their data deleted from our database at any time. This is called the right to be forgotten.",
@@ -573,8 +549,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step22=true step21=false",
-      "cooldown": 1
+      "no_custom": "step22=true step21=false"
     },
     {
       "card": "Our antivirus software is a bit old, we should buy a new one.",
@@ -595,8 +570,7 @@
       "no_stat2": 0,
       "no_stat3": -25,
       "no_stat4": 0,
-      "no_custom": "step23=true step22=false",
-      "cooldown": 1
+      "no_custom": "step23=true step22=false"
     },
     {
       "card": "A lawyer reviewed our privacy policy and he said that some parts are missing. ",
@@ -617,8 +591,7 @@
       "no_stat2": 0,
       "no_stat3": -25,
       "no_stat4": 0,
-      "no_custom": "step24=true step23=false",
-      "cooldown": 1
+      "no_custom": "step24=true step23=false"
     },
     {
       "card": "Customers must have an accessible and complete privacy policy. This is called the right to be informed.",
@@ -639,8 +612,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step25=true step24=false",
-      "cooldown": 1
+      "no_custom": "step25=true step24=false"
     },
     {
       "card": "It has been a year since we started collecting data. What are we going to do with the old data?",
@@ -661,8 +633,7 @@
       "no_stat2": 0,
       "no_stat3": 15,
       "no_stat4": 0,
-      "no_custom": "step26=true step25=false",
-      "cooldown": 1
+      "no_custom": "step26=true step25=false"
     },
     {
       "card": "You receive a strange email: \"You're screwed.\"",
@@ -683,8 +654,7 @@
       "no_stat2": 0,
       "no_stat3": -15,
       "no_stat4": 0,
-      "no_custom": "step27=true step26=false",
-      "cooldown": 1
+      "no_custom": "step27=true step26=false"
     },
     {
       "card": "I stole your data and I will make it public unless you pay what I ask for.",
@@ -705,8 +675,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step28=true step27=false pay=false",
-      "cooldown": 1
+      "no_custom": "step28=true step27=false pay=false"
     },
     {
       "card": "Ok then, we'll see.",
@@ -727,8 +696,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step29=true step28=false",
-      "cooldown": 1
+      "no_custom": "step29=true step28=false"
     },
     {
       "card": "This is the right decision.",
@@ -749,8 +717,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "step29=true step28=false",
-      "cooldown": 1
+      "no_custom": "step29=true step28=false"
     },
     {
       "card": "There is a huge leak of our data on the internet. Can you explain?",
@@ -771,8 +738,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "lose=true step29=false",
-      "cooldown": 1
+      "no_custom": "lose=true step29=false"
     },
     {
       "card": "Christine is starting to act weirdly, she is talking to our ducks.",
@@ -793,8 +759,7 @@
       "no_stat2": 0,
       "no_stat3": 10,
       "no_stat4": 15,
-      "no_custom": "step26=true sale=false christine=false",
-      "cooldown": 1
+      "no_custom": "step26=true sale=false christine=false"
     },
     {
       "card": "Someone forgot to lock the office yesterday, Some of our laptops went missing!",
@@ -815,8 +780,7 @@
       "no_stat2": -15,
       "no_stat3": 15,
       "no_stat4": 0,
-      "no_custom": "step26=true sale=false christine=false",
-      "cooldown": 1
+      "no_custom": "step26=true sale=false christine=false"
     },
     {
       "card": "We found out that Christine was the last one to leave the office yesterday.",
@@ -837,8 +801,7 @@
       "no_stat2": 0,
       "no_stat3": -15,
       "no_stat4": 15,
-      "no_custom": "step26=true sale=true christine=false",
-      "cooldown": 1
+      "no_custom": "step26=true sale=true christine=false"
     },
     {
       "card": "Unfortunately, this breach in our data is too big of a mistake and the company decides to let you go.",
@@ -859,8 +822,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "end=true",
-      "cooldown": 1
+      "no_custom": "end=true"
     },
     {
       "card": "I wanted to congratulate about your work. You are doing great!",
@@ -881,8 +843,7 @@
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "end=true",
-      "cooldown": 1
+      "no_custom": "end=true"
     }
   ]
 }
