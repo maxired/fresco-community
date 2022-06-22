@@ -129,19 +129,14 @@ fresco.onReady(function () {
       console.log("here", fresco.element.state.startedAt);
     }
     else if (!fresco.element.state.startedAt) {
-      console.log("here", fresco.element.state.startedAt);
       stopTimer();
     } else {
-      console.log("or here", fresco.element.state.startedAt);
       stopTimer();
       targetTime =
       fresco.element.state.startedAt +
       fresco.element.state.duration * 60 * 1000;
       startTimer(targetTime, new Date().getTime());
     }
-    
-    console.log("check formDuration", formDuration);
-    console.log("check state Duration", fresco.element.state.duration);
 
     if (!fresco.localParticipant.permission.canEdit) {
       main.setAttribute("class", "user");
