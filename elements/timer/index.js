@@ -1,13 +1,44 @@
-const button = document.getElementById("timer-button");
+const main = document.getElementById("main");
+let formDuration = null;
 
-function valueForm() {
-  const minutes = parseFloat(document.getElementById("minutes").value);
-  const seconds = parseFloat(document.getElementById("seconds").value) / 60;
+function render(timer) {
+  if (fresco.element.state.timer === "initial") {
+    main.innerHTML = `
+      <div>
+      <form id="form" onchange="valueForm(this)">
+        <input type="number" id="minutes" min="0" max="59" value="10"/>
+        <input type="number" id="seconds" min="0" max="59" value="00"/>
+        <button id="start" type="submit" onclick="submitForm()">Start</button>
+      </form>
+      </div>
+    `;
+  } else if (fresco.element.state.timer === "run") {
+    main.innerHTML = `
+      <div>
+      <p>${timer}</p>
+      <button id="pause" onclick="pauseTimer()">Pause</button>
+      </div>
+    `;
+  } else if (fresco.element.state.timer === "pause") {
+    main.innerHTML = `
+      <div>
+      <p>${timer}</p>
+      <button id="start" onclick="toggleTimer()">Start</button>
+      <button id="pause" onclick="resetTimer()">Reset</button>
+      </div>
+    `;
+  }
+}
 
-  const formDuration = minutes + seconds;
-  fresco.setState({ duration: formDuration });
+function valueForm(e) {
+  const minutes = parseFloat(e[0].value);
+  const seconds = parseFloat(e[1].value) / 60;
+  formDuration = minutes + seconds;
+  fresco.setState({ duration: formDuration, startedAt: "initial" });
+}
 
-  return formDuration;
+function submitForm() {
+  toggleTimer();
 }
 
 function toTime(milliseconds) {
@@ -28,11 +59,9 @@ function toTime(milliseconds) {
 
 let interval = null;
 let targetTime = null;
-let paused = false;
 
 function stopTimer() {
-  button.classList.remove("button--done");
-  button.innerText = toTime(fresco.element.state.duration * 60 * 1000);
+  render(toTime(fresco.element.state.duration * 60 * 1000));
   if (interval) {
     clearInterval(interval);
     interval = null;
@@ -43,29 +72,27 @@ function pauseTimer() {
   clearInterval(interval);
   const timePause = targetTime;
   targetTime = (timePause - new Date().getTime()) / 60 / 1000;
-  fresco.setState({ duration: targetTime, startedAt: null });
+  fresco.setState({ duration: targetTime, startedAt: null, timer: "pause" });
 }
 
 function resetTimer() {
-  targetTime = 10.0;
+  clearInterval(interval);
   interval = null;
-  fresco.setState({ duration: targetTime, startedAt: null });
+  fresco.setState({ duration: 10, startedAt: null, timer: "initial" });
 }
 
 function startTimer(targetTime, now) {
-  button.innerText = toTime(targetTime - 1 - now);
+  render(toTime(targetTime - 1 - now));
   interval = setInterval(() => {
     const timeRemaining = targetTime - new Date().getTime();
-    button.innerText = toTime(timeRemaining);
+    render(toTime(timeRemaining));
     if (timeRemaining <= 0) {
       const tingsha = new Audio("tingsha.mp3");
       tingsha.play();
-      button.classList.add("button--done");
       clearInterval(interval);
       interval = null;
     }
   }, 1000);
-  console.log(interval);
 }
 
 function toggleTimer() {
@@ -78,8 +105,8 @@ function toggleTimer() {
 
   const now = new Date().getTime();
   targetTime = now + fresco.element.state.duration * 60 * 1000;
+  fresco.setState({ startedAt: now, timer: "run" });
   startTimer(targetTime, now);
-  fresco.setState({ startedAt: now });
 }
 
 fresco.onReady(function () {
@@ -89,6 +116,7 @@ fresco.onReady(function () {
   const defaultState = {
     duration: duration ? parseFloat(duration, 2) : 5,
     startedAt: null,
+    timer: "initial",
   };
 
   const elementConfig = {
@@ -97,33 +125,31 @@ fresco.onReady(function () {
   };
 
   fresco.onStateChanged(function () {
-    if (!fresco.element.state.startedAt) {
+    if (fresco.element.state.startedAt === 'initial') {
+      console.log("here", fresco.element.state.startedAt);
+    }
+    else if (!fresco.element.state.startedAt) {
+      console.log("here", fresco.element.state.startedAt);
       stopTimer();
     } else {
+      console.log("or here", fresco.element.state.startedAt);
       stopTimer();
       targetTime =
-        fresco.element.state.startedAt +
-        fresco.element.state.duration * 60 * 1000;
+      fresco.element.state.startedAt +
+      fresco.element.state.duration * 60 * 1000;
       startTimer(targetTime, new Date().getTime());
     }
-
-    const actualTime = fresco.element.state.duration * 60;
-    document.getElementById("minutes").value = Math.floor(actualTime / 60);
-    document.getElementById("seconds").value = Math.floor(actualTime % 60);
+    
+    console.log("check formDuration", formDuration);
+    console.log("check state Duration", fresco.element.state.duration);
 
     if (!fresco.localParticipant.permission.canEdit) {
-      button.setAttribute("disabled", true);
+      main.setAttribute("class", "user");
     } else {
-      button.removeAttribute("disabled");
+      main.setAttribute("class", "admin");
     }
   });
 
   fresco.initialize(defaultState, elementConfig);
-  button.addEventListener("click", toggleTimer);
-  if (fresco.localParticipant.permission) {
-    if (!fresco.localParticipant.permission.canEdit) {
-      button.setAttribute("disabled", true);
-    }
-  }
   render();
 });
