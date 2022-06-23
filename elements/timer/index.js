@@ -6,7 +6,7 @@ function render(timer) {
   if (fresco.element.state.timer === "initial") {
     main.innerHTML = `
       <div>
-      <form id="form" onkeyup="valueForm(this)">
+      <form id="form" onchange="valueForm(this)" onkeyup="valueForm(this)">
         <input type="number" id="minutes" min="0" max="59" value="${value[0]}"/>
         <input type="number" id="seconds" min="0" max="59" value="${value[1]}"/>
         <button id="start" type="submit" onclick="toggleTimer()">Start</button>
@@ -76,7 +76,7 @@ function resetTimer() {
   clearInterval(interval);
   interval = null;
   resetValue(formDuration);
-  fresco.setState({ duration: 10, startedAt: null, timer: "initial" });
+  fresco.setState({ duration: formDuration, startedAt: null, timer: "initial" });
 }
 
 function resetValue(e) {
