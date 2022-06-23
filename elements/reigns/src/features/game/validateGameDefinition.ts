@@ -19,7 +19,8 @@ export const urlWithoutTrailingSlash = (url: string) => {
   return url.slice(0, -1);
 };
 
-export const validateCards = (cards: Card[] | undefined) => {
+export const validateCards = (cards: Card[] | undefined): Card[] => {
+  const cardIds = new Set<string>();
   if (!cards || cards.length === 0) {
     throw new Error("No cards found");
   }
@@ -29,6 +30,10 @@ export const validateCards = (cards: Card[] | undefined) => {
     if (!card.card) {
       throw new Error(`Card ${i + 1} is invalid`);
     }
+    if (cardIds.has(card.id)) {
+      throw new Error(`Card ${i + 1} has a duplicated id`);
+    }
+    cardIds.add(card.id);
     if (!card.weight || card.weight < 0) {
       throw new Error(
         `Card ${i + 1} is invalid, weight must be greater than 0`
