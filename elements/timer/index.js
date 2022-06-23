@@ -117,6 +117,8 @@ function toggleTimer() {
 fresco.onReady(function () {
   const urlParams = new URLSearchParams(window.location.search);
   const duration = urlParams.get("duration");
+  resetValue(duration);
+  formDuration = duration;
 
   const defaultState = {
     duration: duration ? parseFloat(duration, 2) : 5,
