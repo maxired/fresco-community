@@ -5,6 +5,7 @@ import { parseCardsFromCsv } from "./parseCardsFromCsv";
 import * as selectNextCard from "./selectNextCard";
 
 import { Card } from "./types";
+import { INFINITE_CARD_WEIGHT } from "../../constants";
 
 const {
   cardsDistributedByWeight,
@@ -31,6 +32,18 @@ describe("selectNextCard", () => {
 
       expect(result.filter((p) => p.card === "card1").length).toBe(1);
       expect(result.filter((p) => p.card === "card2").length).toBe(5);
+    });
+
+    it(`filter cards with weight of ${INFINITE_CARD_WEIGHT}`, () => {
+      const result = cardsDistributedByWeight([
+        { card: "card1", weight: 1 } as Card,
+        { card: "card2", weight: INFINITE_CARD_WEIGHT } as Card,
+        { card: "card3", weight: INFINITE_CARD_WEIGHT } as Card,
+      ]);
+
+      expect(result.filter((p) => p.card === "card1").length).toBe(0);
+      expect(result.filter((p) => p.card === "card2").length).toBe(1);
+      expect(result.filter((p) => p.card === "card3").length).toBe(1);
     });
   });
 
