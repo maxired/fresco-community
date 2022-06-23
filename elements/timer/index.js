@@ -147,7 +147,7 @@ fresco.onReady(function () {
       main.setAttribute("class", "admin");
     }
   });
-
+  
   fresco.initialize(defaultState, elementConfig);
   render();
 });
