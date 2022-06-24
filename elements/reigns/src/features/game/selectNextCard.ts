@@ -1,9 +1,20 @@
-import { Card, GameDefinition, GameFlags, GameState } from "./types";
+import { Card, GameDefinition, GameFlags } from "./types";
 import { getConditions } from "./validateGameDefinition";
 import * as self from "./selectNextCard";
+import { INFINITE_CARD_WEIGHT } from "../../constants";
 
-export const cardsDistributedByWeight = (cards: Card[]) =>
-  cards.flatMap((card) => [...Array(card.weight).keys()].map(() => card));
+export const cardsDistributedByWeight = (cards: Card[]) => {
+  const cardWithMaximumWeights = cards.filter(
+    (card) => card.weight === INFINITE_CARD_WEIGHT
+  );
+  if (cardWithMaximumWeights.length > 0) {
+    return cardWithMaximumWeights;
+  }
+
+  return cards.flatMap((card) =>
+    [...Array(card.weight).keys()].map(() => card)
+  );
+};
 
 export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
   cards.filter((card) => {
