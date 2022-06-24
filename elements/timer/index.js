@@ -122,7 +122,7 @@ fresco.onReady(function () {
   formDuration = duration;
 
   const defaultState = {
-    duration: duration ? parseFloat(duration, 2) : 5,
+    duration: duration ? parseFloat(duration, 2) : 0,
     startedAt: null,
     timer: "initial",
   };
