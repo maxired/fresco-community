@@ -30,8 +30,8 @@ describe("selectNextCard", () => {
         { card: "card2", weight: 5 } as Card,
       ]);
 
-      expect(result.filter((p) => p.card === "card1").length).toBe(1);
-      expect(result.filter((p) => p.card === "card2").length).toBe(5);
+      expect(result.filter((p) => p.card === "card1")).toHaveLength(1);
+      expect(result.filter((p) => p.card === "card2")).toHaveLength(5);
     });
 
     it(`filter cards with weight of ${INFINITE_CARD_WEIGHT}`, () => {
@@ -41,9 +41,9 @@ describe("selectNextCard", () => {
         { card: "card3", weight: INFINITE_CARD_WEIGHT } as Card,
       ]);
 
-      expect(result.filter((p) => p.card === "card1").length).toBe(0);
-      expect(result.filter((p) => p.card === "card2").length).toBe(1);
-      expect(result.filter((p) => p.card === "card3").length).toBe(1);
+      expect(result.filter((p) => p.card === "card1")).toHaveLength(0);
+      expect(result.filter((p) => p.card === "card2")).toHaveLength(1);
+      expect(result.filter((p) => p.card === "card3")).toHaveLength(1);
     });
   });
 
