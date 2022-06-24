@@ -94,6 +94,7 @@ function startTimer(targetTime, now) {
     if (timeRemaining <= 0) {
       const tingsha = new Audio("tingsha.mp3");
       tingsha.play();
+      fresco.setState({ duration: formDuration, startedAt: null, timer: "initial" });
       clearInterval(interval);
       interval = null;
     }
