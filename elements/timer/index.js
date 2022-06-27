@@ -35,6 +35,7 @@ function render(timer) {
 function valueForm(e) {
   const minutes = parseFloat(e[0].value);
   const seconds = parseFloat(e[1].value) / 60;
+  formDuration = minutes + seconds;
   
   if (isNaN(minutes)) {
     e[0].value = null;
@@ -50,7 +51,6 @@ function valueForm(e) {
     e[2].setAttribute("class", "block");
   }
   
-  formDuration = minutes + seconds;
   fresco.setState({ duration: formDuration, startedAt: "initial" });
 }
 
