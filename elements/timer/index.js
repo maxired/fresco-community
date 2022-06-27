@@ -1,6 +1,7 @@
 const main = document.getElementById("main");
 let formDuration = 10;
 let value = [10, 00];
+let btnStart = "block";
 
 function render(timer) {
   if (fresco.element.state.timer === "initial") {
@@ -9,7 +10,7 @@ function render(timer) {
       <form id="form" onchange="valueForm(this)" onkeyup="valueForm(this)">
         <input type="number" id="minutes" min="0" max="59" value="${value[0]}"/>
         <input type="number" id="seconds" min="0" max="59" value="${value[1]}"/>
-        <button id="start" type="submit" onclick="toggleTimer()">Start</button>
+        <button id="start" type="submit" onclick="toggleTimer()" style="display: ${btnStart}">Start</button>
       </form>
       </div>
     `;
@@ -40,7 +41,21 @@ function valueForm(e) {
   } else if (isNaN(seconds)) {
     e[1].value = null;
   }
-  
+
+  if ((e[0].value == 0) & (e[1].value == 0)) {
+    btnStart = "none";
+    value = [00, 00];
+    render();
+  } else if ((e[0].value == 0) & (e[1].value == 1)) {
+    btnStart = "block";
+    value = [00, 01];
+    render();
+  } else if ((e[0].value == 1) & (e[1].value == 0)) {
+    btnStart = "block";
+    value = [01, 00];
+    render();
+  }
+
   formDuration = minutes + seconds;
   fresco.setState({ duration: formDuration, startedAt: "initial" });
 }
@@ -83,7 +98,11 @@ function resetTimer() {
   clearInterval(interval);
   interval = null;
   resetValue(formDuration);
-  fresco.setState({ duration: formDuration, startedAt: null, timer: "initial" });
+  fresco.setState({
+    duration: formDuration,
+    startedAt: null,
+    timer: "initial",
+  });
 }
 
 function resetValue(e) {
@@ -101,7 +120,11 @@ function startTimer(targetTime, now) {
     if (timeRemaining <= 0) {
       const tingsha = new Audio("tingsha.mp3");
       tingsha.play();
-      fresco.setState({ duration: formDuration, startedAt: null, timer: "initial" });
+      fresco.setState({
+        duration: formDuration,
+        startedAt: null,
+        timer: "initial",
+      });
       clearInterval(interval);
       interval = null;
     }
@@ -125,7 +148,7 @@ function toggleTimer() {
 fresco.onReady(function () {
   const urlParams = new URLSearchParams(window.location.search);
   const duration = urlParams.get("duration");
-  resetValue(duration);
+  resetValue(duration ? parseFloat(duration, 2) : 10);
   formDuration = duration;
 
   const defaultState = {
