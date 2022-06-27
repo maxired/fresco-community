@@ -10,7 +10,7 @@ function render(timer) {
       <form id="form" onchange="valueForm(this)" onkeyup="valueForm(this)">
         <input type="number" id="minutes" min="0" max="59" value="${value[0]}"/>
         <input type="number" id="seconds" min="0" max="59" value="${value[1]}"/>
-        <button id="start" type="submit" onclick="toggleTimer()" style="display: ${btnStart}">Start</button>
+        <button id="start" type="submit" onclick="toggleTimer()">Start</button>
       </form>
       </div>
     `;
@@ -35,27 +35,21 @@ function render(timer) {
 function valueForm(e) {
   const minutes = parseFloat(e[0].value);
   const seconds = parseFloat(e[1].value) / 60;
-
+  
   if (isNaN(minutes)) {
     e[0].value = null;
   } else if (isNaN(seconds)) {
     e[1].value = null;
   }
-
+  
   if ((e[0].value == 0) & (e[1].value == 0)) {
-    btnStart = "none";
-    value = [00, 00];
-    render();
-  } else if ((e[0].value == 0) & (e[1].value == 1)) {
-    btnStart = "block";
-    value = [00, 01];
-    render();
-  } else if ((e[0].value == 1) & (e[1].value == 0)) {
-    btnStart = "block";
-    value = [01, 00];
-    render();
+    console.log('none');
+    e[2].setAttribute("class", "none");
+  } else {
+    console.log('block');
+    e[2].setAttribute("class", "block");
   }
-
+  
   formDuration = minutes + seconds;
   fresco.setState({ duration: formDuration, startedAt: "initial" });
 }
