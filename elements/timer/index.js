@@ -36,21 +36,19 @@ function valueForm(e) {
   const minutes = parseFloat(e[0].value);
   const seconds = parseFloat(e[1].value) / 60;
   formDuration = minutes + seconds;
-  
+
   if (isNaN(minutes)) {
     e[0].value = null;
   } else if (isNaN(seconds)) {
     e[1].value = null;
   }
-  
+
   if ((e[0].value == 0) & (e[1].value == 0)) {
-    console.log('none');
     e[2].setAttribute("class", "none");
   } else {
-    console.log('block');
     e[2].setAttribute("class", "block");
   }
-  
+
   fresco.setState({ duration: formDuration, startedAt: "initial" });
 }
 
@@ -121,6 +119,7 @@ function startTimer(targetTime, now) {
       });
       clearInterval(interval);
       interval = null;
+      resetValue(formDuration);
     }
   }, 1000);
 }
