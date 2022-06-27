@@ -40,7 +40,7 @@ function valueForm(e) {
   } else if (isNaN(seconds)) {
     e[1].value = null;
   }
-
+  
   formDuration = minutes + seconds;
   fresco.setState({ duration: formDuration, startedAt: "initial" });
 }
@@ -129,7 +129,7 @@ fresco.onReady(function () {
   formDuration = duration;
 
   const defaultState = {
-    duration: duration ? parseFloat(duration, 2) : 0,
+    duration: duration ? parseFloat(duration, 2) : 10,
     startedAt: null,
     timer: "initial",
   };
