@@ -27,7 +27,7 @@ export const useOnFrescoStateUpdate = () => {
           round: state.round,
           selectedCard: state.selectedCard,
           stats: state.stats,
-          previouslySelectedCards: state.previouslySelectedCards,
+          previouslySelectedCardIds: state.previouslySelectedCardIds,
         })
       );
     } else {

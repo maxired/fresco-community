@@ -49,14 +49,14 @@ export class Game {
         state.definition,
         state.flags,
         state.designerCards,
-        state.previouslySelectedCards
+        state.previouslySelectedCardIds
       ),
       stats: state.definition
         ? state.definition.stats.map(({ value }) => value)
         : [],
       round: 1,
       flags: {},
-      previouslySelectedCards: [],
+      previouslySelectedCardIds: [],
     });
     return this;
   }
