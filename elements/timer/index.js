@@ -93,9 +93,9 @@ function pauseTimer() {
 function resetTimer() {
   clearInterval(interval);
   interval = null;
-  resetValue(formDuration);
+  resetValue(fresco.element.state.setValue);
   fresco.setState({
-    duration: formDuration,
+    duration: fresco.element.state.setValue,
     startedAt: null,
     timer: "initial",
   });
@@ -177,6 +177,8 @@ fresco.onReady(function () {
     } else {
       main.setAttribute("class", "admin");
     }
+
+    resetValue(fresco.element.state.setValue);
   });
 
   fresco.initialize(defaultState, elementConfig);
