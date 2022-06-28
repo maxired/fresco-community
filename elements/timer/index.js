@@ -49,7 +49,11 @@ function valueForm(e) {
     e[2].setAttribute("class", "block");
   }
 
-  fresco.setState({ duration: formDuration, startedAt: "initial" });
+  fresco.setState({
+    duration: formDuration,
+    startedAt: "initial",
+    setValue: formDuration,
+  });
 }
 
 function toTime(milliseconds) {
@@ -113,13 +117,13 @@ function startTimer(targetTime, now) {
       const tingsha = new Audio("tingsha.mp3");
       tingsha.play();
       fresco.setState({
-        duration: formDuration,
+        duration: fresco.element.state.setValue,
         startedAt: null,
         timer: "initial",
       });
       clearInterval(interval);
       interval = null;
-      resetValue(formDuration);
+      resetValue(fresco.element.state.setValue);
     }
   }, 1000);
 }
@@ -148,6 +152,7 @@ fresco.onReady(function () {
     duration: duration ? parseFloat(duration, 2) : 10,
     startedAt: null,
     timer: "initial",
+    setValue: 10,
   };
 
   const elementConfig = {
