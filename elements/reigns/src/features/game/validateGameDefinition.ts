@@ -10,7 +10,7 @@ export const validateGameDefinition = (
   return {
     ...definition,
     assetsUrl: getRootAssetsUrl(definition.assetsUrl),
-    ...validateCards(cardsWithIds),
+    cards: validateCards(cardsWithIds),
   };
 };
 

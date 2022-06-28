@@ -2,7 +2,7 @@ import * as Papa from "papaparse";
 import { Card } from "./types";
 
 export const mapCardWithIndex = (card: Card, index: number) => {
-  if (card.id !== "" && card.id !== null) {
+  if (card.id !== "" && card.id !== null && card.id !== undefined) {
     return { ...card, id: `${card.id}` };
   }
 
