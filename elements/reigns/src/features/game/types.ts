@@ -58,7 +58,7 @@ export type PersistedGameState = {
   stats: number[];
   round: number;
   flags: GameFlags;
-  previouslySelectedCards: Card[]; // array sorted in the reverse order, recently viewed card have the lowest index
+  previouslySelectedCardIds: string[]; // array sorted in the reverse order, recently viewed card have the lowest index
 };
 
 export type PersistedState = Configuration & PersistedGameState;

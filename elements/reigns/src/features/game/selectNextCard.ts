@@ -33,7 +33,7 @@ const getAllValidCards = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | null = null,
-  previouslySelectedCards: Card[]
+  previouslySelectedCardIds: string[]
 ) => {
   if (!definition) {
     return [];
@@ -43,9 +43,9 @@ const getAllValidCards = (
     flags
   );
 
-  const availableCards = removeCoolingCards(
+  const availableCards = removeCardsOnCooldown(
     restrictedByFlags,
-    previouslySelectedCards
+    previouslySelectedCardIds
   );
 
   return cardsDistributedByWeight(availableCards);
@@ -55,13 +55,13 @@ export const selectNextCard = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | undefined,
-  previouslySelectedCards: Card[]
+  previouslySelectedCardIds: string[]
 ) => {
   const validCards = getAllValidCards(
     definition,
     flags,
     designerCards,
-    previouslySelectedCards
+    previouslySelectedCardIds
   );
 
   const randomCard = validCards[Math.floor(Math.random() * validCards.length)];
@@ -71,40 +71,42 @@ export const selectNextCard = (
   };
 };
 
-export const removeCoolingCards = (
+export const removeCardsOnCooldown = (
   allCards: Card[],
-  previousCardRounds: Card[]
+  previouslySelectedCardIds: string[]
 ) => {
-  if (previousCardRounds.length === 0) {
+  if (previouslySelectedCardIds.length === 0) {
     return allCards;
   }
 
-  const coldCards = allCards.filter(
-    (card) => !self.isCardCooling(previousCardRounds, card)
+  const cardsNotOnCooldown = allCards.filter(
+    (card) => !self.isCardOnCooldown(previouslySelectedCardIds, card)
   );
 
-  if (coldCards.length > 0) {
-    return coldCards;
+  if (cardsNotOnCooldown.length > 0) {
+    return cardsNotOnCooldown;
   }
 
   return allCards;
 };
 
-export function isCardCooling(previousCardRounds: Card[], card: Card): boolean {
-  const round = previousCardRounds.length + 1;
+export function isCardOnCooldown(
+  previouslySelectedCardIds: string[],
+  card: Card
+): boolean {
+  const round = previouslySelectedCardIds.length + 1;
 
-  const lastPlayedIndex = previousCardRounds.findIndex(
-    (previousCard) => previousCard.id === card.id
+  const lastPlayedIndex = previouslySelectedCardIds.findIndex(
+    (id) => id === card.id
   );
 
   if (lastPlayedIndex === -1) {
-    // card was not never selected
+    // card was never played
     return false;
   }
-  const previousCard = previousCardRounds[lastPlayedIndex];
 
-  const cooldownValue = previousCard.cooldown ?? Infinity;
-  const lastVisibleRound = previousCardRounds.length - lastPlayedIndex;
+  const cooldownValue = card.cooldown ?? Infinity;
+  const lastPlayedRound = previouslySelectedCardIds.length - lastPlayedIndex;
 
-  return !(round > lastVisibleRound + cooldownValue);
+  return !(round > lastPlayedRound + cooldownValue);
 }
