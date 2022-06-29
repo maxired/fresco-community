@@ -4,6 +4,7 @@ import {
   getFlags,
   validateFlags,
   getConditions,
+  validateGameDefinition,
 } from "./validateGameDefinition";
 import gdpr from "../../../public/games/gdpr.json";
 import dont_starve from "../../../public/games/dont-starve.json";
@@ -20,6 +21,7 @@ describe("validateGameDefinition", () => {
         ])
       ).not.toThrow();
     });
+
     it("should throw if no cards", () => {
       expect(() => validateCards([])).toThrow();
     });
@@ -192,6 +194,53 @@ describe("validateGameDefinition", () => {
       const iterator = dont_starve.cards.values();
       const cards: Card[] = Array.from(iterator);
       expect(() => validateCards(cards)).not.toThrow();
+    });
+  });
+
+  describe("validateGameDefinition", () => {
+    it("should returns cards provided with id", () => {
+      const definitionCards = [
+        { card: "foo", id: "fooId", weight: 1 },
+        { card: "bar", id: "barId", weight: 1 },
+      ] as Card[];
+      const gameDefinition = validateGameDefinition({
+        cards: definitionCards,
+        stats: [{ name: "foo", value: 0, icon: "" }],
+        assetsUrl: "",
+        deathMessage: "Sorry",
+        roundName: "day",
+        gameName: "Welcome",
+      });
+
+      expect(gameDefinition.cards).toEqual(definitionCards);
+    });
+
+    it("should generate ids for cards without id", () => {
+      const definitionCards = [
+        { card: "foo", weight: 1 },
+        { card: "bar", id: "barId", weight: 1 },
+        { card: "baz", weight: 1 },
+      ] as Card[];
+
+      const gameDefinition = validateGameDefinition({
+        cards: definitionCards,
+        stats: [{ name: "foo", value: 0, icon: "" }],
+        assetsUrl: "",
+        deathMessage: "Sorry",
+        roundName: "day",
+        gameName: "Welcome",
+      });
+
+      expect(gameDefinition.cards.length).toBe(3);
+      expect(gameDefinition.cards[0]).toEqual({
+        ...definitionCards[0],
+        id: "index-0",
+      });
+      expect(gameDefinition.cards[1]).toEqual(definitionCards[1]);
+      expect(gameDefinition.cards[2]).toEqual({
+        ...definitionCards[2],
+        id: "index-2",
+      });
     });
   });
 });
