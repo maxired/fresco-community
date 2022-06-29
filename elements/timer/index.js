@@ -33,8 +33,8 @@ function render(timer) {
 }
 
 function valueForm(e) {
-  const minutes = parseFloat(e[0].value);
-  const seconds = parseFloat(e[1].value) / 60;
+  const minutes = parseFloat(e.elements['minutes'].value);
+  const seconds = parseFloat(e.elements['seconds'].value) / 60;
   formDuration = minutes + seconds;
 
   if (isNaN(minutes)) {
