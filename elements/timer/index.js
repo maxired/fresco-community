@@ -38,15 +38,15 @@ function valueForm(e) {
   formDuration = minutes + seconds;
 
   if (isNaN(minutes)) {
-    e[0].value = null;
+    e.elements['minutes'].preventDefault;
   } else if (isNaN(seconds)) {
-    e[1].value = null;
+    e.elements['seconds'].preventDefault;
   }
 
   if ((e[0].value == 0) & (e[1].value == 0)) {
-    e[2].setAttribute("class", "none");
+    e.elements['start'].setAttribute("class", "none");
   } else {
-    e[2].setAttribute("class", "block");
+    e.elements['start'].setAttribute("class", "block");
   }
 
   fresco.setState({
