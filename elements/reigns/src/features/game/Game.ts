@@ -41,7 +41,8 @@ export class Game {
     this.clearVotes();
   }
 
-  startGame(state: GameState) {
+  startGame(state: Pick<GameState, 'definition' | 'designerCards'>) {
+    debugger;
     this.clearVotes();
     const flags = {};
     const previouslySelectedCardIds = [] as string[];
