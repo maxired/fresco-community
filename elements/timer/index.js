@@ -152,7 +152,7 @@ fresco.onReady(function () {
     duration: duration ? parseFloat(duration, 2) : 10,
     startedAt: null,
     timer: "initial",
-    setValue: 10,
+    setValue: duration ? parseFloat(duration, 2) : 10,
   };
 
   const elementConfig = {
