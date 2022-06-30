@@ -7,7 +7,7 @@ function render(timer) {
   if (fresco.element.state.timer === "initial") {
     main.innerHTML = `
       <div>
-      <form id="form" onchange="valueForm(this)" onkeyup="valueForm(this)">
+      <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
         <input type="number" id="minutes" min="0" max="59" value="${value[0]}"/>
         <input type="number" id="seconds" min="0" max="59" value="${value[1]}"/>
         <button id="start" type="submit" onclick="toggleTimer()">Start</button>
@@ -33,20 +33,26 @@ function render(timer) {
 }
 
 function valueForm(e) {
-  const minutes = parseFloat(e.elements['minutes'].value);
-  const seconds = parseFloat(e.elements['seconds'].value) / 60;
+  const form = e.target.parentElement;
+  const minutes = parseFloat(form.elements['minutes'].value || 0);
+  const seconds = parseFloat(form.elements['seconds'].value || 0) / 60;
   formDuration = minutes + seconds;
 
+
   if (isNaN(minutes)) {
-    e.elements['minutes'].preventDefault;
+    e.preventDefault();
+    render();
+    return;
   } else if (isNaN(seconds)) {
-    e.elements['seconds'].preventDefault;
+    render();
+    e.preventDefault();
+    return;
   }
 
-  if ((e[0].value == 0) & (e[1].value == 0)) {
-    e.elements['start'].setAttribute("class", "none");
+  if ((form[0].value == 0) & (form[1].value == 0)) {
+    form.elements['start'].setAttribute("class", "none");
   } else {
-    e.elements['start'].setAttribute("class", "block");
+    form.elements['start'].setAttribute("class", "block");
   }
 
   fresco.setState({
