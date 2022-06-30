@@ -69,7 +69,40 @@ describe("Game", () => {
 
         expect(game.retrieve().flags.chapter3).toBe(undefined);
       });
+
+
+      it('should select first cards no matter or previous flags', () => {
+
+        const game = new Game();
+        const prevState = createGameState(createGameDefinition(), {
+          flags: {
+            chapter3: "true",
+          },
+        });
+        getSdk().storage.realtime.set(GAME_TABLE, GAME_STATE_KEY, prevState);
+        expect(game.retrieve().flags.chapter3).toBe("true");
+
+        const newGameState = createGameState(createGameDefinition({
+          cards: [
+            createCard({ card: 'initial card'}),
+            createCard({ card: 'chapter 3 intro', conditions: 'chapter3==true'})
+          ]
+        }), {
+          flags: {
+            chapter3: "true",
+          },
+        });
+
+        game.startGame(newGameState);
+
+        const results = game.retrieve()
+        expect(results.flags.chapter3).toBe(undefined);
+
+        expect(results.selectedCard?.card).toBe("initial card");
+        expect(results.round).toBe(1);
+      })
     });
+
     describe("answerYes", () => {
       it("should select a card", () => {
         const result = new Game()
