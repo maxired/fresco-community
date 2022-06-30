@@ -57,7 +57,6 @@ export const selectNextCard = (
   designerCards: Card[] | undefined,
   previouslySelectedCardIds: string[]
 ) => {
-  debugger;
   const validCards = getAllValidCards(
     definition,
     flags,
