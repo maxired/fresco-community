@@ -25,7 +25,7 @@ export const initialState: GameState = {
   gameUrl: null,
   definition: null,
   round: 0,
-  previouslySelectedCards: [],
+  previouslySelectedCardIds: [],
 };
 
 export const gameSlice = createSlice({
@@ -38,7 +38,8 @@ export const gameSlice = createSlice({
       state.round = action.payload.round;
       state.selectedCard = action.payload.selectedCard;
       state.stats = action.payload.stats;
-      state.previouslySelectedCards = action.payload.previouslySelectedCards;
+      state.previouslySelectedCardIds =
+        action.payload.previouslySelectedCardIds;
     },
     setPhase: (state, action: PayloadAction<GamePhase>) => {
       state.phase = action.payload;

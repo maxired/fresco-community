@@ -133,6 +133,6 @@ The second one is `options` which accepts the following values:
 - `color`: a string to describe the text color of the message
 - `background`: a string to describe the background color or the message
 
-## Subscribing to space events
+## Subscribing and trigger space events
 
 See [fresco.d.ts](reigns/src/fresco.d.ts).
