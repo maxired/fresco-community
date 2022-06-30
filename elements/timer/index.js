@@ -8,8 +8,8 @@ function render(timer) {
     main.innerHTML = `
       <div>
       <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
-        <input type="number" id="minutes" min="0" max="59" value="${value[0]}"/>
-        <input type="number" id="seconds" min="0" max="59" value="${value[1]}"/>
+        <input type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
+        <input type="number" id="seconds" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
         <button id="start" type="submit" onclick="toggleTimer()">Start</button>
       </form>
       </div>
@@ -37,17 +37,6 @@ function valueForm(e) {
   const minutes = parseFloat(form.elements['minutes'].value || 0);
   const seconds = parseFloat(form.elements['seconds'].value || 0) / 60;
   formDuration = minutes + seconds;
-
-
-  if (isNaN(minutes)) {
-    e.preventDefault();
-    render();
-    return;
-  } else if (isNaN(seconds)) {
-    render();
-    e.preventDefault();
-    return;
-  }
 
   if ((form[0].value == 0) & (form[1].value == 0)) {
     form.elements['start'].setAttribute("class", "none");
