@@ -7,11 +7,11 @@ export const validateGameDefinition = (
 ): GameDefinition => {
   const cardsWithIds = definition.cards.map(mapCardWithIndex);
 
-  return {
+  return Object.freeze({
     ...definition,
     assetsUrl: getRootAssetsUrl(definition.assetsUrl),
     cards: validateCards(cardsWithIds),
-  };
+  });
 };
 
 export const urlWithoutTrailingSlash = (url: string) => {
