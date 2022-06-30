@@ -1,14 +1,16 @@
 const main = document.getElementById("main");
-let formDuration = null;
+let formDuration = 10;
+let value = [10, 00];
+let btnStart = "block";
 
 function render(timer) {
   if (fresco.element.state.timer === "initial") {
     main.innerHTML = `
       <div>
-      <form id="form" onchange="valueForm(this)">
-        <input type="number" id="minutes" min="0" max="59" value="10"/>
-        <input type="number" id="seconds" min="0" max="59" value="00"/>
-        <button id="start" type="submit" onclick="submitForm()">Start</button>
+      <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
+        <input type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
+        <input type="number" id="seconds" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
+        <button id="start" type="submit" onclick="toggleTimer()">Start</button>
       </form>
       </div>
     `;
@@ -31,14 +33,22 @@ function render(timer) {
 }
 
 function valueForm(e) {
-  const minutes = parseFloat(e[0].value);
-  const seconds = parseFloat(e[1].value) / 60;
+  const form = e.target.parentElement;
+  const minutes = parseFloat(form.elements['minutes'].value || 0);
+  const seconds = parseFloat(form.elements['seconds'].value || 0) / 60;
   formDuration = minutes + seconds;
-  fresco.setState({ duration: formDuration, startedAt: "initial" });
-}
 
-function submitForm() {
-  toggleTimer();
+  if ((form[0].value == 0) & (form[1].value == 0)) {
+    form.elements['start'].setAttribute("class", "none");
+  } else {
+    form.elements['start'].setAttribute("class", "block");
+  }
+
+  fresco.setState({
+    duration: formDuration,
+    startedAt: "initial",
+    setValue: formDuration,
+  });
 }
 
 function toTime(milliseconds) {
@@ -78,7 +88,19 @@ function pauseTimer() {
 function resetTimer() {
   clearInterval(interval);
   interval = null;
-  fresco.setState({ duration: 10, startedAt: null, timer: "initial" });
+  resetValue(fresco.element.state.setValue);
+  fresco.setState({
+    duration: fresco.element.state.setValue,
+    startedAt: null,
+    timer: "initial",
+  });
+}
+
+function resetValue(e) {
+  let milliseconds = e * 60 * 1000;
+  const seconds = milliseconds / 1000;
+  value[0] = Math.floor(seconds / 60);
+  value[1] = Math.floor(seconds % 60);
 }
 
 function startTimer(targetTime, now) {
@@ -89,8 +111,14 @@ function startTimer(targetTime, now) {
     if (timeRemaining <= 0) {
       const tingsha = new Audio("tingsha.mp3");
       tingsha.play();
+      fresco.setState({
+        duration: fresco.element.state.setValue,
+        startedAt: null,
+        timer: "initial",
+      });
       clearInterval(interval);
       interval = null;
+      resetValue(fresco.element.state.setValue);
     }
   }, 1000);
 }
@@ -112,11 +140,14 @@ function toggleTimer() {
 fresco.onReady(function () {
   const urlParams = new URLSearchParams(window.location.search);
   const duration = urlParams.get("duration");
+  resetValue(duration ? parseFloat(duration, 2) : 10);
+  formDuration = duration;
 
   const defaultState = {
-    duration: duration ? parseFloat(duration, 2) : 5,
+    duration: duration ? parseFloat(duration, 2) : 10,
     startedAt: null,
     timer: "initial",
+    setValue: duration ? parseFloat(duration, 2) : 10,
   };
 
   const elementConfig = {
@@ -125,16 +156,14 @@ fresco.onReady(function () {
   };
 
   fresco.onStateChanged(function () {
-    if (fresco.element.state.startedAt === 'initial') {
-      console.log("here", fresco.element.state.startedAt);
-    }
-    else if (!fresco.element.state.startedAt) {
+    if (fresco.element.state.startedAt === "initial") {
+    } else if (!fresco.element.state.startedAt) {
       stopTimer();
     } else {
       stopTimer();
       targetTime =
-      fresco.element.state.startedAt +
-      fresco.element.state.duration * 60 * 1000;
+        fresco.element.state.startedAt +
+        fresco.element.state.duration * 60 * 1000;
       startTimer(targetTime, new Date().getTime());
     }
 
@@ -143,8 +172,10 @@ fresco.onReady(function () {
     } else {
       main.setAttribute("class", "admin");
     }
+
+    resetValue(fresco.element.state.setValue);
   });
-  
+
   fresco.initialize(defaultState, elementConfig);
   render();
 });
