@@ -67,7 +67,7 @@ export class Game {
   answerNo(state: GameState) {
     if (state.selectedCard) {
       this.persist(selectAnswer(state, "no_custom"));
-      fresco.triggerEvent({
+      getSdk().triggerEvent({
         eventName: "custom.reigns.answer",
         eventValue: JSON.stringify({
           cardId: state.selectedCard.id,
@@ -85,7 +85,7 @@ export class Game {
     if (state.selectedCard) {
       this.persist(selectAnswer(state, "yes_custom"));
 
-      fresco.triggerEvent({
+      getSdk().triggerEvent({
         eventName: "custom.reigns.answer",
         eventValue: JSON.stringify({
           cardId: state.selectedCard.id,
