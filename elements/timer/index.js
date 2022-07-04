@@ -10,7 +10,7 @@ function render(timer) {
       <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
         <input type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
         <input type="number" id="seconds" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
-        <button class="start" type="submit" onclick="toggleTimer()">Start</button>
+        <button class="button--start" type="submit" onclick="toggleTimer()">Start</button>
       </form>
       </div>
     `;
@@ -18,16 +18,16 @@ function render(timer) {
     main.innerHTML = `
       <div>
       <p>${timer}</p>
-      <button class="pause" onclick="pauseTimer()">Pause</button>
+      <button class="button--pause" onclick="pauseTimer()">Pause</button>
       </div>
     `;
   } else if (fresco.element.state.timer === "pause") {
     main.innerHTML = `
       <div>
       <p>${timer}</p>
-      <button class="start" onclick="toggleTimer()">Start</button>
-      <button class="reset" onclick="resetTimer()">Reset</button>
-      <p class="user_pause">Pause</p>
+      <button class="button--start" onclick="toggleTimer()">Start</button>
+      <button class="button--reset" onclick="resetTimer()">Reset</button>
+      <button class="button--user_pause" disabled>Pause</button>
       </div>
     `;
   }

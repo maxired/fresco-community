@@ -6,7 +6,7 @@
       @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
 
       body {
-        background-color: #FFF;
+        background-color: #fff;
         display: flex;
       }
 
@@ -24,22 +24,22 @@
         display: block;
       }
 
-      .user .user_pause {
+      .user .button--user_pause {
         display: block;
       }
 
-      .admin .user_pause {
+      .admin .button--user_pause {
         display: none;
       }
 
-      .user :is(.start, .pause, .reset) {
+      .user .button--start,
+      .user .button--pause,
+      .user .button--reset {
         display: none;
+        color: black;
       }
 
-      .start,
-      .pause,
-      .reset,
-      .user_pause {
+      button {
         font-size: 20px;
         font-family: "Quicksand", sans-serif;
         color: #fff;
@@ -49,32 +49,32 @@
         transition: ease 0.3s;
       }
 
-      :is(.start, .pause, .reset):hover {
+      :is(.button--start, .button--pause, .button--reset):hover {
         font-size: 19.7px;
         box-shadow: 0px 0px 0px transparent;
       }
 
-      .start {
+      .button--start {
         background: #4bb958;
         box-shadow: 0px 3px 0px #4b5f58;
       }
 
-      .pause{
-        background: #EB3142;
-        box-shadow: 0px 3px 0px #5F3142;
+      .button--pause {
+        background: #eb3142;
+        box-shadow: 0px 3px 0px #5f3142;
       }
 
-      .user_pause {
-        background: #EB3142;
+      .button--user_pause {
+        background: #eb3142;
       }
 
-      .reset {
-        background: #FFB136;
-        box-shadow: 0px 3px 0px #845F25;
+      .button--reset {
+        background: #ffb136;
+        box-shadow: 0px 3px 0px #845f25;
       }
     </style>
   </head>
-  
+
   <body>
     <div id="main"></div>
     <script src="./index.js"></script>
