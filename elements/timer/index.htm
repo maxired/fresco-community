@@ -3,23 +3,69 @@
   <head>
     <script src="../../loadSdk.js"></script>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
+
       body {
-        background-color: red;
+        background-color: #FFF;
         display: flex;
       }
-      
+
       button {
         flex: 1;
         font-size: 1.5rem;
         cursor: pointer;
       }
-      
+
       .none {
         display: none;
       }
 
       .block {
         display: block;
+      }
+
+      .user .user_pause {
+        display: block;
+      }
+
+      .admin .user_pause {
+        display: none;
+      }
+
+      .user :is(.start, .pause, .reset) {
+        display: none;
+      }
+
+      .start,
+      .pause,
+      .reset,
+      .user_pause {
+        font-size: 20px;
+        font-family: "Quicksand", sans-serif;
+        color: #fff;
+        border-radius: 8px;
+        border: none;
+        padding: 6px 25px;
+        transition: ease 0.1s;
+      }
+
+      :is(.start, .pause, .reset):hover {
+        box-shadow: 0px 0px 0px transparent;
+      }
+
+      .start {
+        background: #4bb958;
+        box-shadow: 0px 3px 0px #4b5f58;
+      }
+
+      .pause, .user_pause {
+        background: #EB3142;
+        box-shadow: 0px 3px 0px #5F3142;
+      }
+
+      .reset {
+        background: #FFB136;
+        box-shadow: 0px 3px 0px #845F25;
       }
     </style>
   </head>
