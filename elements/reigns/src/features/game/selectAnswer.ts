@@ -45,12 +45,12 @@ export const selectAnswer = (
 
   const round = state.round + 1;
 
-  const previouslySelectedCards =
+  const previouslySelectedCardIds =
     phase === GamePhase.ENDED
       ? []
       : state.selectedCard
-      ? [state.selectedCard, ...state.previouslySelectedCards]
-      : state.previouslySelectedCards;
+      ? [state.selectedCard.id, ...state.previouslySelectedCardIds]
+      : state.previouslySelectedCardIds;
 
   const selectedCard =
     phase === GamePhase.ENDED
@@ -59,7 +59,7 @@ export const selectAnswer = (
           state.definition,
           flags,
           state.designerCards,
-          previouslySelectedCards
+          previouslySelectedCardIds
         );
 
   return {
@@ -68,7 +68,7 @@ export const selectAnswer = (
     stats,
     flags,
     selectedCard,
-    previouslySelectedCards,
+    previouslySelectedCardIds,
   };
 };
 

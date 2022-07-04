@@ -1,13 +1,18 @@
 import { getRootAssetsUrl } from "./gameDefinitionUtils";
+import { mapCardWithIndex } from "./parseCardsFromCsv";
 import { Card, CardFlag, GameDefinition } from "./types";
 
 export const validateGameDefinition = (
   definition: GameDefinition
-): GameDefinition => ({
-  ...definition,
-  assetsUrl: getRootAssetsUrl(definition.assetsUrl),
-  ...validateCards(definition.cards),
-});
+): GameDefinition => {
+  const cardsWithIds = definition.cards.map(mapCardWithIndex);
+
+  return Object.freeze({
+    ...definition,
+    assetsUrl: getRootAssetsUrl(definition.assetsUrl),
+    cards: validateCards(cardsWithIds),
+  });
+};
 
 export const urlWithoutTrailingSlash = (url: string) => {
   if (!url) return "";
