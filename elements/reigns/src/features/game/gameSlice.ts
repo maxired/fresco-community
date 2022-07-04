@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GamePhase, Loading } from "../../constants";
 import { parseCardsFromCsv } from "./parseCardsFromCsv";
+import { parseGameFromCsv } from "./parseGameFromCsv";
 import { Configuration, GameState, PersistedGameState } from "./types";
 import {
   validateCards,
@@ -11,6 +12,12 @@ export const initializeGame = createAsyncThunk(
   "game/initializeGame",
   async (gameUrl: string) => {
     const response = await fetch(gameUrl);
+
+    if (gameUrl.endsWith("csv")) {
+      const csv = await response.text();
+      return parseGameFromCsv(csv);
+    }
+
     const json = await response.json();
     return json;
   }
