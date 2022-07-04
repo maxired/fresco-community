@@ -41,22 +41,25 @@ export class Game {
     this.clearVotes();
   }
 
-  startGame(state: GameState) {
+  startGame(state: Pick<GameState, 'definition' | 'designerCards'>) {
+    debugger;
     this.clearVotes();
+    const flags = {};
+    const previouslySelectedCardIds = [] as string[];
     this.persist({
       phase: GamePhase.STARTED,
       selectedCard: selectNextCard(
         state.definition,
-        state.flags,
+        flags,
         state.designerCards,
-        state.previouslySelectedCards
+        previouslySelectedCardIds
       ),
       stats: state.definition
         ? state.definition.stats.map(({ value }) => value)
         : [],
       round: 1,
-      flags: {},
-      previouslySelectedCards: [],
+      flags,
+      previouslySelectedCardIds,
     });
     return this;
   }

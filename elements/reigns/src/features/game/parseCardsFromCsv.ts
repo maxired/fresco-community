@@ -1,6 +1,14 @@
 import * as Papa from "papaparse";
 import { Card } from "./types";
 
+export const mapCardWithIndex = (card: Card, index: number) => {
+  if (card.id !== "" && card.id !== null && card.id !== undefined) {
+    return { ...card, id: `${card.id}` };
+  }
+
+  return { ...card, id: `index-${index}` };
+};
+
 export const parseCardsFromCsv = (
   csvData: string | undefined
 ): Card[] | undefined => {
@@ -15,11 +23,5 @@ export const parseCardsFromCsv = (
     throw new Error(parsedData.errors[0].message);
   }
 
-  return (parsedData.data as Card[]).map((card: Card, index) => {
-    if (card.id !== '' && card.id !== null) {
-      return { ...card, id: `${card.id}` }
-    }
-
-    return { ...card, id: `index-${index}`}
-  }) as Card[];
+  return (parsedData.data as Card[]).map(mapCardWithIndex) as Card[];
 };

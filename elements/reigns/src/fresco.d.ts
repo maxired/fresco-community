@@ -56,6 +56,11 @@ interface IFrescoSdk {
     eventName: string,
     handler: (event: any) => void
   ): () => void;
+
+  triggerEvent(event: {
+    eventName: string;
+    eventValue: undefined | boolean | string | number;
+  }): void;
   element: {
     state: any;
     id: string;

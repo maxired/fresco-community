@@ -9,3 +9,5 @@ export enum Loading {
   Ended = "ended",
   Error = "error",
 }
+
+export const INFINITE_CARD_WEIGHT = 100;
