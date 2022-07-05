@@ -39,7 +39,6 @@ const getCSVSection = (
   parsedData: Papa.ParseResult<string[]>,
   sectionName: string
 ) => {
-  console.log("parsedDate", parsedData);
   const sectionNameColumn = parsedData.data[0]?.findIndex(
     (value: string) => value === "SECTION"
   );
@@ -50,16 +49,8 @@ const getCSVSection = (
 
   let endSectionIndex = parsedData.data
     .slice(startSectionIndex + 1)
-    .findIndex((line) => {
-      console.log(
-        "line[sectionNameColumn]",
-        line[sectionNameColumn],
-        line[sectionNameColumn] === ""
-      );
-      return line[sectionNameColumn] !== "";
-    });
+    .findIndex((line) => line[sectionNameColumn] !== "");
 
-  console.log("maxired endSectionIndex is", endSectionIndex);
   if (endSectionIndex === -1) {
     endSectionIndex = parsedData.data.length;
   }
@@ -68,6 +59,5 @@ const getCSVSection = (
     .slice(startSectionIndex, endSectionIndex + startSectionIndex)
     .map((line) => line.slice(sectionNameColumn + 1));
 
-  console.log("maxired sectionData", sectionData);
   return Papa.unparse(sectionData);
 };
