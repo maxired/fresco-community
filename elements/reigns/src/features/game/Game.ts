@@ -41,7 +41,7 @@ export class Game {
     this.clearVotes();
   }
 
-  startGame(state: Pick<GameState, 'definition' | 'designerCards'>) {
+  startGame(state: Pick<GameState, "definition" | "designerCards">) {
     debugger;
     this.clearVotes();
     const flags = {};
@@ -67,6 +67,16 @@ export class Game {
   answerNo(state: GameState) {
     if (state.selectedCard) {
       this.persist(selectAnswer(state, "no_custom"));
+      getSdk().triggerEvent({
+        eventName: "custom.reigns.answer",
+        eventValue: JSON.stringify({
+          cardId: state.selectedCard.id,
+          card: state.selectedCard.card,
+          voteValue: "no",
+          voleLabel: state.selectedCard.answer_no,
+          round: state.round,
+        }),
+      });
     }
     return this;
   }
@@ -74,6 +84,17 @@ export class Game {
   answerYes(state: GameState) {
     if (state.selectedCard) {
       this.persist(selectAnswer(state, "yes_custom"));
+
+      getSdk().triggerEvent({
+        eventName: "custom.reigns.answer",
+        eventValue: JSON.stringify({
+          cardId: state.selectedCard.id,
+          card: state.selectedCard.card,
+          voteValue: "yes",
+          voleLabel: state.selectedCard.answer_yes,
+          round: state.round,
+        }),
+      });
     }
     return this;
   }

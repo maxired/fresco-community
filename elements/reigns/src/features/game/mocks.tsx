@@ -43,6 +43,7 @@ export const mockSdk = (
     element: {
       state: { gameUrl: "http://some-url/" },
     },
+    triggerEvent: () => {},
     ...sdkOverride,
   } as unknown as IFrescoSdk);
 };
