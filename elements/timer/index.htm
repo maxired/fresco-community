@@ -5,15 +5,26 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
 
+      html {
+        height: 100%;
+      }
+
       body {
         background-color: #fff;
         display: flex;
+        height: 100%;
+        margin: 0;
       }
 
-      button {
-        flex: 1;
-        font-size: 1.5rem;
-        cursor: pointer;
+      div#main {
+        width: 100%;
+      }
+
+      div#main > div {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .none {
@@ -39,6 +50,12 @@
         color: black;
       }
 
+      form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
       button {
         font-size: 20px;
         font-family: "Quicksand", sans-serif;
@@ -46,7 +63,34 @@
         border-radius: 8px;
         border: none;
         padding: 6px 25px;
+        margin-top: 35px;
         transition: ease 0.3s;
+      }
+
+      input,
+      p {
+        color: #313e47;
+        font-size: 128px;
+        font-weight: 700;
+        font-family: "Quicksand", sans-serif;
+        text-align: center;
+        height: 110px;
+        width: 190px;
+        padding-bottom: 6px;
+        border: none;
+        caret-color: #9e32d6;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input:focus {
+        background: #f2f2f2;
+        border-radius: 15px;
+        outline: none;
       }
 
       :is(.button--start, .button--pause, .button--reset):hover {
@@ -71,6 +115,35 @@
       .button--reset {
         background: #ffb136;
         box-shadow: 0px 3px 0px #845f25;
+      }
+
+      .inputs-group {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .timer p {
+        margin: 0;
+        height: 130px;
+        width: auto;
+      }
+
+      .min,
+      .sec {
+        margin: 0;
+        font-size: 20px;
+        width: auto;
+        height: fit-content !important;
+      }
+
+      .timer {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .run-state,
+      .pause-state {
+        flex-direction: column;
       }
     </style>
   </head>
