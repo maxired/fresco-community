@@ -201,7 +201,7 @@
       "yes_stat3": 0,
       "yes_stat4": 10,
       "yes_custom": "",
-      "answer_no": "The team can stay back this evening to work.",
+      "answer_no": "The team can stay late this evening to work.",
       "no_stat1": 15,
       "no_stat2": 0,
       "no_stat3": 0,
@@ -776,7 +776,7 @@
       "no_custom": "beta=true"
     },
     {
-      "card": "I wanted to congratulate about your work. You are doing great!",
+      "card": "I wanted to congratulate you about your work. You are doing great!",
       "id": "card-37",
       "bearer": "CEO",
       "conditions": "win==true",
