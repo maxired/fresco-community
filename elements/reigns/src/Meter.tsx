@@ -23,9 +23,9 @@ export const Meter = ({
     // Whenever percent changes, we want to add a class
     // to the meter element to make it change color
     if (percent > previousPercent.current) {
-      setCurrentAnimation("meter__icon--grow");
+      setCurrentAnimation("meter__progress--grow");
     } else {
-      setCurrentAnimation("meter__icon--shrink");
+      setCurrentAnimation("meter__progress--shrink");
     }
 
     const timeout = setTimeout(() => {
@@ -40,11 +40,13 @@ export const Meter = ({
 
   return (
     <div className="meter">
-      <div className={clsx("meter__icon", currentAnimation)}>
-        <div className="meter__percent" style={{ height: percent + "%" }} />
+      <div className="meter__label">
         <img src={`${assetsUrl}/${src}`} />
+        <div className="meter__name">{name}</div>
       </div>
-      <div className="meter__name">{name}</div>
+      <div className={clsx("meter__progress", currentAnimation)}>
+        <div className="meter__percent" style={{ width: percent + "%" }} />
+      </div>
     </div>
   );
 };
