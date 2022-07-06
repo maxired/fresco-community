@@ -9,9 +9,9 @@ function render(timer) {
       <div>
       <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
         <div class="inputs-group">
-        <input type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
+        <input type="number" id="minutes" min="00" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
         <p class="min">min</p>
-        <input type="number" id="seconds" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
+        <input type="number" id="seconds" min="00" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
         <p class="sec">sec</p>
         </div>
         <button class="button--start" type="submit" onclick="toggleTimer()">Start</button>
@@ -70,11 +70,9 @@ function toTime(milliseconds) {
   const s = Math.floor(seconds % 60);
   const m = Math.floor(seconds / 60);
   return (
-    (m < 10 ? "0" : "") +
-    m.toString() +
+    `<p>${(m < 10 ? "0" : "") + m.toString()}</p>` +
     `<p class="min">min</p>` +
-    (s < 10 ? "0" : "") +
-    `<p>${s.toString()}</p>` +
+    `<p>${(s < 10 ? "0" : "") + s.toString()}</p>` +
     `<p class="sec">sec</p>`
   );
 }

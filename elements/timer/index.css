@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
+
+html {
+  height: 100%;
+}
+
+body {
+  border-radius: 24px;
+  display: flex;
+  height: 95%;
+  margin: 0;
+}
+
+div#main {
+  background-color: #fff;
+  border: 5px solid #9e32d6;
+  box-shadow: 0px 6px 0px #5f2080;
+  border-radius: 24px;
+  width: 100%;
+}
+
+div#main > div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.user .button--user_pause {
+  display: block;
+}
+
+.admin .button--user_pause {
+  display: none;
+}
+
+.user .button--start,
+.user .button--pause,
+.user .button--reset {
+  display: none;
+  color: black;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  font-size: 20px;
+  font-family: "Quicksand", sans-serif;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  padding: 6px 25px;
+  margin-top: 35px;
+  transition: ease 0.3s;
+}
+
+input,
+p {
+  color: #313e47;
+  font-size: 128px;
+  font-weight: 700;
+  font-family: "Quicksand", sans-serif;
+  text-align: center;
+  height: 110px;
+  width: 156px;
+  padding-bottom: 6px;
+  border: none;
+  caret-color: #9e32d6;
+}
+
+input {
+  text-align: right;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus,
+input:hover {
+  background: #f2f2f2;
+  border-radius: 15px;
+  outline: none;
+}
+
+.inputs-group {
+  display: flex;
+  align-items: flex-end;
+  padding-top: 18px;
+}
+
+:is(.button--start, .button--pause, .button--reset):hover {
+  font-size: 19.7px;
+  box-shadow: 0px 0px 0px transparent;
+}
+
+.button--start {
+  background: #4bb958;
+  box-shadow: 0px 3px 0px #4b5f58;
+}
+
+.button--pause {
+  background: #eb3142;
+  box-shadow: 0px 3px 0px #5f3142;
+}
+
+.button--user_pause {
+  background: #eb3142;
+}
+
+.button--reset {
+  background: #ffb136;
+  box-shadow: 0px 3px 0px #845f25;
+}
+
+.timer {
+  display: flex;
+  align-items: flex-end;
+}
+
+.timer p {
+  margin: 0;
+  height: 130px;
+  width: auto;
+}
+
+.min,
+.sec {
+  margin: 0;
+  padding-left: 5px;
+  font-size: 20px;
+  width: auto;
+  height: fit-content !important;
+}
+
+.min {
+  padding-right: 20px;
+}
+
+.run-state p:nth-child(even),
+.pause-state p:nth-child(even) {
+  width: 160px;
+}
+
+.run-state p:last-child,
+.pause-state p:last-child {
+  display: none;
+}
+
+.run-state,
+.pause-state {
+  flex-direction: column;
+}
