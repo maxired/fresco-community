@@ -9,9 +9,8 @@ export const mapCardWithIndex = (card: Card, index: number) => {
   return { ...card, id: `index-${index}` };
 };
 
-export const parseCardsFromCsv = (
-  csvData: string | undefined
-): Card[] | undefined => {
+export const parseSectionFromCsv = <T>(csvData: string| undefined) => {
+
   if (!csvData) return;
   const parsedData = Papa.parse(csvData, {
     header: true,
@@ -23,5 +22,15 @@ export const parseCardsFromCsv = (
     throw new Error(parsedData.errors[0].message);
   }
 
-  return (parsedData.data as Card[]).map(mapCardWithIndex) as Card[];
+  return (parsedData.data as T[])
+
+}
+
+export const parseCardsFromCsv = (
+  csvData: string | undefined
+): Card[] | undefined => {
+  const parsedSection = parseSectionFromCsv<Card>(csvData)
+  if(!parsedSection) { return undefined }
+
+  return parsedSection.map(mapCardWithIndex) as Card[];
 };
