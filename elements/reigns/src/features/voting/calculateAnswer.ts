@@ -1,7 +1,5 @@
 import { Answer } from "./votingSlice";
-import { getSdk } from "../../sdk";
-import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
-import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
+import { getParticipantVotes } from "./participantVotes";
 
 export const calculateAnswer = (): CollatedVote => {
   const votes = getParticipantVotes();
@@ -47,25 +45,4 @@ export const calculateAnswer = (): CollatedVote => {
 type CollatedVote = {
   answer: Answer | null;
   everyoneVoted: boolean;
-};
-type Vote = Participant & { answer: Answer | null };
-const getParticipantVotes = (): Vote[] => {
-  const sdk = getSdk();
-  const connectedPlayers = [
-    { id: sdk.localParticipant.id, name: sdk.localParticipant.name },
-    ...sdk.remoteParticipants,
-  ];
-  const playersInsideExtension = connectedPlayers.filter((p) =>
-    sdk.storage.realtime.get(PARTICIPANT_INSIDE_TABLE, p.id)
-  );
-  const votes = playersInsideExtension.map((participant) => {
-    return {
-      ...participant,
-      answer: sdk.storage.realtime.get(
-        PARTICIPANT_VOTE_TABLE,
-        participant.id
-      ) as Answer | null,
-    };
-  });
-  return votes;
 };

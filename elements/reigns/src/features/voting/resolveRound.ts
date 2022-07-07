@@ -1,4 +1,4 @@
-import { Answer, getLatestVote, VotingState } from "./votingSlice";
+import { GameVote, getLatestGameVote } from "./votingSlice";
 import { getSdk } from "../../sdk";
 import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
 import { Game } from "../game/Game";
@@ -41,8 +41,8 @@ export const resolveRound = (gameState: GameState) => {
   });
 };
 
-const collateVotes = (): VotingState & { everyoneVoted: boolean } => {
-  const { answer: persistedAnswer, countdown } = getLatestVote();
+const collateVotes = (): GameVote & { everyoneVoted: boolean } => {
+  const { answer: persistedAnswer, countdown } = getLatestGameVote();
   const newAnswer = calculateAnswer();
 
   // do nothing if we've reached zero
