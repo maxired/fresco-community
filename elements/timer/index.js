@@ -9,13 +9,15 @@ function render(timer) {
       <div>
       <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
         <div class="inputs-group">
-        <input type="number" id="minutes" min="00" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
+        <input type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
         <p class="min">min</p>
         <input type="number" id="seconds" min="00" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
         <p class="sec">sec</p>
         </div>
-        <button class="button--start" type="submit" onclick="toggleTimer()">Start</button>
-      </form>
+      <div class="buttons-group">
+        <button id="start" class="button--start" type="submit" onclick="toggleTimer()">Start</button>
+        </div>
+        </form>
       </div>
     `;
   } else if (fresco.element.state.timer === "run") {
@@ -24,7 +26,9 @@ function render(timer) {
       <div class="timer">
       <p>${timer}</p>
       </div>
+      <div class="buttons-group">
       <button class="button--pause" onclick="pauseTimer()">Pause</button>
+      </div>
       </div>
     `;
   } else if (fresco.element.state.timer === "pause") {
@@ -33,7 +37,7 @@ function render(timer) {
       <div class="timer">
       <p>${timer}</p>
       </div>
-      <div class="pause-buttons-group">
+      <div class="buttons-group">
       <button class="button--start" onclick="toggleTimer()">Start</button>
       <button class="button--reset" onclick="resetTimer()">Reset</button>
       <button class="button--user_pause" disabled>Pause</button>
@@ -44,15 +48,15 @@ function render(timer) {
 }
 
 function valueForm(e) {
-  const form = e.target.parentElement;
+  const form = e.target.closest("form");
   const minutes = parseFloat(form.elements["minutes"].value || 0);
   const seconds = parseFloat(form.elements["seconds"].value || 0) / 60;
   formDuration = minutes + seconds;
 
   if ((form[0].value == 0) & (form[1].value == 0)) {
-    form.elements["start"].setAttribute("class", "none");
+    form.elements["start"].setAttribute("class", "hidden");
   } else {
-    form.elements["start"].setAttribute("class", "block");
+    form.elements["start"].setAttribute("class", "visible button--start");
   }
 
   fresco.setState({

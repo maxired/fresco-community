@@ -34,6 +34,14 @@ div#main > div {
   display: block;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
 .user .button--user_pause {
   display: block;
 }
@@ -53,6 +61,7 @@ form {
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding-top: 1px;
 }
 
 button {
@@ -62,7 +71,6 @@ button {
   border-radius: 8px;
   border: none;
   padding: 6px 25px;
-  margin-top: 35px;
   transition: ease 0.3s;
 }
 
@@ -101,6 +109,13 @@ input:hover {
   display: flex;
   align-items: flex-end;
   padding-top: 18px;
+}
+
+.buttons-group {
+  display: flex;
+  align-items: center;
+  height: 90px;
+  gap: 15px;
 }
 
 :is(.button--start, .button--pause, .button--reset):hover {
@@ -143,8 +158,8 @@ input:hover {
   margin: 0;
   padding-left: 5px;
   font-size: 20px;
-  width: auto;
   height: fit-content !important;
+  width: auto;
 }
 
 .min {
@@ -153,7 +168,9 @@ input:hover {
 
 .run-state p:nth-child(even),
 .pause-state p:nth-child(even) {
-  width: 160px;
+  text-align: right;
+  line-height: 1.18;
+  width: 155px;
 }
 
 .run-state p:last-child,
@@ -164,4 +181,82 @@ input:hover {
 .run-state,
 .pause-state {
   flex-direction: column;
+}
+
+.user > div {
+  justify-content: center;
+  align-items: center;
+}
+
+.user form {
+  flex-direction: row;
+  padding-bottom: 5px;
+}
+
+.user .inputs-group {
+  padding-top: 0;
+}
+
+.user .run-state .timer {
+  height: 105px;
+}
+
+.user .run-state .buttons-group {
+  display: none;
+}
+
+@media (max-width: 430px), (max-height: 160px) {
+  button {
+    font-size: 18px;
+  }
+  :is(.button--start, .button--pause, .button--reset):hover {
+    font-size: 18.5px;
+  }
+  input, p {
+    font-size: 80px;
+    height: 70px;
+    width: 100px;
+  }
+  .timer p {
+    height: 80px;
+  }
+  .buttons-group {
+    height: 65px;
+  }
+  .run-state p:nth-child(even),
+  .pause-state p:nth-child(even) {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  button {
+    font-size: 16px;
+    padding: 6px 20px;
+  }
+  :is(.button--start, .button--pause, .button--reset):hover {
+    font-size: 16.5px;
+  }
+  input, p {
+    font-size: 55px;
+    height: 50px;
+    width: 70px;
+  }
+  .timer p {
+    height: 60px;
+  }
+  .min, .sec {
+    font-size: 16px;
+    padding-left: 0px;
+  }
+  .min {
+    padding-right: 5px;
+  }
+  .buttons-group {
+    height: 65px;
+  }
+  .run-state p:nth-child(even),
+  .pause-state p:nth-child(even) {
+    width: 70px;
+  }
 }
