@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getSdk } from "../../sdk";
 import { GAME_TABLE } from "../game/Game";
-import { getParticipantVotes } from "./participantVotes";
+import { playSoundOnVote } from "./playSoundOnVote";
 
 export type GameVote = { answer: Answer | null; countdown: number | null };
 export type VotingState = GameVote & {
@@ -37,7 +37,8 @@ export const votingSlice = createSlice({
         state.answer = null;
         state.countdown = null;
       }
-      // TODO: implement this
+
+      playSoundOnVote(state);
     },
   },
 });

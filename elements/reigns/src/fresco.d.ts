@@ -59,7 +59,7 @@ interface IFrescoSdk {
 
   triggerEvent(event: {
     eventName: string;
-    eventValue: undefined | boolean | string | number;
+    eventValue?: undefined | boolean | string | number;
   }): void;
   element: {
     state: any;
