@@ -24,7 +24,6 @@ export const playSoundOnVote = (state: VotingState) => {
       getSdk().triggerEvent({ eventName: "custom.reigns.voteAdded" });
     }
     if (didRemoveVote) {
-      console.log("playing did remove");
       getSdk().triggerEvent({ eventName: "custom.reigns.voteRemoved" });
     }
   }
