@@ -2,7 +2,7 @@ import { getSdk } from "../../sdk";
 import { getParticipantVotes } from "./participantVotes";
 import { VotingState } from "./votingSlice";
 
-export const playSoundOnVote = (state: VotingState) => {
+export const triggerEventOnParticipantVote = (state: VotingState) => {
   const participantVotes = getParticipantVotes();
   let didMakeVote = false;
   let didRemoveVote = false;
@@ -20,6 +20,7 @@ export const playSoundOnVote = (state: VotingState) => {
     typeof state.countdown === "number" && state.countdown < 1;
 
   if (!isTeleporting) {
+    // space owners can configure actions for these events in fresco, for example playing sound
     if (didMakeVote) {
       getSdk().triggerEvent({ eventName: "custom.reigns.voteAdded" });
     }
