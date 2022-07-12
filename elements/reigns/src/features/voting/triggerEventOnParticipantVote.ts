@@ -4,12 +4,12 @@ import { VotingState } from "./votingSlice";
 
 export const triggerEventOnParticipantVote = (state: VotingState) => {
   const participantVotes = getParticipantVotes();
-  let didMakeVote = false;
+  let didAddVote = false;
   let didRemoveVote = false;
   participantVotes.forEach((vote) => {
     if (!state.allVotes[vote.id] && vote.answer) {
       state.allVotes[vote.id] = vote.answer;
-      didMakeVote = true;
+      didAddVote = true;
     } else if (state.allVotes[vote.id] && !vote.answer) {
       delete state.allVotes[vote.id];
       didRemoveVote = true;
@@ -21,7 +21,7 @@ export const triggerEventOnParticipantVote = (state: VotingState) => {
 
   if (!isTeleporting) {
     // space owners can configure actions for these events in fresco, for example playing sound
-    if (didMakeVote) {
+    if (didAddVote) {
       getSdk().triggerEvent({ eventName: "custom.reigns.voteAdded" });
     }
     if (didRemoveVote) {
