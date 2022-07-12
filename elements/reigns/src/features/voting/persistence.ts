@@ -1,7 +1,32 @@
-import { Answer } from "./votingSlice";
 import { getSdk } from "../../sdk";
+import { GAME_TABLE } from "../game/Game";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
-import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
+
+export const ROUND_RESOLUTION_KEY = "round-resolution";
+export const PARTICIPANT_VOTE_TABLE = "participants-vote";
+
+export type Answer = "Yes" | "No";
+
+export type GameVote = { answer: Answer | null; countdown: number | null };
+
+export const getGameVote = () => {
+  const result = (getSdk().storage.realtime.get(
+    GAME_TABLE,
+    ROUND_RESOLUTION_KEY
+  ) ?? {}) as GameVote;
+  return result;
+};
+
+export const persistGameVote = (value: GameVote | null) => {
+  console.log("persist game vote", value);
+
+  getSdk().storage.realtime.set(
+    GAME_TABLE,
+    ROUND_RESOLUTION_KEY,
+    value || undefined
+  );
+  return value;
+};
 
 export type ParticipantVote = Participant & { answer: Answer | null };
 
@@ -31,10 +56,13 @@ export const persistParticipantVote = (
   answer: Answer | null
 ) => {
   const sdk = getSdk();
-  console.warn("Setting vote to", answer);
+  console.warn("Setting participant vote to", answer);
   sdk.storage.realtime.set(
     PARTICIPANT_VOTE_TABLE,
     participantId,
     answer ?? null
   );
 };
+
+export const clearParticipantVotes = () =>
+  getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);

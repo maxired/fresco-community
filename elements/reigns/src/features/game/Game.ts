@@ -1,7 +1,6 @@
 import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
-import { PARTICIPANT_VOTE_TABLE } from "../voting/useVoteListener";
-import { ROUND_RESOLUTION_KEY } from "../voting/votingSlice";
+import { clearParticipantVotes, persistGameVote } from "../voting/persistence";
 import { selectAnswer } from "./selectAnswer";
 import { selectNextCard } from "./selectNextCard";
 import { GameState, PersistedGameState, Stat } from "./types";
@@ -31,8 +30,8 @@ export class Game {
 
   private clearVotes() {
     const sdk = getSdk();
-    sdk.storage.realtime.set(GAME_TABLE, ROUND_RESOLUTION_KEY, undefined);
-    sdk.storage.realtime.clear(PARTICIPANT_VOTE_TABLE);
+    persistGameVote(null);
+    clearParticipantVotes();
     return this;
   }
 

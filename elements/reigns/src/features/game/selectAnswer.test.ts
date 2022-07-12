@@ -1,6 +1,6 @@
 import { GamePhase } from "../../constants";
 import { Game } from "./Game";
-import { mockSdk } from "./mocks";
+import { mockSdk } from "../../mocks";
 import { createCard, createGameState } from "./objectMother";
 import { setFlags } from "./selectAnswer";
 

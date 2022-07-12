@@ -1,16 +1,22 @@
 import { getSdk } from "../../sdk";
-import { mockSdk } from "../game/mocks";
+import { mockSdk } from "../../mocks";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
-import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
-import { getLatestGameVote } from "./votingSlice";
-import { COUNTDOWN_SECONDS, resolveRound } from "./resolveRound";
+import { resolveRound } from "./resolveRound";
 import { createGameState } from "../game/objectMother";
-import { persistAnswer } from "./persistAnswer";
-import { persistParticipantVote } from "./participantVotes";
+import * as persistence from "./persistence";
+const {
+  persistParticipantVote,
+  getGameVote,
+  persistGameVote,
+  PARTICIPANT_VOTE_TABLE,
+} = persistence;
+import { Countdown } from "../../Countdown";
+import * as selectNextCard from "../game/selectNextCard";
 
-describe("useCollateVotes", () => {
+describe("resolveRound", () => {
   let sdk: IFrescoSdk;
   beforeEach(() => {
+    jest.clearAllMocks();
     mockSdk({
       remoteParticipants: [
         { id: "remote1", name: "remote participant 1" } as Participant,
@@ -32,9 +38,9 @@ describe("useCollateVotes", () => {
 
       resolveRound(createGameState());
 
-      const { answer, countdown } = getLatestGameVote();
+      const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(0);
+      expect(Countdown.from(countdown).wasJustLocked).toBe(true);
     });
 
     it("should start countdown if not everyone voted", () => {
@@ -44,9 +50,9 @@ describe("useCollateVotes", () => {
 
       resolveRound(createGameState());
 
-      const { answer, countdown } = getLatestGameVote();
+      const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(COUNTDOWN_SECONDS);
+      expect(Countdown.from(countdown).isStarted).toBe(true);
     });
 
     it("should apply vote instantly if everyone voted and countdown already started", () => {
@@ -58,9 +64,9 @@ describe("useCollateVotes", () => {
       persistParticipantVote("remote2", "Yes");
       resolveRound(createGameState());
 
-      const { answer, countdown } = getLatestGameVote();
+      const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(0);
+      expect(Countdown.from(countdown).wasJustLocked).toBe(true);
     });
 
     it("should clear participant votes on countdown === 0", () => {
@@ -70,7 +76,7 @@ describe("useCollateVotes", () => {
 
       resolveRound(createGameState());
 
-      const { countdown } = getLatestGameVote();
+      const { countdown } = getGameVote();
       expect(countdown).toBe(0);
       expect(sdk.storage.realtime.all(PARTICIPANT_VOTE_TABLE)).toEqual({});
     });
@@ -81,13 +87,13 @@ describe("useCollateVotes", () => {
       persistParticipantVote("remote2", null);
 
       resolveRound(createGameState());
-      const { countdown } = getLatestGameVote();
-      expect(countdown).toBe(COUNTDOWN_SECONDS);
+      const { countdown } = getGameVote();
+      expect(Countdown.from(countdown).isStarted).toBe(true);
       persistParticipantVote("remote1", null);
       resolveRound(createGameState());
 
-      const { countdown: newCountdown } = getLatestGameVote();
-      expect(newCountdown).toBeUndefined();
+      const { countdown: newCountdown } = getGameVote();
+      expect(Countdown.from(newCountdown).isStarted).toBe(false);
     });
 
     it("should force reset if countdown gets too low", () => {
@@ -95,11 +101,41 @@ describe("useCollateVotes", () => {
       persistParticipantVote("remote1", "Yes");
       persistParticipantVote("remote2", null);
 
-      persistAnswer({ answer: "Yes", countdown: -43 });
+      persistGameVote({ answer: "Yes", countdown: -43 });
       resolveRound(createGameState());
-      const { answer, countdown } = getLatestGameVote();
+      const { answer, countdown } = getGameVote();
       expect(answer).toBeUndefined();
       expect(countdown).toBeUndefined();
+    });
+
+    it("should select a new card once at end of round", () => {
+      const spy = jest.spyOn(selectNextCard, "selectNextCard");
+
+      persistParticipantVote(getSdk().localParticipant.id, "Yes");
+      persistParticipantVote("remote1", "Yes");
+      persistParticipantVote("remote2", "Yes");
+      persistGameVote({ answer: "Yes", countdown: 1 });
+
+      resolveRound(createGameState()); //  0
+      resolveRound(createGameState()); // -1
+      resolveRound(createGameState()); // -2
+
+      expect(spy).toBeCalledTimes(1);
+    });
+
+    it("should clear participant votes once per round", () => {
+      const spy = jest.spyOn(persistence, "clearParticipantVotes");
+
+      persistParticipantVote(getSdk().localParticipant.id, "Yes");
+      persistParticipantVote("remote1", "Yes");
+      persistParticipantVote("remote2", "Yes");
+      persistGameVote({ answer: "Yes", countdown: 1 });
+
+      resolveRound(createGameState()); //  0
+      resolveRound(createGameState()); // -1
+      resolveRound(createGameState()); // -2
+
+      expect(spy).toBeCalledTimes(1);
     });
   });
 });
