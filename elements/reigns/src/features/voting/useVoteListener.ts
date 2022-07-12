@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
 import { AppState } from "../../store";
-import { Answer } from "./votingSlice";
+import { persistParticipantVote } from "./participantVotes";
 
 export const PARTICIPANT_VOTE_TABLE = "participants-vote";
 
@@ -60,17 +60,4 @@ export const useVoteListener = (phase: GamePhase) => {
       };
     }
   }, [phase]);
-};
-
-export const persistParticipantVote = (
-  participantId: string,
-  answer: Answer | null
-) => {
-  const sdk = getSdk();
-  console.warn("Setting vote to", answer);
-  sdk.storage.realtime.set(
-    PARTICIPANT_VOTE_TABLE,
-    participantId,
-    answer ?? null
-  );
 };
