@@ -50,10 +50,12 @@ export class Countdown {
 
   stop() {
     this._value = null;
+    return this;
   }
 
   start() {
     this._value = START;
+    return this;
   }
 
   lock() {
@@ -65,11 +67,13 @@ export class Countdown {
     if (this.isStarted) {
       this._value = this._value! + 1;
     }
+    return this;
   }
 
   decrement() {
     if (this.isStarted) {
       this._value = this._value! - 1;
     }
+    return this;
   }
 }
