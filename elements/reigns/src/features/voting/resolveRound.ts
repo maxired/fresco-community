@@ -1,4 +1,4 @@
-import { Answer, getLatestVote, VotingState } from "./votingSlice";
+import { GameVote, getLatestGameVote } from "./votingSlice";
 import { getSdk } from "../../sdk";
 import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
 import { Game } from "../game/Game";
@@ -32,17 +32,23 @@ export const resolveRound = (gameState: GameState) => {
       default:
         throw new Error("Unknown answer");
     }
-    console.warn("Clearing votes");
-    getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);
   }
   persistAnswer({
     answer,
     countdown: newCount,
   });
+
+  // persisting of countdown=0 (above) must occur before clearing votes (below)
+  // or voteRemoved sound will play
+
+  if (newCount === 0) {
+    console.warn("Clearing votes");
+    getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);
+  }
 };
 
-const collateVotes = (): VotingState & { everyoneVoted: boolean } => {
-  const { answer: persistedAnswer, countdown } = getLatestVote();
+const collateVotes = (): GameVote & { everyoneVoted: boolean } => {
+  const { answer: persistedAnswer, countdown } = getLatestGameVote();
   const newAnswer = calculateAnswer();
 
   // do nothing if we've reached zero

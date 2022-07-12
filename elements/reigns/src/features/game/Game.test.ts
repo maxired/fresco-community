@@ -1,11 +1,9 @@
 import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
+import { persistParticipantVote } from "../voting/participantVotes";
 import { persistAnswer } from "../voting/persistAnswer";
-import {
-  PARTICIPANT_VOTE_TABLE,
-  persistParticipantVote,
-} from "../voting/useVoteListener";
-import { getLatestVote } from "../voting/votingSlice";
+import { PARTICIPANT_VOTE_TABLE } from "../voting/useVoteListener";
+import { getLatestGameVote } from "../voting/votingSlice";
 import { Game, GAME_STATE_KEY, GAME_TABLE } from "./Game";
 import { mockSdk } from "./mocks";
 import {
@@ -35,7 +33,7 @@ describe("Game", () => {
         )
         .retrieve();
 
-      const answer = getLatestVote();
+      const answer = getLatestGameVote();
       expect(answer).toEqual({});
 
       expect(result.phase).toBe(GamePhase.ENDED);
@@ -70,9 +68,7 @@ describe("Game", () => {
         expect(game.retrieve().flags.chapter3).toBe(undefined);
       });
 
-
-      it('should select first cards no matter or previous flags', () => {
-
+      it("should select first cards no matter or previous flags", () => {
         const game = new Game();
         const prevState = createGameState(createGameDefinition(), {
           flags: {
@@ -82,25 +78,31 @@ describe("Game", () => {
         getSdk().storage.realtime.set(GAME_TABLE, GAME_STATE_KEY, prevState);
         expect(game.retrieve().flags.chapter3).toBe("true");
 
-        const newGameState = createGameState(createGameDefinition({
-          cards: [
-            createCard({ card: 'initial card'}),
-            createCard({ card: 'chapter 3 intro', conditions: 'chapter3==true'})
-          ]
-        }), {
-          flags: {
-            chapter3: "true",
-          },
-        });
+        const newGameState = createGameState(
+          createGameDefinition({
+            cards: [
+              createCard({ card: "initial card" }),
+              createCard({
+                card: "chapter 3 intro",
+                conditions: "chapter3==true",
+              }),
+            ],
+          }),
+          {
+            flags: {
+              chapter3: "true",
+            },
+          }
+        );
 
         game.startGame(newGameState);
 
-        const results = game.retrieve()
+        const results = game.retrieve();
         expect(results.flags.chapter3).toBe(undefined);
 
         expect(results.selectedCard?.card).toBe("initial card");
         expect(results.round).toBe(1);
-      })
+      });
     });
 
     describe("answerYes", () => {

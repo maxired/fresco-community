@@ -1,5 +1,4 @@
 import { GamePhase } from "../../constants";
-import { Game } from "../../Game";
 import { selectNextCard } from "./selectNextCard";
 import {
   Card,

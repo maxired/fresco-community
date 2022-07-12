@@ -1,14 +1,12 @@
 import { getSdk } from "../../sdk";
 import { mockSdk } from "../game/mocks";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
-import {
-  PARTICIPANT_VOTE_TABLE,
-  persistParticipantVote,
-} from "./useVoteListener";
-import { getLatestVote } from "./votingSlice";
+import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
+import { getLatestGameVote } from "./votingSlice";
 import { COUNTDOWN_SECONDS, resolveRound } from "./resolveRound";
 import { createGameState } from "../game/objectMother";
 import { persistAnswer } from "./persistAnswer";
+import { persistParticipantVote } from "./participantVotes";
 
 describe("useCollateVotes", () => {
   let sdk: IFrescoSdk;
@@ -34,7 +32,7 @@ describe("useCollateVotes", () => {
 
       resolveRound(createGameState());
 
-      const { answer, countdown } = getLatestVote();
+      const { answer, countdown } = getLatestGameVote();
       expect(answer).toBe("Yes");
       expect(countdown).toBe(0);
     });
@@ -46,7 +44,7 @@ describe("useCollateVotes", () => {
 
       resolveRound(createGameState());
 
-      const { answer, countdown } = getLatestVote();
+      const { answer, countdown } = getLatestGameVote();
       expect(answer).toBe("Yes");
       expect(countdown).toBe(COUNTDOWN_SECONDS);
     });
@@ -60,7 +58,7 @@ describe("useCollateVotes", () => {
       persistParticipantVote("remote2", "Yes");
       resolveRound(createGameState());
 
-      const { answer, countdown } = getLatestVote();
+      const { answer, countdown } = getLatestGameVote();
       expect(answer).toBe("Yes");
       expect(countdown).toBe(0);
     });
@@ -72,7 +70,7 @@ describe("useCollateVotes", () => {
 
       resolveRound(createGameState());
 
-      const { countdown } = getLatestVote();
+      const { countdown } = getLatestGameVote();
       expect(countdown).toBe(0);
       expect(sdk.storage.realtime.all(PARTICIPANT_VOTE_TABLE)).toEqual({});
     });
@@ -83,12 +81,12 @@ describe("useCollateVotes", () => {
       persistParticipantVote("remote2", null);
 
       resolveRound(createGameState());
-      const { countdown } = getLatestVote();
+      const { countdown } = getLatestGameVote();
       expect(countdown).toBe(COUNTDOWN_SECONDS);
       persistParticipantVote("remote1", null);
       resolveRound(createGameState());
 
-      const { countdown: newCountdown } = getLatestVote();
+      const { countdown: newCountdown } = getLatestGameVote();
       expect(newCountdown).toBeUndefined();
     });
 
@@ -99,7 +97,7 @@ describe("useCollateVotes", () => {
 
       persistAnswer({ answer: "Yes", countdown: -43 });
       resolveRound(createGameState());
-      const { answer, countdown } = getLatestVote();
+      const { answer, countdown } = getLatestGameVote();
       expect(answer).toBeUndefined();
       expect(countdown).toBeUndefined();
     });
