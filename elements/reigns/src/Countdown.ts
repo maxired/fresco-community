@@ -9,25 +9,25 @@
     -1 - teleport considered complete, begin next round
     -2 - error state in case something went wrong, begin next round
 */
+const START = 5;
+const LOCK_START = 0;
+const LOCK_END = LOCK_START - 1;
 
 export class Countdown {
-  static START = 5;
-  static LOCKED = 0;
-
   public get value(): number | null {
     return this._value;
   }
 
   get isPastValidRange() {
-    return this.isStarted && this._value! < Countdown.LOCKED - 1;
+    return this.isStarted && this._value! < LOCK_END;
   }
 
   get isLocked() {
-    return this.isStarted && this._value! <= Countdown.LOCKED;
+    return this.isStarted && this._value! <= LOCK_START;
   }
 
   get wasJustLocked() {
-    return this.isStarted && this._value! === Countdown.LOCKED;
+    return this.isStarted && this._value! === LOCK_START;
   }
 
   get isStarted() {
@@ -35,7 +35,7 @@ export class Countdown {
   }
 
   get isVoting() {
-    return this.isStarted && this._value! > Countdown.LOCKED;
+    return this.isStarted && this._value! > LOCK_START;
   }
 
   get notStarted() {
@@ -53,11 +53,11 @@ export class Countdown {
   }
 
   start() {
-    this._value = Countdown.START;
+    this._value = START;
   }
 
   lock() {
-    this._value = Countdown.LOCKED;
+    this._value = LOCK_START;
     return this;
   }
 

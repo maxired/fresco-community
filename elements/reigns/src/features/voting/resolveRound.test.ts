@@ -40,7 +40,7 @@ describe("resolveRound", () => {
 
       const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(Countdown.LOCKED);
+      expect(Countdown.from(countdown).wasJustLocked).toBe(true);
     });
 
     it("should start countdown if not everyone voted", () => {
@@ -52,7 +52,7 @@ describe("resolveRound", () => {
 
       const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(Countdown.START);
+      expect(Countdown.from(countdown).isStarted).toBe(true);
     });
 
     it("should apply vote instantly if everyone voted and countdown already started", () => {
@@ -66,7 +66,7 @@ describe("resolveRound", () => {
 
       const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(Countdown.LOCKED);
+      expect(Countdown.from(countdown).wasJustLocked).toBe(true);
     });
 
     it("should clear participant votes on countdown === 0", () => {
@@ -88,12 +88,12 @@ describe("resolveRound", () => {
 
       resolveRound(createGameState());
       const { countdown } = getGameVote();
-      expect(countdown).toBe(Countdown.START);
+      expect(Countdown.from(countdown).isStarted).toBe(true);
       persistParticipantVote("remote1", null);
       resolveRound(createGameState());
 
       const { countdown: newCountdown } = getGameVote();
-      expect(newCountdown).toBeUndefined();
+      expect(Countdown.from(newCountdown).isStarted).toBe(false);
     });
 
     it("should force reset if countdown gets too low", () => {
