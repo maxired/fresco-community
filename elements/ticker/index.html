@@ -1,0 +1,41 @@
+<script src="https://fres-co.github.io/fresco-community/loadSdk.js"></script>
+<script>
+  const defaultState = {
+    milliseconds: 1000,
+    eventName: "custom.tick",
+  };
+  let tick = 0,
+    interval;
+
+  const configureInterval = (milliseconds, eventName) =>
+    setInterval(
+      () => fresco.triggerEvent({ eventName, eventValue: ++tick }),
+      milliseconds
+    );
+
+  fresco.onReady(() => {
+    fresco.initialize(defaultState, {
+      title: "Ticker",
+      toolbarButtons: [
+        {
+          title: "Milliseconds",
+          ui: { type: "number" },
+          property: "milliseconds",
+        },
+        {
+          title: "Event name",
+          ui: { type: "string" },
+          property: "eventName",
+        },
+      ],
+    });
+
+    fresco.onStateChanged(() => {
+      interval && clearInterval(interval);
+      interval = configureInterval(
+        fresco.element.state.milliseconds,
+        fresco.element.state.eventName
+      );
+    });
+  });
+</script>
