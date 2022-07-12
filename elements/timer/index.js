@@ -10,9 +10,9 @@ function render(timer) {
       <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
         <div class="inputs-group">
         <input type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
-        <p class="min">min</p>
+        <p class="time-label time-label-min">min</p>
         <input type="number" id="seconds" min="00" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
-        <p class="sec">sec</p>
+        <p class="time-label time-label-sec">sec</p>
         </div>
       <div class="buttons-group">
         <button id="start" class="button--start" type="submit" onclick="toggleTimer()">Start</button>
@@ -24,7 +24,7 @@ function render(timer) {
     main.innerHTML = `
       <div class="run-state">
       <div class="timer">
-      <p>${timer}</p>
+      ${toTime(timer)}
       </div>
       <div class="buttons-group">
       <button class="button--pause" onclick="pauseTimer()">Pause</button>
@@ -35,7 +35,7 @@ function render(timer) {
     main.innerHTML = `
       <div class="pause-state">
       <div class="timer">
-      <p>${timer}</p>
+      ${toTime(timer)}
       </div>
       <div class="buttons-group">
       <button class="button--start" onclick="toggleTimer()">Start</button>
@@ -73,19 +73,17 @@ function toTime(milliseconds) {
   const seconds = milliseconds / 1000;
   const s = Math.floor(seconds % 60);
   const m = Math.floor(seconds / 60);
-  return (
-    `<p>${(m < 10 ? "0" : "") + m.toString()}</p>` +
-    `<p class="min">min</p>` +
-    `<p>${(s < 10 ? "0" : "") + s.toString()}</p>` +
-    `<p class="sec">sec</p>`
-  );
+  return `<p class='time time-min'>${(m < 10 ? "0" : "") + m.toString()}</p>
+    <p class="time-label time-label-min">min</p>
+    <p class='time time-sec'>${(s < 10 ? "0" : "") + s.toString()}</p>
+    <p class="time-label time-label-sec">sec</p>`;
 }
 
 let interval = null;
 let targetTime = null;
 
 function stopTimer() {
-  render(toTime(fresco.element.state.duration * 60 * 1000));
+  render(fresco.element.state.duration * 60 * 1000);
   if (interval) {
     clearInterval(interval);
     interval = null;
@@ -118,10 +116,10 @@ function resetValue(e) {
 }
 
 function startTimer(targetTime, now) {
-  render(toTime(targetTime - 1 - now));
+  render(targetTime - 1 - now);
   interval = setInterval(() => {
     const timeRemaining = targetTime - new Date().getTime();
-    render(toTime(timeRemaining));
+    render(timeRemaining);
     if (timeRemaining <= 0) {
       const tingsha = new Audio("tingsha.mp3");
       tingsha.play();
