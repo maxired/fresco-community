@@ -43,6 +43,7 @@ export const mockSdk = (
     element: {
       state: { gameUrl: "http://some-url/" },
     },
+    subscribeToGlobalEvent: jest.fn(() => () => {}),
     triggerEvent: () => {},
     ...sdkOverride,
   } as unknown as IFrescoSdk);

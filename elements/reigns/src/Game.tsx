@@ -92,7 +92,7 @@ export const Game = () => {
         <AnswerArea text={selectedCard.answer_no || "No"} answer="no" />
         <div className="answer answer--neutral">
           {countdown.isVoting && (
-            <div className="countdown">
+            <div className="countdown" data-testid="countdown">
               <>{countdown}...</>
             </div>
           )}
