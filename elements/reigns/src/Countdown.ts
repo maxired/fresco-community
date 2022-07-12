@@ -26,12 +26,8 @@ export class Countdown {
     return this.isStarted && this._value! <= Countdown.LOCKED;
   }
 
-  get isLockedStart() {
+  get wasJustLocked() {
     return this.isStarted && this._value! === Countdown.LOCKED;
-  }
-
-  get isTeleporting() {
-    return this.isStarted && this._value! < Countdown.LOCKED;
   }
 
   get isStarted() {
@@ -50,7 +46,7 @@ export class Countdown {
     return new Countdown(value);
   }
 
-  constructor(private _value: number | null) {}
+  constructor(private _value: number | null = null) {}
 
   stop() {
     this._value = null;
@@ -58,11 +54,11 @@ export class Countdown {
 
   start() {
     this._value = Countdown.START;
-    return this.value;
   }
 
   lock() {
     this._value = Countdown.LOCKED;
+    return this;
   }
 
   increment() {

@@ -3,18 +3,20 @@ import { mockSdk } from "../game/mocks";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
 import { resolveRound } from "./resolveRound";
 import { createGameState } from "../game/objectMother";
-import {
-  getGameVote,
-  PARTICIPANT_VOTE_TABLE,
-  persistGameVote,
+import * as persistence from "./persistence";
+const {
   persistParticipantVote,
-} from "./persistence";
+  getGameVote,
+  persistGameVote,
+  PARTICIPANT_VOTE_TABLE,
+} = persistence;
 import { Countdown } from "../../Countdown";
 import * as selectNextCard from "../game/selectNextCard";
 
 describe("resolveRound", () => {
   let sdk: IFrescoSdk;
   beforeEach(() => {
+    jest.clearAllMocks();
     mockSdk({
       remoteParticipants: [
         { id: "remote1", name: "remote participant 1" } as Participant,
@@ -121,6 +123,19 @@ describe("resolveRound", () => {
       expect(spy).toBeCalledTimes(1);
     });
 
-    it("should allow new vote after new round started", () => {});
+    it("should clear participant votes once per round", () => {
+      const spy = jest.spyOn(persistence, "clearParticipantVotes");
+
+      persistParticipantVote(getSdk().localParticipant.id, "Yes");
+      persistParticipantVote("remote1", "Yes");
+      persistParticipantVote("remote2", "Yes");
+      persistGameVote({ answer: "Yes", countdown: 1 });
+
+      resolveRound(createGameState()); //  0
+      resolveRound(createGameState()); // -1
+      resolveRound(createGameState()); // -2
+
+      expect(spy).toBeCalledTimes(1);
+    });
   });
 });

@@ -2,27 +2,35 @@ import { getSdk } from "../../sdk";
 import { Game } from "../game/Game";
 import { GameState } from "../game/types";
 import {
+  clearParticipantVotes,
   GameVote,
   getGameVote,
   PARTICIPANT_VOTE_TABLE,
   persistGameVote,
 } from "./persistence";
 import { calculateAnswer } from "./calculateAnswer";
+import { Countdown } from "../../Countdown";
 
-export const COUNTDOWN_SECONDS = 5;
 export const resolveRound = (gameState: GameState) => {
   const { answer, countdown, everyoneVoted } = collateVotes();
 
-  console.log("Current vote", answer, countdown);
+  console.log(
+    `Round ${gameState.round}, vote: ${answer}, countdown: ${countdown.value}`
+  );
 
-  if (!answer || countdown === null) return;
+  if (!answer || countdown.notStarted) return;
 
-  const newCount = everyoneVoted && countdown > 0 ? 0 : countdown - 1;
+  if (everyoneVoted && countdown.isVoting) {
+    countdown.lock();
+  } else {
+    countdown.decrement();
+  }
+
   // let the count go to -1 to allow for teleport time across clients
-  if (newCount < -1) {
+  if (countdown.isPastValidRange) {
     persistGameVote(null);
     return;
-  } else if (newCount === 0) {
+  } else if (countdown.wasJustLocked) {
     const game = new Game();
     switch (answer) {
       case "Yes":
@@ -37,20 +45,24 @@ export const resolveRound = (gameState: GameState) => {
   }
   persistGameVote({
     answer,
-    countdown: newCount,
+    countdown: countdown.value,
   });
 
   // persisting of countdown=0 (above) must occur before clearing votes (below)
   // or voteRemoved sound will play
 
-  if (newCount === 0) {
-    console.warn("Clearing votes");
-    getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);
+  if (countdown.wasJustLocked) {
+    clearParticipantVotes();
   }
 };
 
-const collateVotes = (): GameVote & { everyoneVoted: boolean } => {
-  const { answer: persistedAnswer, countdown } = getGameVote();
+type CollatedVotes = Omit<GameVote, "countdown"> & {
+  everyoneVoted: boolean;
+  countdown: Countdown;
+};
+const collateVotes = (): CollatedVotes => {
+  const { answer: persistedAnswer, countdown: countdownValue } = getGameVote();
+  const countdown = Countdown.from(countdownValue);
   const newAnswer = calculateAnswer();
 
   if (!newAnswer.answer) {

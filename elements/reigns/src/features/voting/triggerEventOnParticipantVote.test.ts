@@ -1,3 +1,4 @@
+import { Countdown } from "../../Countdown";
 import { getSdk } from "../../sdk";
 import { mockSdk } from "../game/mocks";
 import { Answer, persistParticipantVote } from "./persistence";
@@ -9,9 +10,9 @@ const createState = (
   allVotes: {
     [participantId: string]: Answer | null;
   } = {},
-  countdown: number | null = null
+  countdown = new Countdown(null)
 ): VotingState => ({
-  countdown,
+  countdown: countdown.value,
   answer: null,
   allVotes,
 });
@@ -72,7 +73,8 @@ describe("votingSlice", () => {
       {
         "participant-1": "Yes",
       },
-      0
+      // teleport is triggered on countdown lock
+      new Countdown().lock()
     );
 
     persistParticipantVote("participant-1", null);
