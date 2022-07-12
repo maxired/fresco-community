@@ -93,7 +93,7 @@ export const Game = () => {
         <div className="answer answer--neutral">
           {countdown.isVoting && (
             <div className="countdown" data-testid="countdown">
-              <>{countdown}...</>
+              <>{countdown.value}...</>
             </div>
           )}
         </div>

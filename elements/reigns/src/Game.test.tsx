@@ -1,5 +1,5 @@
 import { Game } from "./Game";
-import { render } from "@testing-library/react";
+import { render, waitFor, act } from "@testing-library/react";
 import { getWrapper, mockSdk } from "./mocks";
 import { createStore } from "./store";
 import { initializeGame, updateGame } from "./features/game/gameSlice";
@@ -78,13 +78,16 @@ describe("Game", () => {
     expect(getByText("Question!!!")).toBeInTheDocument();
   });
 
-  it("should render countdown", () => {
+  it("should render countdown", async () => {
     const store = createStore();
-
     const { getByTestId } = renderGame({ store });
     persistGameVote({ answer: "Yes", countdown: 3 });
-    store.dispatch(updateVote());
 
-    expect(getByTestId("countdown")).toHaveTextContent("3...");
+    act(() => {
+      store.dispatch(updateVote());
+    });
+
+    const countdown = await waitFor(() => getByTestId("countdown"));
+    expect(countdown).toHaveTextContent("3...");
   });
 });
