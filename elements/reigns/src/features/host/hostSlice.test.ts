@@ -1,7 +1,7 @@
 import { updateHost, reducer } from "./hostSlice";
 import { IS_MOUNTED_TABLE } from "./persistIsMounted";
 import * as mounted from "./persistIsMounted";
-import { mockSdk } from "../game/mocks";
+import { mockSdk } from "../../mocks";
 
 describe("hostSlice", () => {
   describe("updateHost", () => {

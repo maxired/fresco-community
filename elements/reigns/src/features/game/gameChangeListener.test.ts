@@ -1,7 +1,7 @@
 import { AppState } from "../../store";
 import { getSdk } from "../../sdk";
 import { detectGameChange } from "./gameChangeListener";
-import { mockSdk } from "./mocks";
+import { mockSdk } from "../../mocks";
 import { createGameState } from "./objectMother";
 import { setHost } from "../host/persistence";
 import { HostState } from "../host/hostSlice";

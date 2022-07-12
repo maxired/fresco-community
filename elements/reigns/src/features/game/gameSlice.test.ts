@@ -1,6 +1,6 @@
 import { GamePhase, Loading } from "../../constants";
 import { gameReducer, initializeGame } from "./gameSlice";
-import { mockSdk } from "./mocks";
+import { mockSdk } from "../../mocks";
 import { createGameDefinition, createGameState } from "./objectMother";
 import { GameState } from "./types";
 

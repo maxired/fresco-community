@@ -7,7 +7,7 @@ import {
   persistParticipantVote,
 } from "../voting/persistence";
 import { Game, GAME_STATE_KEY, GAME_TABLE } from "./Game";
-import { mockSdk } from "./mocks";
+import { mockSdk } from "../../mocks";
 import {
   createCard,
   createGameDefinition,

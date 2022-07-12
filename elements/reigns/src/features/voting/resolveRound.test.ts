@@ -1,5 +1,5 @@
 import { getSdk } from "../../sdk";
-import { mockSdk } from "../game/mocks";
+import { mockSdk } from "../../mocks";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
 import { resolveRound } from "./resolveRound";
 import { createGameState } from "../game/objectMother";

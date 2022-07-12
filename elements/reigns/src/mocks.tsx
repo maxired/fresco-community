@@ -1,7 +1,7 @@
 import { AnyAction, Store } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import * as sdk from "../../sdk";
-import { AppState, createStore } from "../../store";
+import * as sdk from "./sdk";
+import { AppState, createStore } from "./store";
 import React, { FC, ReactNode } from "react";
 
 export const mockSdk = (
