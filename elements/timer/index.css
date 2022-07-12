@@ -45,21 +45,6 @@ input:disabled {
   visibility: visible;
 }
 
-.user .button--user_pause {
-  display: block;
-}
-
-.admin .button--user_pause {
-  display: none;
-}
-
-.user .button--start,
-.user .button--pause,
-.user .button--reset {
-  display: none;
-  color: black;
-}
-
 form {
   display: flex;
   align-items: center;
