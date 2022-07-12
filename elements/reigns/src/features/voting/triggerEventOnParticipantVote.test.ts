@@ -1,9 +1,9 @@
 import { getSdk } from "../../sdk";
 import { mockSdk } from "../game/mocks";
-import { persistParticipantVote } from "./participantVotes";
+import { Answer, persistParticipantVote } from "./persistence";
 import { triggerEventOnParticipantVote } from "./triggerEventOnParticipantVote";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
-import { Answer, VotingState } from "./votingSlice";
+import { VotingState } from "./votingSlice";
 
 const createState = (
   allVotes: {

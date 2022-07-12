@@ -1,7 +1,7 @@
 import { getSdk } from "../../sdk";
 import { mockSdk } from "../game/mocks";
 import { calculateAnswer } from "./calculateAnswer";
-import { persistParticipantVote } from "./participantVotes";
+import { persistParticipantVote } from "./persistence";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
 
 describe("calculateAnswer", () => {

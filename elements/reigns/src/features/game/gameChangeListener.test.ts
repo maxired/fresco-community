@@ -1,6 +1,5 @@
 import { AppState } from "../../store";
 import { getSdk } from "../../sdk";
-import { PARTICIPANT_VOTE_TABLE } from "../voting/useVoteListener";
 import { detectGameChange } from "./gameChangeListener";
 import { mockSdk } from "./mocks";
 import { createGameState } from "./objectMother";
@@ -8,6 +7,7 @@ import { setHost } from "../host/persistence";
 import { HostState } from "../host/hostSlice";
 import { Card, GameState } from "./types";
 import { Game } from "./Game";
+import { PARTICIPANT_VOTE_TABLE } from "../voting/persistence";
 
 describe("gameChangeListener", () => {
   beforeEach(() => {

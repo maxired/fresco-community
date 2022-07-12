@@ -1,7 +1,9 @@
 import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
-import { PARTICIPANT_VOTE_TABLE } from "../voting/useVoteListener";
-import { ROUND_RESOLUTION_KEY } from "../voting/votingSlice";
+import {
+  PARTICIPANT_VOTE_TABLE,
+  ROUND_RESOLUTION_KEY,
+} from "../voting/persistence";
 import { selectAnswer } from "./selectAnswer";
 import { selectNextCard } from "./selectNextCard";
 import { GameState, PersistedGameState, Stat } from "./types";

@@ -1,5 +1,4 @@
-import { Answer } from "./votingSlice";
-import { getParticipantVotes } from "./participantVotes";
+import { Answer, getParticipantVotes } from "./persistence";
 
 export const calculateAnswer = (): CollatedVote => {
   const votes = getParticipantVotes();
@@ -42,6 +41,7 @@ export const calculateAnswer = (): CollatedVote => {
 
   return { answer: null, everyoneVoted };
 };
+
 type CollatedVote = {
   answer: Answer | null;
   everyoneVoted: boolean;

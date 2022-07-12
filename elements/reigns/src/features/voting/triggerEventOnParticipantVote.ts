@@ -1,5 +1,5 @@
 import { getSdk } from "../../sdk";
-import { getParticipantVotes } from "./participantVotes";
+import { getParticipantVotes } from "./persistence";
 import { VotingState } from "./votingSlice";
 
 export const triggerEventOnParticipantVote = (state: VotingState) => {

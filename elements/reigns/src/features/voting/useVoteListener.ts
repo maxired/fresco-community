@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
 import { AppState } from "../../store";
-import { persistParticipantVote } from "./participantVotes";
-
-export const PARTICIPANT_VOTE_TABLE = "participants-vote";
+import { persistParticipantVote } from "./persistence";
 
 const teleport = (target: string, targetPrefix?: string) => {
   const sdk = getSdk();

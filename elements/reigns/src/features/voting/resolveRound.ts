@@ -1,13 +1,15 @@
-import { GameVote, getLatestGameVote } from "./votingSlice";
 import { getSdk } from "../../sdk";
-import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
 import { Game } from "../game/Game";
 import { GameState } from "../game/types";
-import { persistAnswer } from "./persistAnswer";
+import {
+  GameVote,
+  getGameVote,
+  PARTICIPANT_VOTE_TABLE,
+  persistGameVote,
+} from "./persistence";
 import { calculateAnswer } from "./calculateAnswer";
 
 export const COUNTDOWN_SECONDS = 5;
-
 export const resolveRound = (gameState: GameState) => {
   const { answer, countdown, everyoneVoted } = collateVotes();
 
@@ -18,7 +20,7 @@ export const resolveRound = (gameState: GameState) => {
   const newCount = everyoneVoted && countdown > 0 ? 0 : countdown - 1;
   // let the count go to -1 to allow for teleport time across clients
   if (newCount < -1) {
-    persistAnswer(null);
+    persistGameVote(null);
     return;
   } else if (newCount === 0) {
     const game = new Game();
@@ -33,7 +35,7 @@ export const resolveRound = (gameState: GameState) => {
         throw new Error("Unknown answer");
     }
   }
-  persistAnswer({
+  persistGameVote({
     answer,
     countdown: newCount,
   });
@@ -48,7 +50,7 @@ export const resolveRound = (gameState: GameState) => {
 };
 
 const collateVotes = (): GameVote & { everyoneVoted: boolean } => {
-  const { answer: persistedAnswer, countdown } = getLatestGameVote();
+  const { answer: persistedAnswer, countdown } = getGameVote();
   const newAnswer = calculateAnswer();
 
   // do nothing if we've reached zero
@@ -57,7 +59,7 @@ const collateVotes = (): GameVote & { everyoneVoted: boolean } => {
   if (!newAnswer.answer) {
     if (persistedAnswer) {
       // stop countdown
-      persistAnswer(null);
+      persistGameVote(null);
       return { answer: null, countdown: null, everyoneVoted: false };
     }
   } else {

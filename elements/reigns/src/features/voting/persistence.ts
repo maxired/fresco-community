@@ -1,7 +1,30 @@
-import { Answer } from "./votingSlice";
 import { getSdk } from "../../sdk";
+import { GAME_TABLE } from "../game/Game";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
-import { PARTICIPANT_VOTE_TABLE } from "./useVoteListener";
+
+export const ROUND_RESOLUTION_KEY = "round-resolution";
+export const PARTICIPANT_VOTE_TABLE = "participants-vote";
+
+export type Answer = "Yes" | "No";
+
+export type GameVote = { answer: Answer | null; countdown: number | null };
+
+export const getGameVote = () => {
+  const result = (getSdk().storage.realtime.get(
+    GAME_TABLE,
+    ROUND_RESOLUTION_KEY
+  ) ?? {}) as GameVote;
+  return result;
+};
+
+export const persistGameVote = (value: GameVote | null) => {
+  getSdk().storage.realtime.set(
+    GAME_TABLE,
+    ROUND_RESOLUTION_KEY,
+    value || undefined
+  );
+  return value;
+};
 
 export type ParticipantVote = Participant & { answer: Answer | null };
 
