@@ -1,7 +1,7 @@
 import { getSdk } from "../../sdk";
 import { mockSdk } from "../game/mocks";
 import { persistParticipantVote } from "./participantVotes";
-import { playSoundOnVote } from "./playSoundOnVote";
+import { triggerEventOnParticipantVote } from "./triggerEventOnParticipantVote";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
 import { Answer, VotingState } from "./votingSlice";
 
@@ -38,7 +38,7 @@ describe("votingSlice", () => {
     });
 
     persistParticipantVote("participant-1", "Yes");
-    playSoundOnVote(state);
+    triggerEventOnParticipantVote(state);
 
     expect(triggerEventSpy).toHaveBeenCalledWith(
       expect.objectContaining({ eventName: "custom.reigns.voteAdded" })
@@ -50,7 +50,7 @@ describe("votingSlice", () => {
     });
 
     persistParticipantVote("participant-1", null);
-    playSoundOnVote(state);
+    triggerEventOnParticipantVote(state);
 
     expect(triggerEventSpy).toHaveBeenCalledWith(
       expect.objectContaining({ eventName: "custom.reigns.voteRemoved" })
@@ -62,7 +62,7 @@ describe("votingSlice", () => {
     });
 
     persistParticipantVote("participant-1", "Yes");
-    playSoundOnVote(state);
+    triggerEventOnParticipantVote(state);
 
     expect(triggerEventSpy).not.toHaveBeenCalled();
   });
@@ -76,7 +76,7 @@ describe("votingSlice", () => {
     );
 
     persistParticipantVote("participant-1", null);
-    playSoundOnVote(state);
+    triggerEventOnParticipantVote(state);
 
     expect(triggerEventSpy).not.toHaveBeenCalled();
   });

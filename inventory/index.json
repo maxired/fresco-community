@@ -384,7 +384,7 @@
             "rotation": 0
           },
           "appearance": {
-            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"hy5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"1\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"htyp5uqr0cyxe-y671wbq\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"1\"}}]}]",
+            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"hy5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.3\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"htyp5uqr0cyxe-y671wbq\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.5\"}}]}]",
             "NAME": "story-quizz",
             "TEXT_BEHAVIOUR": 2,
             "STATE": {
