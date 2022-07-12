@@ -1,19 +1,26 @@
 {
   "deathMessage": "You have been fired!",
+  "roundName": "Day",
+  "gameName": "A month in the life of a data officer (demo)",
   "stats": [
     {
-      "name": "End user",
-      "icon": "noun-crowd-2383331.svg",
-      "value": 50
-    },
-    {
-      "name": "Boss",
+      "name": "Profit",
       "icon": "noun-coins-1123601.svg",
       "value": 50
     },
     {
-      "name": "European commission",
-      "icon": "noun-sword-fighting-2054626.svg",
+      "name": "Customer satisfaction",
+      "icon": "noun-crowd-2383331.svg",
+      "value": 50
+    },
+    {
+      "name": "Security",
+      "icon": "noun-shield-4865890.svg",
+      "value": 50
+    },
+    {
+      "name": "Team well-being",
+      "icon": "noun-team-4854330.svg",
       "value": 50
     }
   ],
