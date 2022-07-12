@@ -26,6 +26,9 @@ div#main > div {
   align-items: center;
 }
 
+input:disabled {
+  background-color: initial;
+}
 .none {
   display: none;
 }
@@ -99,7 +102,7 @@ input::-webkit-inner-spin-button {
 }
 
 input:focus,
-input:hover {
+input:hover:not(:disabled) {
   background: #f2f2f2;
   border-radius: 15px;
   outline: none;
@@ -118,7 +121,7 @@ input:hover {
   gap: 15px;
 }
 
-:is(.button--start, .button--pause, .button--reset):hover {
+:is(.button--start, .button--pause, .button--reset):hover:not(:disabled) {
   font-size: 19.7px;
   box-shadow: 0px 0px 0px transparent;
 }
@@ -126,6 +129,11 @@ input:hover {
 .button--start {
   background: #4bb958;
   box-shadow: 0px 3px 0px #4b5f58;
+}
+
+.button--start:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 
 .button--pause {
@@ -142,18 +150,6 @@ input:hover {
   box-shadow: 0px 3px 0px #845f25;
 }
 
-.timer {
-  display: flex;
-  align-items: flex-end;
-  padding-top: 10px;
-}
-
-.timer p {
-  margin: 0;
-  height: 130px;
-  width: auto;
-}
-
 .time-label {
   margin: 0;
   padding-left: 5px;
@@ -164,23 +160,6 @@ input:hover {
 
 .time-label-min {
   padding-right: 20px;
-}
-
-.run-state .time,
-.pause-state .time {
-  text-align: right;
-  line-height: 1.18;
-  width: 155px;
-}
-
-.time-sec,
-.time-min {
-  padding-left: 2px;
-  padding-right: 2px;
-}
-.run-state,
-.pause-state {
-  flex-direction: column;
 }
 
 .user > div {
@@ -195,14 +174,6 @@ input:hover {
 
 .user .inputs-group {
   padding-top: 0;
-}
-
-.user .run-state .timer {
-  height: 105px;
-}
-
-.user .run-state .buttons-group {
-  display: none;
 }
 
 @media (max-width: 430px), (max-height: 210px) {
@@ -224,10 +195,6 @@ input:hover {
   .buttons-group {
     height: 65px;
   }
-  .run-state .time,
-  .pause-state .time {
-    width: 100px;
-  }
 }
 
 @media screen and (max-width: 330px) {
@@ -244,23 +211,9 @@ input:hover {
     height: 50px;
     width: 70px;
   }
-  .timer p {
-    height: 60px;
-  }
-  .min,
-  .sec {
-    font-size: 16px;
-    padding-left: 0px;
-  }
-  .min {
-    padding-right: 5px;
-  }
+
   .buttons-group {
     height: 65px;
-  }
-  .run-state .time,
-  .pause-state .time {
-    width: 70px;
   }
 }
 

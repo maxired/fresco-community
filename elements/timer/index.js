@@ -3,48 +3,97 @@ let formDuration = 10;
 let value = [10, 00];
 let btnStart = "block";
 
+function getCurrentTimerValue(milliseconds) {
+  if (milliseconds == undefined) {
+    return value;
+  }
+
+  if (milliseconds < 0) {
+    milliseconds = 0;
+  }
+  const seconds = milliseconds / 1000;
+  const s = Math.floor(seconds % 60);
+  const m = Math.floor(seconds / 60);
+  return [m, s];
+}
+
+function ifAdmin(element) {
+  if (fresco.localParticipant.permission.canEdit) {
+    return element;
+  }
+  return "";
+}
+
+function ifUser(element) {
+  if (!fresco.localParticipant.permission.canEdit) {
+    return element;
+  }
+  return "";
+}
+
+function renderIf(condition, element) {
+  if (condition) {
+    return element;
+  }
+  return "";
+}
 function render(timer) {
-  if (fresco.element.state.timer === "initial") {
-    main.innerHTML = `
+  const [minutes, seconds] = getCurrentTimerValue(timer);
+
+  const admin = fresco.localParticipant.permission.canEdit;
+  const user = !admin;
+
+  main.innerHTML = `
       <div>
-      <form id="form" onchange="valueForm(event)" onkeypress="valueForm(event)">
+      <form id="form" onchange="valueForm(event)" onkeyup="valueForm(event)">
         <div class="inputs-group">
-        <input type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[0]}"/>
+        <input ${renderIf(
+          fresco.element.state.timer !== "initial" || !admin,
+          "disabled"
+        )} type="number" id="minutes" min="0" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${minutes}"/>
         <p class="time-label time-label-min">min</p>
-        <input type="number" id="seconds" min="00" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${value[1]}"/>
+        <input ${renderIf(
+          fresco.element.state.timer !== "initial" || !admin,
+          "disabled"
+        )} type="number" id="seconds" min="00" max="59" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'" value="${seconds}"/>
         <p class="time-label time-label-sec">sec</p>
         </div>
       <div class="buttons-group">
-        <button id="start" class="button--start" type="submit" onclick="toggleTimer()">Start</button>
+        ${renderIf(
+          admin,
+          `
+          ${
+            fresco.element.state.timer === "initial" ||
+            fresco.element.state.timer === "pause"
+              ? `<button class="button--start" type="submit" onclick="toggleTimer()"
+                ${renderIf(minutes === 0 && seconds === 0, "disabled")}
+              >Start</button>`
+              : ""
+          }
+
+          ${
+            fresco.element.state.timer === "run"
+              ? `<button class="button--pause" onclick="pauseTimer()">Pause</button>`
+              : ""
+          }
+
+        ${
+          fresco.element.state.timer === "pause"
+            ? ` <button class="button--reset" onclick="resetTimer()">Reset</button>`
+            : ""
+        }`
+        )}
+
+
+        ${renderIf(
+          user && fresco.element.state.timer === "pause",
+          `<button class="button--user_pause" disabled>Paused</button>`
+        )}
+
         </div>
         </form>
       </div>
     `;
-  } else if (fresco.element.state.timer === "run") {
-    main.innerHTML = `
-      <div class="run-state">
-      <div class="timer">
-      ${toTime(timer)}
-      </div>
-      <div class="buttons-group">
-      <button class="button--pause" onclick="pauseTimer()">Pause</button>
-      </div>
-      </div>
-    `;
-  } else if (fresco.element.state.timer === "pause") {
-    main.innerHTML = `
-      <div class="pause-state">
-      <div class="timer">
-      ${toTime(timer)}
-      </div>
-      <div class="buttons-group">
-      <button class="button--start" onclick="toggleTimer()">Start</button>
-      <button class="button--reset" onclick="resetTimer()">Reset</button>
-      <button class="button--user_pause" disabled>Pause</button>
-      </div>
-      </div>
-    `;
-  }
 }
 
 function valueForm(e) {
@@ -53,30 +102,11 @@ function valueForm(e) {
   const seconds = parseFloat(form.elements["seconds"].value || 0) / 60;
   formDuration = minutes + seconds;
 
-  if ((form[0].value == 0) & (form[1].value == 0)) {
-    form.elements["start"].setAttribute("class", "hidden");
-  } else {
-    form.elements["start"].setAttribute("class", "visible button--start");
-  }
-
   fresco.setState({
     duration: formDuration,
     startedAt: "initial",
     setValue: formDuration,
   });
-}
-
-function toTime(milliseconds) {
-  if (milliseconds < 0) {
-    milliseconds = 0;
-  }
-  const seconds = milliseconds / 1000;
-  const s = Math.floor(seconds % 60);
-  const m = Math.floor(seconds / 60);
-  return `<p class='time time-min'>${(m < 10 ? "0" : "") + m.toString()}</p>
-    <p class="time-label time-label-min">min</p>
-    <p class='time time-sec'>${(s < 10 ? "0" : "") + s.toString()}</p>
-    <p class="time-label time-label-sec">sec</p>`;
 }
 
 let interval = null;
@@ -117,6 +147,9 @@ function resetValue(e) {
 
 function startTimer(targetTime, now) {
   render(targetTime - 1 - now);
+  if (interval) {
+    clearInterval(interval);
+  }
   interval = setInterval(() => {
     const timeRemaining = targetTime - new Date().getTime();
     render(timeRemaining);
@@ -168,7 +201,9 @@ fresco.onReady(function () {
   };
 
   fresco.onStateChanged(function () {
+    resetValue(fresco.element.state.setValue);
     if (fresco.element.state.startedAt === "initial") {
+      render();
     } else if (!fresco.element.state.startedAt) {
       stopTimer();
     } else {
@@ -184,8 +219,6 @@ fresco.onReady(function () {
     } else {
       main.setAttribute("class", "admin");
     }
-
-    resetValue(fresco.element.state.setValue);
   });
 
   fresco.initialize(defaultState, elementConfig);
