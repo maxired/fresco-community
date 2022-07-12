@@ -1,6 +1,6 @@
 import { Answer, getParticipantVotes } from "./persistence";
 
-export const calculateAnswer = (): CollatedVote => {
+export const calculateAnswer = (): CalculatedAnswer => {
   const votes = getParticipantVotes();
 
   console.log(
@@ -42,7 +42,7 @@ export const calculateAnswer = (): CollatedVote => {
   return { answer: null, everyoneVoted };
 };
 
-type CollatedVote = {
+type CalculatedAnswer = {
   answer: Answer | null;
   everyoneVoted: boolean;
 };

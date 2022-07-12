@@ -53,21 +53,22 @@ const collateVotes = (): GameVote & { everyoneVoted: boolean } => {
   const { answer: persistedAnswer, countdown } = getGameVote();
   const newAnswer = calculateAnswer();
 
-  // do nothing if we've reached zero
-  if ((countdown ?? 0) < 0) return { ...newAnswer, countdown };
-
   if (!newAnswer.answer) {
     if (persistedAnswer) {
-      // stop countdown
+      countdown.stop();
       persistGameVote(null);
-      return { answer: null, countdown: null, everyoneVoted: false };
+      return { answer: null, countdown, everyoneVoted: false };
     }
   } else {
-    // start (or restart) countdown
     if (!persistedAnswer || persistedAnswer != newAnswer.answer) {
-      const countdown = newAnswer.everyoneVoted ? 0 : COUNTDOWN_SECONDS;
+      if (newAnswer.everyoneVoted) {
+        countdown.lock();
+      } else {
+        countdown.start();
+      }
       // first tick happens immediately so +1
-      return { ...newAnswer, countdown: countdown + 1 };
+      countdown.increment();
+      return { ...newAnswer, countdown };
     }
   }
   return { ...newAnswer, countdown };

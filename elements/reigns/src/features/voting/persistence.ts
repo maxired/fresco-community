@@ -18,6 +18,8 @@ export const getGameVote = () => {
 };
 
 export const persistGameVote = (value: GameVote | null) => {
+  console.log("persist game vote", value);
+
   getSdk().storage.realtime.set(
     GAME_TABLE,
     ROUND_RESOLUTION_KEY,
@@ -54,10 +56,13 @@ export const persistParticipantVote = (
   answer: Answer | null
 ) => {
   const sdk = getSdk();
-  console.warn("Setting vote to", answer);
+  console.warn("Setting participant vote to", answer);
   sdk.storage.realtime.set(
     PARTICIPANT_VOTE_TABLE,
     participantId,
     answer ?? null
   );
 };
+
+export const clearParticipantVotes = () =>
+  getSdk().storage.realtime.clear(PARTICIPANT_VOTE_TABLE);

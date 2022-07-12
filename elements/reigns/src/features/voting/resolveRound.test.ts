@@ -1,7 +1,7 @@
 import { getSdk } from "../../sdk";
 import { mockSdk } from "../game/mocks";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
-import { COUNTDOWN_SECONDS, resolveRound } from "./resolveRound";
+import { resolveRound } from "./resolveRound";
 import { createGameState } from "../game/objectMother";
 import {
   getGameVote,
@@ -9,8 +9,10 @@ import {
   persistGameVote,
   persistParticipantVote,
 } from "./persistence";
+import { Countdown } from "../../Countdown";
+import * as selectNextCard from "../game/selectNextCard";
 
-describe("useCollateVotes", () => {
+describe("resolveRound", () => {
   let sdk: IFrescoSdk;
   beforeEach(() => {
     mockSdk({
@@ -36,7 +38,7 @@ describe("useCollateVotes", () => {
 
       const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(0);
+      expect(countdown).toBe(Countdown.LOCKED);
     });
 
     it("should start countdown if not everyone voted", () => {
@@ -48,7 +50,7 @@ describe("useCollateVotes", () => {
 
       const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(COUNTDOWN_SECONDS);
+      expect(countdown).toBe(Countdown.START);
     });
 
     it("should apply vote instantly if everyone voted and countdown already started", () => {
@@ -62,7 +64,7 @@ describe("useCollateVotes", () => {
 
       const { answer, countdown } = getGameVote();
       expect(answer).toBe("Yes");
-      expect(countdown).toBe(0);
+      expect(countdown).toBe(Countdown.LOCKED);
     });
 
     it("should clear participant votes on countdown === 0", () => {
@@ -84,7 +86,7 @@ describe("useCollateVotes", () => {
 
       resolveRound(createGameState());
       const { countdown } = getGameVote();
-      expect(countdown).toBe(COUNTDOWN_SECONDS);
+      expect(countdown).toBe(Countdown.START);
       persistParticipantVote("remote1", null);
       resolveRound(createGameState());
 
@@ -103,5 +105,22 @@ describe("useCollateVotes", () => {
       expect(answer).toBeUndefined();
       expect(countdown).toBeUndefined();
     });
+
+    it("should select a new card once at end of round", () => {
+      const spy = jest.spyOn(selectNextCard, "selectNextCard");
+
+      persistParticipantVote(getSdk().localParticipant.id, "Yes");
+      persistParticipantVote("remote1", "Yes");
+      persistParticipantVote("remote2", "Yes");
+      persistGameVote({ answer: "Yes", countdown: 1 });
+
+      resolveRound(createGameState()); //  0
+      resolveRound(createGameState()); // -1
+      resolveRound(createGameState()); // -2
+
+      expect(spy).toBeCalledTimes(1);
+    });
+
+    it("should allow new vote after new round started", () => {});
   });
 });
