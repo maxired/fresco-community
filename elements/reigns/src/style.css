@@ -176,9 +176,19 @@ button {
 
 .answer__zone {
   flex: 1;
+  padding: 30px;
 }
 
-.answer__text-container {
+.answer__text-outer-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 30px;
+}
+
+.answer__text-inner-container {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -187,7 +197,7 @@ button {
   position: relative;
 }
 
-.answer__text-container canvas {
+.answer__text-inner-container canvas {
   position: absolute;
   top: 0;
   left: 0;

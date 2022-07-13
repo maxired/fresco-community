@@ -2,10 +2,10 @@ import { Application, Graphics, Ticker, utils } from "pixi.js";
 import Tween, { Quad } from "gsap";
 import { useRef, useEffect, useState, RefObject } from "react";
 
-const duration = 0.5;
+const duration = 1;
 const radius = 20;
 const lineWidth = 10;
-const margin = 3;
+const margin = lineWidth / 2;
 const ease = Quad.easeIn;
 
 export const useRoundedRectangleProgress = (
@@ -35,7 +35,7 @@ export const useRoundedRectangleProgress = (
 
   useEffect(() => {
     const app = new Application({
-      transparent: true,
+      backgroundAlpha: 0,
       antialias: true,
       resizeTo: ref.current?.parentElement!,
       sharedTicker: true,
