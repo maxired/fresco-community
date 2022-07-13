@@ -290,7 +290,7 @@
         {
           "id": "qyyxc3kge-nq3phm1aq0v",
           "isLocked": false,
-          "zIndex": 9,
+          "zIndex": 90,
           "layer": 0,
           "renderer": "LandingZone",
           "transform": {
@@ -313,7 +313,7 @@
         {
           "id": "yxqya8t87dpqe3kjz6nzf",
           "isLocked": false,
-          "zIndex": 10,
+          "zIndex": 100,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
@@ -341,7 +341,7 @@
         {
           "id": "9mn0owh67drtxsuwtijz-",
           "isLocked": false,
-          "zIndex": 11,
+          "zIndex": 110,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
