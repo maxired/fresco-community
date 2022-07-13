@@ -36,10 +36,10 @@ export const calculateAnswer = (): CalculatedAnswer => {
     }
   );
   const totalParticipants = votes.length;
-  const votesNeededForMajority = Math.ceil(totalParticipants / 2);
+  const votesNeededForAbove50Percent = Math.floor(totalParticipants / 2) + 1;
   const progress: VoteProgress = {
-    noProgress: results.answerNo / votesNeededForMajority,
-    yesProgress: results.answerYes / votesNeededForMajority,
+    noProgress: results.answerNo / votesNeededForAbove50Percent,
+    yesProgress: results.answerYes / votesNeededForAbove50Percent,
   };
 
   console.log("progress", results, progress);

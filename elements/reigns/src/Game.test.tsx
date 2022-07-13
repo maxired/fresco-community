@@ -13,6 +13,7 @@ import { Card } from "./features/game/types";
 import "@testing-library/jest-dom";
 import { persistGameVote } from "./features/voting/persistence";
 import { updateVote } from "./features/voting/votingSlice";
+import "jest-webgl-canvas-mock";
 
 jest.mock("textfit");
 
