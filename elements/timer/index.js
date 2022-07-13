@@ -40,7 +40,7 @@ function renderIf(condition, element) {
 function render(timer) {
   const [minutes, seconds] = getCurrentTimerValue(timer);
 
-  const admin = fresco.localParticipant.permission.canEdit;
+  const admin = fresco.localParticipant.permission?.canEdit;
   const user = !admin;
 
   main.innerHTML = `
@@ -65,7 +65,7 @@ function render(timer) {
           ${
             fresco.element.state.timer === "initial" ||
             fresco.element.state.timer === "pause"
-              ? `<button class="button--start" type="submit" onclick="toggleTimer()"
+              ? `<button type="button" class="button--start"  onclick="toggleTimer()"
                 ${renderIf(minutes === 0 && seconds === 0, "disabled")}
               >Start</button>`
               : ""
@@ -73,13 +73,13 @@ function render(timer) {
 
           ${
             fresco.element.state.timer === "run"
-              ? `<button class="button--pause" onclick="pauseTimer()">Pause</button>`
+              ? `<button type="button" class="button--pause" onclick="pauseTimer()">Pause</button>`
               : ""
           }
 
         ${
           fresco.element.state.timer === "pause"
-            ? ` <button class="button--reset" onclick="resetTimer()">Reset</button>`
+            ? ` <button type="button" class="button--reset" onclick="resetTimer()">Reset</button>`
             : ""
         }`
         )}
@@ -87,7 +87,7 @@ function render(timer) {
 
         ${renderIf(
           user && fresco.element.state.timer === "pause",
-          `<button class="button--user_pause" disabled>Paused</button>`
+          `<button type="button" class="button--user_pause" disabled>Paused</button>`
         )}
 
         </div>
@@ -222,5 +222,4 @@ fresco.onReady(function () {
   });
 
   fresco.initialize(defaultState, elementConfig);
-  render();
 });
