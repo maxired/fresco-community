@@ -183,17 +183,25 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.answer__text-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .answer__text {
   font-size: 2vw;
   color: #fff;
-  background-color: #313e47;
   border-radius: 10px;
   margin: 16px;
   padding: 16px;
   text-align: center;
   flex: 0;
+  position: relative;
 }
 
 .question__image {

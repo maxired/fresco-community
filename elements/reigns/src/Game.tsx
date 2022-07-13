@@ -28,6 +28,10 @@ export const Game = () => {
   );
   const store = useStore<AppState>();
   const isHost = getIsHost({ currentHost });
+  const yesProgress = useSelector(
+    (state: AppState) => state.voting.yesProgress
+  );
+  const noProgress = useSelector((state: AppState) => state.voting.noProgress);
 
   usePersistIsMounted();
 
@@ -89,7 +93,12 @@ export const Game = () => {
         <Question card={selectedCard} />
       </div>
       <div className="game-half answers">
-        <AnswerArea text={selectedCard.answer_no || "No"} answer="no" />
+        <AnswerArea
+          text={selectedCard.answer_no || "No"}
+          answer="no"
+          progress={noProgress}
+          color="#e200a4"
+        />
         <div className="answer answer--neutral">
           {countdown.isVoting && (
             <div className="countdown" data-testid="countdown">
@@ -97,7 +106,12 @@ export const Game = () => {
             </div>
           )}
         </div>
-        <AnswerArea text={selectedCard.answer_yes || "Yes"} answer="yes" />
+        <AnswerArea
+          text={selectedCard.answer_yes || "Yes"}
+          answer="yes"
+          progress={yesProgress}
+          color="#9e32d6"
+        />
       </div>
     </>
   );
