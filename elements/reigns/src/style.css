@@ -182,8 +182,6 @@ button {
 .answer__text-outer-container {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   position: relative;
   padding: 30px;
 }
@@ -191,7 +189,6 @@ button {
 .answer__text-inner-container {
   flex: 1;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -204,7 +201,7 @@ button {
 }
 
 .answer__text {
-  font-size: 2vw;
+  font-size: 1.5vw;
   color: #fff;
   border-radius: 10px;
   margin: 16px;
