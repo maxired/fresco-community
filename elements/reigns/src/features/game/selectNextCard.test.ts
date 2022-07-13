@@ -1,4 +1,4 @@
-import { mockSdk } from "./mocks";
+import { mockSdk } from "../../mocks";
 import { Game } from "./Game";
 import { createGameState, createGameDefinition } from "./objectMother";
 import { parseCardsFromCsv } from "./parseCardsFromCsv";

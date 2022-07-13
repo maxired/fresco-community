@@ -1,23 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getSdk } from "../../sdk";
-import { GAME_TABLE } from "../game/Game";
+import { Answer, GameVote, getGameVote } from "./persistence";
 import { triggerEventOnParticipantVote } from "./triggerEventOnParticipantVote";
 
-export type GameVote = { answer: Answer | null; countdown: number | null };
 export type VotingState = GameVote & {
   allVotes: { [participantId: string]: Answer | null };
-};
-
-export const ROUND_RESOLUTION_KEY = "round-resolution";
-
-export type Answer = "Yes" | "No";
-
-export const getLatestGameVote = () => {
-  const result = (getSdk().storage.realtime.get(
-    GAME_TABLE,
-    ROUND_RESOLUTION_KEY
-  ) ?? {}) as VotingState;
-  return result;
 };
 
 export const votingSlice = createSlice({
@@ -29,7 +15,7 @@ export const votingSlice = createSlice({
   } as VotingState,
   reducers: {
     updateVote: (state: VotingState) => {
-      const gameVote = getLatestGameVote();
+      const gameVote = getGameVote();
       if (gameVote) {
         state.answer = gameVote.answer;
         state.countdown = gameVote.countdown;

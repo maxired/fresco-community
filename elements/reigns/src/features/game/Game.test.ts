@@ -1,11 +1,13 @@
 import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
-import { persistParticipantVote } from "../voting/participantVotes";
-import { persistAnswer } from "../voting/persistAnswer";
-import { PARTICIPANT_VOTE_TABLE } from "../voting/useVoteListener";
-import { getLatestGameVote } from "../voting/votingSlice";
+import {
+  getGameVote,
+  PARTICIPANT_VOTE_TABLE,
+  persistGameVote,
+  persistParticipantVote,
+} from "../voting/persistence";
 import { Game, GAME_STATE_KEY, GAME_TABLE } from "./Game";
-import { mockSdk } from "./mocks";
+import { mockSdk } from "../../mocks";
 import {
   createCard,
   createGameDefinition,
@@ -18,7 +20,7 @@ describe("Game", () => {
   });
   describe("game over", () => {
     it("should clear participant votes", () => {
-      persistAnswer({
+      persistGameVote({
         answer: "No",
         countdown: 3,
       });
@@ -33,7 +35,7 @@ describe("Game", () => {
         )
         .retrieve();
 
-      const answer = getLatestGameVote();
+      const answer = getGameVote();
       expect(answer).toEqual({});
 
       expect(result.phase).toBe(GamePhase.ENDED);

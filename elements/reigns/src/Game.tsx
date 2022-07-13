@@ -10,10 +10,13 @@ import { useCollateVotes } from "./features/voting/useCollateVotes";
 import { Game as GamePersistence } from "./features/game/Game";
 import { getIsHost } from "./features/host/persistence";
 import { AnswerArea } from "./AnswerArea";
+import { Countdown } from "./Countdown";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
-  const countdown = useSelector((state: AppState) => state.voting.countdown);
+  const countdown = Countdown.from(
+    useSelector((state: AppState) => state.voting.countdown)
+  );
   const phase = useSelector((state: AppState) => state.game.phase);
   const round = useSelector((state: AppState) => state.game.round);
   const selectedCard = useSelector(
@@ -88,8 +91,10 @@ export const Game = () => {
       <div className="game-half answers">
         <AnswerArea text={selectedCard.answer_no || "No"} answer="no" />
         <div className="answer answer--neutral">
-          {(countdown ?? 0) > 0 && (
-            <div className="countdown">{countdown}...</div>
+          {countdown.isVoting && (
+            <div className="countdown" data-testid="countdown">
+              <>{countdown.value}...</>
+            </div>
           )}
         </div>
         <AnswerArea text={selectedCard.answer_yes || "Yes"} answer="yes" />

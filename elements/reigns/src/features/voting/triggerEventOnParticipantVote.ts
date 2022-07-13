@@ -1,5 +1,6 @@
+import { Countdown } from "../../Countdown";
 import { getSdk } from "../../sdk";
-import { getParticipantVotes } from "./participantVotes";
+import { getParticipantVotes } from "./persistence";
 import { VotingState } from "./votingSlice";
 
 export const triggerEventOnParticipantVote = (state: VotingState) => {
@@ -16,10 +17,9 @@ export const triggerEventOnParticipantVote = (state: VotingState) => {
     }
   });
 
-  const isTeleporting =
-    typeof state.countdown === "number" && state.countdown < 1;
+  const countdown = Countdown.from(state.countdown);
 
-  if (!isTeleporting) {
+  if (!countdown.isLocked) {
     // space owners can configure actions for these events in fresco, for example playing sound
     if (didAddVote) {
       getSdk().triggerEvent({ eventName: "custom.reigns.voteAdded" });
@@ -27,5 +27,8 @@ export const triggerEventOnParticipantVote = (state: VotingState) => {
     if (didRemoveVote) {
       getSdk().triggerEvent({ eventName: "custom.reigns.voteRemoved" });
     }
+  } else if (didAddVote) {
+    // TODO: it's possible to reach this if the participant votes within one second of the countdown expiring
+    console.log(`No voteAdded event, because already locked`);
   }
 };
