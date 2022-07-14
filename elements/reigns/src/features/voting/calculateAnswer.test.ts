@@ -8,26 +8,13 @@ import { createParticipant } from "../game/objectMother";
 const remoteParticipant1 = createParticipant("remote1");
 const remoteParticipant2 = createParticipant("remote2");
 
-const mockSdkWithRemoteParticipants = (remoteParticipants: Participant[]) => {
-  mockSdk({
-    remoteParticipants,
-  });
-  const sdk = getSdk();
-  // put participants inside the element
-  [sdk.localParticipant.id, ...remoteParticipants.map((p) => p.id)].forEach(
-    (id) => {
-      sdk.storage.realtime.set(PARTICIPANT_INSIDE_TABLE, id, true);
-    }
-  );
-};
-
 describe("calculateAnswer", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
   });
   describe("answer", () => {
     beforeEach(() => {
-      mockSdkWithRemoteParticipants([remoteParticipant1, remoteParticipant2]);
+      mockSdk({ remoteParticipants: [remoteParticipant1, remoteParticipant2] });
     });
     it("should return nothing if no one has answered", () => {
       const result = calculateAnswer();
@@ -78,7 +65,7 @@ describe("calculateAnswer", () => {
   describe("progress", () => {
     describe("one participant", () => {
       beforeEach(() => {
-        mockSdkWithRemoteParticipants([]);
+        mockSdk();
       });
       it("should return 0% when no votes", () => {
         const result = calculateAnswer();
@@ -95,7 +82,7 @@ describe("calculateAnswer", () => {
     });
     describe("two participants", () => {
       beforeEach(() => {
-        mockSdkWithRemoteParticipants([remoteParticipant1]);
+        mockSdk({ remoteParticipants: [remoteParticipant1] });
       });
       it("should return 50% when single vote", () => {
         persistParticipantVote(getSdk().localParticipant.id, "Yes");
@@ -115,7 +102,9 @@ describe("calculateAnswer", () => {
     });
     describe("three participants", () => {
       beforeEach(() => {
-        mockSdkWithRemoteParticipants([remoteParticipant1, remoteParticipant2]);
+        mockSdk({
+          remoteParticipants: [remoteParticipant1, remoteParticipant2],
+        });
       });
       it("should return 50% when single vote", () => {
         persistParticipantVote(getSdk().localParticipant.id, "Yes");
