@@ -30,9 +30,12 @@ export const votingSlice = createSlice({
 
       triggerEventOnParticipantVote(state);
 
-      const { yesProgress, noProgress } = calculateAnswer();
+      const { yesProgress, noProgress, yesVotesMissing, noVotesMissing } =
+        calculateAnswer();
       state.yesProgress = yesProgress;
       state.noProgress = noProgress;
+      state.yesVotesMissing = yesVotesMissing;
+      state.noVotesMissing = noVotesMissing;
     },
   },
 });

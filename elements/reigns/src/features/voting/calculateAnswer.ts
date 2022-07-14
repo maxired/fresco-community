@@ -3,6 +3,8 @@ import { Answer, getParticipantVotes } from "./persistence";
 export type VoteProgress = {
   noProgress: number;
   yesProgress: number;
+  noVotesMissing: number | null;
+  yesVotesMissing: number | null;
 };
 
 type CalculatedAnswer = {
@@ -40,6 +42,14 @@ export const calculateAnswer = (): CalculatedAnswer => {
   const progress: VoteProgress = {
     noProgress: results.answerNo / votesNeededForAbove50Percent,
     yesProgress: results.answerYes / votesNeededForAbove50Percent,
+    noVotesMissing: Math.max(
+      votesNeededForAbove50Percent - results.answerNo,
+      0
+    ),
+    yesVotesMissing: Math.max(
+      votesNeededForAbove50Percent - results.answerYes,
+      0
+    ),
   };
 
   console.log("progress", results, progress);

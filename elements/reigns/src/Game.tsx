@@ -32,6 +32,12 @@ export const Game = () => {
     (state: AppState) => state.voting.yesProgress
   );
   const noProgress = useSelector((state: AppState) => state.voting.noProgress);
+  const yesVotesMissing = useSelector(
+    (state: AppState) => state.voting.yesVotesMissing
+  );
+  const noVotesMissing = useSelector(
+    (state: AppState) => state.voting.noVotesMissing
+  );
 
   usePersistIsMounted();
 
@@ -98,6 +104,7 @@ export const Game = () => {
           answer="no"
           progress={noProgress}
           color="#e200a4"
+          votesMissing={noVotesMissing}
         />
         <div className="answer answer--neutral">
           {countdown.isVoting && (
@@ -111,6 +118,7 @@ export const Game = () => {
           answer="yes"
           progress={yesProgress}
           color="#9e32d6"
+          votesMissing={yesVotesMissing}
         />
       </div>
     </>

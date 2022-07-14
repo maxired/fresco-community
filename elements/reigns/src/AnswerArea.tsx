@@ -1,17 +1,20 @@
-import React, { useRef } from "react";
 import { useRoundedRectangleProgress } from "./features/voting/useRoundedRectangleProgress";
+
+type Props = {
+  text: string;
+  answer: "yes" | "no";
+  progress: number;
+  color: string;
+  votesMissing: number | null;
+};
 
 export const AnswerArea = ({
   text,
   answer,
   progress,
+  votesMissing,
   color,
-}: {
-  text: string;
-  answer: "yes" | "no";
-  progress: number;
-  color: string;
-}) => {
+}: Props) => {
   const ref = useRoundedRectangleProgress(progress, color);
 
   return (
@@ -23,6 +26,9 @@ export const AnswerArea = ({
               {text}
             </div>
           </div>
+        </div>
+        <div className="answer__votes-missing" data-testid={`${answer}-votes-missing`}>
+          {!!votesMissing && votesMissing < 4 && <span>{votesMissing} votes missing</span>}
         </div>
       </div>
       <div className={`answer__zone answer--${answer}`}></div>

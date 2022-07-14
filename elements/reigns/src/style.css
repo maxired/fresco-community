@@ -184,6 +184,7 @@ button {
   display: flex;
   position: relative;
   padding: 30px;
+  flex-direction: column;
 }
 
 .answer__text-inner-container {
@@ -192,6 +193,9 @@ button {
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: #3c4850;
+  border-radius: 30px;
+  height: 142px;
 }
 
 .answer__text-inner-container canvas {
@@ -200,12 +204,19 @@ button {
   left: 0;
 }
 
+.answer__votes-missing {
+  text-align: center;
+  margin-bottom: -16px;
+  margin-top: 16px;
+  height: 18px;
+}
+
 .answer__text {
   font-size: 1.5vw;
   color: #fff;
   border-radius: 10px;
   margin: 16px;
-  padding: 16px;
+  padding: 8px;
   text-align: center;
   flex: 0;
   position: relative;
