@@ -3,15 +3,10 @@ import { mockSdk } from "../../mocks";
 import { calculateAnswer } from "./calculateAnswer";
 import { persistParticipantVote } from "./persistence";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
+import { createParticipant } from "../game/objectMother";
 
-const remoteParticipant1: Participant = {
-  id: "remote1",
-  name: "remote participant 1",
-};
-const remoteParticipant2: Participant = {
-  id: "remote2",
-  name: "remote participant 2",
-};
+const remoteParticipant1 = createParticipant("remote1");
+const remoteParticipant2 = createParticipant("remote2");
 
 const mockSdkWithRemoteParticipants = (remoteParticipants: Participant[]) => {
   mockSdk({
