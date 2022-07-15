@@ -1,5 +1,6 @@
 import { determineHost, HOST_KEY } from "./determineHost";
 import { GAME_TABLE } from "../game/Game";
+import { createParticipant } from "../game/objectMother";
 
 const mockRealtime = {
   set: jest.fn(),
@@ -17,7 +18,7 @@ describe("determineHost", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  const createParticipant = (id: string): Participant => ({ id, name: id });
+
   it("chooses an eligible host by alphabetic id order", () => {
     const host = determineHost({
       mounted: { b: true, a: true, c: true },

@@ -2,7 +2,8 @@ import { AnyAction, Store } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import * as sdk from "./sdk";
 import { AppState, createStore } from "./store";
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
+import { PARTICIPANT_INSIDE_TABLE } from "./features/voting/useOnFrescoStateUpdate";
 
 export const mockSdk = (
   sdkOverride: Partial<IFrescoSdk> = {},
@@ -47,6 +48,14 @@ export const mockSdk = (
     triggerEvent: () => {},
     ...sdkOverride,
   } as unknown as IFrescoSdk);
+
+  // put participants inside the element
+  [
+    sdk.getSdk().localParticipant.id,
+    ...(sdkOverride.remoteParticipants ?? []).map((p) => p.id),
+  ].forEach((id) => {
+    sdk.getSdk().storage.realtime.set(PARTICIPANT_INSIDE_TABLE, id, true);
+  });
 };
 
 type PropsWithChildren = {
