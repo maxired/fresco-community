@@ -15,7 +15,6 @@ export const AnswerArea = ({
   votesMissing,
   color,
 }: Props) => {
-  console.log("maxired progress is", progress);
   const ref = useRoundedRectangleProgress(progress, color, progress === 1);
 
   return (
@@ -23,11 +22,11 @@ export const AnswerArea = ({
       <div className="answer__text-outer-container">
         <div className="answer__text-inner-container">
           <div ref={ref} id={`${answer}-answer-background`}>
-            <div className="answer__text">{text}</div>
+            <div className="answer__text fade">{text}</div>
           </div>
         </div>
         <div
-          className="answer__votes-missing"
+          className="answer__votes-missing fade"
           data-testid={`${answer}-votes-missing`}
         >
           {!!votesMissing && votesMissing < 4 && (

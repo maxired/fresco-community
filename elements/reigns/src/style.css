@@ -13,10 +13,10 @@ body {
 }
 
 body,
-#root {
+.game {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 
 .block {
@@ -141,6 +141,15 @@ button {
   display: flex;
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.game .fade {
+  transition: opacity 1500ms ease;
+  opacity: 0;
+}
+
+.game--fade-in .fade {
+  opacity: 1;
 }
 
 .question {

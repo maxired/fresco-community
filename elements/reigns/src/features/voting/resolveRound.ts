@@ -30,7 +30,9 @@ export const resolveRound = (gameState: GameState) => {
   if (countdown.isPastValidRange) {
     persistGameVote(null);
     return;
-  } else if (countdown.wasJustLocked) {
+  }
+
+  if (countdown.wasJustLocked) {
     const game = new Game();
     switch (answer) {
       case "Yes":

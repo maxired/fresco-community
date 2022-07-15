@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Header } from "./Header";
 import { Question } from "./Question";
 import { useSelector, useStore } from "react-redux";
@@ -11,6 +11,7 @@ import { Game as GamePersistence } from "./features/game/Game";
 import { getIsHost } from "./features/host/persistence";
 import { AnswerArea } from "./AnswerArea";
 import { Countdown } from "./Countdown";
+import { isEqual } from "lodash";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
@@ -58,15 +59,41 @@ export const Game = () => {
     }
   };
 
+  const [visibleCard, setVisibleCard] = useState(selectedCard);
+  const domGameRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isEqual(visibleCard, selectedCard)) {
+      return;
+    }
+
+    if (!visibleCard) {
+      setVisibleCard(selectedCard);
+      return;
+    }
+
+    domGameRef.current?.classList.remove("game--fade-in");
+    const timeoutRef = setTimeout(() => {
+      setVisibleCard(selectedCard);
+    }, 1500);
+
+    return () => {
+      domGameRef.current?.classList.add("game--fade-in");
+      clearTimeout(timeoutRef);
+    };
+  }, [selectedCard, visibleCard]);
+
   if (phase === GamePhase.ENDED) {
     return (
-      <div className="game-half first-half">
-        <div className="death">
-          <div className="round">
-            {gameDefinition?.roundName} {round}
+      <div className="game">
+        <div className="game-half first-half">
+          <div className="death">
+            <div className="round">
+              {gameDefinition?.roundName} {round}
+            </div>
+            <div className="death__message">{gameDefinition?.deathMessage}</div>
+            {isHost && <button onClick={doRestartGame}>Play again</button>}
           </div>
-          <div className="death__message">{gameDefinition?.deathMessage}</div>
-          {isHost && <button onClick={doRestartGame}>Play again</button>}
         </div>
       </div>
     );
@@ -74,33 +101,35 @@ export const Game = () => {
 
   if (phase === GamePhase.NOT_STARTED) {
     return (
-      <div className="game-half first-half">
-        <div className="death">
-          <div className="death__message">{gameDefinition?.gameName}</div>
-          {isHost && <button onClick={doRestartGame}>Start game</button>}
-          {!isHost && <div>Waiting for host to start...</div>}
+      <div className="game">
+        <div className="game-half first-half">
+          <div className="death">
+            <div className="death__message">{gameDefinition?.gameName}</div>
+            {isHost && <button onClick={doRestartGame}>Start game</button>}
+            {!isHost && <div>Waiting for host to start...</div>}
+          </div>
         </div>
       </div>
     );
   }
 
-  if (!selectedCard || !gameDefinition) {
+  if (!visibleCard || !gameDefinition) {
     return null;
   }
 
   return (
-    <>
+    <div className="game game--fade-in" ref={domGameRef}>
       <div className="game-half first-half" onClick={doRestartGame}>
         <Header
           definition={gameDefinition}
           stats={currentStats}
           round={round}
         />
-        <Question card={selectedCard} />
+        <Question card={visibleCard} />
       </div>
       <div className="game-half answers">
         <AnswerArea
-          text={selectedCard.answer_no || "No"}
+          text={visibleCard.answer_no || "No"}
           answer="no"
           progress={noProgress}
           color="#e200a4"
@@ -114,13 +143,13 @@ export const Game = () => {
           )}
         </div>
         <AnswerArea
-          text={selectedCard.answer_yes || "Yes"}
+          text={visibleCard.answer_yes || "Yes"}
           answer="yes"
           progress={yesProgress}
           color="#9e32d6"
           votesMissing={yesVotesMissing}
         />
       </div>
-    </>
+    </div>
   );
 };
