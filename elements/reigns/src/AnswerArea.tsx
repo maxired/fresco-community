@@ -22,16 +22,24 @@ export const AnswerArea = ({
       <div className="answer__text-outer-container">
         <div className="answer__text-inner-container">
           <div ref={ref} id={`${answer}-answer-background`}>
-            <div className="answer__text" style={{ zIndex: 10 }}>
-              {text}
-            </div>
+            <div className="answer__text">{text}</div>
           </div>
         </div>
-        <div className="answer__votes-missing" data-testid={`${answer}-votes-missing`}>
-          {!!votesMissing && votesMissing < 4 && <span>{votesMissing} votes missing</span>}
+        <div
+          className="answer__votes-missing"
+          data-testid={`${answer}-votes-missing`}
+        >
+          {!!votesMissing && votesMissing < 4 && (
+            <span>{getVotesMissingMessage(votesMissing)}</span>
+          )}
         </div>
       </div>
       <div className={`answer__zone answer--${answer}`}></div>
     </div>
   );
+};
+
+const getVotesMissingMessage = (votesMissing: number) => {
+  if (votesMissing === 1) return "1 vote missing";
+  return `${votesMissing} votes missing`;
 };

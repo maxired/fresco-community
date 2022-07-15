@@ -104,7 +104,7 @@ describe("Game", () => {
         createParticipant(`${ix + 1}`)
       );
       mockSdk({ remoteParticipants });
-      
+
       const { getByTestId } = renderGame({ store });
       act(() => {
         store.dispatch(updateVote());
@@ -129,7 +129,7 @@ describe("Game", () => {
       });
 
       expect(getByTestId("yes-votes-missing")).toHaveTextContent(
-        "1 votes missing"
+        "1 vote missing"
       );
     });
 
@@ -140,7 +140,7 @@ describe("Game", () => {
         createParticipant(`${ix}`)
       );
       mockSdk({ remoteParticipants });
-      
+
       const { getByTestId } = renderGame({ store });
       act(() => {
         store.dispatch(updateVote());
@@ -156,7 +156,7 @@ describe("Game", () => {
         createParticipant(`${ix + 1}`)
       );
       mockSdk({ remoteParticipants });
-      
+
       const { getByTestId } = renderGame({ store });
       persistParticipantVote("1", "Yes");
       persistParticipantVote("2", "Yes");

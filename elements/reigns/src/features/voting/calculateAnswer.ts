@@ -52,8 +52,6 @@ export const calculateAnswer = (): CalculatedAnswer => {
     ),
   };
 
-  console.log("progress", results, progress);
-
   const everyoneVoted = results.waitingForAnswer === 0;
 
   if (results.answerNo || results.answerYes) {
