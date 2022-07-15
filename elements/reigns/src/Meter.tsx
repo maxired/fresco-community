@@ -20,12 +20,13 @@ export const Meter = ({
   const previousPercent = useRef(0);
 
   useEffect(() => {
+    const isBig = Math.abs(percent - previousPercent.current) > 5;
     // Whenever percent changes, we want to add a class
     // to the meter element to make it change color
     if (percent > previousPercent.current) {
-      setCurrentAnimation("meter__progress--grow");
+      setCurrentAnimation(`meter__progress--grow${isBig ? "--big" : ""}`);
     } else {
-      setCurrentAnimation("meter__progress--shrink");
+      setCurrentAnimation(`meter__progress--shrink${isBig ? "--big" : ""}`);
     }
 
     const timeout = setTimeout(() => {
@@ -47,6 +48,28 @@ export const Meter = ({
       <div className={clsx("meter__progress", currentAnimation)}>
         <div className="meter__percent" style={{ width: percent + "%" }} />
       </div>
+      <Arrow
+        className={clsx("meter__arrow", currentAnimation)}
+        currentAnimation={currentAnimation}
+      />
     </div>
   );
+};
+
+const Arrow = ({
+  className,
+  currentAnimation,
+}: {
+  className: string;
+  currentAnimation: string;
+}) => {
+  let text = "\u00a0";
+  if (currentAnimation !== "") {
+    text = currentAnimation.includes("--grow") ? ">" : "<";
+    if (currentAnimation.includes("--big")) {
+      text += text;
+    }
+  }
+
+  return <div className={className}>{text}</div>;
 };

@@ -77,12 +77,29 @@ button {
   border-radius: 5px;
 }
 
-.meter__progress--grow .meter__percent {
+.meter__arrow {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 24px;
+}
+.meter__progress--grow .meter__percent,
+.meter__progress--grow--big .meter__percent {
   background-color: green;
 }
 
-.meter__progress--shrink .meter__percent {
+.meter__progress--shrink .meter__percent,
+.meter__progress--shrink--big .meter__percent {
   background-color: red;
+}
+
+.meter__progress--shrink.meter__arrow,
+.meter__progress--shrink--big.meter__arrow {
+  color: red;
+}
+
+.meter__progress--grow.meter__arrow,
+.meter__progress--grow--big.meter__arrow {
+  color: green;
 }
 
 @media only screen and (max-width: 600px) {
