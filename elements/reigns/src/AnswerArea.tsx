@@ -15,7 +15,8 @@ export const AnswerArea = ({
   votesMissing,
   color,
 }: Props) => {
-  const ref = useRoundedRectangleProgress(progress, color);
+  console.log("maxired progress is", progress);
+  const ref = useRoundedRectangleProgress(progress, color, progress === 1);
 
   return (
     <div className="answer">
