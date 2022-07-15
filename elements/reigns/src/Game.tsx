@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Header } from "./Header";
 import { Question } from "./Question";
 import { useSelector, useStore } from "react-redux";
-import { GamePhase } from "./constants";
+import { GamePhase, QUESTION_CHANGE_DELAY } from "./constants";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
 import { AppState } from "./store";
 import { useVoteListener } from "./features/voting/useVoteListener";
@@ -75,7 +75,7 @@ export const Game = () => {
     domGameRef.current?.classList.remove("game--fade-in");
     const timeoutRef = setTimeout(() => {
       setVisibleCard(selectedCard);
-    }, 1500);
+    }, QUESTION_CHANGE_DELAY);
 
     return () => {
       domGameRef.current?.classList.add("game--fade-in");

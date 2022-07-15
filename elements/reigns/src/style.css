@@ -1,6 +1,9 @@
 :root {
   --color-primary: #9e32d6;
   --color-error: #e200a4;
+  --card-fade-duration: 500ms;
+  --card-fade-out-delay: 1500ms;
+  --card-fade-in-delay: 0ms;
 }
 
 html,
@@ -151,12 +154,12 @@ button {
 }
 
 .game .fade {
-  transition: opacity 500ms ease 1000ms;
+  transition: opacity var(--card-fade-duration) ease var(--card-fade-out-delay);
   opacity: 0;
 }
 
 .game--fade-in .fade {
-  transition-delay: 300ms;
+  transition-delay: var(--card-fade-in-delay);
   opacity: 1;
 }
 
