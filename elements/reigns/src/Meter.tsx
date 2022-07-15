@@ -48,10 +48,7 @@ export const Meter = ({
       <div className={clsx("meter__progress", currentAnimation)}>
         <div className="meter__percent" style={{ width: percent + "%" }} />
       </div>
-      <Arrow
-        className={clsx("meter__arrow", currentAnimation)}
-        currentAnimation={currentAnimation}
-      />
+      <Arrow className={"meter__arrow"} currentAnimation={currentAnimation} />
     </div>
   );
 };
@@ -63,13 +60,17 @@ const Arrow = ({
   className: string;
   currentAnimation: string;
 }) => {
-  let text = "\u00a0";
+  const textRef = useRef("\u00a0"); // default value of insecapable space to have initial height
+
   if (currentAnimation !== "") {
-    text = currentAnimation.includes("--grow") ? ">" : "<";
+    let nextText = currentAnimation.includes("--grow") ? ">" : "<";
     if (currentAnimation.includes("--big")) {
-      text += text;
+      nextText += nextText;
     }
+    textRef.current = nextText; // no need to ever set back the textRef. This allows fadeout to works
   }
 
-  return <div className={className}>{text}</div>;
+  return (
+    <div className={clsx(className, currentAnimation)}>{textRef.current}</div>
+  );
 };
