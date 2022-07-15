@@ -1,6 +1,7 @@
 import { Application, Graphics, Ticker, utils } from "pixi.js";
 import Tween, { Quad } from "gsap";
 import { useRef, useEffect, useState, RefObject } from "react";
+import { CARD_FILL_ANIMATION_DURATION } from "../../constants";
 
 const duration = 1;
 const radius = 20;
@@ -38,9 +39,9 @@ export const useRoundedRectangleProgress = (
   useEffect(() => {
     const fillTween = Tween.to(currentFillRef, {
       current: fill ? 100 : 0,
-      duration: duration - 0.2,
+      duration: CARD_FILL_ANIMATION_DURATION / 1000,
       ease,
-      delay: 0.2,
+      delay: fill ? duration : 0,
     });
 
     return () => {

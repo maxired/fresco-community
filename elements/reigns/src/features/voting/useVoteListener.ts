@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { GamePhase } from "../../constants";
+import { GamePhase, TELEPORT_DELAY } from "../../constants";
 import { getSdk } from "../../sdk";
 import { AppState } from "../../store";
 import { persistParticipantVote } from "./persistence";
@@ -28,7 +28,16 @@ export const useVoteListener = (phase: GamePhase) => {
 
   useEffect(() => {
     // teleport to neutral zone at the beginning of each round
-    teleport("neutral");
+    const timeoutRef = setTimeout(
+      () => {
+        teleport("neutral");
+      },
+      round === 0 ? 0 : TELEPORT_DELAY
+    );
+
+    return () => {
+      clearTimeout(timeoutRef);
+    };
   }, [round]);
 
   useEffect(() => {

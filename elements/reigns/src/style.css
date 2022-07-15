@@ -152,6 +152,7 @@ button {
 }
 
 .game--fade-in .fade {
+  transition-delay: 300ms;
   opacity: 1;
 }
 
