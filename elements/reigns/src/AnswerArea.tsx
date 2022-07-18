@@ -20,7 +20,7 @@ export const AnswerArea = ({
 }: Props) => {
   const ref = useRoundedRectangleProgress(progress, color, progress === 1);
 
-  const fadeAnswer = useSelector((state: AppState) => state.fade.answer)
+  const fadeAnswer = useSelector((state: AppState) => state.transition.answer)
 
   return (
     <div className="answer">

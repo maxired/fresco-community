@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Header } from "./Header";
 import { Question } from "./Question";
 import { useSelector, useStore } from "react-redux";
-import { GamePhase, QUESTION_CHANGE_DELAY } from "./constants";
+import { GamePhase } from "./constants";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
 import { AppState } from "./store";
 import { useVoteListener } from "./features/voting/useVoteListener";
@@ -11,7 +11,6 @@ import { Game as GamePersistence } from "./features/game/Game";
 import { getIsHost } from "./features/host/persistence";
 import { AnswerArea } from "./AnswerArea";
 import { Countdown } from "./Countdown";
-import { isEqual } from "lodash";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
@@ -59,20 +58,15 @@ export const Game = () => {
     }
   };
 
-
-  const domGameRef = useRef<HTMLDivElement>(null);
-
   if (phase === GamePhase.ENDED) {
     return (
-      <div className="game">
-        <div className="game-half first-half">
-          <div className="death">
-            <div className="round">
-              {gameDefinition?.roundName} {round}
-            </div>
-            <div className="death__message">{gameDefinition?.deathMessage}</div>
-            {isHost && <button onClick={doRestartGame}>Play again</button>}
+      <div className="game-half first-half">
+        <div className="death">
+          <div className="round">
+            {gameDefinition?.roundName} {round}
           </div>
+          <div className="death__message">{gameDefinition?.deathMessage}</div>
+          {isHost && <button onClick={doRestartGame}>Play again</button>}
         </div>
       </div>
     );
@@ -80,13 +74,11 @@ export const Game = () => {
 
   if (phase === GamePhase.NOT_STARTED) {
     return (
-      <div className="game">
-        <div className="game-half first-half">
-          <div className="death">
-            <div className="death__message">{gameDefinition?.gameName}</div>
-            {isHost && <button onClick={doRestartGame}>Start game</button>}
-            {!isHost && <div>Waiting for host to start...</div>}
-          </div>
+      <div className="game-half first-half">
+        <div className="death">
+          <div className="death__message">{gameDefinition?.gameName}</div>
+          {isHost && <button onClick={doRestartGame}>Start game</button>}
+          {!isHost && <div>Waiting for host to start...</div>}
         </div>
       </div>
     );
@@ -97,7 +89,7 @@ export const Game = () => {
   }
 
   return (
-    <div className="game" ref={domGameRef}>
+    <>
       <div className="game-half first-half" onClick={doRestartGame}>
         <Header
           definition={gameDefinition}
@@ -129,6 +121,6 @@ export const Game = () => {
           votesMissing={yesVotesMissing}
         />
       </div>
-    </div>
+    </>
   );
 };
