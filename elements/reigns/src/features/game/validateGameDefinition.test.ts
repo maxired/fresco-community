@@ -114,6 +114,81 @@ describe("validateGameDefinition", () => {
         ])
       ).not.toThrow();
     });
+
+    it('should not thrown if cooldown is a positive number', () => {
+      expect(() =>
+      validateCards([
+        {
+          card: "some card",
+          weight: 1,
+          cooldown: 10,
+        } as Card,
+      ])
+    ).not.toThrow()
+
+    })
+
+    it('should not thrown if cooldown is a 0', () => {
+      expect(() =>
+      validateCards([
+        {
+          card: "some card",
+          weight: 1,
+          cooldown: 0,
+        } as Card,
+      ])
+    ).not.toThrow()
+
+    })
+
+    it('should not thrown if cooldown is not defined', () => {
+      expect(() =>validateCards([
+        {
+          card: "some card",
+          weight: 1,
+        } as Card,
+      ])
+    ).not.toThrow()
+
+    })
+
+    it('should thrown if cooldown is an empty string', () => {
+      expect(() =>validateCards([
+        {
+          card: "some card",
+          weight: 1,
+          cooldown: '' as any
+        } as Card,
+      ])
+    ).toThrow()
+
+    })
+
+    it('should thrown if cooldown is an number string', () => {
+      expect(() =>validateCards([
+        {
+          card: "some card",
+          weight: 1,
+          cooldown: "10" as any,
+        } as Card,
+      ])
+    ).toThrow()
+
+    })
+
+    it('should thrown if cooldown is an float string', () => {
+      expect(() =>validateCards([
+        {
+          card: "some card",
+          weight: 1,
+          cooldown: 3.5 as any,
+        } as Card,
+      ])
+    ).toThrow()
+
+    })
+
+
   });
 
   describe("getFlags", () => {
@@ -136,6 +211,8 @@ describe("validateGameDefinition", () => {
       expect(result).toEqual([{ key: "someFlag", value: "true" }]);
     });
   });
+
+
   describe("validateFlags", () => {
     const validate = (flag: string) =>
       validateFlags(
