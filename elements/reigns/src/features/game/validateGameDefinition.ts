@@ -57,7 +57,7 @@ export const validateCards = (cards: Card[] | undefined): Card[] => {
 
       if (card.cooldown < 0) {
         throw new Error(
-          `Card ${i + 1} is invalid, cooldown must be positve of equal to 0`
+          `Card ${i + 1} is invalid, cooldown must be positve or equal to 0`
         );
       }
     }

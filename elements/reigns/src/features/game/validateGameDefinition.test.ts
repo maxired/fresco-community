@@ -7,6 +7,8 @@ import {
   validateGameDefinition,
 } from "./validateGameDefinition";
 import gdpr from "../../../public/games/gdpr.json";
+import demo from "../../../public/games/demo.json";
+
 import dont_starve from "../../../public/games/dont-starve.json";
 
 describe("validateGameDefinition", () => {
@@ -115,80 +117,76 @@ describe("validateGameDefinition", () => {
       ).not.toThrow();
     });
 
-    it('should not thrown if cooldown is a positive number', () => {
+    it("should not throw if cooldown is a positive number", () => {
       expect(() =>
-      validateCards([
-        {
-          card: "some card",
-          weight: 1,
-          cooldown: 10,
-        } as Card,
-      ])
-    ).not.toThrow()
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+            cooldown: 10,
+          } as Card,
+        ])
+      ).not.toThrow();
+    });
 
-    })
-
-    it('should not thrown if cooldown is a 0', () => {
+    it("should not throw if cooldown is a 0", () => {
       expect(() =>
-      validateCards([
-        {
-          card: "some card",
-          weight: 1,
-          cooldown: 0,
-        } as Card,
-      ])
-    ).not.toThrow()
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+            cooldown: 0,
+          } as Card,
+        ])
+      ).not.toThrow();
+    });
 
-    })
+    it("should not throw if cooldown is not defined", () => {
+      expect(() =>
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+          } as Card,
+        ])
+      ).not.toThrow();
+    });
 
-    it('should not thrown if cooldown is not defined', () => {
-      expect(() =>validateCards([
-        {
-          card: "some card",
-          weight: 1,
-        } as Card,
-      ])
-    ).not.toThrow()
+    it("should throw if cooldown is an empty string", () => {
+      expect(() =>
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+            cooldown: "" as any,
+          } as Card,
+        ])
+      ).toThrow();
+    });
 
-    })
+    it("should throw if cooldown is an number string", () => {
+      expect(() =>
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+            cooldown: "10" as any,
+          } as Card,
+        ])
+      ).toThrow();
+    });
 
-    it('should thrown if cooldown is an empty string', () => {
-      expect(() =>validateCards([
-        {
-          card: "some card",
-          weight: 1,
-          cooldown: '' as any
-        } as Card,
-      ])
-    ).toThrow()
-
-    })
-
-    it('should thrown if cooldown is an number string', () => {
-      expect(() =>validateCards([
-        {
-          card: "some card",
-          weight: 1,
-          cooldown: "10" as any,
-        } as Card,
-      ])
-    ).toThrow()
-
-    })
-
-    it('should thrown if cooldown is an float string', () => {
-      expect(() =>validateCards([
-        {
-          card: "some card",
-          weight: 1,
-          cooldown: 3.5 as any,
-        } as Card,
-      ])
-    ).toThrow()
-
-    })
-
-
+    it("should throw if cooldown is an float string", () => {
+      expect(() =>
+        validateCards([
+          {
+            card: "some card",
+            weight: 1,
+            cooldown: 3.5 as any,
+          } as Card,
+        ])
+      ).toThrow();
+    });
   });
 
   describe("getFlags", () => {
@@ -211,7 +209,6 @@ describe("validateGameDefinition", () => {
       expect(result).toEqual([{ key: "someFlag", value: "true" }]);
     });
   });
-
 
   describe("validateFlags", () => {
     const validate = (flag: string) =>
@@ -269,6 +266,11 @@ describe("validateGameDefinition", () => {
     });
     it("should validate dont_starve", () => {
       const iterator = dont_starve.cards.values();
+      const cards: Card[] = Array.from(iterator);
+      expect(() => validateCards(cards)).not.toThrow();
+    });
+    it("should validate demo", () => {
+      const iterator = demo.cards.values();
       const cards: Card[] = Array.from(iterator);
       expect(() => validateCards(cards)).not.toThrow();
     });
