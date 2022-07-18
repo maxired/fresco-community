@@ -48,6 +48,20 @@ export const validateCards = (cards: Card[] | undefined): Card[] => {
       throw new Error(`Card ${i + 1} is invalid, weight must be less than 100`);
     }
 
+    if (card.cooldown !== null && card.cooldown !== undefined) {
+      if (!Number.isInteger(card.cooldown)) {
+        throw new Error(
+          `Card ${i + 1} is invalid, cooldown must be an interger`
+        );
+      }
+
+      if (card.cooldown < 0) {
+        throw new Error(
+          `Card ${i + 1} is invalid, cooldown must be positve or equal to 0`
+        );
+      }
+    }
+
     validateFlags(getFlags(card, "yes_custom"), "yes_custom", i + 1);
     validateFlags(getFlags(card, "no_custom"), "no_custom", i + 1);
     validateFlags(getConditions(card), "conditions", i + 1);
