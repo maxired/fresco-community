@@ -16,7 +16,7 @@ export type Card = {
   id: string;
   bearer: string;
   weight: number;
-  cooldown: number;
+  cooldown?: number;
 
   answer_yes: string;
   yes_stat1: number;
