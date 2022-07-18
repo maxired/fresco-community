@@ -1,8 +1,6 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { GamePhase, TELEPORT_DELAY } from "../../constants";
+import { GamePhase } from "../../constants";
 import { getSdk } from "../../sdk";
-import { AppState } from "../../store";
 import { persistParticipantVote } from "./persistence";
 
 export const useVoteListener = (phase: GamePhase) => {
