@@ -65,6 +65,7 @@ const collateVotes = (): CollatedVotes => {
     if (persistedAnswer) {
       countdown.stop();
       persistGameVote(null);
+      clearParticipantVotes();
       return { answer: null, countdown, everyoneVoted: false };
     }
   } else {

@@ -69,15 +69,17 @@ describe("resolveRound", () => {
       expect(Countdown.from(countdown).wasJustLocked).toBe(true);
     });
 
-    it("should clear participant votes on countdown === 0", () => {
+    it("should clear participant votes after countdown === -1", () => {
       persistParticipantVote(getSdk().localParticipant.id, "Yes");
       persistParticipantVote("remote1", "Yes");
       persistParticipantVote("remote2", "No");
 
       resolveRound(createGameState());
+      expect(getGameVote().countdown).toBe(0);
+      resolveRound(createGameState());
+      expect(getGameVote().countdown).toBe(-1);
+      resolveRound(createGameState());
 
-      const { countdown } = getGameVote();
-      expect(countdown).toBe(0);
       expect(sdk.storage.realtime.all(PARTICIPANT_VOTE_TABLE)).toEqual({});
     });
 
