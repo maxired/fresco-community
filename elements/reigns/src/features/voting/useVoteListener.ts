@@ -5,40 +5,7 @@ import { getSdk } from "../../sdk";
 import { AppState } from "../../store";
 import { persistParticipantVote } from "./persistence";
 
-const teleport = (target: string, targetPrefix?: string) => {
-  const sdk = getSdk();
-  if (sdk.element.appearance) {
-    const defaultTargetPrefix = `${sdk.element.appearance.NAME}-`;
-    sdk.send({
-      type: "extension/out/redux",
-      payload: {
-        action: {
-          type: "TELEPORT",
-          payload: {
-            anchorName: `${targetPrefix ?? defaultTargetPrefix}${target}`,
-          },
-        },
-      },
-    });
-  }
-};
-
 export const useVoteListener = (phase: GamePhase) => {
-  const round = useSelector((state: AppState) => state.game.round);
-
-  useEffect(() => {
-    // teleport to neutral zone at the beginning of each round
-    const timeoutRef = setTimeout(
-      () => {
-        teleport("neutral");
-      },
-      round === 0 ? 0 : TELEPORT_DELAY
-    );
-
-    return () => {
-      clearTimeout(timeoutRef);
-    };
-  }, [round]);
 
   useEffect(() => {
     if (phase === GamePhase.STARTED) {

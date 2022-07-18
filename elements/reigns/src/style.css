@@ -2,8 +2,6 @@
   --color-primary: #9e32d6;
   --color-error: #e200a4;
   --card-fade-duration: 500ms;
-  --card-fade-out-delay: 1500ms;
-  --card-fade-in-delay: 0ms;
 }
 
 html,
@@ -153,13 +151,12 @@ button {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.game .fade {
-  transition: opacity var(--card-fade-duration) ease var(--card-fade-out-delay);
+.fade {
+  transition: opacity var(--card-fade-duration) ease;
   opacity: 0;
 }
 
-.game--fade-in .fade {
-  transition-delay: var(--card-fade-in-delay);
+.fade.fade--in {
   opacity: 1;
 }
 

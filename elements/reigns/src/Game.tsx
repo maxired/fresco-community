@@ -59,29 +59,8 @@ export const Game = () => {
     }
   };
 
-  const [visibleCard, setVisibleCard] = useState(selectedCard);
+
   const domGameRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isEqual(visibleCard, selectedCard)) {
-      return;
-    }
-
-    if (!visibleCard) {
-      setVisibleCard(selectedCard);
-      return;
-    }
-
-    domGameRef.current?.classList.remove("game--fade-in");
-    const timeoutRef = setTimeout(() => {
-      setVisibleCard(selectedCard);
-    }, QUESTION_CHANGE_DELAY);
-
-    return () => {
-      domGameRef.current?.classList.add("game--fade-in");
-      clearTimeout(timeoutRef);
-    };
-  }, [selectedCard, visibleCard]);
 
   if (phase === GamePhase.ENDED) {
     return (
@@ -113,23 +92,23 @@ export const Game = () => {
     );
   }
 
-  if (!visibleCard || !gameDefinition) {
+  if (!selectedCard || !gameDefinition) {
     return null;
   }
 
   return (
-    <div className="game game--fade-in" ref={domGameRef}>
+    <div className="game" ref={domGameRef}>
       <div className="game-half first-half" onClick={doRestartGame}>
         <Header
           definition={gameDefinition}
           stats={currentStats}
           round={round}
         />
-        <Question card={visibleCard} />
+        <Question card={selectedCard} />
       </div>
       <div className="game-half answers">
         <AnswerArea
-          text={visibleCard.answer_no || "No"}
+          text={selectedCard.answer_no || "No"}
           answer="no"
           progress={noProgress}
           color="#e200a4"
@@ -143,7 +122,7 @@ export const Game = () => {
           )}
         </div>
         <AnswerArea
-          text={visibleCard.answer_yes || "Yes"}
+          text={selectedCard.answer_yes || "Yes"}
           answer="yes"
           progress={yesProgress}
           color="#9e32d6"

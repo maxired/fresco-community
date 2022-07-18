@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import textfit from "textfit";
@@ -27,12 +28,14 @@ export const Question = ({ card }: { card: Card | null }) => {
     });
   }, [card?.card]);
 
+  const fadeQuestion = useSelector((state: AppState) => state.transition.question)
+
   if (!card?.card) {
     return null;
   }
 
   return (
-    <div className="block question fade">
+    <div className={clsx('block question fade', !fadeQuestion && 'fade--in')}>
       <div className="question__image">
         <div
           className="question__image_img"
