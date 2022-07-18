@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { MeterArrow } from "./MeterArrow";
 import { AppState } from "./store";
 
 export const Meter = ({
@@ -48,29 +49,9 @@ export const Meter = ({
       <div className={clsx("meter__progress", currentAnimation)}>
         <div className="meter__percent" style={{ width: percent + "%" }} />
       </div>
-      <Arrow className={"meter__arrow"} currentAnimation={currentAnimation} />
+      <MeterArrow className="meter__arrow" currentAnimation={currentAnimation} />
     </div>
   );
 };
 
-const Arrow = ({
-  className,
-  currentAnimation,
-}: {
-  className: string;
-  currentAnimation: string;
-}) => {
-  const textRef = useRef("\u00a0"); // default value of insecapable space to have initial height
 
-  if (currentAnimation !== "") {
-    let nextText = currentAnimation.includes("--grow") ? ">" : "<";
-    if (currentAnimation.includes("--big")) {
-      nextText += nextText;
-    }
-    textRef.current = nextText; // no need to ever set back the textRef. This allows fadeout to works
-  }
-
-  return (
-    <div className={clsx(className, currentAnimation)}>{textRef.current}</div>
-  );
-};

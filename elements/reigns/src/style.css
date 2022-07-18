@@ -92,20 +92,21 @@ button {
   font-weight: bold;
   font-size: 28px;
   line-height: 24px;
-  transition: opacity 0.3s ease 400ms, color 0s 700ms; /* remove color after the opacity transition */
+  transition: opacity 0.3s ease, color 0s 300ms; /* remove color after the opacity transition */
   opacity: 0;
   color: var(--color-primary);
 }
+
 .meter__progress--shrink.meter__arrow,
 .meter__progress--shrink--big.meter__arrow {
-  transition: opacity 0.3s ease 400ms, color 0s 400ms;
+  transition: opacity 0.3s ease, color 0s;
   color: red;
   opacity: 1;
 }
 
 .meter__progress--grow.meter__arrow,
 .meter__progress--grow--big.meter__arrow {
-  transition: opacity 0.3s ease 400ms, color 0s 400ms;
+  transition: opacity 0.3s ease 400ms, color 0s;
   color: green;
   opacity: 1;
 }
