@@ -6,7 +6,7 @@ import { updateVote } from "./votingSlice";
 import { persistIsInsideElement } from "./persistIsInsideElement";
 import { getSdk } from "../../sdk";
 import { Game } from "../game/Game";
-import { GamePhase, QUESTION_CHANGE_DELAY, RESSOURCE_DELAY, TELEPORT_DELAY } from "../../constants";
+import { GamePhase, QUESTION_CHANGE_DELAY, RESOURCE_CHANGE_DELAY, TELEPORT_START_DELAY } from "../../constants";
 import { AppState } from "../../store";
 import { PersistedGameState } from "../game/types";
 import { teleport } from "./teleport";
@@ -67,9 +67,9 @@ export const useOnFrescoStateUpdate = () => {
 
 const animateRoundTransition = async (dispatch: Dispatch<AnyAction>, storedState: AppState, state:PersistedGameState) => {
     dispatch(startRoundTransition())
-    await wait(TELEPORT_DELAY)
+    await wait(TELEPORT_START_DELAY)
     teleport('neutral');
-    await wait(RESSOURCE_DELAY)
+    await wait(RESOURCE_CHANGE_DELAY)
     dispatch(updateGame({ ...storedState.game, stats: state.stats }))
     dispatch(startQuestionAndAnswersTransition())
     await wait(QUESTION_CHANGE_DELAY);

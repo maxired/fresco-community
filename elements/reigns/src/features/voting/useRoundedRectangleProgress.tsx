@@ -16,7 +16,7 @@ export const useRoundedRectangleProgress = (
 ) => {
   const ref = useRef<HTMLDivElement>(null);
   const [pixi, setPixi] = useState<Application>();
-  const currentPositionRef = useRef<number>(0);
+  const currentProgressRef = useRef<number>(0);
   const currentFillRef = useRef<number>(0);
 
   useEffect(() => {
@@ -24,14 +24,14 @@ export const useRoundedRectangleProgress = (
       const { perimeter } = getPerimeter(pixi);
       const endPosition = perimeter * progress;
 
-      const positionTween = Tween.to(currentPositionRef, {
+      const progressTween = Tween.to(currentProgressRef, {
         current: endPosition,
         duration,
         ease,
       });
 
       return () => {
-        positionTween.kill();
+        progressTween.kill();
       };
     }
   }, [progress, pixi]);
@@ -60,8 +60,10 @@ export const useRoundedRectangleProgress = (
     setPixi(app);
 
     const onTick = () => {
+      const g = app.stage.children[0] as Graphics;
+      g.clear();
       drawFilledRectangleProgress(app, currentFillRef.current, color);
-      drawRoundedRectangleProgress(app, currentPositionRef.current, color);
+      drawRoundedRectangleProgress(app, currentProgressRef.current, color);
     };
 
     Ticker.shared.add(onTick);
@@ -279,7 +281,7 @@ const drawFilledRectangleProgress = (
   const height = app.screen.height;
   const width = app.screen.width;
 
-  g.clear().lineStyle({ color: utils.string2hex(color), width: 0 });
+  g.lineStyle({ color: utils.string2hex(color), width: 0 });
 
   g.moveTo(width, height * ratio);
   g.beginFill(utils.string2hex(color));

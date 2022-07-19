@@ -14,7 +14,7 @@ export const MeterArrow = ({
     if (currentAnimation.includes("--big")) {
       nextText += nextText;
     }
-    textRef.current = nextText; // no need to ever set back the textRef. This allows fadeout to works
+    textRef.current = nextText; // no need to ever set back the textRef. This allows fadeout to work
   }
 
   return (

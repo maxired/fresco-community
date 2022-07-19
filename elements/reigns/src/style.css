@@ -2,6 +2,7 @@
   --color-primary: #9e32d6;
   --color-error: #e200a4;
   --card-fade-duration: 500ms;
+  --stats-color-transition-duration: 300ms;
 }
 
 html,
@@ -92,21 +93,21 @@ button {
   font-weight: bold;
   font-size: 28px;
   line-height: 24px;
-  transition: opacity 0.3s ease, color 0s 300ms; /* remove color after the opacity transition */
+  transition: opacity 0.3s ease, color 0s var(--stats-color-transition-duration); /* remove color after the opacity transition */
   opacity: 0;
   color: var(--color-primary);
 }
 
 .meter__progress--shrink.meter__arrow,
 .meter__progress--shrink--big.meter__arrow {
-  transition: opacity 0.3s ease, color 0s;
+  transition: opacity var(--stats-color-transition-duration) ease, color 0s;
   color: red;
   opacity: 1;
 }
 
 .meter__progress--grow.meter__arrow,
 .meter__progress--grow--big.meter__arrow {
-  transition: opacity 0.3s ease, color 0s;
+  transition: opacity var(--stats-color-transition-duration) ease, color 0s;
   color: green;
   opacity: 1;
 }
@@ -143,7 +144,7 @@ button {
   height: 10px;
   border-radius: 5px;
   background-color: var(--color-primary);
-  transition: width 1s ease-in, background-color 0.3s ease-in;
+  transition: width 1s ease-in, background-color var(--stats-color-transition-duration) ease-in;
 }
 
 .first-half {
