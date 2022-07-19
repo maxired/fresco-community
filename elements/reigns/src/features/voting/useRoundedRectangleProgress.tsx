@@ -1,6 +1,7 @@
 import { Application, Graphics, Ticker, utils } from "pixi.js";
 import Tween, { Quad } from "gsap";
 import { useRef, useEffect, useState, RefObject } from "react";
+import { CARD_FILL_ANIMATION_DURATION } from "../../constants";
 
 const duration = 1;
 const radius = 20;
@@ -10,28 +11,43 @@ const ease = Quad.easeIn;
 
 export const useRoundedRectangleProgress = (
   progress: number,
-  color: string
+  color: string,
+  fill: boolean
 ) => {
   const ref = useRef<HTMLDivElement>(null);
   const [pixi, setPixi] = useState<Application>();
-  const currentPositionRef = useRef<number>(0);
+  const currentProgressRef = useRef<number>(0);
+  const currentFillRef = useRef<number>(0);
 
   useEffect(() => {
     if (pixi) {
       const { perimeter } = getPerimeter(pixi);
       const endPosition = perimeter * progress;
 
-      const tween = Tween.to(currentPositionRef, {
+      const progressTween = Tween.to(currentProgressRef, {
         current: endPosition,
         duration,
         ease,
       });
 
       return () => {
-        tween.kill();
+        progressTween.kill();
       };
     }
   }, [progress, pixi]);
+
+  useEffect(() => {
+    const fillTween = Tween.to(currentFillRef, {
+      current: fill ? 100 : 0,
+      duration: CARD_FILL_ANIMATION_DURATION / 1000,
+      ease,
+      delay: fill ? duration : 0,
+    });
+
+    return () => {
+      fillTween.kill();
+    };
+  }, [fill, pixi]);
 
   useEffect(() => {
     const app = new Application({
@@ -44,7 +60,10 @@ export const useRoundedRectangleProgress = (
     setPixi(app);
 
     const onTick = () => {
-      drawRoundedRectangleProgress(app, currentPositionRef.current, color);
+      const g = app.stage.children[0] as Graphics;
+      g.clear();
+      drawFilledRectangleProgress(app, currentFillRef.current, color);
+      drawRoundedRectangleProgress(app, currentProgressRef.current, color);
     };
 
     Ticker.shared.add(onTick);
@@ -83,7 +102,7 @@ const drawRoundedRectangleProgress = (
   } = getPerimeter(app);
 
   const g = app.stage.children[0] as Graphics;
-  g.clear().lineStyle({ color: utils.string2hex(color), width: lineWidth });
+  g.lineStyle({ color: utils.string2hex(color), width: lineWidth });
 
   // topLeftStart
   if (current > topLeftStart) {
@@ -249,4 +268,33 @@ const getPerimeter = (app: Application) => {
     console.log("app", app);
     throw e;
   }
+};
+
+const drawFilledRectangleProgress = (
+  app: Application,
+  current: number,
+  color: string
+) => {
+  const g = app.stage.children[0] as Graphics;
+
+  const ratio = 1.1 - (current / 100) * 1.2;
+  const height = app.screen.height;
+  const width = app.screen.width;
+
+  g.lineStyle({ color: utils.string2hex(color), width: 0 });
+
+  g.moveTo(width, height * ratio);
+  g.beginFill(utils.string2hex(color));
+  g.bezierCurveTo(
+    0.647 * width,
+    -0.32 * height + height * ratio,
+    0.374 * width,
+    0.32 * height + height * ratio,
+    0,
+    height * ratio
+  );
+  g.lineTo(0, height * 1.1);
+  g.lineTo(width, height * 1.1);
+  g.lineTo(width, height * ratio);
+  g.endFill();
 };

@@ -29,8 +29,11 @@ export const resolveRound = (gameState: GameState) => {
   // let the count go to -1 to allow for teleport time across clients
   if (countdown.isPastValidRange) {
     persistGameVote(null);
+    clearParticipantVotes();
     return;
-  } else if (countdown.wasJustLocked) {
+  }
+
+  if (countdown.wasJustLocked) {
     const game = new Game();
     switch (answer) {
       case "Yes":
@@ -47,13 +50,6 @@ export const resolveRound = (gameState: GameState) => {
     answer,
     countdown: countdown.value,
   });
-
-  // persisting of countdown=0 (above) must occur before clearing votes (below)
-  // or voteRemoved sound will play
-
-  if (countdown.wasJustLocked) {
-    clearParticipantVotes();
-  }
 };
 
 type CollatedVotes = Omit<GameVote, "countdown"> & {
@@ -69,6 +65,7 @@ const collateVotes = (): CollatedVotes => {
     if (persistedAnswer) {
       countdown.stop();
       persistGameVote(null);
+      clearParticipantVotes();
       return { answer: null, countdown, everyoneVoted: false };
     }
   } else {

@@ -1,4 +1,7 @@
+import clsx from "clsx";
+import { useSelector } from "react-redux";
 import { useRoundedRectangleProgress } from "./features/voting/useRoundedRectangleProgress";
+import { AppState } from "./store";
 
 type Props = {
   text: string;
@@ -15,18 +18,20 @@ export const AnswerArea = ({
   votesMissing,
   color,
 }: Props) => {
-  const ref = useRoundedRectangleProgress(progress, color);
+  const ref = useRoundedRectangleProgress(progress, color, progress === 1);
+
+  const fadeAnswer = useSelector((state: AppState) => state.transition.answer)
 
   return (
     <div className="answer">
       <div className="answer__text-outer-container">
         <div className="answer__text-inner-container">
           <div ref={ref} id={`${answer}-answer-background`}>
-            <div className="answer__text">{text}</div>
+            <div className={clsx('answer__text fade', !fadeAnswer && 'fade--in')}>{text}</div>
           </div>
         </div>
         <div
-          className="answer__votes-missing"
+          className={clsx('answer__votes-missing fade', !fadeAnswer && 'fade--in')}
           data-testid={`${answer}-votes-missing`}
         >
           {!!votesMissing && votesMissing < 4 && (

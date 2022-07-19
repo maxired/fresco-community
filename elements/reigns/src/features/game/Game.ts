@@ -29,7 +29,6 @@ export class Game {
   }
 
   private clearVotes() {
-    const sdk = getSdk();
     persistGameVote(null);
     clearParticipantVotes();
     return this;

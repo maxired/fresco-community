@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { transitionReducer } from "./features/transition/fadeSlice";
 import { gameChangeListenerMiddleware } from "./features/game/gameChangeListener";
 import { gameReducer } from "./features/game/gameSlice";
 import { reducer as hostReducer } from "./features/host/hostSlice";
@@ -10,6 +11,7 @@ export const createStore = () =>
       game: gameReducer,
       host: hostReducer,
       voting: votingReducer,
+      transition: transitionReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().prepend(gameChangeListenerMiddleware.middleware),

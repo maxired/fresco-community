@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { MeterArrow } from "./MeterArrow";
 import { AppState } from "./store";
 
 export const Meter = ({
@@ -20,12 +21,13 @@ export const Meter = ({
   const previousPercent = useRef(0);
 
   useEffect(() => {
+    const isBig = Math.abs(percent - previousPercent.current) > 5;
     // Whenever percent changes, we want to add a class
     // to the meter element to make it change color
     if (percent > previousPercent.current) {
-      setCurrentAnimation("meter__progress--grow");
+      setCurrentAnimation(`meter__progress--grow${isBig ? "--big" : ""}`);
     } else {
-      setCurrentAnimation("meter__progress--shrink");
+      setCurrentAnimation(`meter__progress--shrink${isBig ? "--big" : ""}`);
     }
 
     const timeout = setTimeout(() => {
@@ -47,6 +49,9 @@ export const Meter = ({
       <div className={clsx("meter__progress", currentAnimation)}>
         <div className="meter__percent" style={{ width: percent + "%" }} />
       </div>
+      <MeterArrow className="meter__arrow" currentAnimation={currentAnimation} />
     </div>
   );
 };
+
+
