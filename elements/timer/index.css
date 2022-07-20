@@ -160,7 +160,6 @@ input:hover:not(:disabled) {
 }
 
 .user form {
-  flex-direction: row;
   padding-bottom: 5px;
 }
 
