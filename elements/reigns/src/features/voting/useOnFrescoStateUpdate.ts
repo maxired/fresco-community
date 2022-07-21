@@ -6,17 +6,26 @@ import { updateVote } from "./votingSlice";
 import { persistIsInsideElement } from "./persistIsInsideElement";
 import { getSdk } from "../../sdk";
 import { Game } from "../game/Game";
-import { GamePhase, QUESTION_CHANGE_DELAY, RESOURCE_CHANGE_DELAY, TELEPORT_START_DELAY } from "../../constants";
+import {
+  GamePhase,
+  QUESTION_CHANGE_DELAY,
+  RESOURCE_CHANGE_DELAY,
+  TELEPORT_START_DELAY,
+} from "../../constants";
 import { AppState } from "../../store";
 import { PersistedGameState } from "../game/types";
 import { teleport } from "./teleport";
-import { endQuestionAndAnswersTransition, endRoundTransition, startQuestionAndAnswersTransition, startRoundTransition } from "../transition/fadeSlice";
+import {
+  endQuestionAndAnswersTransition,
+  endRoundTransition,
+  startQuestionAndAnswersTransition,
+  startRoundTransition,
+} from "../transition/fadeSlice";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 
 export const PARTICIPANT_INSIDE_TABLE = "participants-inside";
 
 export const useOnFrescoStateUpdate = () => {
-
   const dispatch = useDispatch();
   const store = useStore();
 
@@ -25,27 +34,31 @@ export const useOnFrescoStateUpdate = () => {
     isInsideElement: boolean | null;
   }>({ id: null, isInsideElement: null });
   return () => {
-
     const prevState = store.getState() as AppState;
     const state = new Game().retrieve();
 
     if (state) {
-      if(state.round > prevState.game.round){
-        if(!prevState.transition.round) {
-          void animateRoundTransition(dispatch, prevState, state);
+      if (state.round > prevState.game.round) {
+        if (!prevState.transition.round) {
+          void animateRoundTransition(
+            dispatch,
+            prevState,
+            state,
+            prevState.game.round === 0
+          );
         }
       } else {
-       dispatch(
-         updateGame({
-           flags: state.flags,
-           phase: state.phase,
-           round: state.round,
-           selectedCard: state.selectedCard,
-           stats: state.stats,
-           previouslySelectedCardIds: state.previouslySelectedCardIds,
-         })
-       );
-     }
+        dispatch(
+          updateGame({
+            flags: state.flags,
+            phase: state.phase,
+            round: state.round,
+            selectedCard: state.selectedCard,
+            stats: state.stats,
+            previouslySelectedCardIds: state.previouslySelectedCardIds,
+          })
+        );
+      }
     } else {
       dispatch(setPhase(GamePhase.NOT_STARTED));
     }
@@ -64,18 +77,27 @@ export const useOnFrescoStateUpdate = () => {
   };
 };
 
-
-const animateRoundTransition = async (dispatch: Dispatch<AnyAction>, storedState: AppState, state:PersistedGameState) => {
-    dispatch(startRoundTransition())
-    await wait(TELEPORT_START_DELAY)
-    teleport('neutral');
-    await wait(RESOURCE_CHANGE_DELAY)
-    dispatch(updateGame({ ...storedState.game, stats: state.stats }))
-    dispatch(startQuestionAndAnswersTransition())
+const animateRoundTransition = async (
+  dispatch: Dispatch<AnyAction>,
+  storedState: AppState,
+  state: PersistedGameState,
+  immediate: boolean = false
+) => {
+  dispatch(startRoundTransition());
+  if (!immediate) {
+    await wait(TELEPORT_START_DELAY);
+    teleport("neutral");
+    await wait(RESOURCE_CHANGE_DELAY);
+  }
+  dispatch(updateGame({ ...storedState.game, stats: state.stats }));
+  dispatch(startQuestionAndAnswersTransition());
+  if (!immediate) {
     await wait(QUESTION_CHANGE_DELAY);
-    dispatch(updateGame({ ...storedState.game, ...state }));
-    dispatch(endQuestionAndAnswersTransition())
-    dispatch(endRoundTransition())
-}
+  }
+  dispatch(updateGame({ ...storedState.game, ...state }));
+  dispatch(endQuestionAndAnswersTransition());
+  dispatch(endRoundTransition());
+};
 
-const wait = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay))
+const wait = (delay: number) =>
+  new Promise((resolve) => setTimeout(resolve, delay));
