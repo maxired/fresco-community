@@ -7,7 +7,7 @@ This extension continuously triggers an event. Defaults to `custom.tick` @ 1 sec
 1. Copy the following snippet
 
 ```
-    extension://github.com/fres-co/fresco-community/elements/ticker/index.html
+extension://fres-co.github.io/fresco-community/elements/ticker/index.html
 ```
 
 2. Paste it in the space

@@ -15,6 +15,10 @@ const createState = (
   countdown: countdown.value,
   answer: null,
   allVotes,
+  noProgress: 0,
+  noVotesMissing: 0,
+  yesProgress: 0,
+  yesVotesMissing:0
 });
 
 describe("votingSlice", () => {

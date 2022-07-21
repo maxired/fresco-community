@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { calculateAnswer, VoteProgress } from "./calculateAnswer";
 import { Answer, GameVote, getGameVote } from "./persistence";
 import { triggerEventOnParticipantVote } from "./triggerEventOnParticipantVote";
 
-export type VotingState = GameVote & {
-  allVotes: { [participantId: string]: Answer | null };
-};
+export type VotingState = GameVote &
+  VoteProgress & {
+    allVotes: { [participantId: string]: Answer | null };
+  };
 
 export const votingSlice = createSlice({
   name: "voting",
@@ -12,6 +14,8 @@ export const votingSlice = createSlice({
     countdown: null,
     answer: null,
     allVotes: {},
+    yesProgress: 0,
+    noProgress: 0,
   } as VotingState,
   reducers: {
     updateVote: (state: VotingState) => {
@@ -25,6 +29,13 @@ export const votingSlice = createSlice({
       }
 
       triggerEventOnParticipantVote(state);
+
+      const { yesProgress, noProgress, yesVotesMissing, noVotesMissing } =
+        calculateAnswer();
+      state.yesProgress = yesProgress;
+      state.noProgress = noProgress;
+      state.yesVotesMissing = yesVotesMissing;
+      state.noVotesMissing = noVotesMissing;
     },
   },
 });
