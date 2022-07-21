@@ -18,6 +18,8 @@ export const Game = () => {
     useSelector((state: AppState) => state.voting.countdown)
   );
   const phase = useSelector((state: AppState) => state.game.phase);
+  const won =  useSelector((state: AppState) => state.game.flags['win']);
+
   const round = useSelector((state: AppState) => state.game.round);
   const selectedCard = useSelector(
     (state: AppState) => state.game.selectedCard
@@ -59,13 +61,14 @@ export const Game = () => {
   };
 
   if (phase === GamePhase.ENDED) {
+
     return (
       <div className="game-half first-half">
-        <div className="death">
+        <div className="end">
           <div className="round">
             {gameDefinition?.roundName} {round}
           </div>
-          <div className="death__message">{gameDefinition?.deathMessage}</div>
+          <div className="end__message">{won ? gameDefinition?.deathMessage : gameDefinition?.victoryMessage }</div>
           {isHost && <button onClick={doRestartGame}>Play again</button>}
         </div>
       </div>
@@ -75,8 +78,8 @@ export const Game = () => {
   if (phase === GamePhase.NOT_STARTED) {
     return (
       <div className="game-half first-half">
-        <div className="death">
-          <div className="death__message">{gameDefinition?.gameName}</div>
+        <div className="end">
+          <div className="end__message">{gameDefinition?.gameName}</div>
           {isHost && <button onClick={doRestartGame}>Start game</button>}
           {!isHost && <div>Waiting for host to start...</div>}
         </div>

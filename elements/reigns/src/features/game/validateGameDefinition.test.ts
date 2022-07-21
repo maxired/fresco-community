@@ -287,6 +287,7 @@ describe("validateGameDefinition", () => {
         stats: [{ name: "foo", value: 0, icon: "" }],
         assetsUrl: "",
         deathMessage: "Sorry",
+        victoryMessage: "Victory !",
         roundName: "day",
         gameName: "Welcome",
       });
@@ -306,6 +307,7 @@ describe("validateGameDefinition", () => {
         stats: [{ name: "foo", value: 0, icon: "" }],
         assetsUrl: "",
         deathMessage: "Sorry",
+        victoryMessage: "Victory !",
         roundName: "day",
         gameName: "Welcome",
       });
