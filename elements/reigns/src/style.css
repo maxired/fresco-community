@@ -91,8 +91,9 @@ button {
 
 .meter__arrow {
   font-weight: bold;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 24px;
+  padding-top: 5px;
   transition: opacity 0.3s ease, color 0s var(--stats-color-transition-duration); /* remove color after the opacity transition */
   opacity: 0;
   color: var(--color-primary);
