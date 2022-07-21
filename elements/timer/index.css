@@ -92,6 +92,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 input:focus,
 input:hover:not(:disabled) {
   background: #f2f2f2;
