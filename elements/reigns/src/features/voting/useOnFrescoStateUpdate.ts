@@ -38,7 +38,7 @@ export const useOnFrescoStateUpdate = () => {
     const state = new Game().retrieve();
 
     if (state) {
-      if (state.round > prevState.game.round) {
+      if (state.round > prevState.game.round || state.phase !== prevState.game.phase) {
         if (!prevState.transition.round) {
           void animateRoundTransition(
             dispatch,
@@ -86,7 +86,12 @@ const animateRoundTransition = async (
   dispatch(startRoundTransition());
   if (!immediate) {
     await wait(TELEPORT_START_DELAY);
+  }
+  if (getSdk().localParticipant.isInsideElement) {
+    // maybe participant is only looking at the game
     teleport("neutral");
+  }
+  if (!immediate) {
     await wait(RESOURCE_CHANGE_DELAY);
   }
   dispatch(updateGame({ ...storedState.game, stats: state.stats }));
