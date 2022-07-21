@@ -1,4 +1,8 @@
-import { GamePhase } from "../../constants";
+import {
+  GamePhase,
+  VICTORY_FLAG_NAME,
+  VICTORY_FLAG_VALUE,
+} from "../../constants";
 import { selectNextCard } from "./selectNextCard";
 import {
   Card,
@@ -33,14 +37,15 @@ export const selectAnswer = (
     return newValue;
   });
 
-  const phase = stats.filter((_, ix) => cardStats[ix]).some((v) => v <= 0)
+  const nextPhase = stats.filter((_, ix) => cardStats[ix]).some((v) => v <= 0)
     ? GamePhase.ENDED
     : GamePhase.STARTED;
 
-  const flags =
-    phase === GamePhase.ENDED
-      ? {}
-      : setFlags(state.flags, getFlags(state.selectedCard!, cardFlag));
+  const flags = setFlags(state.flags, getFlags(state.selectedCard!, cardFlag));
+  const phase =
+    flags[VICTORY_FLAG_NAME] === VICTORY_FLAG_VALUE
+      ? GamePhase.ENDED
+      : nextPhase;
 
   const round = state.round + 1;
 

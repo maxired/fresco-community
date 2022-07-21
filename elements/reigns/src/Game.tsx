@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Header } from "./Header";
 import { Question } from "./Question";
 import { useSelector, useStore } from "react-redux";
-import { GamePhase } from "./constants";
+import { GamePhase, VICTORY_FLAG_NAME, VICTORY_FLAG_VALUE } from "./constants";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
 import { AppState } from "./store";
 import { useVoteListener } from "./features/voting/useVoteListener";
@@ -18,7 +18,7 @@ export const Game = () => {
     useSelector((state: AppState) => state.voting.countdown)
   );
   const phase = useSelector((state: AppState) => state.game.phase);
-  const won =  useSelector((state: AppState) => state.game.flags['win']);
+  const isGameWon =  useSelector((state: AppState) => state.game.flags[VICTORY_FLAG_NAME] === VICTORY_FLAG_VALUE);
 
   const round = useSelector((state: AppState) => state.game.round);
   const selectedCard = useSelector(
@@ -56,19 +56,19 @@ export const Game = () => {
 
   const doRestartGame = () => {
     if (isHost) {
-      new GamePersistence().startGame(store.getState().game);
+      const gameState = store.getState().game;
+      new GamePersistence().startGame(gameState);
     }
   };
 
   if (phase === GamePhase.ENDED) {
-
     return (
       <div className="game-half first-half">
         <div className="end">
           <div className="round">
             {gameDefinition?.roundName} {round}
           </div>
-          <div className="end__message">{won ? gameDefinition?.deathMessage : gameDefinition?.victoryMessage }</div>
+          <div className="end__message">{isGameWon ? gameDefinition?.victoryMessage : gameDefinition?.deathMessage}</div>
           {isHost && <button onClick={doRestartGame}>Play again</button>}
         </div>
       </div>
