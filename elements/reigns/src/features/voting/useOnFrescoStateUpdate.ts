@@ -38,13 +38,13 @@ export const useOnFrescoStateUpdate = () => {
     const state = new Game().retrieve();
 
     if (state) {
-      if (state.round > prevState.game.round || state.phase !== prevState.game.phase) {
+      if (state.phase !== GamePhase.NOT_STARTED && (state.round > prevState.game.round || state.phase !== prevState.game.phase)) {
         if (!prevState.transition.round) {
           void animateRoundTransition(
             dispatch,
             prevState,
             state,
-            prevState.game.round === 0
+            prevState.game.phase === GamePhase.NOT_STARTED || prevState.game.phase === GamePhase.ENDED
           );
         }
       } else {
