@@ -69,21 +69,31 @@ p {
   font-weight: 700;
   font-family: "Quicksand", sans-serif;
   text-align: center;
-  height: 110px;
   width: 156px;
-  padding-bottom: 6px;
   border: none;
   caret-color: #9e32d6;
 }
 
+p {
+  height: 110px;
+  padding-bottom: 24px;
+}
+
 input {
   text-align: right;
+  text-align: right;
+  line-height: 1.2em;
+  height: 1.2em;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 input:focus,
@@ -97,6 +107,7 @@ input:hover:not(:disabled) {
   display: flex;
   align-items: flex-end;
   padding-top: 18px;
+  margin-bottom: -24px;
 }
 
 .buttons-group {
@@ -153,7 +164,6 @@ input:hover:not(:disabled) {
 }
 
 .user form {
-  flex-direction: row;
   padding-bottom: 5px;
 }
 
@@ -171,8 +181,10 @@ input:hover:not(:disabled) {
   input,
   p {
     font-size: 80px;
-    height: 70px;
     width: 100px;
+  }
+  p {
+    height: 70px;
   }
   .timer p {
     height: 80px;
@@ -193,8 +205,11 @@ input:hover:not(:disabled) {
   input,
   p {
     font-size: 55px;
-    height: 50px;
+
     width: 70px;
+  }
+  p {
+    height: 50px;
   }
 
   .buttons-group {
