@@ -24,6 +24,7 @@ export const parseGameFromCsv = (
     roundName: "",
     gameName: "",
     deathMessage: "",
+    victoryMessage: ""
   };
 
   const gameDefinition: GameDefinition = {

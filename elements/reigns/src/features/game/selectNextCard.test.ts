@@ -90,6 +90,22 @@ describe("selectNextCard", () => {
       expect(result).toHaveLength(1);
     });
 
+    it("should not return cards affected by flag==false when game flag is true", () => {
+      const result = cardsRestrictedByFlags(
+        [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
+        { flag: "true" }
+      );
+      expect(result).toHaveLength(0);
+    });
+
+    it("should not return cards affected by flag==true when game flag is false", () => {
+      const result = cardsRestrictedByFlags(
+        [{ card: "a card", weight: 1, conditions: "flag==true" } as Card],
+        { flag: "false" }
+      );
+      expect(result).toHaveLength(0);
+    });
+
     it("should return cards without conditions when flags are active", () => {
       const result = cardsRestrictedByFlags(
         [{ card: "a card", weight: 1 } as Card],

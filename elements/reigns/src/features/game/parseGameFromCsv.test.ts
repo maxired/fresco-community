@@ -2,8 +2,8 @@ import { parseGameFromCsv } from "./parseGameFromCsv";
 import { GameDefinition } from "./types";
 
 const data = `SECTION,,,,,,,,,,,,,,,,,,,
-main,gameName,deathMessage,roundName,assetsUrl,,,,,,,,,,,,,,,
-,A month in the life of a data officer,You have been fired!,Day,games,,,,,,,,,,,,,,,
+main,gameName,deathMessage,victoryMessage,roundName,assetsUrl,,,,,,,,,,,,,,,
+,A month in the life of a data officer,You have been fired!,You won!,Day,games,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 stats,name,icon,value,,,,,,,,,,,,,,,,
 ,Profit,noun-coins-1123601.svg,50,,,,,,,,,,,,,,,,
@@ -60,12 +60,14 @@ describe("parseGameFromCsv", () => {
   });
 
   it("should parse main section from string", () => {
-    const { gameName, deathMessage, roundName, assetsUrl } = parseGameFromCsv(
+    const { gameName, deathMessage, victoryMessage, roundName, assetsUrl } = parseGameFromCsv(
       data
     ) as GameDefinition;
 
     expect(gameName).toBe("A month in the life of a data officer");
     expect(deathMessage).toBe("You have been fired!");
+    expect(victoryMessage).toBe("You won!");
+
     expect(roundName).toBe("Day");
     expect(assetsUrl).toBe("games");
   });
