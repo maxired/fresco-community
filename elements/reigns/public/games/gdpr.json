@@ -817,13 +817,13 @@
       "yes_stat2": 0,
       "yes_stat3": 0,
       "yes_stat4": 0,
-      "yes_custom": "end=true",
+      "yes_custom": "win=true end=true",
       "answer_no": "I'll have my vengeance!",
       "no_stat1": 0,
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "end=true"
+      "no_custom": "win=true end=true"
     },
     {
       "card": "I wanted to congratulate about your work. You are doing great!",
@@ -838,13 +838,13 @@
       "yes_stat2": 0,
       "yes_stat3": 0,
       "yes_stat4": 0,
-      "yes_custom": "end=true",
+      "yes_custom": "win=true end=true",
       "answer_no": "Thank you, I'm ready for more!",
       "no_stat1": 0,
       "no_stat2": 0,
       "no_stat3": 0,
       "no_stat4": 0,
-      "no_custom": "end=true"
+      "no_custom": "win=true end=true"
     }
   ]
 }
