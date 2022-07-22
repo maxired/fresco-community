@@ -1,7 +1,8 @@
+import { DEBUG } from "../../constants";
 import { setHost } from "./persistence";
 
 export const HOST_KEY = "host";
-const DEBUG = false;
+
 export const determineHost = ({
   mounted,
   remoteParticipants,

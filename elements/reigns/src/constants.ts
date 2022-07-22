@@ -20,3 +20,4 @@ export const QUESTION_CHANGE_DELAY = 2000;
 export const VICTORY_FLAG_NAME = 'win';
 export const VICTORY_FLAG_VALUE = 'true';
 
+export const DEBUG = false;
