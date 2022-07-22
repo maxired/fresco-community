@@ -10,7 +10,7 @@ export const MeterArrow = ({
   const textRef = useRef("\u00a0"); // default value of insecapable space to have initial height
 
   if (currentAnimation !== "") {
-    let nextText = currentAnimation.includes("--grow") ? ">" : "<";
+    let nextText = currentAnimation.includes("--grow") ? "▶" : "◀";
     if (currentAnimation.includes("--big")) {
       nextText += nextText;
     }
