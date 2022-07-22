@@ -40,7 +40,8 @@ export type GameDefinition = {
   stats: Stat[];
   assetsUrl: string;
   deathMessage: string;
-  victoryMessage: string
+  victoryMessage: string;
+  victoryThreshold: number
   roundName: string;
   gameName: string;
 };

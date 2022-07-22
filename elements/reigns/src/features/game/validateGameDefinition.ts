@@ -1,14 +1,37 @@
+import { Game } from "./Game";
 import { getRootAssetsUrl } from "./gameDefinitionUtils";
 import { mapCardWithIndex } from "./parseCardsFromCsv";
 import { Card, CardFlag, GameDefinition } from "./types";
+
+
+const getDefinitionWithDefault = (gameDefinition: GameDefinition) => {
+
+  const defaultGameDefiniton =  {
+    assetsUrl: "",
+    roundName: "",
+    gameName: "",
+    deathMessage: "",
+    victoryMessage: "",
+    victoryThreshold: 0,
+  } as GameDefinition
+
+  return (Object.keys(defaultGameDefiniton) as unknown as(keyof GameDefinition)[]).reduce((memo: GameDefinition, key: keyof GameDefinition) => {
+
+    if(memo[key] === undefined || memo[key] === null){
+      (memo[key] as any)= defaultGameDefiniton[key]
+    }
+    return memo
+  }, {...gameDefinition})
+}
 
 export const validateGameDefinition = (
   definition: GameDefinition
 ): GameDefinition => {
   const cardsWithIds = definition.cards.map(mapCardWithIndex);
 
+  const definitionWithDefault = getDefinitionWithDefault(definition)
   return Object.freeze({
-    ...definition,
+    ...definitionWithDefault,
     assetsUrl: getRootAssetsUrl(definition.assetsUrl),
     cards: validateCards(cardsWithIds),
   });

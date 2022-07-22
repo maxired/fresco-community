@@ -1,4 +1,4 @@
-import { Card } from "./types";
+import { Card, GameDefinition } from "./types";
 import {
   validateCards,
   getFlags,
@@ -277,20 +277,27 @@ describe("validateGameDefinition", () => {
   });
 
   describe("validateGameDefinition", () => {
+
+    const getDefinition = (cards: Card[] = [
+      { card: "foo", id: "fooId", weight: 1 },
+      { card: "bar", id: "barId", weight: 1 },
+    ] as Card[]) => ({
+      cards,
+      stats: [{ name: "foo", value: 0, icon: "" }],
+      assetsUrl: "",
+      deathMessage: "Sorry",
+      victoryMessage: "Victory !",
+      victoryThreshold: 0,
+      roundName: "day",
+      gameName: "Welcome",
+    })
+
     it("should returns cards provided with id", () => {
       const definitionCards = [
         { card: "foo", id: "fooId", weight: 1 },
         { card: "bar", id: "barId", weight: 1 },
       ] as Card[];
-      const gameDefinition = validateGameDefinition({
-        cards: definitionCards,
-        stats: [{ name: "foo", value: 0, icon: "" }],
-        assetsUrl: "",
-        deathMessage: "Sorry",
-        victoryMessage: "Victory !",
-        roundName: "day",
-        gameName: "Welcome",
-      });
+      const gameDefinition = validateGameDefinition(getDefinition(definitionCards));
 
       expect(gameDefinition.cards).toEqual(definitionCards);
     });
@@ -302,15 +309,7 @@ describe("validateGameDefinition", () => {
         { card: "baz", weight: 1 },
       ] as Card[];
 
-      const gameDefinition = validateGameDefinition({
-        cards: definitionCards,
-        stats: [{ name: "foo", value: 0, icon: "" }],
-        assetsUrl: "",
-        deathMessage: "Sorry",
-        victoryMessage: "Victory !",
-        roundName: "day",
-        gameName: "Welcome",
-      });
+      const gameDefinition = validateGameDefinition(getDefinition(definitionCards));
 
       expect(gameDefinition.cards.length).toBe(3);
       expect(gameDefinition.cards[0]).toEqual({
@@ -323,5 +322,30 @@ describe("validateGameDefinition", () => {
         id: "index-2",
       });
     });
+
+    it('should provide default for victoryThreshold when not defined', () => {
+      const definition = getDefinition()
+      delete (definition as any).victoryThreshold
+      const gameDefinition = validateGameDefinition(definition);
+
+      expect(gameDefinition.victoryThreshold).toBe(0)
+    })
+
+    it('should provide default for victoryThreshold when null', () => {
+      const definition = getDefinition();
+      (definition as any).victoryThreshold = null
+      const gameDefinition = validateGameDefinition(definition);
+
+      expect(gameDefinition.victoryThreshold).toBe(0)
+    })
+
+    it('should keep provided victoryThreshold', () => {
+      const definition = getDefinition();
+      definition.victoryThreshold = 123
+
+      const gameDefinition = validateGameDefinition(definition);
+      expect(gameDefinition.victoryThreshold).toBe(123)
+    })
   });
+
 });
