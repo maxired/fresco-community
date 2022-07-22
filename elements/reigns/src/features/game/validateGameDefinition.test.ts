@@ -287,7 +287,7 @@ describe("validateGameDefinition", () => {
       assetsUrl: "",
       deathMessage: "Sorry",
       victoryMessage: "Victory !",
-      victoryThreshold: 0,
+      victoryRoundThreshold: 0,
       roundName: "day",
       gameName: "Welcome",
     })
@@ -323,28 +323,28 @@ describe("validateGameDefinition", () => {
       });
     });
 
-    it('should provide default for victoryThreshold when not defined', () => {
+    it('should provide default for victoryRoundThreshold when not defined', () => {
       const definition = getDefinition()
-      delete (definition as any).victoryThreshold
+      delete (definition as any).victoryRoundThreshold
       const gameDefinition = validateGameDefinition(definition);
 
-      expect(gameDefinition.victoryThreshold).toBe(0)
+      expect(gameDefinition.victoryRoundThreshold).toBe(0)
     })
 
-    it('should provide default for victoryThreshold when null', () => {
+    it('should provide default for victoryRoundThreshold when null', () => {
       const definition = getDefinition();
-      (definition as any).victoryThreshold = null
+      (definition as any).victoryRoundThreshold = null
       const gameDefinition = validateGameDefinition(definition);
 
-      expect(gameDefinition.victoryThreshold).toBe(0)
+      expect(gameDefinition.victoryRoundThreshold).toBe(0)
     })
 
-    it('should keep provided victoryThreshold', () => {
+    it('should keep provided victoryRoundThreshold', () => {
       const definition = getDefinition();
-      definition.victoryThreshold = 123
+      definition.victoryRoundThreshold = 123
 
       const gameDefinition = validateGameDefinition(definition);
-      expect(gameDefinition.victoryThreshold).toBe(123)
+      expect(gameDefinition.victoryRoundThreshold).toBe(123)
     })
   });
 

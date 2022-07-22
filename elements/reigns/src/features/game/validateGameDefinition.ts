@@ -12,7 +12,7 @@ const getDefinitionWithDefault = (gameDefinition: GameDefinition) => {
     gameName: "",
     deathMessage: "",
     victoryMessage: "",
-    victoryThreshold: 0,
+    victoryRoundThreshold: 0,
   } as GameDefinition
 
   return (Object.keys(defaultGameDefiniton) as unknown as(keyof GameDefinition)[]).reduce((memo: GameDefinition, key: keyof GameDefinition) => {
