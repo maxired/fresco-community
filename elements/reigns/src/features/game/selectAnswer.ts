@@ -45,7 +45,7 @@ export const selectAnswer = (
   const round = state.round + 1;
 
   const victoryRoundThreshold = state.definition?.victoryRoundThreshold ?? 0
-  if (victoryRoundThreshold > 0 && round >= victoryRoundThreshold) {
+  if (nextPhase === GamePhase.STARTED && victoryRoundThreshold > 0 && round >= victoryRoundThreshold) {
     flags[VICTORY_FLAG_NAME] = VICTORY_FLAG_VALUE
   }
 

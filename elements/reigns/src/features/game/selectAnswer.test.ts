@@ -128,7 +128,6 @@ describe("selectAnswer", () => {
 
     describe('when victoryRoundThreshold is defined', () => {
 
-
       it('should end game when round reach victory threshold', () => {
         const result = new Game().answerYes(
           createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
@@ -194,6 +193,37 @@ describe("selectAnswer", () => {
         expect(result.flags[VICTORY_FLAG_NAME]).toBe(undefined);
       });
 
+      it('should not set win flag when loosing on last day', () => {
+        const result = new Game().answerYes(
+          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
+            selectedCard: createCard({
+              yes_stat1: -10,
+            }),
+            stats: [1],
+            phase: GamePhase.STARTED,
+            round: 9
+          })
+        )
+        .retrieve();
+
+        expect(result.flags[VICTORY_FLAG_NAME]).toBe(undefined);
+      });
+
+      it('should end game when loosing on last day', () => {
+        const result = new Game().answerYes(
+          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
+            selectedCard: createCard({
+              yes_stat1: -10,
+            }),
+            stats: [1],
+            phase: GamePhase.STARTED,
+            round: 9
+          })
+        )
+        .retrieve();
+
+        expect(result.phase).toBe(GamePhase.ENDED);
+      });
     })
   });
 });
