@@ -110,17 +110,17 @@ describe("selectAnswer", () => {
       expect(result.phase).toBe(GamePhase.STARTED);
     });
 
-    it("should end game if a card condition put victory as true", () => {
+    it("should end game if a card condition sets victory flag to true", () => {
       const result = chooseAnswerThatSetVictoryFlags();
       expect(result.phase).toBe(GamePhase.ENDED);
     });
 
-    it("should reset flags if a card condition put victory as true", () => {
+    it("should reset flags if a card condition sets victory flag to true", () => {
       const result = chooseAnswerThatSetVictoryFlags();
       expect(result.flags).toStrictEqual({ win: "true" });
     });
 
-    it("should not end game if a card condition put victory as alse", () => {
+    it("should not end game if a card condition sets victory flag to false", () => {
       const result = chooseAnswerThatSetVictoryFlags("false");
       expect(result.phase).toBe(GamePhase.STARTED);
     });
