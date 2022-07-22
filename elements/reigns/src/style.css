@@ -91,8 +91,9 @@ button {
 
 .meter__arrow {
   font-weight: bold;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 24px;
+  padding-top: 5px;
   transition: opacity 0.3s ease, color 0s var(--stats-color-transition-duration); /* remove color after the opacity transition */
   opacity: 0;
   color: var(--color-primary);
@@ -281,7 +282,7 @@ button {
   width: 100%;
 }
 
-.death {
+.end {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -294,7 +295,7 @@ button {
   text-align: center;
 }
 
-.death__message {
+.end__message {
   color: var(--color-error);
   margin-bottom: 2rem;
 }

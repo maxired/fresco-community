@@ -1,5 +1,6 @@
 {
   "deathMessage": "You have died.",
+  "victoryMessage": "Victory!",
   "stats": [
     {
       "name": "End user",

@@ -1,4 +1,8 @@
-import { GamePhase } from "../../constants";
+import {
+  GamePhase,
+  VICTORY_FLAG_NAME,
+  VICTORY_FLAG_VALUE,
+} from "../../constants";
 import { Game } from "./Game";
 import { mockSdk } from "../../mocks";
 import { createCard, createGameState } from "./objectMother";
@@ -48,6 +52,9 @@ describe("selectAnswer", () => {
       const result = new Game()
         .answerYes(
           createGameState(undefined, {
+            flags: {
+              foo: "bar",
+            },
             selectedCard: createCard({
               yes_stat1: -1,
             }),
@@ -58,13 +65,30 @@ describe("selectAnswer", () => {
         .retrieve();
       return result;
     };
+
+    const chooseAnswerThatSetVictoryFlags = (value = VICTORY_FLAG_VALUE) => {
+      const result = new Game()
+        .answerYes(
+          createGameState(undefined, {
+            selectedCard: createCard({
+              yes_stat1: 0,
+            }),
+            stats: [1],
+            phase: GamePhase.STARTED,
+            flags: { [VICTORY_FLAG_NAME]: value },
+          })
+        )
+        .retrieve();
+      return result;
+    };
+
     it("should end game if a card reduces a stat to zero", () => {
       const result = chooseAnswerThatEndsGame();
       expect(result.phase).toBe(GamePhase.ENDED);
     });
-    it("should clear flags", () => {
+    it("should not clear flags", () => {
       const result = chooseAnswerThatEndsGame();
-      expect(result.flags).toStrictEqual({});
+      expect(result.flags).toStrictEqual({ foo: "bar" });
     });
     it("should clear selected card", () => {
       const result = chooseAnswerThatEndsGame();
@@ -83,6 +107,21 @@ describe("selectAnswer", () => {
           })
         )
         .retrieve();
+      expect(result.phase).toBe(GamePhase.STARTED);
+    });
+
+    it("should end game if a card condition sets victory flag to true", () => {
+      const result = chooseAnswerThatSetVictoryFlags();
+      expect(result.phase).toBe(GamePhase.ENDED);
+    });
+
+    it("should reset flags if a card condition sets victory flag to true", () => {
+      const result = chooseAnswerThatSetVictoryFlags();
+      expect(result.flags).toStrictEqual({ win: "true" });
+    });
+
+    it("should not end game if a card condition sets victory flag to false", () => {
+      const result = chooseAnswerThatSetVictoryFlags("false");
       expect(result.phase).toBe(GamePhase.STARTED);
     });
   });
