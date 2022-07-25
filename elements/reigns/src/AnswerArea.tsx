@@ -29,7 +29,7 @@ export const AnswerArea = ({
     progress === 1,
     !isChangingQuestion
   );
-  const textRef = useTextFit(text);
+  const textRef = useTextFit(text, 36);
   const fadeAnswer = useSelector((state: AppState) => state.transition.answer);
 
   return (

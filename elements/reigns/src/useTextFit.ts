@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import textfit from "textfit";
 
-export const useTextFit = (text: string | undefined) => {
+export const useTextFit = (text: string | undefined, maxFontSize = 1000) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!ref.current) {
@@ -13,7 +13,7 @@ export const useTextFit = (text: string | undefined) => {
       alignVert: true,
       reProcess: true,
       multiLine: true,
-      maxFontSize: 1000,
+      maxFontSize,
     });
   }, [ref, text]);
   return ref;
