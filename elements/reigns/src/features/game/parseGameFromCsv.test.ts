@@ -1,9 +1,9 @@
 import { parseGameFromCsv } from "./parseGameFromCsv";
 import { GameDefinition } from "./types";
 
-const data = `SECTION,,,,,,,,,,,,,,,,,,,
-main,gameName,deathMessage,victoryMessage,roundName,assetsUrl,,,,,,,,,,,,,,,
-,A month in the life of a data officer,You have been fired!,You won!,Day,games,,,,,,,,,,,,,,,
+const getData = ({ main: { victoryRoundThreshold = `10` } = {}} = {}) => `SECTION,,,,,,,,,,,,,,,,,,,
+main,gameName,deathMessage,victoryMessage,victoryRoundThreshold,roundName,assetsUrl,,,,,,,,,,,,,,,
+,A month in the life of a data officer,You have been fired!,You won!,${victoryRoundThreshold},Day,games,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 stats,name,icon,value,,,,,,,,,,,,,,,,
 ,Profit,noun-coins-1123601.svg,50,,,,,,,,,,,,,,,,
@@ -23,7 +23,7 @@ cards,card,id,bearer,conditions,churn,weight,override_yes,answer_yes,yes_stat1,y
 
 describe("parseGameFromCsv", () => {
   it("should parse cards from string", () => {
-    const { cards } = parseGameFromCsv(data) || { cards: [] };
+    const { cards } = parseGameFromCsv(getData()) || { cards: [] };
     expect(cards.length).toBe(8);
 
     expect(cards[0].card).toBe(
@@ -39,7 +39,7 @@ describe("parseGameFromCsv", () => {
   });
 
   it("should parse stats from string", () => {
-    const { stats } = parseGameFromCsv(data) || { stats: [] };
+    const { stats } = parseGameFromCsv(getData()) || { stats: [] };
     expect(stats.length).toBe(4);
 
     expect(stats[0].name).toBe("Profit");
@@ -60,13 +60,15 @@ describe("parseGameFromCsv", () => {
   });
 
   it("should parse main section from string", () => {
-    const { gameName, deathMessage, victoryMessage, roundName, assetsUrl } = parseGameFromCsv(
-      data
+    const { gameName, deathMessage, victoryMessage, victoryRoundThreshold, roundName, assetsUrl } = parseGameFromCsv(
+      getData()
     ) as GameDefinition;
 
     expect(gameName).toBe("A month in the life of a data officer");
     expect(deathMessage).toBe("You have been fired!");
     expect(victoryMessage).toBe("You won!");
+    expect(victoryRoundThreshold).toBe(10);
+
 
     expect(roundName).toBe("Day");
     expect(assetsUrl).toBe("games");

@@ -53,6 +53,7 @@ export const createGameDefinition = (
   assetsUrl: "whatever",
   deathMessage: "You died",
   victoryMessage: 'You won',
+  victoryRoundThreshold: 0,
   ...override,
 });
 
