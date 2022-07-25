@@ -1,22 +1,23 @@
-import { getSdk } from "../../sdk";
 import { Game } from "../game/Game";
 import { GameState } from "../game/types";
 import {
   clearParticipantVotes,
   GameVote,
   getGameVote,
-  PARTICIPANT_VOTE_TABLE,
   persistGameVote,
 } from "./persistence";
 import { calculateAnswer } from "./calculateAnswer";
 import { Countdown } from "../../Countdown";
+import { DEBUG } from "../../constants";
 
 export const resolveRound = (gameState: GameState) => {
   const { answer, countdown, everyoneVoted } = collateVotes();
 
-  console.log(
-    `Round ${gameState.round}, vote: ${answer}, countdown: ${countdown.value}`
-  );
+  if (DEBUG) {
+    console.log(
+      `Round ${gameState.round}, vote: ${answer}, countdown: ${countdown.value}`
+    );
+  }
 
   if (!answer || countdown.notStarted) return;
 

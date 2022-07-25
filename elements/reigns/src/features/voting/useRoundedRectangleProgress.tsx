@@ -12,7 +12,8 @@ const ease = Quad.easeIn;
 export const useRoundedRectangleProgress = (
   progress: number,
   color: string,
-  fill: boolean
+  fill: boolean,
+  shouldAnimate: boolean
 ) => {
   const ref = useRef<HTMLDivElement>(null);
   const [pixi, setPixi] = useState<Application>();
@@ -26,7 +27,7 @@ export const useRoundedRectangleProgress = (
 
       const progressTween = Tween.to(currentProgressRef, {
         current: endPosition,
-        duration,
+        duration: shouldAnimate ? duration : 0,
         ease,
       });
 
@@ -34,20 +35,20 @@ export const useRoundedRectangleProgress = (
         progressTween.kill();
       };
     }
-  }, [progress, pixi]);
+  }, [progress, pixi, shouldAnimate]);
 
   useEffect(() => {
     const fillTween = Tween.to(currentFillRef, {
       current: fill ? 100 : 0,
-      duration: CARD_FILL_ANIMATION_DURATION / 1000,
+      duration: shouldAnimate ? CARD_FILL_ANIMATION_DURATION / 1000 : 0,
       ease,
-      delay: fill ? duration : 0,
+      delay: fill && shouldAnimate ? duration : 0,
     });
 
     return () => {
       fillTween.kill();
     };
-  }, [fill, pixi]);
+  }, [fill, pixi, shouldAnimate]);
 
   useEffect(() => {
     const app = new Application({
