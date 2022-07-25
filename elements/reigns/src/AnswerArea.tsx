@@ -18,15 +18,15 @@ export const AnswerArea = ({
   votesMissing,
   color,
 }: Props) => {
-  const isChangingRound = useSelector(
-    (state: AppState) => state.transition.round
+  const isChangingQuestion = useSelector(
+    (state: AppState) => state.transition.question
   );
 
   const ref = useRoundedRectangleProgress(
     progress,
     color,
     progress === 1,
-    !isChangingRound
+    !isChangingQuestion
   );
 
   const fadeAnswer = useSelector((state: AppState) => state.transition.answer);
