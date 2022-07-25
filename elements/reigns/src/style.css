@@ -139,6 +139,8 @@ button {
 .meter__name {
   white-space: nowrap;
   color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .meter__percent {
