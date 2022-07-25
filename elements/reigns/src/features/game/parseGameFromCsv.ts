@@ -1,7 +1,6 @@
 import * as Papa from "papaparse";
-import { Game } from "./Game";
 import { parseCardsFromCsv, parseSectionFromCsv } from "./parseCardsFromCsv";
-import { Card, GameDefinition } from "./types";
+import { GameDefinition } from "./types";
 
 export const parseGameFromCsv = (
   csvData: string | undefined
@@ -19,13 +18,7 @@ export const parseGameFromCsv = (
   const csvStats = getCSVSection(parsedData, "stats");
   const csvCards = getCSVSection(parsedData, "cards");
 
-  const mainGameDefinition = parseSectionFromCsv<GameDefinition>(main)?.[0] ?? {
-    assetsUrl: "",
-    roundName: "",
-    gameName: "",
-    deathMessage: "",
-    victoryMessage: ""
-  };
+  const mainGameDefinition = parseSectionFromCsv<GameDefinition>(main)?.[0] ?? {} as GameDefinition
 
   const gameDefinition: GameDefinition = {
     ...mainGameDefinition,
