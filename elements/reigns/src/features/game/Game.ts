@@ -35,7 +35,13 @@ export class Game {
   }
 
   changeGame() {
-    getSdk().storage.realtime.set(GAME_TABLE, GAME_STATE_KEY, undefined);
+    getSdk().storage.realtime.set(GAME_TABLE, GAME_STATE_KEY, {
+      phase: GamePhase.NOT_STARTED,
+      selectedCard: null,
+      round: 0,
+      flags: {},
+      stats: []
+    });
     this.clearVotes();
   }
 

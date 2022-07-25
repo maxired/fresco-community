@@ -69,7 +69,9 @@ export const gameSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(initializeGame.pending, (state) => {
+        state= {...initialState, gameUrl: state.gameUrl}
         state.loading = Loading.InProgress;
+
         console.log("GAME", "loading");
       })
       .addCase(initializeGame.fulfilled, (state, action) => {
