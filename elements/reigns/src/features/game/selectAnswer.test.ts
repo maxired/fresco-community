@@ -5,7 +5,11 @@ import {
 } from "../../constants";
 import { Game } from "./Game";
 import { mockSdk } from "../../mocks";
-import { createCard, createGameDefinition, createGameState } from "./objectMother";
+import {
+  createCard,
+  createGameDefinition,
+  createGameState,
+} from "./objectMother";
 import { setFlags } from "./selectAnswer";
 import { GameDefinition } from "./types";
 
@@ -126,104 +130,126 @@ describe("selectAnswer", () => {
       expect(result.phase).toBe(GamePhase.STARTED);
     });
 
-    describe('when victoryRoundThreshold is defined', () => {
-
-      it('should end game when round reach victory threshold', () => {
-        const result = new Game().answerYes(
-          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
-            selectedCard: createCard({
-              yes_stat1: 0,
-            }),
-            stats: [1],
-            phase: GamePhase.STARTED,
-            round: 9
-          })
-        )
-        .retrieve();
+    describe("when victoryRoundThreshold is defined", () => {
+      it("should end game when round reach victory threshold", () => {
+        const result = new Game()
+          .answerYes(
+            createGameState(
+              createGameDefinition({ victoryRoundThreshold: 10 }),
+              {
+                selectedCard: createCard({
+                  yes_stat1: 0,
+                }),
+                stats: [1],
+                phase: GamePhase.STARTED,
+                round: 9,
+              }
+            )
+          )
+          .retrieve();
 
         expect(result.phase).toBe(GamePhase.ENDED);
       });
 
-      it('should set win flag when round reach victory threshold', () => {
-        const result = new Game().answerYes(
-          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
-            selectedCard: createCard({
-              yes_stat1: 0,
-            }),
-            stats: [1],
-            phase: GamePhase.STARTED,
-            round: 9
-          })
-        )
-        .retrieve();
+      it("should set win flag when round reach victory threshold", () => {
+        const result = new Game()
+          .answerYes(
+            createGameState(
+              createGameDefinition({ victoryRoundThreshold: 10 }),
+              {
+                selectedCard: createCard({
+                  yes_stat1: 0,
+                }),
+                stats: [1],
+                phase: GamePhase.STARTED,
+                round: 9,
+              }
+            )
+          )
+          .retrieve();
 
         expect(result.flags[VICTORY_FLAG_NAME]).toBe(VICTORY_FLAG_VALUE);
       });
 
-
-      it('should not end game when round does not reach victory threshold', () => {
-        const result = new Game().answerYes(
-          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
-            selectedCard: createCard({
-              yes_stat1: 0,
-            }),
-            stats: [1],
-            phase: GamePhase.STARTED,
-            round: 8
-          })
-        )
-        .retrieve();
+      it("should not end game when round does not reach victory threshold", () => {
+        const result = new Game()
+          .answerYes(
+            createGameState(
+              createGameDefinition({ victoryRoundThreshold: 10 }),
+              {
+                selectedCard: createCard({
+                  yes_stat1: 0,
+                }),
+                stats: [1],
+                phase: GamePhase.STARTED,
+                round: 8,
+              }
+            )
+          )
+          .retrieve();
 
         expect(result.phase).toBe(GamePhase.STARTED);
       });
 
-      it('should not set win flag when round does not reach victory threshold', () => {
-        const result = new Game().answerYes(
-          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
-            selectedCard: createCard({
-              yes_stat1: 0,
-            }),
-            stats: [1],
-            phase: GamePhase.STARTED,
-            round: 8
-          })
-        )
-        .retrieve();
+      it("should not set win flag when round does not reach victory threshold", () => {
+        const result = new Game()
+          .answerYes(
+            createGameState(
+              createGameDefinition({ victoryRoundThreshold: 10 }),
+              {
+                selectedCard: createCard({
+                  yes_stat1: 0,
+                }),
+                stats: [1],
+                phase: GamePhase.STARTED,
+                round: 8,
+              }
+            )
+          )
+          .retrieve();
 
         expect(result.flags[VICTORY_FLAG_NAME]).toBe(undefined);
       });
 
-      it('should not set win flag when loosing on last day', () => {
-        const result = new Game().answerYes(
-          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
-            selectedCard: createCard({
-              yes_stat1: -10,
-            }),
-            stats: [1],
-            phase: GamePhase.STARTED,
-            round: 9
-          })
-        )
-        .retrieve();
+      it("should not set win flag when losing on last day", () => {
+        const result = new Game()
+          .answerYes(
+            createGameState(
+              createGameDefinition({ victoryRoundThreshold: 10 }),
+              {
+                selectedCard: createCard({
+                  yes_stat1: -10,
+                }),
+                stats: [1],
+                phase: GamePhase.STARTED,
+                round: 9,
+              }
+            )
+          )
+          .retrieve();
 
         expect(result.flags[VICTORY_FLAG_NAME]).toBe(undefined);
       });
 
-      it('should end game when loosing on last day', () => {
-        const result = new Game().answerYes(
-          createGameState(createGameDefinition({ victoryRoundThreshold: 10}), {
-            selectedCard: createCard({
-              yes_stat1: -10,
-            }),
-            stats: [1],
-            phase: GamePhase.STARTED,
-            round: 9
-          })
-        )
-        .retrieve();
+      it("should end game when losing on last day", () => {
+        const result = new Game()
+          .answerYes(
+            createGameState(
+              createGameDefinition({ victoryRoundThreshold: 10 }),
+              {
+                selectedCard: createCard({
+                  yes_stat1: -10,
+                }),
+                stats: [1],
+                phase: GamePhase.STARTED,
+                round: 9,
+              }
+            )
+          )
+          .retrieve();
 
         expect(result.phase).toBe(GamePhase.ENDED);
       });
-    })
+    });
   });
 });

@@ -44,9 +44,13 @@ export const selectAnswer = (
   const flags = setFlags(state.flags, getFlags(state.selectedCard!, cardFlag));
   const round = state.round + 1;
 
-  const victoryRoundThreshold = state.definition?.victoryRoundThreshold ?? 0
-  if (nextPhase === GamePhase.STARTED && victoryRoundThreshold > 0 && round >= victoryRoundThreshold) {
-    flags[VICTORY_FLAG_NAME] = VICTORY_FLAG_VALUE
+  const victoryRoundThreshold = state.definition?.victoryRoundThreshold ?? 0;
+  if (
+    nextPhase === GamePhase.STARTED &&
+    victoryRoundThreshold > 0 &&
+    round >= victoryRoundThreshold
+  ) {
+    flags[VICTORY_FLAG_NAME] = VICTORY_FLAG_VALUE;
   }
 
   const phase =
