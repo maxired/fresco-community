@@ -40,7 +40,7 @@ export class Game {
       selectedCard: null,
       round: 0,
       flags: {},
-      stats: []
+      stats: [],
     });
     this.clearVotes();
   }
@@ -49,17 +49,19 @@ export class Game {
     this.clearVotes();
     const flags = {};
     const previouslySelectedCardIds = [] as string[];
+    const stats = state.definition
+      ? state.definition.stats.map(({ value }) => value)
+      : [];
     this.persist({
       phase: GamePhase.STARTED,
       selectedCard: selectNextCard(
         state.definition,
         flags,
         state.designerCards,
+        stats,
         previouslySelectedCardIds
       ),
-      stats: state.definition
-        ? state.definition.stats.map(({ value }) => value)
-        : [],
+      stats,
       round: 1,
       flags,
       previouslySelectedCardIds,

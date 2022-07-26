@@ -16,16 +16,31 @@ export const cardsDistributedByWeight = (cards: Card[]) => {
   );
 };
 
-export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
+export const cardsRestrictedByFlags = (
+  cards: Card[],
+  gameFlags: GameFlags,
+  stats: number[]
+) =>
   cards.filter((card) => {
     if (!card.conditions) return card;
     const conditions = getConditions(card);
     return conditions.every(({ key, value, operator }) => {
+      const statMatch = key.match(/^stat(\d)+$/);
+      if (statMatch) {
+        const statIndex = Number(statMatch[1]) - 1;
+        const statValue = stats[statIndex];
+        if (statValue !== undefined) {
+          return operator(statValue as never, Number(value) as never);
+        }
+      }
+
       const flag = gameFlags[key];
+
       if (flag === undefined) {
         return value === "false";
       }
-      return operator(flag, value);
+
+      return operator(flag as never, value as never);
     });
   });
 
@@ -33,6 +48,7 @@ const getAllValidCards = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | null = null,
+  stats: number[],
   previouslySelectedCardIds: string[]
 ) => {
   if (!definition) {
@@ -40,7 +56,8 @@ const getAllValidCards = (
   }
   const restrictedByFlags = cardsRestrictedByFlags(
     designerCards ?? definition.cards,
-    flags
+    flags,
+    stats
   );
 
   const availableCards = removeCardsOnCooldown(
@@ -55,12 +72,14 @@ export const selectNextCard = (
   definition: GameDefinition | null,
   flags: GameFlags,
   designerCards: Card[] | undefined,
+  stats: number[],
   previouslySelectedCardIds: string[]
 ) => {
   const validCards = getAllValidCards(
     definition,
     flags,
     designerCards,
+    stats,
     previouslySelectedCardIds
   );
 

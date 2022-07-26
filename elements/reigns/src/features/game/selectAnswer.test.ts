@@ -12,6 +12,7 @@ import {
 } from "./objectMother";
 import { setFlags } from "./selectAnswer";
 import { GameDefinition } from "./types";
+import { eq } from "./compare";
 
 describe("selectAnswer", () => {
   beforeEach(() => {
@@ -20,8 +21,8 @@ describe("selectAnswer", () => {
   describe("setFlags", () => {
     it("should set multiple flags", () => {
       const flags = setFlags({}, [
-        { key: "chapter3", value: "true" },
-        { key: "queen_killed", value: "false" },
+        { key: "chapter3", value: "true", operator: eq },
+        { key: "queen_killed", value: "false", operator: eq },
       ]);
       expect(flags.chapter3).toBe("true");
       expect(flags.queen_killed).toBe("false");
@@ -29,7 +30,7 @@ describe("selectAnswer", () => {
 
     it("should leave existing flags", () => {
       const flags = setFlags({ chapter3: "true" }, [
-        { key: "queen_killed", value: "false" },
+        { key: "queen_killed", value: "false", operator: eq },
       ]);
       expect(flags.chapter3).toBe("true");
     });

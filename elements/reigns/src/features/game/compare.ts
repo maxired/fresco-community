@@ -1,4 +1,4 @@
-export const eq = (a: number | string, b: number | string) => a === b;
+export const eq = (a: string, b: string) => a === b;
 export const neq = (a: number, b: number) => a != b;
 export const be = (a: number, b: number) => a >= b;
 export const le = (a: number, b: number) => a <= b;
