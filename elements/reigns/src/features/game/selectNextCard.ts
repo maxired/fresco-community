@@ -16,6 +16,8 @@ export const cardsDistributedByWeight = (cards: Card[]) => {
   );
 };
 
+export const STAT_FLAG_NAME_REGEXP = /^stat(\d)+$/;
+
 export const cardsRestrictedByFlags = (
   cards: Card[],
   gameFlags: GameFlags,
@@ -25,7 +27,7 @@ export const cardsRestrictedByFlags = (
     if (!card.conditions) return card;
     const conditions = getConditions(card);
     return conditions.every(({ key, value, operator }) => {
-      const statMatch = key.match(/^stat(\d)+$/);
+      const statMatch = key.match(STAT_FLAG_NAME_REGEXP);
       if (statMatch) {
         const statIndex = Number(statMatch[1]) - 1;
         const statValue = stats[statIndex];

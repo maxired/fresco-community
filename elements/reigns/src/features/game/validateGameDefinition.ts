@@ -1,7 +1,7 @@
 import { CONDITION_KEY_VALUE_SEPARATORS, getOperator } from "./compare";
-import { Game } from "./Game";
 import { getRootAssetsUrl } from "./gameDefinitionUtils";
 import { mapCardWithIndex } from "./parseCardsFromCsv";
+import { STAT_FLAG_NAME_REGEXP } from "./selectNextCard";
 import { Card, CardFlag, GameDefinition } from "./types";
 
 const getDefinitionWithDefault = (gameDefinition: GameDefinition) => {
@@ -90,7 +90,8 @@ export const validateCards = (cards: Card[] | undefined): Card[] => {
 
     validateFlags(getFlags(card, "yes_custom"), "yes_custom", i + 1);
     validateFlags(getFlags(card, "no_custom"), "no_custom", i + 1);
-    validateFlags(getConditions(card), "conditions", i + 1);
+
+    validateConditions(getConditions(card), "conditions", i + 1);
   }
 
   return cards;
@@ -104,6 +105,16 @@ export type FlagFields = keyof Pick<
   "yes_custom" | "no_custom" | "conditions"
 >;
 
+export const throwOnDuplicateKey = (
+  flags: CardFlag[],
+  field: FlagFields,
+  cardNumber: number
+) => {
+  if ([...new Set(flags.map((flag) => flag.key))].length !== flags.length) {
+    throw new Error(`Card ${cardNumber} has duplicate flag in ${field}`);
+  }
+};
+
 export const validateFlags = (
   flags: CardFlag[],
   field: FlagFields,
@@ -111,7 +122,12 @@ export const validateFlags = (
 ) => {
   const allowedValues = ["true", "false"];
   flags.forEach((flag) => {
-    if (!allowedValues.includes(flag.value)) {
+    const statMatch = flag.key.match(STAT_FLAG_NAME_REGEXP);
+    if (statMatch) {
+      throw new Error(
+        `Card ${cardNumber} has invalid flags ${field}, name cannot be a stat`
+      );
+    } else if (!allowedValues.includes(flag.value)) {
       throw new Error(
         `Card ${cardNumber} has invalid ${field}, value must be ${allowedValues.join(
           " or "
@@ -119,13 +135,63 @@ export const validateFlags = (
       );
     }
   });
-  if ([...new Set(flags.map((flag) => flag.key))].length !== flags.length) {
-    throw new Error(`Card ${cardNumber} has duplicate flag in ${field}`);
-  }
+  throwOnDuplicateKey(flags, field, cardNumber);
 };
 
-export const getConditions = (card: Card) =>
-  getKeyValues(card, "conditions", CONDITION_KEY_VALUE_SEPARATORS.EQ_SEPARATOR);
+export const validateConditions = (
+  flags: CardFlag[],
+  field: FlagFields,
+  cardNumber: number
+) => {
+  const allowedValues = ["true", "false"];
+  flags.forEach((flag) => {
+    const statMatch = flag.key.match(STAT_FLAG_NAME_REGEXP);
+    if (statMatch) {
+      if (flag.value !== `${Number(flag.value)}`) {
+        throw new Error(
+          `Card ${cardNumber} has invalid stat ${field}, value must be an integer`
+        );
+      }
+    } else if (!allowedValues.includes(flag.value)) {
+      throw new Error(
+        `Card ${cardNumber} has invalid ${field}, value must be ${allowedValues.join(
+          " or "
+        )}, but found ${flag.value}`
+      );
+    }
+  });
+  throwOnDuplicateKey(flags, field, cardNumber);
+};
+
+export const getConditions = (card: Card) => {
+  const conditionsRegexp =
+    /^(?<key>[A-Za-z0-9_\-]+)(((?<number_operator>==|>=|>|!=|<|<=)(?<number_value>\d+))|(?<boolean_operator>==)(?<boolean_value>true|false))$/;
+
+  if (!card.conditions) {
+    return [] as CardFlag[];
+  }
+
+  return card.conditions
+    .split(FLAG_SEPARATOR)
+    .map((condition) => {
+      const test = condition.match(conditionsRegexp);
+      if (!test || !test.groups) {
+        throw new Error(
+          `Conditions ${condition} does not match the valid syntax`
+        );
+      }
+
+      return {
+        key: test.groups.key,
+        value: test.groups.number_value || test.groups.boolean_value,
+        operator: getOperator(
+          (test.groups.number_operator ||
+            test.groups.boolean_operator) as CONDITION_KEY_VALUE_SEPARATORS
+        ),
+      } as CardFlag;
+    })
+    .filter((t) => !!t) as CardFlag[];
+};
 
 export const getFlags = (
   card: Card,

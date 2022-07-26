@@ -5,6 +5,7 @@ import {
   validateFlags,
   getConditions,
   validateGameDefinition,
+  validateConditions,
 } from "./validateGameDefinition";
 import gdpr from "../../../public/games/gdpr.json";
 import demo from "../../../public/games/demo.json";
@@ -54,17 +55,15 @@ describe("validateGameDefinition", () => {
           {
             card: "some card",
             weight: 1,
-            conditions: "some rubbish",
             id: "some-card",
           } as Card,
           {
             card: "another card",
             weight: 1,
-            conditions: "more rubbish",
             id: "another-card",
           } as Card,
         ])
-      ).toThrow();
+      ).not.toThrow();
     });
 
     it("should throw with two card with same ids", () => {
@@ -73,14 +72,12 @@ describe("validateGameDefinition", () => {
           {
             card: "some card",
             weight: 1,
-            conditions: "some rubbish",
             id: "card-id",
           } as Card,
 
           {
             card: "another card",
             weight: 1,
-            conditions: "more rubbish",
             id: "card-id",
           } as Card,
         ])
@@ -93,13 +90,11 @@ describe("validateGameDefinition", () => {
           {
             card: "some card",
             weight: 1,
-            conditions: "some rubbish",
           } as Card,
 
           {
             card: "another card",
             weight: 1,
-            conditions: "more rubbish",
           } as Card,
         ])
       ).toThrow();
@@ -240,7 +235,7 @@ describe("validateGameDefinition", () => {
 
   describe("validateConditions", () => {
     const validate = (flag: string) =>
-      validateFlags(
+      validateConditions(
         getConditions({ conditions: flag } as Card),
         "conditions",
         1
