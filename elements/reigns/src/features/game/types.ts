@@ -9,6 +9,9 @@ export type Stat = {
 export type CardFlag = {
   key: string;
   value: string;
+  operator:
+    | ((a: string, b: string) => boolean)
+    | ((a: number, b: number) => boolean);
 };
 
 export type Card = {
@@ -41,7 +44,7 @@ export type GameDefinition = {
   assetsUrl: string;
   deathMessage: string;
   victoryMessage: string;
-  victoryRoundThreshold: number
+  victoryRoundThreshold: number;
   roundName: string;
   gameName: string;
 };

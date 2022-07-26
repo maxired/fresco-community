@@ -1,35 +1,38 @@
+import { CONDITION_KEY_VALUE_SEPARATORS, getOperator } from "./compare";
 import { Game } from "./Game";
 import { getRootAssetsUrl } from "./gameDefinitionUtils";
 import { mapCardWithIndex } from "./parseCardsFromCsv";
 import { Card, CardFlag, GameDefinition } from "./types";
 
-
 const getDefinitionWithDefault = (gameDefinition: GameDefinition) => {
-
-  const defaultGameDefiniton =  {
+  const defaultGameDefiniton = {
     assetsUrl: "",
     roundName: "",
     gameName: "",
     deathMessage: "",
     victoryMessage: "",
     victoryRoundThreshold: 0,
-  } as GameDefinition
+  } as GameDefinition;
 
-  return (Object.keys(defaultGameDefiniton) as unknown as(keyof GameDefinition)[]).reduce((memo: GameDefinition, key: keyof GameDefinition) => {
-
-    if(memo[key] === undefined || memo[key] === null){
-      (memo[key] as any)= defaultGameDefiniton[key]
-    }
-    return memo
-  }, {...gameDefinition})
-}
+  return (
+    Object.keys(defaultGameDefiniton) as unknown as (keyof GameDefinition)[]
+  ).reduce(
+    (memo: GameDefinition, key: keyof GameDefinition) => {
+      if (memo[key] === undefined || memo[key] === null) {
+        (memo[key] as any) = defaultGameDefiniton[key];
+      }
+      return memo;
+    },
+    { ...gameDefinition }
+  );
+};
 
 export const validateGameDefinition = (
   definition: GameDefinition
 ): GameDefinition => {
   const cardsWithIds = definition.cards.map(mapCardWithIndex);
 
-  const definitionWithDefault = getDefinitionWithDefault(definition)
+  const definitionWithDefault = getDefinitionWithDefault(definition);
   return Object.freeze({
     ...definitionWithDefault,
     assetsUrl: getRootAssetsUrl(definition.assetsUrl),
@@ -95,7 +98,6 @@ export const validateCards = (cards: Card[] | undefined): Card[] => {
 
 const FLAG_SEPARATOR = " ";
 const FLAG_KEY_VALUE_SEPARATOR = "=";
-const CONDITION_KEY_VALUE_SEPARATOR = "==";
 
 export type FlagFields = keyof Pick<
   Card,
@@ -123,7 +125,7 @@ export const validateFlags = (
 };
 
 export const getConditions = (card: Card) =>
-  getKeyValues(card, "conditions", CONDITION_KEY_VALUE_SEPARATOR);
+  getKeyValues(card, "conditions", CONDITION_KEY_VALUE_SEPARATORS.EQ_SEPARATOR);
 
 export const getFlags = (
   card: Card,
@@ -141,6 +143,12 @@ const getKeyValues = (
 
   return card[field].split(FLAG_SEPARATOR).map((flag) => {
     const [key, value] = flag.split(keyValueSeparator);
-    return { key, value };
+    return {
+      key,
+      value,
+      operator: getOperator(
+        keyValueSeparator as CONDITION_KEY_VALUE_SEPARATORS
+      ),
+    };
   });
 };

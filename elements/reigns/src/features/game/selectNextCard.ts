@@ -20,12 +20,12 @@ export const cardsRestrictedByFlags = (cards: Card[], gameFlags: GameFlags) =>
   cards.filter((card) => {
     if (!card.conditions) return card;
     const conditions = getConditions(card);
-    return conditions.every(({ key, value }) => {
+    return conditions.every(({ key, value, operator }) => {
       const flag = gameFlags[key];
       if (flag === undefined) {
         return value === "false";
       }
-      return flag === value;
+      return operator(flag, value);
     });
   });
 
