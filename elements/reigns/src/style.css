@@ -147,7 +147,8 @@ button {
   height: 10px;
   border-radius: 5px;
   background-color: var(--color-primary);
-  transition: width 1s ease-in, background-color var(--stats-color-transition-duration) ease-in;
+  transition: width 1s ease-in,
+    background-color var(--stats-color-transition-duration) ease-in;
 }
 
 .first-half {
@@ -227,14 +228,23 @@ button {
 }
 
 .answer__text-inner-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 16vh;
   position: relative;
   background-color: #3c4850;
   border-radius: 30px;
-  height: 142px;
+}
+
+.answer__text-background {
+  height: 100%;
+  width: 100%;
+}
+
+.answer__text-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .answer__text-inner-container canvas {
@@ -253,15 +263,11 @@ button {
 }
 
 .answer__text {
-  font-size: 1.5vw;
-  color: #fff;
-  border-radius: 10px;
-  margin: 16px;
-  padding: 8px;
   text-align: center;
-  flex: 0;
-  position: relative;
+  color: #fff;
   z-index: 1;
+  height: 70%;
+  width: 80%;
 }
 
 .question__image {
@@ -307,6 +313,7 @@ button {
   position: relative;
 }
 
+/* this class is dynamically added by textFit */
 .textFitAlignVert {
   max-height: 100%;
 }

@@ -1,41 +1,27 @@
 import clsx from "clsx";
-import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import textfit from "textfit";
 
 import { Card } from "./features/game/types";
 import { AppState } from "./store";
+import { useTextFit } from "./useTextFit";
 
 export const Question = ({ card }: { card: Card | null }) => {
   const assetsUrl = useSelector(
     (state: AppState) => state.game.definition?.assetsUrl
   );
 
-  const domCardRef = useRef<HTMLDivElement>(null);
+  const ref = useTextFit(card?.card);
 
-  useEffect(() => {
-    if (!card || !domCardRef.current) {
-      return;
-    }
-
-    domCardRef.current.innerHTML = `${card.card}`; // textfit will modify the dom node. We don't want React to also modify it's content to prevent conflict
-    textfit(domCardRef.current, {
-      alignHoriz: false,
-      alignVert: true,
-      reProcess: true,
-      multiLine: true,
-      maxFontSize: 1000,
-    });
-  }, [card?.card]);
-
-  const fadeQuestion = useSelector((state: AppState) => state.transition.question)
+  const fadeQuestion = useSelector(
+    (state: AppState) => state.transition.question
+  );
 
   if (!card?.card) {
     return null;
   }
 
   return (
-    <div className={clsx('block question fade', !fadeQuestion && 'fade--in')}>
+    <div className={clsx("block question fade", !fadeQuestion && "fade--in")}>
       <div className="question__image">
         <div
           className="question__image_img"
@@ -43,7 +29,7 @@ export const Question = ({ card }: { card: Card | null }) => {
         />
         <div className="question__bearer">{card.bearer}</div>
       </div>
-      <div className="question__text-wrap" ref={domCardRef} />
+      <div className="question__text-wrap" ref={ref} />
     </div>
   );
 };

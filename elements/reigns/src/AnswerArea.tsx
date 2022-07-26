@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { useRoundedRectangleProgress } from "./features/voting/useRoundedRectangleProgress";
 import { AppState } from "./store";
+import { useTextFit } from "./useTextFit";
 
 type Props = {
   text: string;
@@ -22,13 +23,14 @@ export const AnswerArea = ({
     (state: AppState) => state.transition.question
   );
 
-  const ref = useRoundedRectangleProgress(
+  const backgroundRef = useRoundedRectangleProgress(
     progress,
     color,
     progress === 1,
     !isChangingQuestion
   );
 
+  const textRef = useTextFit(text, window.innerHeight * 0.04);
   const fadeAnswer = useSelector((state: AppState) => state.transition.answer);
 
   return (
@@ -36,11 +38,15 @@ export const AnswerArea = ({
       <div className="answer__text-outer-container">
         <div className="answer__text-inner-container">
           <div
-            ref={ref}
+            ref={backgroundRef}
             id={`${answer}-answer-background`}
-            className={clsx("fade", { "fade--in": !fadeAnswer })}
+            className={clsx("answer__text-background fade", {
+              "fade--in": !fadeAnswer,
+            })}
           >
-            <div className="answer__text">{text}</div>
+            <div className="answer__text-wrapper">
+              <div ref={textRef} className="answer__text"></div>
+            </div>
           </div>
         </div>
         <div
