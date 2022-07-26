@@ -26,11 +26,19 @@ export default function App() {
   const { sdkLoaded } = useFresco(onFrescoStateUpdate);
 
   if (!sdkLoaded || loading === Loading.InProgress) {
-    return <div className='game-half first-half'><div className="death">Loading...</div></div>;
+    return (
+      <div className="game-half first-half">
+        <div className="end">Loading...</div>
+      </div>
+    );
   }
 
   if (loading === Loading.Error) {
-    return <div className='game-half first-half'><div className="death">ERROR :(</div></div>;
+    return (
+      <div className="game-half first-half">
+        <div className="end">ERROR :(</div>
+      </div>
+    );
   }
 
   return <Game />;
