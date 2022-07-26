@@ -522,7 +522,7 @@
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": { "x": 65, "y": -29 },
+            "position": { "x": 65, "y": 550 },
             "size": { "x": 592, "y": 220 },
             "rotation": 0
           },
