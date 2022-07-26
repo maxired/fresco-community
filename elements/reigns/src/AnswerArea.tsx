@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { useRoundedRectangleProgress } from "./features/voting/useRoundedRectangleProgress";
 import { AppState } from "./store";
+import { mockSdkVote } from "./mockSdkVote";
 
 type Props = {
   text: string;
@@ -55,7 +56,10 @@ export const AnswerArea = ({
           )}
         </div>
       </div>
-      <div className={`answer__zone answer--${answer}`}></div>
+      <div
+        className={`answer__zone answer--${answer}`}
+        onClick={() => mockSdkVote(answer)}
+      ></div>
     </div>
   );
 };
