@@ -11,6 +11,7 @@ import { Game as GamePersistence } from "./features/game/Game";
 import { getIsHost } from "./features/host/persistence";
 import { AnswerArea } from "./AnswerArea";
 import { Countdown } from "./Countdown";
+import { getSdk } from "./sdk";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
@@ -51,18 +52,19 @@ export const Game = () => {
   useCollateVotes();
 
   useEffect(() => {
+    const sdk = getSdk();
     if (phase === GamePhase.ENDED) {
       if (isGameWon) {
-        fresco.triggerEvent({
+        sdk.triggerEvent({
           eventName: "custom.reigns.phase.end.victory",
         });
       } else {
-        fresco.triggerEvent({
+        sdk.triggerEvent({
           eventName: "custom.reigns.phase.end.death",
         });
       }
     } else {
-      fresco.triggerEvent({
+      sdk.triggerEvent({
         eventName: `custom.reigns.phase.${phase}`,
       });
     }
