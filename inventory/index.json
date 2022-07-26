@@ -313,7 +313,7 @@
         {
           "id": "yxqya8t87dpqe3kjz6nzf",
           "isLocked": false,
-          "zIndex": 10,
+          "zIndex": 100,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
@@ -341,7 +341,7 @@
         {
           "id": "9mn0owh67drtxsuwtijz-",
           "isLocked": false,
-          "zIndex": 11,
+          "zIndex": 110,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
@@ -514,6 +514,28 @@
             "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
             "STROKE_COLOR": 13224393
           }
+        },
+        {
+          "id": "hjj6qlbu2kkzszvsuecv_",
+          "isLocked": true,
+          "zIndex": 46,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": 65, "y": 550 },
+            "size": { "x": 592, "y": 220 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 0
+          }
         }
       ],
       "groups": [
@@ -535,7 +557,8 @@
             "zlxmccsto0rycgesy9cpq",
             "eolco0cygtbt4u9lcygk2",
             "lwwhmffngu0gpnurw8bg5",
-            "udwa4u4_t-srbrd22fhin"
+            "udwa4u4_t-srbrd22fhin",
+            "hjj6qlbu2kkzszvsuecv_"
           ],
           "transform": {
             "position": {
