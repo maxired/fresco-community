@@ -18,7 +18,10 @@ export const Game = () => {
     useSelector((state: AppState) => state.voting.countdown)
   );
   const phase = useSelector((state: AppState) => state.game.phase);
-  const isGameWon =  useSelector((state: AppState) => state.game.flags[VICTORY_FLAG_NAME] === VICTORY_FLAG_VALUE);
+  const isGameWon = useSelector(
+    (state: AppState) =>
+      state.game.flags[VICTORY_FLAG_NAME] === VICTORY_FLAG_VALUE
+  );
 
   const round = useSelector((state: AppState) => state.game.round);
   const selectedCard = useSelector(
@@ -49,10 +52,21 @@ export const Game = () => {
 
   useEffect(() => {
     if (phase === GamePhase.ENDED) {
-      const audio = new Audio("error.mp3");
-      audio.play();
+      if (isGameWon) {
+        fresco.triggerEvent({
+          eventName: "custom.reigns.phase.end.victory",
+        });
+      } else {
+        fresco.triggerEvent({
+          eventName: "custom.reigns.phase.end.death",
+        });
+      }
+    } else {
+      fresco.triggerEvent({
+        eventName: `custom.reigns.phase.${phase}`,
+      });
     }
-  }, [phase]);
+  }, [phase, isGameWon]);
 
   const doRestartGame = () => {
     if (isHost) {
@@ -68,7 +82,11 @@ export const Game = () => {
           <div className="round">
             {gameDefinition?.roundName} {round}
           </div>
-          <div className="end__message">{isGameWon ? gameDefinition?.victoryMessage : gameDefinition?.deathMessage}</div>
+          <div className="end__message">
+            {isGameWon
+              ? gameDefinition?.victoryMessage
+              : gameDefinition?.deathMessage}
+          </div>
           {isHost && <button onClick={doRestartGame}>Play again</button>}
         </div>
       </div>
