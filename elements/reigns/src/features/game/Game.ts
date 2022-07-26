@@ -24,7 +24,7 @@ export class Game {
   private persist(state: PersistedGameState) {
     getSdk().storage.realtime.set(GAME_TABLE, GAME_STATE_KEY, state);
     if (state.phase === GamePhase.ENDED) {
-      this.clearVotes();
+      // this.clearVotes(); // too early to do that
     }
   }
 
