@@ -163,10 +163,22 @@ export const validateConditions = (
   throwOnDuplicateKey(flags, field, cardNumber);
 };
 
-export const getConditions = (card: Card) => {
-  const conditionsRegexp =
-    /^(?<key>[A-Za-z0-9_\-]+)(((?<number_operator>==|>=|>|!=|<|<=)(?<number_value>\d+))|(?<boolean_operator>==)(?<boolean_value>true|false))$/;
+const CONDITION_REGEXP =
+  /^(?<key>[A-Za-z0-9_\-]+)(((?<number_operator>==|>=|>|!=|<|<=)(?<number_value>\d+))|(?<boolean_operator>==)(?<boolean_value>true|false))$/;
+export const parseCondition = (condition: string) => {
+  const test = condition.match(CONDITION_REGEXP);
+  if (!test || !test.groups) {
+    throw new Error(`Conditions ${condition} does not match the valid syntax`);
+  }
 
+  return {
+    key: test.groups.key,
+    value: test.groups.number_value || test.groups.boolean_value,
+    separator: test.groups.number_operator || test.groups.boolean_operator,
+  };
+};
+
+export const getConditions = (card: Card) => {
   if (!card.conditions) {
     return [] as CardFlag[];
   }
@@ -174,19 +186,13 @@ export const getConditions = (card: Card) => {
   return card.conditions
     .split(FLAG_SEPARATOR)
     .map((condition) => {
-      const test = condition.match(conditionsRegexp);
-      if (!test || !test.groups) {
-        throw new Error(
-          `Conditions ${condition} does not match the valid syntax`
-        );
-      }
+      const parsedCondition = parseCondition(condition);
 
       return {
-        key: test.groups.key,
-        value: test.groups.number_value || test.groups.boolean_value,
+        key: parsedCondition.key,
+        value: parsedCondition.value,
         operator: getOperator(
-          (test.groups.number_operator ||
-            test.groups.boolean_operator) as CONDITION_KEY_VALUE_SEPARATORS
+          parsedCondition.separator as CONDITION_KEY_VALUE_SEPARATORS
         ),
       } as CardFlag;
     })

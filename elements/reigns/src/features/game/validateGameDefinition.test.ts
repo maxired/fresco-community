@@ -6,6 +6,7 @@ import {
   getConditions,
   validateGameDefinition,
   validateConditions,
+  parseCondition,
 } from "./validateGameDefinition";
 import gdpr from "../../../public/games/gdpr.json";
 import demo from "../../../public/games/demo.json";
@@ -349,6 +350,180 @@ describe("validateGameDefinition", () => {
 
       const gameDefinition = validateGameDefinition(definition);
       expect(gameDefinition.victoryRoundThreshold).toBe(123);
+    });
+  });
+
+  describe("parseCondition", () => {
+    it("parse an stat equal condition", () => {
+      const condition = parseCondition("stat1==40");
+      expect(condition.key).toBe("stat1");
+      expect(condition.value).toBe("40");
+      expect(condition.separator).toBe("==");
+    });
+
+    it("parse an custom flag equal true", () => {
+      const condition = parseCondition("fooFlag_42bar==true");
+      expect(condition.key).toBe("fooFlag_42bar");
+      expect(condition.value).toBe("true");
+      expect(condition.separator).toBe("==");
+    });
+
+    it("parse an custom flag equal false", () => {
+      const condition = parseCondition("fooFlag_42bar==false");
+      expect(condition.key).toBe("fooFlag_42bar");
+      expect(condition.value).toBe("false");
+      expect(condition.separator).toBe("==");
+    });
+
+    it("throw on custom flag equal another string", () => {
+      expect(() => parseCondition("fooFlag_42bar==falsy")).toThrow();
+    });
+
+    it("parse on custom flag equal a number", () => {
+      // this is not valid ATM but will be thrown by validateConditions not the parsing
+      const condition = parseCondition("fooFlag_42bar==42");
+      expect(condition.key).toBe("fooFlag_42bar");
+      expect(condition.value).toBe("42");
+      expect(condition.separator).toBe("==");
+    });
+
+    it("parse a stat big with a bigger or equal sign", () => {
+      const condition = parseCondition("stat21>=42");
+      expect(condition.key).toBe("stat21");
+      expect(condition.value).toBe("42");
+      expect(condition.separator).toBe(">=");
+    });
+
+    it("parse a stat big with a bigger than sign", () => {
+      const condition = parseCondition("stat21>42");
+      expect(condition.key).toBe("stat21");
+      expect(condition.value).toBe("42");
+      expect(condition.separator).toBe(">");
+    });
+
+    it("parse a stat big with a lower or equal sign", () => {
+      const condition = parseCondition("stat21<=42");
+      expect(condition.key).toBe("stat21");
+      expect(condition.value).toBe("42");
+      expect(condition.separator).toBe("<=");
+    });
+
+    it("parse a stat big with a lower than sign", () => {
+      const condition = parseCondition("stat21<42");
+      expect(condition.key).toBe("stat21");
+      expect(condition.value).toBe("42");
+      expect(condition.separator).toBe("<");
+    });
+
+    it("parse a stat big with a not equal sign", () => {
+      const condition = parseCondition("stat21!=42");
+      expect(condition.key).toBe("stat21");
+      expect(condition.value).toBe("42");
+      expect(condition.separator).toBe("!=");
+    });
+
+    it("parse a stat big with an equal boolean sign", () => {
+      // this is not valid ATM but will be thrown by validateConditions not the parsing
+      const condition = parseCondition("stat21==true");
+      expect(condition.key).toBe("stat21");
+      expect(condition.value).toBe("true");
+      expect(condition.separator).toBe("==");
+    });
+
+    it("throw on stat with unknow operator", () => {
+      // this is not valid ATM but will be thrown by validateConditions not the parsing
+      expect(() => parseCondition("stat43+=42")).toThrow();
+    });
+
+    it("throw on stat with bigger than false ", () => {
+      // this is not valid ATM but will be thrown by validateConditions not the parsing
+      expect(() => parseCondition("stat43>true")).toThrow();
+    });
+  });
+
+  describe("validateConditions", () => {
+    it("validates a card with no flags", () => {
+      expect(() => validateConditions([], "conditions", 0)).not.toThrow();
+    });
+
+    it("throw on a card with condition checking a stat against true", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "stat1", value: "true", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).toThrow();
+    });
+
+    it("throw on a card with condition checking a stat against false", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "stat1", value: "false", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).toThrow();
+    });
+
+    it("throw on a card with condition checking a stat against a random string", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "stat1", value: "foo", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).toThrow();
+    });
+
+    it("validates on a card with stat condition checking a stat against an integer string", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "stat1", value: "43", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).not.toThrow();
+    });
+
+    it("throw on a card with custom condition checking a stat against an integer string", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "foo", value: "43", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).toThrow();
+    });
+
+    it("validates on a card with custom condition checking against true", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "foo", value: "true", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).not.toThrow();
+    });
+
+    it("validates on a card with custom condition checking against false", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "foo", value: "true", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).not.toThrow();
+    });
+
+    it("throw on a card with custom condition checking against random string", () => {
+      expect(() =>
+        validateConditions(
+          [{ key: "foo", value: "bar", operator: () => true }],
+          "conditions",
+          0
+        )
+      ).toThrow();
     });
   });
 });
