@@ -208,6 +208,34 @@
           }
         },
         {
+          "id": "udwa4u4_t-srbrd22fhim",
+          "isLocked": false,
+          "zIndex": 5,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": {
+              "x": 73,
+              "y": 584
+            },
+            "size": {
+              "x": 30,
+              "y": 30
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "vote-death.mp3",
+            "TEXT_DISABLED": true,
+            "RADIUS": "6000",
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/public/error.mp3",
+            "VOLUME": 0,
+            "LOOP": false,
+            "SPATIALIZED": false
+          }
+        },
+        {
           "id": "aoy7acumnzsdwbfodo7uh",
           "isLocked": false,
           "zIndex": 6,
@@ -384,7 +412,7 @@
             "rotation": 0
           },
           "appearance": {
-            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"hy5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.3\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"htyp5uqr0cyxe-y671wbq\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.5\"}}]}]",
+            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"ky5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.3\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"htyp5uqr0cyxe-y671wbq\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.5\"}}]},{\"event\":\"custom.reigns.phase.end.death\",\"scope\":\"global\",\"actions\":[{\"id\":\"ky5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-death.mp3\",\"volume\":\"0.3\"}}]}]",
             "NAME": "story-quizz",
             "TEXT_BEHAVIOUR": 2,
             "STATE": {
@@ -558,6 +586,7 @@
             "eolco0cygtbt4u9lcygk2",
             "lwwhmffngu0gpnurw8bg5",
             "udwa4u4_t-srbrd22fhin",
+            "udwa4u4_t-srbrd22fhim",
             "hjj6qlbu2kkzszvsuecv_"
           ],
           "transform": {
