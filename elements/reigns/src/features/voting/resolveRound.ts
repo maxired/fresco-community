@@ -8,16 +8,15 @@ import {
 } from "./persistence";
 import { calculateAnswer } from "./calculateAnswer";
 import { Countdown } from "../../Countdown";
-import { DEBUG } from "../../constants";
+import { Logger } from "../../Logger";
 
 export const resolveRound = (gameState: GameState) => {
   const { answer, countdown, everyoneVoted } = collateVotes();
 
-  if (DEBUG) {
-    console.log(
-      `Round ${gameState.round}, vote: ${answer}, countdown: ${countdown.value}`
-    );
-  }
+  Logger.log(
+    Logger.VOTE,
+    `Round ${gameState.round}, vote: ${answer}, countdown: ${countdown.value}`
+  );
 
   if (!answer || countdown.notStarted) return;
 

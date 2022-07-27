@@ -266,7 +266,6 @@ const getPerimeter = (app: Application) => {
     };
   } catch (e) {
     console.error(e);
-    console.log("app", app);
     throw e;
   }
 };

@@ -1,3 +1,4 @@
+import { Logger } from "../../Logger";
 import { getSdk } from "../../sdk";
 import { GAME_TABLE } from "../game/Game";
 import { PARTICIPANT_INSIDE_TABLE } from "./useOnFrescoStateUpdate";
@@ -18,7 +19,7 @@ export const getGameVote = () => {
 };
 
 export const persistGameVote = (value: GameVote | null) => {
-  console.log("persist game vote", value);
+  Logger.log(Logger.VOTE, "persistGameVote", value);
 
   getSdk().storage.realtime.set(
     GAME_TABLE,
@@ -56,7 +57,7 @@ export const persistParticipantVote = (
   answer: Answer | null
 ) => {
   const sdk = getSdk();
-  console.warn("Setting participant vote to", answer);
+  Logger.log(Logger.VOTE, "Setting participant vote to", answer);
   sdk.storage.realtime.set(
     PARTICIPANT_VOTE_TABLE,
     participantId,

@@ -1,4 +1,4 @@
-import { DEBUG } from "../../constants";
+import { Logger } from "../../Logger";
 import { setHost } from "./persistence";
 
 export const HOST_KEY = "host";
@@ -24,22 +24,21 @@ export const determineHost = ({
   const keepHost =
     currentHost && ordered.map((p) => p.id).includes(currentHost.id);
 
-  if (DEBUG) {
-    console[keepHost ? "log" : "warn"](
-      `Mounted: ${mountedIds.join(", ")}`,
-      `\nEligible participants: ${JSON.stringify(
-        ordered.map((p) => ({ id: p.id, name: p.name }))
-      )}`,
-      `\nCurrent host: ${JSON.stringify(currentHost)}`,
-      `\nChange host: ${keepHost ? "No" : "Yes"}`
-    );
-  }
+  Logger[keepHost ? "log" : "warn"](
+    Logger.HOST,
+    `Mounted: ${mountedIds.join(", ")}`,
+    `\nEligible participants: ${JSON.stringify(
+      ordered.map((p) => ({ id: p.id, name: p.name }))
+    )}`,
+    `\nCurrent host: ${JSON.stringify(currentHost)}`,
+    `\nChange host: ${keepHost ? "No" : "Yes"}`
+  );
 
   if (keepHost) {
     return currentHost;
   }
   const newHost = ordered[0];
-  if (DEBUG && !newHost) console.log("There is no eligible host");
+  if (!newHost) Logger.log(Logger.HOST, "There is no eligible host");
 
   if (newHost && newHost.id === localParticipant.id) {
     setHost(localParticipant);
