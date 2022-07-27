@@ -77,6 +77,7 @@ interface IFrescoSdk {
     identityId: string;
     isInsideElement: boolean;
   };
+  isMockSdk: undefined | boolean;
   remoteParticipants: Participant[];
   /*
    * Table array storage is expected to be persisted for the lifetime of an element unless cleared.
