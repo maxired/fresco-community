@@ -23,9 +23,6 @@ export class Game {
 
   private persist(state: PersistedGameState) {
     getSdk().storage.realtime.set(GAME_TABLE, GAME_STATE_KEY, state);
-    if (state.phase === GamePhase.ENDED) {
-      this.clearVotes();
-    }
   }
 
   private clearVotes() {
@@ -40,7 +37,7 @@ export class Game {
       selectedCard: null,
       round: 0,
       flags: {},
-      stats: []
+      stats: [],
     });
     this.clearVotes();
   }
