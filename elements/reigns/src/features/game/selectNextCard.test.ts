@@ -58,77 +58,146 @@ describe("selectNextCard", () => {
         expect.arrayContaining([expect.objectContaining({ card: "a card" })])
       );
     });
+    describe("custom flags", () => {
+      it("should return cards affected by flag==true when game flag is set", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1, conditions: "flag==true" } as Card],
+          { flag: "true" },
+          []
+        );
+        expect(result).toHaveLength(1);
+      });
 
-    it("should return cards affected by flag==true when game flag is set", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1, conditions: "flag==true" } as Card],
-        { flag: "true" },
-        []
-      );
-      expect(result).toHaveLength(1);
+      it("should return cards affected by flag==false when game flag is set", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
+          { flag: "false" },
+          []
+        );
+        expect(result).toHaveLength(1);
+      });
+
+      it("should exclude cards affected by flag==true when game flag is not set", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1, conditions: "flag==true" } as Card],
+          {},
+          []
+        );
+        expect(result).toHaveLength(0);
+      });
+
+      it("should return cards affected by flag==false when game flag is not set", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
+          {},
+          []
+        );
+        expect(result).toHaveLength(1);
+      });
+
+      it("should not return cards affected by flag==false when game flag is true", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
+          { flag: "true" },
+          []
+        );
+        expect(result).toHaveLength(0);
+      });
+
+      it("should not return cards affected by flag==true when game flag is false", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1, conditions: "flag==true" } as Card],
+          { flag: "false" },
+          []
+        );
+        expect(result).toHaveLength(0);
+      });
+
+      it("should return cards without conditions when flags are active", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1 } as Card],
+          { flag: "true" },
+          []
+        );
+        expect(result).toHaveLength(1);
+      });
+
+      it("should return cards without conditions when flags are inactive", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "a card", weight: 1 } as Card],
+          {},
+          []
+        );
+        expect(result).toHaveLength(1);
+      });
     });
+    describe("stats", () => {
+      it("should filter card when not matching flag", () => {
+        const result = cardsRestrictedByFlags(
+          [
+            { card: "card1", weight: 1, conditions: "stat1!=50" } as Card,
+            { card: "card2", weight: 1, conditions: "stat2>50" } as Card,
+            { card: "card2", weight: 1, conditions: "stat3>=51" } as Card,
+          ],
+          {},
+          [50, 50, 50, 50]
+        );
 
-    it("should return cards affected by flag==false when game flag is set", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
-        { flag: "false" },
-        []
-      );
-      expect(result).toHaveLength(1);
-    });
+        expect(result).toHaveLength(0);
+      });
 
-    it("should exclude cards affected by flag==true when game flag is not set", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1, conditions: "flag==true" } as Card],
-        {},
-        []
-      );
-      expect(result).toHaveLength(0);
-    });
+      it("should allow card with state1 eq", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "card1", weight: 1, conditions: "stat1==50" } as Card],
+          {},
+          [50, 3, 20, 2]
+        );
 
-    it("should return cards affected by flag==false when game flag is not set", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
-        {},
-        []
-      );
-      expect(result).toHaveLength(1);
-    });
+        expect(result).toHaveLength(1);
+      });
 
-    it("should not return cards affected by flag==false when game flag is true", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1, conditions: "flag==false" } as Card],
-        { flag: "true" },
-        []
-      );
-      expect(result).toHaveLength(0);
-    });
+      it("should use the index of the stat", () => {
+        const result = cardsRestrictedByFlags(
+          [{ card: "card1", weight: 1, conditions: "stat1==50" } as Card],
+          {},
+          [0, 50, 50, 50]
+        );
 
-    it("should not return cards affected by flag==true when game flag is false", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1, conditions: "flag==true" } as Card],
-        { flag: "false" },
-        []
-      );
-      expect(result).toHaveLength(0);
-    });
+        expect(result).toHaveLength(0);
+      });
 
-    it("should return cards without conditions when flags are active", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1 } as Card],
-        { flag: "true" },
-        []
-      );
-      expect(result).toHaveLength(1);
-    });
+      it("should works with multiple conditions", () => {
+        const result = cardsRestrictedByFlags(
+          [
+            {
+              card: "card1",
+              weight: 1,
+              conditions: "stat1!=50 stat2!=50",
+            } as Card,
+            {
+              card: "card2",
+              weight: 1,
+              conditions: "stat1!=50 stat2==50",
+            } as Card,
+            {
+              card: "card3",
+              weight: 1,
+              conditions: "stat1==50 stat2!=50",
+            } as Card,
+            {
+              card: "card3",
+              weight: 1,
+              conditions: "stat1==50 stat2==50",
+            } as Card,
+          ],
 
-    it("should return cards without conditions when flags are inactive", () => {
-      const result = cardsRestrictedByFlags(
-        [{ card: "a card", weight: 1 } as Card],
-        {},
-        []
-      );
-      expect(result).toHaveLength(1);
+          {},
+          [0, 50, 50, 50]
+        );
+
+        expect(result).toHaveLength(1);
+        expect(result[0].card).toBe("card2");
+      });
     });
   });
 
