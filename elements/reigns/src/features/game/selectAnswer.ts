@@ -72,6 +72,7 @@ export const selectAnswer = (
           state.definition,
           flags,
           state.designerCards,
+          stats,
           previouslySelectedCardIds
         );
 
