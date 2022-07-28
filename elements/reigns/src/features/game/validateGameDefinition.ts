@@ -166,15 +166,16 @@ export const validateConditions = (
 const CONDITION_REGEXP =
   /^(?<key>[A-Za-z0-9_\-]+)(((?<number_operator>==|>=|>|!=|<|<=)(?<number_value>\d+))|(?<boolean_operator>==)(?<boolean_value>true|false))$/;
 export const parseCondition = (condition: string) => {
-  const test = condition.match(CONDITION_REGEXP);
-  if (!test || !test.groups) {
+  const matchArray = condition.match(CONDITION_REGEXP);
+  if (!matchArray || !matchArray.groups) {
     throw new Error(`Conditions ${condition} does not match the valid syntax`);
   }
 
   return {
-    key: test.groups.key,
-    value: test.groups.number_value || test.groups.boolean_value,
-    separator: test.groups.number_operator || test.groups.boolean_operator,
+    key: matchArray.groups.key,
+    value: matchArray.groups.number_value || matchArray.groups.boolean_value,
+    separator:
+      matchArray.groups.number_operator || matchArray.groups.boolean_operator,
   };
 };
 
@@ -183,20 +184,17 @@ export const getConditions = (card: Card) => {
     return [] as CardFlag[];
   }
 
-  return card.conditions
-    .split(FLAG_SEPARATOR)
-    .map((condition) => {
-      const parsedCondition = parseCondition(condition);
+  return card.conditions.split(FLAG_SEPARATOR).map((condition) => {
+    const parsedCondition = parseCondition(condition);
 
-      return {
-        key: parsedCondition.key,
-        value: parsedCondition.value,
-        operator: getOperator(
-          parsedCondition.separator as CONDITION_KEY_VALUE_SEPARATORS
-        ),
-      } as CardFlag;
-    })
-    .filter((t) => !!t) as CardFlag[];
+    return {
+      key: parsedCondition.key,
+      value: parsedCondition.value,
+      operator: getOperator(
+        parsedCondition.separator as CONDITION_KEY_VALUE_SEPARATORS
+      ),
+    } as CardFlag;
+  });
 };
 
 export const getFlags = (
