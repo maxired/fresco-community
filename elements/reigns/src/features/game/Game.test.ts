@@ -19,28 +19,6 @@ describe("Game", () => {
     mockSdk();
   });
   describe("game over", () => {
-    it("should clear participant votes", () => {
-      persistGameVote({
-        answer: "No",
-        countdown: 3,
-      });
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-
-      const result = new Game()
-        .answerNo(
-          createGameState(undefined, {
-            stats: [10],
-            selectedCard: createCard({ no_stat1: -20 }),
-          })
-        )
-        .retrieve();
-
-      const answer = getGameVote();
-      expect(answer).toEqual({});
-
-      expect(result.phase).toBe(GamePhase.ENDED);
-      expect(getSdk().storage.realtime.all(PARTICIPANT_VOTE_TABLE)).toEqual({});
-    });
     describe("startGame", () => {
       it("should select a card and set round to 1", () => {
         const result = new Game()
