@@ -1,0 +1,35 @@
+SECTION,,,,,,,,,,,,,,,,,,
+main,gameName,deathMessage,roundName,victoryMessage,victoryRoundThreshold,assetsUrl,,,,,,,,,,,,
+,Don't starve,You Died,Hour,Congrats on grinding this long,999,https://fres-co.github.io/fresco-community/elements/reigns/dist/games,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+stats,name,icon,value,,,,,,,,,,,,,,,
+,Wood,noun-coins-1123601.svg,0,,,,,,,,,,,,,,,
+,Stone,noun-coins-1123601.svg,0,,,,,,,,,,,,,,,
+,Food,noun-coins-1123601.svg,0,,,,,,,,,,,,,,,
+,Health,noun-shield-4865890.svg,50,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+cards,card,id,bearer,conditions,cooldown,weight,answer_yes,yes_stat1,yes_stat2,yes_stat3,yes_stat4,yes_custom,answer_no,no_stat1,no_stat2,no_stat3,no_stat4,no_custom
+,What should you do next?,,developer,explore==false gather==false eat==false craft==false,,1,Explore,0,0,0,0,explore=true,Gather,0,0,0,0,gather=true
+,What should you do next?,,developer,explore==false gather==false stat4<100 eat==false craft==false stat3>15,,1,Eat,0,0,0,0,eat=true,Explore,0,0,0,0,explore=true
+,What should you do next?,,developer,explore==false gather==false stat4<100 eat==false craft==false stat3>15,,1,Gather,0,0,0,0,gather=true,Eat,0,0,0,0,eat=true
+,What should you do next?,,developer,explore==false gather==false eat==false craft==false,3,1,Build something,0,0,0,0,craft=true,Idle,0,0,0,0,
+,What will you gather?,,developer,gather==true,,1,Wood,0,0,0,0,gatherwood=true,Stone,0,0,0,0,gatherstone=true
+,You got 1 stone,,developer,gatherstone==true,,6,Finish gathering,0,10,0,-20,gatherstone=false gather=false,Keep gathering,0,10,0,-20,
+,You got 2 stone,,developer,gatherstone==true,,3,Finish gathering,0,20,0,-20,gatherstone=false gather=false,Keep gathering,0,20,0,-20,
+,You got 3 stone,,developer,gatherstone==true,,2,Finish gathering,0,30,0,-20,gatherstone=false gather=false,Keep gathering,0,30,0,-20,
+,You got 1 wood,,developer,gatherwood==true,,6,Finish gathering,10,0,0,-20,gatherwood=false gather=false,Keep gathering,10,0,0,-20,
+,You got 2 wood,,developer,gatherwood==true,,3,Finish gathering,20,0,0,-20,gatherwood=false gather=false,Keep gathering,20,0,0,-20,
+,You got 3 wood,,developer,gatherwood==true,,2,Finish gathering,30,0,0,-20,gatherwood=false gather=false,Keep gathering,30,0,0,-20,
+,You got jumped by an angry chicken,,developer,gatherwood==true,,1,Fight!,0,0,0,0,gatherwood=false gather=false fight_chicken=true,Flee,0,0,0,0,gather=false gatherwood=false flee_chicken=true
+,You got jumped by an angry chicken,,developer,gatherstone==true,,1,Fight!,0,0,0,0,gatherstone=false gather=false fight_chicken=true,Flee,0,0,0,0,gather=false gatherstone=false flee_chicken=true
+,You successfully run like a coward,,developer,flee_chicken==true,,100,Totally smoke bombed that chicken,0,0,0,0,flee_chicken=false,It's nothing to be proud of,0,0,0,0,flee_chicken=false
+,The chicken pecks you during your cowardly retreat,,developer,flee_chicken==true,,100,Faster than it looked,0,0,0,-5,flee_chicken=false,,0,0,0,-5,flee_chicken=false
+,The chicken is much stronger than you expected. It leaves after it feels you are no longer a threat.,,developer,fight_chicken==true,,100,Next time chicken! (Shakes fist),0,0,0,-15,fight_chicken=false,I'm so sorry chicken,0,0,0,-15,fight_chicken=false
+,You stand victorious over your foe. Chicken dinner tonight?,,developer,fight_chicken==true,,100,Yum!,0,0,20,0,fight_chicken=false,There was never any doubt,0,0,20,0,fight_chicken=false
+,What will you eat?,,developer,eat==true,,1,A light snack,0,0,-5,5,eat=false,A royal feast,0,0,-15,15,eat=false
+,"You wander for hours, eventually finding some berry bushes",,developer,explore==true,,1,I feel at peace,0,0,0,0,explore=false,Pick some berries,0,0,20,0,explore=false
+,Wanna build a stone monolith?,,developer,craft==true stat2>59,,100,It towers majestically above the surroundings,0,-50,0,0,monolith=true craft=false,More impressive than the tower of babel,0,-50,0,0,monolith=true craft=false
+,Wanna build a wooden house?,,developer,craft==true stat1>59,,100,I feel like I could retire here,-50,0,0,0,house=true craft=false,Home sweet home,-50,0,0,0,house=true craft=false
+,There is nothing to build,,developer,craft==true,,1,I better gather more,0,0,0,0,craft=false,Lucky I like grinding,0,0,0,0,craft=false
+,"There's nothing more to do, congrats on winning!",,developer,monolith==true house==true wellfed==true,,1,"Gameover, you win",0,0,0,0,win=true,"Gameover, you win",0,0,0,0,win=true
+,You are a pillar of health,,developer,stat4==100 wellfed==false,10,100,It's all about the gains,0,0,0,0,wellfed=true,My efforts reward me,0,0,0,0,wellfed=true
