@@ -23,7 +23,7 @@ export const animateRoundTransition = async (
   state: PersistedGameState,
   immediate: boolean = false
 ) => {
-  Logger.log(Logger.TRANSITION, "Start");
+  Logger.log(Logger.TRANSITION, "1: Start");
   dispatch(startRoundTransition());
   if (!immediate) {
     Logger.log(Logger.TRANSITION, "Teleporting...");
@@ -32,14 +32,14 @@ export const animateRoundTransition = async (
   if (getSdk().localParticipant.isInsideElement) {
     // maybe participant is only looking at the game
     teleport("neutral");
-    Logger.log(Logger.TRANSITION, "Teleported!");
+    Logger.log(Logger.TRANSITION, "2: Teleported!");
   }
   if (!immediate) {
     Logger.log(Logger.TRANSITION, "Changing resources...");
     await wait(RESOURCE_CHANGE_DELAY);
   }
   dispatch(updateGame({ ...storedState.game, stats: state.stats }));
-  Logger.log(Logger.TRANSITION, "Resources updated!");
+  Logger.log(Logger.TRANSITION, "3: Resources updated!");
   dispatch(startQuestionAndAnswersTransition());
   if (!immediate) {
     Logger.log(Logger.TRANSITION, "Changing question...");
@@ -49,7 +49,7 @@ export const animateRoundTransition = async (
   Logger.log(Logger.TRANSITION, "Question updated!");
   dispatch(endQuestionAndAnswersTransition());
   dispatch(endRoundTransition());
-  Logger.log(Logger.TRANSITION, "End");
+  Logger.log(Logger.TRANSITION, "4: End");
 };
 const wait = (delay: number) =>
   new Promise((resolve) => setTimeout(resolve, delay));

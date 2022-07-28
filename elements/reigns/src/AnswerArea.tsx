@@ -22,11 +22,14 @@ export const AnswerArea = ({
   const isChangingQuestion = useSelector(
     (state: AppState) => state.transition.question
   );
+  const isChangingRound = useSelector(
+    (state: AppState) => state.transition.round
+  );
 
   const backgroundRef = useRoundedRectangleProgress(
     progress,
     color,
-    progress === 1,
+    isChangingRound && progress >= 1,
     !isChangingQuestion
   );
 
