@@ -1,4 +1,5 @@
 import { DEBUG } from "../../constants";
+import { Logger } from "../../Logger";
 import { Answer, getParticipantVotes } from "./persistence";
 
 export type VoteProgress = {
@@ -16,11 +17,10 @@ type CalculatedAnswer = {
 export const calculateAnswer = (): CalculatedAnswer => {
   const votes = getParticipantVotes();
 
-  if (DEBUG) {
-    console.log(
-      `Votes\n${votes.map((vote) => `${vote.name}: ${vote.answer}`).join("\n")}`
-    );
-  }
+  Logger.log(
+    Logger.VOTE,
+    `Votes\n${votes.map((vote) => `${vote.name}: ${vote.answer}`).join("\n")}`
+  );
 
   const results = votes.reduce(
     (memo, participant) => {

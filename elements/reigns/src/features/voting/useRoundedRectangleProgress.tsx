@@ -1,7 +1,8 @@
 import { Application, Graphics, Ticker, utils } from "pixi.js";
 import Tween, { Quad } from "gsap";
-import { useRef, useEffect, useState, RefObject } from "react";
-import { CARD_FILL_ANIMATION_DURATION } from "../../constants";
+import { useRef, useEffect, useState } from "react";
+import { ANSWER_FILL_ANIMATION_DURATION } from "../../constants";
+import { Logger } from "../../Logger";
 
 const duration = 1;
 const radius = 20;
@@ -40,9 +41,8 @@ export const useRoundedRectangleProgress = (
   useEffect(() => {
     const fillTween = Tween.to(currentFillRef, {
       current: fill ? 100 : 0,
-      duration: shouldAnimate ? CARD_FILL_ANIMATION_DURATION / 1000 : 0,
+      duration: shouldAnimate ? ANSWER_FILL_ANIMATION_DURATION / 1000 : 0,
       ease,
-      delay: fill && shouldAnimate ? duration : 0,
     });
 
     return () => {
@@ -266,7 +266,6 @@ const getPerimeter = (app: Application) => {
     };
   } catch (e) {
     console.error(e);
-    console.log("app", app);
     throw e;
   }
 };

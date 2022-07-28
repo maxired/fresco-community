@@ -3,6 +3,7 @@ import { determineHost, HOST_KEY } from "./determineHost";
 import { getSdk } from "../../sdk";
 import { IS_MOUNTED_TABLE, persistIsMounted } from "./persistIsMounted";
 import { GAME_TABLE } from "../game/Game";
+import { Logger } from "../../Logger";
 
 export type HostState = {
   currentHost: Participant | null;
@@ -33,7 +34,7 @@ const hostSlice = createSlice({
       };
 
       state.currentHost = determineHost(hostParams);
-      console.log('currentHost', state.currentHost);
+      Logger.log(Logger.HOST, "currentHost", state.currentHost);
       state.frescoUpdateCount = state.frescoUpdateCount + 1;
 
       if (

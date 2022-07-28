@@ -69,10 +69,8 @@ export const gameSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(initializeGame.pending, (state) => {
-        state= {...initialState, gameUrl: state.gameUrl}
+        state = { ...initialState, gameUrl: state.gameUrl };
         state.loading = Loading.InProgress;
-
-        console.log("GAME", "loading");
       })
       .addCase(initializeGame.fulfilled, (state, action) => {
         state.loading = Loading.Ended;
@@ -83,12 +81,9 @@ export const gameSlice = createSlice({
           console.error(e);
           state.loading = Loading.Error;
         }
-
-        console.log("GAME", "action.payload", action.payload);
       })
       .addCase(initializeGame.rejected, (state, action) => {
         state.loading = Loading.Error;
-        console.log("GAME", "failed", action);
       });
   },
 });
