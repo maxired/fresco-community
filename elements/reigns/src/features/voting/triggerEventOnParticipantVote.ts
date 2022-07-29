@@ -1,4 +1,5 @@
 import { Countdown } from "../../Countdown";
+import { Logger } from "../../Logger";
 import { getSdk } from "../../sdk";
 import { getParticipantVotes } from "./persistence";
 import { VotingState } from "./votingSlice";
@@ -29,6 +30,6 @@ export const triggerEventOnParticipantVote = (state: VotingState) => {
     }
   } else if (didAddVote) {
     // TODO: it's possible to reach this if the participant votes within one second of the countdown expiring
-    console.log(`No voteAdded event, because already locked`);
+    Logger.log(Logger.VOTE, `No voteAdded event, because already locked`);
   }
 };

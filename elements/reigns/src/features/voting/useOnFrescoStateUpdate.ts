@@ -6,22 +6,9 @@ import { updateVote } from "./votingSlice";
 import { persistIsInsideElement } from "./persistIsInsideElement";
 import { getSdk } from "../../sdk";
 import { Game } from "../game/Game";
-import {
-  GamePhase,
-  QUESTION_CHANGE_DELAY,
-  RESOURCE_CHANGE_DELAY,
-  TELEPORT_START_DELAY,
-} from "../../constants";
+import { GamePhase } from "../../constants";
 import { AppState } from "../../store";
-import { PersistedGameState } from "../game/types";
-import { teleport } from "./teleport";
-import {
-  endQuestionAndAnswersTransition,
-  endRoundTransition,
-  startQuestionAndAnswersTransition,
-  startRoundTransition,
-} from "../transition/fadeSlice";
-import { AnyAction, Dispatch } from "@reduxjs/toolkit";
+import { animateRoundTransition } from "./animateRoundTransition";
 
 export const PARTICIPANT_INSIDE_TABLE = "participants-inside";
 
@@ -38,13 +25,18 @@ export const useOnFrescoStateUpdate = () => {
     const state = new Game().retrieve();
 
     if (state) {
-      if (state.phase !== GamePhase.NOT_STARTED && (state.round > prevState.game.round || state.phase !== prevState.game.phase)) {
+      if (
+        state.phase !== GamePhase.NOT_STARTED &&
+        (state.round > prevState.game.round ||
+          state.phase !== prevState.game.phase)
+      ) {
         if (!prevState.transition.round) {
           void animateRoundTransition(
             dispatch,
             prevState,
             state,
-            prevState.game.phase === GamePhase.NOT_STARTED || prevState.game.phase === GamePhase.ENDED
+            prevState.game.phase === GamePhase.NOT_STARTED ||
+              prevState.game.phase === GamePhase.ENDED
           );
         }
       } else {
@@ -76,33 +68,3 @@ export const useOnFrescoStateUpdate = () => {
     persistIsInsideElement(prevLocalParticipantRef);
   };
 };
-
-const animateRoundTransition = async (
-  dispatch: Dispatch<AnyAction>,
-  storedState: AppState,
-  state: PersistedGameState,
-  immediate: boolean = false
-) => {
-  dispatch(startRoundTransition());
-  if (!immediate) {
-    await wait(TELEPORT_START_DELAY);
-  }
-  if (getSdk().localParticipant.isInsideElement) {
-    // maybe participant is only looking at the game
-    teleport("neutral");
-  }
-  if (!immediate) {
-    await wait(RESOURCE_CHANGE_DELAY);
-  }
-  dispatch(updateGame({ ...storedState.game, stats: state.stats }));
-  dispatch(startQuestionAndAnswersTransition());
-  if (!immediate) {
-    await wait(QUESTION_CHANGE_DELAY);
-  }
-  dispatch(updateGame({ ...storedState.game, ...state }));
-  dispatch(endQuestionAndAnswersTransition());
-  dispatch(endRoundTransition());
-};
-
-const wait = (delay: number) =>
-  new Promise((resolve) => setTimeout(resolve, delay));
