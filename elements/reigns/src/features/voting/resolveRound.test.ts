@@ -12,6 +12,7 @@ const {
 } = persistence;
 import { Countdown } from "../../Countdown";
 import * as selectNextCard from "../game/selectNextCard";
+import { getParticipantVotes } from "./persistence";
 
 type OptionalAnswer = persistence.Answer | null;
 const vote = (
@@ -86,16 +87,37 @@ describe("resolveRound", () => {
       expect(sdk.storage.realtime.all(PARTICIPANT_VOTE_TABLE)).toEqual({});
     });
 
+    it("should start countdown", () => {
       vote("Yes", "Yes", null);
 
       resolveRound(createGameState());
+
       const { countdown } = getGameVote();
       expect(Countdown.from(countdown).isStarted).toBe(true);
-      persistParticipantVote("remote1", null);
-      resolveRound(createGameState());
+    });
 
-      const { countdown: newCountdown } = getGameVote();
-      expect(Countdown.from(newCountdown).isStarted).toBe(false);
+    describe("when player removes vote", () => {
+      beforeEach(() => {
+        // majority voted
+        vote("Yes", "Yes", null);
+        resolveRound(createGameState());
+        // remove vote
+        vote("Yes", null, null);
+      });
+
+      it("should stop countdown", () => {
+        resolveRound(createGameState());
+
+        const { countdown: newCountdown } = getGameVote();
+        expect(Countdown.from(newCountdown).isStarted).toBe(false);
+      });
+      it("should not clear player votes", () => {
+        resolveRound(createGameState());
+
+        expect(getParticipantVotes()).toStrictEqual(
+          expect.arrayContaining([expect.objectContaining({ answer: "Yes" })])
+        );
+      });
     });
 
     it("should force reset if countdown gets too low", () => {
