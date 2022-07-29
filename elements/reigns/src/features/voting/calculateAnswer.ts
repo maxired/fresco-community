@@ -17,7 +17,8 @@ type CalculatedAnswer = {
 export const calculateAnswer = (): CalculatedAnswer => {
   const votes = getParticipantVotes();
 
-  Logger.log(
+  Logger.logIfDifferent(
+    Logger.Keys.PlayerVote,
     Logger.VOTE,
     `Votes\n${votes.map((vote) => `${vote.name}: ${vote.answer}`).join("\n")}`
   );

@@ -34,7 +34,7 @@ const hostSlice = createSlice({
       };
 
       state.currentHost = determineHost(hostParams);
-      Logger.log(Logger.HOST, "currentHost", state.currentHost);
+      Logger.log(Logger.HOST, "currentHost", JSON.stringify(state.currentHost));
       state.frescoUpdateCount = state.frescoUpdateCount + 1;
 
       if (

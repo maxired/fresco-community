@@ -13,7 +13,8 @@ import { Logger } from "../../Logger";
 export const resolveRound = (gameState: GameState) => {
   const { answer, countdown, everyoneVoted } = collateVotes();
 
-  Logger.log(
+  Logger.logIfDifferent(
+    Logger.Keys.RoundVote,
     Logger.VOTE,
     `Round ${gameState.round}, vote: ${answer}, countdown: ${countdown.value}`
   );
