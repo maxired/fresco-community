@@ -12,6 +12,18 @@ const {
 } = persistence;
 import { Countdown } from "../../Countdown";
 import * as selectNextCard from "../game/selectNextCard";
+import { getParticipantVotes } from "./persistence";
+
+type OptionalAnswer = persistence.Answer | null;
+const vote = (
+  localParticipantVote: OptionalAnswer,
+  remote1Vote: OptionalAnswer,
+  remote2Vote: OptionalAnswer
+) => {
+  persistParticipantVote(getSdk().localParticipant.id, localParticipantVote);
+  persistParticipantVote("remote1", remote1Vote);
+  persistParticipantVote("remote2", remote2Vote);
+};
 
 describe("resolveRound", () => {
   let sdk: IFrescoSdk;
@@ -30,11 +42,9 @@ describe("resolveRound", () => {
     });
   });
 
-  describe("majority achieved", () => {
+  describe("when enough votes to reach majority", () => {
     it("should apply vote instantly if everyone voted ", () => {
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", "No");
+      vote("Yes", "Yes", "No");
 
       resolveRound(createGameState());
 
@@ -44,9 +54,7 @@ describe("resolveRound", () => {
     });
 
     it("should start countdown if not everyone voted", () => {
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", null);
+      vote("Yes", "Yes", null);
 
       resolveRound(createGameState());
 
@@ -56,9 +64,7 @@ describe("resolveRound", () => {
     });
 
     it("should apply vote instantly if everyone voted and countdown already started", () => {
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", null);
+      vote("Yes", "Yes", null);
 
       resolveRound(createGameState());
       persistParticipantVote("remote2", "Yes");
@@ -70,9 +76,7 @@ describe("resolveRound", () => {
     });
 
     it("should clear participant votes after countdown === -1", () => {
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", "No");
+      vote("Yes", "Yes", "No");
 
       resolveRound(createGameState());
       expect(getGameVote().countdown).toBe(0);
@@ -83,25 +87,41 @@ describe("resolveRound", () => {
       expect(sdk.storage.realtime.all(PARTICIPANT_VOTE_TABLE)).toEqual({});
     });
 
-    it("should stop countdown if majority lost", () => {
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", null);
+    it("should start countdown", () => {
+      vote("Yes", "Yes", null);
 
       resolveRound(createGameState());
+
       const { countdown } = getGameVote();
       expect(Countdown.from(countdown).isStarted).toBe(true);
-      persistParticipantVote("remote1", null);
-      resolveRound(createGameState());
+    });
 
-      const { countdown: newCountdown } = getGameVote();
-      expect(Countdown.from(newCountdown).isStarted).toBe(false);
+    describe("when player removes vote", () => {
+      beforeEach(() => {
+        // majority voted
+        vote("Yes", "Yes", null);
+        resolveRound(createGameState());
+        // remove vote
+        vote("Yes", null, null);
+      });
+
+      it("should stop countdown", () => {
+        resolveRound(createGameState());
+
+        const { countdown: newCountdown } = getGameVote();
+        expect(Countdown.from(newCountdown).isStarted).toBe(false);
+      });
+      it("should not clear other player votes", () => {
+        resolveRound(createGameState());
+
+        expect(getParticipantVotes()).toStrictEqual(
+          expect.arrayContaining([expect.objectContaining({ answer: "Yes" })])
+        );
+      });
     });
 
     it("should force reset if countdown gets too low", () => {
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", null);
+      vote("Yes", "Yes", null);
 
       persistGameVote({ answer: "Yes", countdown: -43 });
       resolveRound(createGameState());
@@ -113,9 +133,7 @@ describe("resolveRound", () => {
     it("should select a new card once at end of round", () => {
       const spy = jest.spyOn(selectNextCard, "selectNextCard");
 
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", "Yes");
+      vote("Yes", "Yes", "Yes");
       persistGameVote({ answer: "Yes", countdown: 1 });
 
       resolveRound(createGameState()); //  0
@@ -128,9 +146,7 @@ describe("resolveRound", () => {
     it("should clear participant votes once per round", () => {
       const spy = jest.spyOn(persistence, "clearParticipantVotes");
 
-      persistParticipantVote(getSdk().localParticipant.id, "Yes");
-      persistParticipantVote("remote1", "Yes");
-      persistParticipantVote("remote2", "Yes");
+      vote("Yes", "Yes", "Yes");
       persistGameVote({ answer: "Yes", countdown: 1 });
 
       resolveRound(createGameState()); //  0
