@@ -152,151 +152,15 @@
     "content": {
       "visuals": [
         {
-          "id": "lwwhmffngu0gpnurw8bg5",
-          "isLocked": false,
-          "zIndex": 4,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": {
-              "x": -67,
-              "y": 584
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "vote-removed.mp3",
-            "TEXT_DISABLED": true,
-            "RADIUS": "6000",
-            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/y2l-bhi5ipc2eprcfo8gr.mp3",
-            "VOLUME": 0,
-            "LOOP": false,
-            "SPATIALIZED": false
-          }
-        },
-        {
-          "id": "udwa4u4_t-srbrd22fhin",
-          "isLocked": false,
-          "zIndex": 5,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": {
-              "x": 73,
-              "y": 584
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "vote-added.mp3",
-            "TEXT_DISABLED": true,
-            "RADIUS": "6000",
-            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/qgzgj6xymmfr9rl5nbujs.mp3",
-            "VOLUME": 0,
-            "LOOP": false,
-            "SPATIALIZED": false
-          }
-        },
-        {
-          "id": "udwa4u4_t-srbrd22fhim",
-          "isLocked": false,
-          "zIndex": 5,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": {
-              "x": 73,
-              "y": 584
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "vote-death.mp3",
-            "TEXT_DISABLED": true,
-            "RADIUS": "6000",
-            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/public/error.mp3",
-            "VOLUME": 0,
-            "LOOP": false,
-            "SPATIALIZED": false
-          }
-        },
-        {
-          "id": "aoy7acumnzsdwbfodo7uh",
-          "isLocked": false,
-          "zIndex": 6,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": {
-              "x": 1,
-              "y": 584
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "",
-            "TEXT_DISABLED": true,
-            "RADIUS": "900",
-            "SOURCE": "https://fres-co.github.io/fresco-community/assets/background-sounds/office.mp3",
-            "VOLUME": 5,
-            "LOOP": true,
-            "SPATIALIZED": true
-          }
-        },
-        {
-          "id": "z2bh59otjaixetuze-qic",
-          "isLocked": false,
-          "zIndex": 7,
-          "layer": 0,
-          "renderer": "CameraFrame",
-          "transform": {
-            "position": {
-              "x": -3,
-              "y": 222
-            },
-            "size": {
-              "x": 1800,
-              "y": 920
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT_DISABLED": true,
-            "APPEARANCE_CAMERA_MIN_ZOOM": 0,
-            "APPEARANCE_MARGIN": 0
-          }
-        },
-        {
           "id": "zde8o0sdltprhz0j0jnab",
           "isLocked": false,
-          "zIndex": 8,
+          "zIndex": 221,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
             "position": {
               "x": 0,
-              "y": 110
+              "y": 0
             },
             "size": {
               "x": 1740,
@@ -318,13 +182,13 @@
         {
           "id": "qyyxc3kge-nq3phm1aq0v",
           "isLocked": false,
-          "zIndex": 9,
+          "zIndex": 222,
           "layer": 0,
           "renderer": "LandingZone",
           "transform": {
             "position": {
               "x": 0,
-              "y": 506
+              "y": 396
             },
             "size": {
               "x": 520,
@@ -341,13 +205,13 @@
         {
           "id": "yxqya8t87dpqe3kjz6nzf",
           "isLocked": false,
-          "zIndex": 100,
+          "zIndex": 230,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
             "position": {
               "x": -584,
-              "y": 550
+              "y": 440
             },
             "size": {
               "x": 572,
@@ -369,13 +233,13 @@
         {
           "id": "9mn0owh67drtxsuwtijz-",
           "isLocked": false,
-          "zIndex": 110,
+          "zIndex": 231,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
             "position": {
               "x": 584.5,
-              "y": 549
+              "y": 439
             },
             "size": {
               "x": 571,
@@ -397,13 +261,13 @@
         {
           "id": "oxj6sg2rocwf1mckizsda",
           "isLocked": false,
-          "zIndex": 12,
+          "zIndex": 223,
           "layer": 0,
           "renderer": "IFrame",
           "transform": {
             "position": {
               "x": 0,
-              "y": 210
+              "y": 100
             },
             "size": {
               "x": 1780,
@@ -428,15 +292,67 @@
           }
         },
         {
+          "id": "z2bh59otjaixetuze-qic",
+          "isLocked": false,
+          "zIndex": 220,
+          "layer": 0,
+          "renderer": "CameraFrame",
+          "transform": {
+            "position": {
+              "x": -3,
+              "y": 112
+            },
+            "size": {
+              "x": 1800,
+              "y": 920
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT_DISABLED": true,
+            "APPEARANCE_CAMERA_MIN_ZOOM": 0,
+            "APPEARANCE_MARGIN": 0
+          }
+        },
+        {
+          "id": "aoy7acumnzsdwbfodo7uh",
+          "isLocked": false,
+          "zIndex": 219,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": {
+              "x": 1,
+              "y": 474
+            },
+            "size": {
+              "x": 30,
+              "y": 30
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "",
+            "TEXT_DISABLED": true,
+            "RADIUS": "900",
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/background-sounds/office.mp3",
+            "VOLUME": 5,
+            "LOOP": true,
+            "SPATIALIZED": true
+          }
+        },
+        {
           "id": "abpnnxcz54p-x2xolt9qs",
           "isLocked": false,
-          "zIndex": 13,
+          "zIndex": 224,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
             "position": {
               "x": 680,
-              "y": 631
+              "y": 521
             },
             "size": {
               "x": 64,
@@ -459,13 +375,13 @@
         {
           "id": "vxgfs9meg5qc--gjxxuo0",
           "isLocked": false,
-          "zIndex": 14,
+          "zIndex": 225,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
             "position": {
               "x": 618,
-              "y": 646
+              "y": 536
             },
             "size": {
               "x": 34,
@@ -488,13 +404,13 @@
         {
           "id": "zlxmccsto0rycgesy9cpq",
           "isLocked": false,
-          "zIndex": 15,
+          "zIndex": 226,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
             "position": {
               "x": 571,
-              "y": 646
+              "y": 536
             },
             "size": {
               "x": 34,
@@ -517,13 +433,13 @@
         {
           "id": "eolco0cygtbt4u9lcygk2",
           "isLocked": false,
-          "zIndex": 16,
+          "zIndex": 227,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
             "position": {
               "x": 524,
-              "y": 646
+              "y": 536
             },
             "size": {
               "x": 34,
@@ -544,14 +460,104 @@
           }
         },
         {
+          "id": "lwwhmffngu0gpnurw8bg5",
+          "isLocked": false,
+          "zIndex": 216,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": {
+              "x": -67,
+              "y": 474
+            },
+            "size": {
+              "x": 30,
+              "y": 30
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "vote-removed.mp3",
+            "TEXT_DISABLED": true,
+            "RADIUS": "6000",
+            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/y2l-bhi5ipc2eprcfo8gr.mp3",
+            "VOLUME": 0,
+            "LOOP": false,
+            "SPATIALIZED": false
+          }
+        },
+        {
+          "id": "udwa4u4_t-srbrd22fhin",
+          "isLocked": false,
+          "zIndex": 217,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": {
+              "x": 73,
+              "y": 474
+            },
+            "size": {
+              "x": 30,
+              "y": 30
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "vote-added.mp3",
+            "TEXT_DISABLED": true,
+            "RADIUS": "6000",
+            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/qgzgj6xymmfr9rl5nbujs.mp3",
+            "VOLUME": 0,
+            "LOOP": false,
+            "SPATIALIZED": false
+          }
+        },
+        {
+          "id": "udwa4u4_t-srbrd22fhim",
+          "isLocked": false,
+          "zIndex": 218,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": {
+              "x": 73,
+              "y": 474
+            },
+            "size": {
+              "x": 30,
+              "y": 30
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "vote-death.mp3",
+            "TEXT_DISABLED": true,
+            "RADIUS": "6000",
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/public/error.mp3",
+            "VOLUME": 0,
+            "LOOP": false,
+            "SPATIALIZED": false
+          }
+        },
+        {
           "id": "hjj6qlbu2kkzszvsuecv_",
           "isLocked": true,
-          "zIndex": 46,
+          "zIndex": 229,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": { "x": 65, "y": 550 },
-            "size": { "x": 592, "y": 220 },
+            "position": {
+              "x": 65,
+              "y": 440
+            },
+            "size": {
+              "x": 592,
+              "y": 220
+            },
             "rotation": 0
           },
           "appearance": {
@@ -564,12 +570,35 @@
             "BODY_TYPE": "PASSTHROUGH",
             "OPACITY": 0
           }
+        },
+        {
+          "id": "sbhw2yvzllhwg3qrxzfgn",
+          "isLocked": false,
+          "zIndex": -233,
+          "layer": 0,
+          "renderer": "ConversationZone",
+          "transform": {
+            "position": {
+              "x": -3,
+              "y": 112
+            },
+            "size": {
+              "x": 1800,
+              "y": 920
+            },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "AUTOMUTE": false,
+            "TEXT_DISABLED": true
+          }
         }
       ],
       "groups": [
         {
           "id": "aqwmmu6uoqqsyjskwy1sx",
-          "zIndex": 17,
+          "zIndex": 228,
           "isLocked": false,
           "layer": 0,
           "childIds": [
@@ -587,12 +616,13 @@
             "lwwhmffngu0gpnurw8bg5",
             "udwa4u4_t-srbrd22fhin",
             "udwa4u4_t-srbrd22fhim",
-            "hjj6qlbu2kkzszvsuecv_"
+            "hjj6qlbu2kkzszvsuecv_",
+            "sbhw2yvzllhwg3qrxzfgn"
           ],
           "transform": {
             "position": {
               "x": -3,
-              "y": 216
+              "y": 106
             },
             "size": {
               "x": 1800,
