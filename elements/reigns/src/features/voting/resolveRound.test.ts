@@ -111,7 +111,7 @@ describe("resolveRound", () => {
         const { countdown: newCountdown } = getGameVote();
         expect(Countdown.from(newCountdown).isStarted).toBe(false);
       });
-      it("should not clear player votes", () => {
+      it("should not clear other player votes", () => {
         resolveRound(createGameState());
 
         expect(getParticipantVotes()).toStrictEqual(
