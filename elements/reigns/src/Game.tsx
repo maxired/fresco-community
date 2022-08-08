@@ -77,23 +77,6 @@ export const Game = () => {
     }
   };
 
-  if (phase === GamePhase.ENDED) {
-    return (
-      <div className="game-half first-half">
-        <div className="end">
-          <div className="round">
-            {gameDefinition?.roundName} {round}
-          </div>
-          <div className="end__message">
-            {isGameWon
-              ? gameDefinition?.victoryMessage
-              : gameDefinition?.deathMessage}
-          </div>
-          {isHost && <button onClick={doRestartGame}>Play again</button>}
-        </div>
-      </div>
-    );
-  }
 
   if (phase === GamePhase.NOT_STARTED) {
     return (
@@ -107,7 +90,34 @@ export const Game = () => {
     );
   }
 
-  if (!selectedCard || !gameDefinition) {
+  if (!gameDefinition) {
+    return null;
+  }
+
+  if (phase === GamePhase.ENDED) {
+    return (
+      <div className="game-half first-half">
+         <Header
+          definition={gameDefinition}
+          stats={currentStats}
+          round={round}
+        />
+
+        <div className="end">
+         
+          <div className="end__message">
+            {isGameWon
+              ? gameDefinition?.victoryMessage
+              : gameDefinition?.deathMessage}
+          </div>
+          {isHost && <button onClick={doRestartGame}>Play again</button>}
+        </div>
+      </div>
+    );
+  }
+
+
+  if (!selectedCard) {
     return null;
   }
 

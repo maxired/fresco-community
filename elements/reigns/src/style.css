@@ -291,20 +291,17 @@ button {
 }
 
 .end {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
   font-size: 6vw;
 
   width: 100%;
   color: #fff;
   text-align: center;
+  flex-grow: 1;
 }
 
 .end__message {
   color: var(--color-error);
+  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
