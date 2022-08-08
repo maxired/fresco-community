@@ -13,6 +13,7 @@ import { AnswerArea } from "./AnswerArea";
 import { Countdown } from "./Countdown";
 import { getSdk } from "./sdk";
 import { GameDefinition } from "./features/game/types";
+import { useTextFit } from "./useTextFit";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
@@ -95,20 +96,15 @@ export const Game = () => {
   }
 
   if (phase === GamePhase.ENDED) {
-    const endMessage = getEndMessage(gameDefinition, currentStats, isGameWon);
     return (
-      <div className="game-half first-half">
-        <Header
-          definition={gameDefinition}
-          stats={currentStats}
-          round={round}
-        />
-
-        <div className="end">
-          <div className="end__message">{endMessage}</div>
-          {isHost && <button onClick={doRestartGame}>Play again</button>}
-        </div>
-      </div>
+      <EndScreen
+        gameDefinition={gameDefinition}
+        currentStats={currentStats}
+        isGameWon={isGameWon}
+        round={round}
+        isHost={isHost}
+        doRestartGame={doRestartGame}
+      />
     );
   }
 
@@ -162,8 +158,6 @@ const getEndMessage = (
     return gameDefinition.victoryMessage;
   }
 
-  debugger;
-
   const emptyIndex = statsValues.findIndex((statValue) => statValue <= 0);
   if (emptyIndex > -1) {
     return (
@@ -174,3 +168,37 @@ const getEndMessage = (
 
   return gameDefinition.deathMessage;
 };
+function EndScreen({
+  gameDefinition,
+  currentStats,
+  isGameWon,
+  round,
+  isHost,
+  doRestartGame,
+}: {
+  gameDefinition: GameDefinition;
+  currentStats: number[];
+  isGameWon: boolean;
+  round: number;
+  isHost: string | boolean | undefined;
+  doRestartGame: () => void;
+}) {
+  const endMessage = getEndMessage(gameDefinition, currentStats, isGameWon);
+
+  const messageRef = useTextFit(endMessage);
+
+  return (
+    <div className="game-half first-half">
+      <Header definition={gameDefinition} stats={currentStats} round={round} />
+
+      <div className="end">
+        <div className="end__message" ref={messageRef} />
+        {isHost && (
+          <button onClick={doRestartGame} className="end__restart_button">
+            Play again
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

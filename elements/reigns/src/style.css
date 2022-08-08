@@ -297,10 +297,19 @@ button {
   color: #fff;
   text-align: center;
   flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
 }
 
 .end__message {
   color: var(--color-error);
+  margin-top: 2rem;
+  height: calc(100% - 10rem);
+}
+
+.end__restart_button {
+  display: block;
+  margin: auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
