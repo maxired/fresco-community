@@ -12,6 +12,7 @@ import { getIsHost } from "./features/host/persistence";
 import { AnswerArea } from "./AnswerArea";
 import { Countdown } from "./Countdown";
 import { getSdk } from "./sdk";
+import { GameDefinition } from "./features/game/types";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
@@ -77,7 +78,6 @@ export const Game = () => {
     }
   };
 
-
   if (phase === GamePhase.NOT_STARTED) {
     return (
       <div className="game-half first-half">
@@ -95,27 +95,22 @@ export const Game = () => {
   }
 
   if (phase === GamePhase.ENDED) {
+    const endMessage = getEndMessage(gameDefinition, currentStats, isGameWon);
     return (
       <div className="game-half first-half">
-         <Header
+        <Header
           definition={gameDefinition}
           stats={currentStats}
           round={round}
         />
 
         <div className="end">
-         
-          <div className="end__message">
-            {isGameWon
-              ? gameDefinition?.victoryMessage
-              : gameDefinition?.deathMessage}
-          </div>
+          <div className="end__message">{endMessage}</div>
           {isHost && <button onClick={doRestartGame}>Play again</button>}
         </div>
       </div>
     );
   }
-
 
   if (!selectedCard) {
     return null;
@@ -156,4 +151,26 @@ export const Game = () => {
       </div>
     </>
   );
+};
+
+const getEndMessage = (
+  gameDefinition: GameDefinition,
+  statsValues: number[],
+  isGameWon: boolean
+) => {
+  if (isGameWon) {
+    return gameDefinition.victoryMessage;
+  }
+
+  debugger;
+
+  const emptyIndex = statsValues.findIndex((statValue) => statValue <= 0);
+  if (emptyIndex > -1) {
+    return (
+      gameDefinition.stats[emptyIndex].deathMessage ??
+      gameDefinition.deathMessage
+    );
+  }
+
+  return gameDefinition.deathMessage;
 };
