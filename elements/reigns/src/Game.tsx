@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { Header } from "./Header";
-import { Question } from "./Question";
 import { useSelector, useStore } from "react-redux";
 import { GamePhase, VICTORY_FLAG_NAME, VICTORY_FLAG_VALUE } from "./constants";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
@@ -9,11 +7,11 @@ import { useVoteListener } from "./features/voting/useVoteListener";
 import { useCollateVotes } from "./features/voting/useCollateVotes";
 import { Game as GamePersistence } from "./features/game/Game";
 import { getIsHost } from "./features/host/persistence";
-import { AnswerArea } from "./AnswerArea";
 import { Countdown } from "./Countdown";
 import { getSdk } from "./sdk";
-import { GameDefinition } from "./features/game/types";
-import { useTextFit } from "./useTextFit";
+import { EndedScreen } from "./screens/EndedScreen/EndedScreen";
+import { NotStartedScreen } from "./screens/NotStartedScreen";
+import { StartedScreen } from "./screens/StartedScreen";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
@@ -81,7 +79,7 @@ export const Game = () => {
 
   if (phase === GamePhase.NOT_STARTED) {
     return (
-      <NotStartScreen
+      <NotStartedScreen
         gameDefinition={gameDefinition}
         isHost={isHost}
         doRestartGame={doRestartGame}
@@ -95,7 +93,7 @@ export const Game = () => {
 
   if (phase === GamePhase.ENDED) {
     return (
-      <EndScreen
+      <EndedScreen
         gameDefinition={gameDefinition}
         currentStats={currentStats}
         isGameWon={isGameWon}
@@ -111,118 +109,17 @@ export const Game = () => {
   }
 
   return (
-    <>
-      <div className="game-half first-half" onClick={doRestartGame}>
-        <Header
-          definition={gameDefinition}
-          stats={currentStats}
-          round={round}
-        />
-        <Question card={selectedCard} />
-      </div>
-      <div className="game-half answers">
-        <AnswerArea
-          text={selectedCard.answer_no || "No"}
-          answer="no"
-          progress={noProgress}
-          color="#e200a4"
-          votesMissing={noVotesMissing}
-        />
-        <div className="answer answer--neutral">
-          {countdown.isVoting && (
-            <div className="countdown" data-testid="countdown">
-              <>{countdown.value}...</>
-            </div>
-          )}
-        </div>
-        <AnswerArea
-          text={selectedCard.answer_yes || "Yes"}
-          answer="yes"
-          progress={yesProgress}
-          color="#9e32d6"
-          votesMissing={yesVotesMissing}
-        />
-      </div>
-    </>
+    <StartedScreen
+      gameDefinition={gameDefinition}
+      currentStats={currentStats}
+      round={round}
+      selectedCard={selectedCard}
+      countdown={countdown}
+      doRestartGame={doRestartGame}
+      noProgress={noProgress}
+      yesProgress={yesProgress}
+      noVotesMissing={noVotesMissing}
+      yesVotesMissing={yesVotesMissing}
+    />
   );
 };
-
-const getEndMessage = (
-  gameDefinition: GameDefinition,
-  statsValues: number[],
-  isGameWon: boolean
-) => {
-  if (isGameWon) {
-    return gameDefinition.victoryMessage;
-  }
-
-  const emptyIndex = statsValues.findIndex((statValue) => statValue <= 0);
-  if (emptyIndex > -1) {
-    return (
-      gameDefinition.stats[emptyIndex].deathMessage ??
-      gameDefinition.deathMessage
-    );
-  }
-
-  return gameDefinition.deathMessage;
-};
-function NotStartScreen({
-  gameDefinition,
-  isHost,
-  doRestartGame,
-}: {
-  gameDefinition: GameDefinition | null;
-  isHost: string | boolean | undefined;
-  doRestartGame: () => void;
-}) {
-  const messageRef = useTextFit(gameDefinition?.gameName);
-
-  return (
-    <div className="game-half first-half">
-      <div className="end">
-        <div className="end__message" ref={messageRef} />
-        {isHost && (
-          <button className="end__restart_button" onClick={doRestartGame}>
-            Start game
-          </button>
-        )}
-        {!isHost && <div>Waiting for host to start...</div>}
-      </div>
-    </div>
-  );
-}
-
-function EndScreen({
-  gameDefinition,
-  currentStats,
-  isGameWon,
-  round,
-  isHost,
-  doRestartGame,
-}: {
-  gameDefinition: GameDefinition;
-  currentStats: number[];
-  isGameWon: boolean;
-  round: number;
-  isHost: string | boolean | undefined;
-  doRestartGame: () => void;
-}) {
-  const endMessage = getEndMessage(gameDefinition, currentStats, isGameWon);
-
-  const messageRef = useTextFit(endMessage);
-
-  return (
-    <div className="game-half first-half">
-      <Header definition={gameDefinition} stats={currentStats} round={round} />
-
-      <div className="end">
-        <div className="end__message" ref={messageRef} />
-        {isHost && (
-          <button onClick={doRestartGame} className="end__restart_button">
-            Play again
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
