@@ -41,7 +41,12 @@ export const Meter = ({
   }, [percent]);
 
   return (
-    <div className="meter">
+    <div
+      className={clsx("meter", {
+        shake: percent <= 0,
+        depleted: percent <= 0,
+      })}
+    >
       <div className="meter__label">
         <img src={`${assetsUrl}/${src}`} />
         <div className="meter__name" title={name}>
