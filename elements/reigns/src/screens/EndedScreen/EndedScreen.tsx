@@ -24,7 +24,7 @@ export function EndedScreen({
   const messageRef = useTextFit(endMessage);
 
   return (
-    <div className="game-half first-half">
+    <div className="game-half first-half game--ended">
       <Header definition={gameDefinition} stats={currentStats} round={round} />
 
       <div className="end">

@@ -79,13 +79,13 @@ button {
   border-radius: 5px;
 }
 
-.meter__progress--grow .meter__percent,
-.meter__progress--grow--big .meter__percent {
+.game--started .meter__progress--grow .meter__percent,
+.game--started .meter__progress--grow--big .meter__percent {
   background-color: green;
 }
 
-.meter__progress--shrink .meter__percent,
-.meter__progress--shrink--big .meter__percent {
+.game--started .meter__progress--shrink .meter__percent,
+.game--started .meter__progress--shrink--big .meter__percent {
   background-color: red;
 }
 
@@ -99,15 +99,15 @@ button {
   color: var(--color-primary);
 }
 
-.meter__progress--shrink.meter__arrow,
-.meter__progress--shrink--big.meter__arrow {
+.game--started .meter__progress--shrink.meter__arrow,
+.game--started .meter__progress--shrink--big.meter__arrow {
   transition: opacity var(--stats-color-transition-duration) ease, color 0s;
   color: red;
   opacity: 1;
 }
 
-.meter__progress--grow.meter__arrow,
-.meter__progress--grow--big.meter__arrow {
+.game--started .meter__progress--grow.meter__arrow,
+.game--started .meter__progress--grow--big.meter__arrow {
   transition: opacity var(--stats-color-transition-duration) ease, color 0s;
   color: green;
   opacity: 1;
@@ -128,6 +128,7 @@ button {
 
 .meter {
   width: 15vw;
+  color: white;
 }
 
 .meter__label {
@@ -138,7 +139,6 @@ button {
 }
 .meter__name {
   white-space: nowrap;
-  color: #fff;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -324,4 +324,22 @@ button {
 /* this class is dynamically added by textFit */
 .textFitAlignVert {
   max-height: 100%;
+}
+
+.game--ended .red-glow {
+  --glow-color: red;
+  animation: glow 1.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 0px 15px 2px;
+  }
+  50% {
+    box-shadow: var(--glow-color) 0px 0px 15px 2px;
+  }
+  100% {
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 0px 15px 2px;
+  }
 }

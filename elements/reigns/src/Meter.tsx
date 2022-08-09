@@ -41,14 +41,20 @@ export const Meter = ({
   }, [percent]);
 
   return (
-    <div className="meter">
+    <div className={"meter"}>
       <div className="meter__label">
         <img src={`${assetsUrl}/${src}`} />
         <div className="meter__name" title={name}>
           {name}
         </div>
       </div>
-      <div className={clsx("meter__progress", currentAnimation)}>
+      <div
+        className={clsx(
+          "meter__progress",
+          currentAnimation,
+          percent <= 0 && "red-glow"
+        )}
+      >
         <div className="meter__percent" style={{ width: percent + "%" }} />
       </div>
       <MeterArrow

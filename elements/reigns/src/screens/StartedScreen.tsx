@@ -29,7 +29,7 @@ export const StartedScreen = ({
   doRestartGame: () => void;
 }) => (
   <>
-    <div className="game-half first-half" onClick={doRestartGame}>
+    <div className="game-half first-half game--started" onClick={doRestartGame}>
       <Header definition={gameDefinition} stats={currentStats} round={round} />
       <Question card={selectedCard} />
     </div>
