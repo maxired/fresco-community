@@ -94,6 +94,7 @@ export const Game = () => {
   if (phase === GamePhase.ENDED) {
     return (
       <EndedScreen
+        key="screen"
         gameDefinition={gameDefinition}
         currentStats={currentStats}
         isGameWon={isGameWon}
@@ -110,6 +111,7 @@ export const Game = () => {
 
   return (
     <StartedScreen
+      key="screen"
       gameDefinition={gameDefinition}
       currentStats={currentStats}
       round={round}

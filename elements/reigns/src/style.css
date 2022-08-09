@@ -79,13 +79,13 @@ button {
   border-radius: 5px;
 }
 
-.meter__progress--grow .meter__percent,
-.meter__progress--grow--big .meter__percent {
+.game--started .meter__progress--grow .meter__percent,
+.game--started .meter__progress--grow--big .meter__percent {
   background-color: green;
 }
 
-.meter__progress--shrink .meter__percent,
-.meter__progress--shrink--big .meter__percent {
+.game--started .meter__progress--shrink .meter__percent,
+.game--started .meter__progress--shrink--big .meter__percent {
   background-color: red;
 }
 
@@ -99,15 +99,15 @@ button {
   color: var(--color-primary);
 }
 
-.meter__progress--shrink.meter__arrow,
-.meter__progress--shrink--big.meter__arrow {
+.game--started .meter__progress--shrink.meter__arrow,
+.game--started .meter__progress--shrink--big.meter__arrow {
   transition: opacity var(--stats-color-transition-duration) ease, color 0s;
   color: red;
   opacity: 1;
 }
 
-.meter__progress--grow.meter__arrow,
-.meter__progress--grow--big.meter__arrow {
+.game--started .meter__progress--grow.meter__arrow,
+.game--started .meter__progress--grow--big.meter__arrow {
   transition: opacity var(--stats-color-transition-duration) ease, color 0s;
   color: green;
   opacity: 1;
@@ -324,7 +324,7 @@ button {
   max-height: 100%;
 }
 
-.red-glow {
+.game--ended .red-glow {
   --glow-color: red;
   animation: glow 1.5s;
   animation-iteration-count: infinite;
