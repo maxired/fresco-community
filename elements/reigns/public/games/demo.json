@@ -7,22 +7,26 @@
     {
       "name": "Profit",
       "icon": "noun-coins-1123601.svg",
-      "value": 50
+      "value": 50,
+      "deathMessage": "Your company goes into bankruptcy"
     },
     {
       "name": "Customer satisfaction",
       "icon": "noun-crowd-2383331.svg",
-      "value": 50
+      "value": 50,
+      "deathMessage": "No customers, no money"
     },
     {
       "name": "Security",
       "icon": "noun-shield-4865890.svg",
-      "value": 50
+      "value": 50,
+      "deathMessage": "You have been fired. Data security was under your umbrella"
     },
     {
       "name": "Team well-being",
       "icon": "noun-team-4854330.svg",
-      "value": 50
+      "value": 50,
+      "deathMessage": "The CEO has no other choice but to replace you"
     }
   ],
   "assetsUrl": "games",

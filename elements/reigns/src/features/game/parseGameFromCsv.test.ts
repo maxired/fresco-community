@@ -1,12 +1,14 @@
 import { parseGameFromCsv } from "./parseGameFromCsv";
 import { GameDefinition } from "./types";
 
-const getData = ({ main: { victoryRoundThreshold = `10` } = {}} = {}) => `SECTION,,,,,,,,,,,,,,,,,,,
+const getData = ({
+  main: { victoryRoundThreshold = `10` } = {},
+} = {}) => `SECTION,,,,,,,,,,,,,,,,,,,
 main,gameName,deathMessage,victoryMessage,victoryRoundThreshold,roundName,assetsUrl,,,,,,,,,,,,,,,
 ,A month in the life of a data officer,You have been fired!,You won!,${victoryRoundThreshold},Day,games,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
-stats,name,icon,value,,,,,,,,,,,,,,,,
-,Profit,noun-coins-1123601.svg,50,,,,,,,,,,,,,,,,
+stats,name,icon,value,deathMessage,,,,,,,,,,,,,,,
+,Profit,noun-coins-1123601.svg,50,Need more money,,,,,,,,,,,,,,,
 ,Customer satisfaction,noun-crowd-2383331.svg,37,,,,,,,,,,,,,,,,
 ,Security,noun-shield-4865890.svg,5,,,,,,,,,,,,,,,,
 ,Team well-being,noun-team-4854330.svg,78,,,,,,,,,,,,,,,,
@@ -45,6 +47,7 @@ describe("parseGameFromCsv", () => {
     expect(stats[0].name).toBe("Profit");
     expect(stats[0].icon).toBe("noun-coins-1123601.svg");
     expect(stats[0].value).toBe(50);
+    expect(stats[0].deathMessage).toBe("Need more money");
 
     expect(stats[1].name).toBe("Customer satisfaction");
     expect(stats[1].icon).toBe("noun-crowd-2383331.svg");
@@ -60,15 +63,19 @@ describe("parseGameFromCsv", () => {
   });
 
   it("should parse main section from string", () => {
-    const { gameName, deathMessage, victoryMessage, victoryRoundThreshold, roundName, assetsUrl } = parseGameFromCsv(
-      getData()
-    ) as GameDefinition;
+    const {
+      gameName,
+      deathMessage,
+      victoryMessage,
+      victoryRoundThreshold,
+      roundName,
+      assetsUrl,
+    } = parseGameFromCsv(getData()) as GameDefinition;
 
     expect(gameName).toBe("A month in the life of a data officer");
     expect(deathMessage).toBe("You have been fired!");
     expect(victoryMessage).toBe("You won!");
     expect(victoryRoundThreshold).toBe(10);
-
 
     expect(roundName).toBe("Day");
     expect(assetsUrl).toBe("games");

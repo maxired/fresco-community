@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { Header } from "./Header";
-import { Question } from "./Question";
 import { useSelector, useStore } from "react-redux";
 import { GamePhase, VICTORY_FLAG_NAME, VICTORY_FLAG_VALUE } from "./constants";
 import { usePersistIsMounted } from "./features/host/usePersistIsMounted";
@@ -9,9 +7,11 @@ import { useVoteListener } from "./features/voting/useVoteListener";
 import { useCollateVotes } from "./features/voting/useCollateVotes";
 import { Game as GamePersistence } from "./features/game/Game";
 import { getIsHost } from "./features/host/persistence";
-import { AnswerArea } from "./AnswerArea";
 import { Countdown } from "./Countdown";
 import { getSdk } from "./sdk";
+import { EndedScreen } from "./screens/EndedScreen/EndedScreen";
+import { NotStartedScreen } from "./screens/NotStartedScreen";
+import { StartedScreen } from "./screens/StartedScreen";
 
 export const Game = () => {
   const currentHost = useSelector((state: AppState) => state.host.currentHost);
@@ -77,73 +77,51 @@ export const Game = () => {
     }
   };
 
-  if (phase === GamePhase.ENDED) {
-    return (
-      <div className="game-half first-half">
-        <div className="end">
-          <div className="round">
-            {gameDefinition?.roundName} {round}
-          </div>
-          <div className="end__message">
-            {isGameWon
-              ? gameDefinition?.victoryMessage
-              : gameDefinition?.deathMessage}
-          </div>
-          {isHost && <button onClick={doRestartGame}>Play again</button>}
-        </div>
-      </div>
-    );
-  }
-
   if (phase === GamePhase.NOT_STARTED) {
     return (
-      <div className="game-half first-half">
-        <div className="end">
-          <div className="end__message">{gameDefinition?.gameName}</div>
-          {isHost && <button onClick={doRestartGame}>Start game</button>}
-          {!isHost && <div>Waiting for host to start...</div>}
-        </div>
-      </div>
+      <NotStartedScreen
+        gameDefinition={gameDefinition}
+        isHost={isHost}
+        doRestartGame={doRestartGame}
+      />
     );
   }
 
-  if (!selectedCard || !gameDefinition) {
+  if (!gameDefinition) {
+    return null;
+  }
+
+  if (phase === GamePhase.ENDED) {
+    return (
+      <EndedScreen
+        key="screen"
+        gameDefinition={gameDefinition}
+        currentStats={currentStats}
+        isGameWon={isGameWon}
+        round={round}
+        isHost={isHost}
+        doRestartGame={doRestartGame}
+      />
+    );
+  }
+
+  if (!selectedCard) {
     return null;
   }
 
   return (
-    <>
-      <div className="game-half first-half" onClick={doRestartGame}>
-        <Header
-          definition={gameDefinition}
-          stats={currentStats}
-          round={round}
-        />
-        <Question card={selectedCard} />
-      </div>
-      <div className="game-half answers">
-        <AnswerArea
-          text={selectedCard.answer_no || "No"}
-          answer="no"
-          progress={noProgress}
-          color="#e200a4"
-          votesMissing={noVotesMissing}
-        />
-        <div className="answer answer--neutral">
-          {countdown.isVoting && (
-            <div className="countdown" data-testid="countdown">
-              <>{countdown.value}...</>
-            </div>
-          )}
-        </div>
-        <AnswerArea
-          text={selectedCard.answer_yes || "Yes"}
-          answer="yes"
-          progress={yesProgress}
-          color="#9e32d6"
-          votesMissing={yesVotesMissing}
-        />
-      </div>
-    </>
+    <StartedScreen
+      key="screen"
+      gameDefinition={gameDefinition}
+      currentStats={currentStats}
+      round={round}
+      selectedCard={selectedCard}
+      countdown={countdown}
+      doRestartGame={doRestartGame}
+      noProgress={noProgress}
+      yesProgress={yesProgress}
+      noVotesMissing={noVotesMissing}
+      yesVotesMissing={yesVotesMissing}
+    />
   );
 };
