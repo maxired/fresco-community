@@ -8,7 +8,7 @@
       "name": "Profit",
       "icon": "noun-coins-1123601.svg",
       "value": 50,
-      "deathMessage": "Your company goes bankruptcy."
+      "deathMessage": "Your company goes into bankruptcy"
     },
     {
       "name": "Customer satisfaction",
@@ -26,7 +26,7 @@
       "name": "Team well-being",
       "icon": "noun-team-4854330.svg",
       "value": 50,
-      "deathMessage": "The CEO has not other choice but to replace you."
+      "deathMessage": "The CEO has no other choice but to replace you"
     }
   ],
   "assetsUrl": "games",
