@@ -34,10 +34,18 @@ export const Game = () => {
   );
   const store = useStore<AppState>();
   const isHost = getIsHost({ currentHost });
-  const yesProgress = useSelector(
-    (state: AppState) => state.voting.yesProgress
+  const yesProgress = useSelector((state: AppState) =>
+    state.voting.answer === "Yes" &&
+    Countdown.from(state.voting.countdown).isLocked
+      ? 1
+      : state.voting.yesProgress
   );
-  const noProgress = useSelector((state: AppState) => state.voting.noProgress);
+  const noProgress = useSelector((state: AppState) =>
+    state.voting.answer === "No" &&
+    Countdown.from(state.voting.countdown).isLocked
+      ? 1
+      : state.voting.noProgress
+  );
   const yesVotesMissing = useSelector(
     (state: AppState) => state.voting.yesVotesMissing
   );
