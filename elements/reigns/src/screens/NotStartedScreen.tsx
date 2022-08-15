@@ -14,7 +14,7 @@ export function NotStartedScreen({
   const messageRef = useTextFit(gameDefinition?.gameName);
 
   return (
-    <div className="game-half first-half game--not-started">
+    <div className="screen game--not-started">
       <div className="end">
         <div className="end__message" ref={messageRef} />
         {isHost && (

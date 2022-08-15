@@ -4,6 +4,7 @@ import { Question } from "../Question";
 import { AnswerArea } from "../AnswerArea";
 import { Countdown } from "../Countdown";
 import { Card, GameDefinition } from "../features/game/types";
+import { AnswerText } from "../AnswerText";
 
 export const StartedScreen = ({
   gameDefinition,
@@ -29,17 +30,36 @@ export const StartedScreen = ({
   doRestartGame: () => void;
 }) => (
   <>
-    <div className="game-half first-half game--started" onClick={doRestartGame}>
-      <Header definition={gameDefinition} stats={currentStats} round={round} />
+    <div className="screen game--started" onClick={doRestartGame}>
+      <Header definition={gameDefinition} stats={currentStats} />
       <Question card={selectedCard} />
+      <div className='answers'>
+        <AnswerText
+          text={selectedCard.answer_no || "No"}
+          answer="no"
+          progress={noProgress}
+          color="#e200a4"
+          votesMissing={noVotesMissing}
+        />
+        <div className='answer'>
+          <div className="round">
+            {gameDefinition.roundName} {round}
+          </div>
+        </div>
+
+        <AnswerText
+        text={selectedCard.answer_yes || "Yes"}
+        answer="yes"
+        progress={yesProgress}
+        color="#9e32d6"
+        votesMissing={yesVotesMissing}
+      />
+
+      </div>
     </div>
-    <div className="game-half answers">
+    <div className="answers floor">
       <AnswerArea
-        text={selectedCard.answer_no || "No"}
         answer="no"
-        progress={noProgress}
-        color="#e200a4"
-        votesMissing={noVotesMissing}
       />
       <div className="answer answer--neutral">
         {countdown.isVoting && (
@@ -48,13 +68,7 @@ export const StartedScreen = ({
           </div>
         )}
       </div>
-      <AnswerArea
-        text={selectedCard.answer_yes || "Yes"}
-        answer="yes"
-        progress={yesProgress}
-        color="#9e32d6"
-        votesMissing={yesVotesMissing}
-      />
+      <AnswerArea answer="yes" />
     </div>
   </>
 );

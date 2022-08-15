@@ -8,7 +8,6 @@
 html,
 body {
   font: 16px "Helvetica Neue", arial, sans-serif;
-  background-color: #313e47;
   margin: 0;
   height: 100%;
   user-select: none;
@@ -26,23 +25,17 @@ body,
 }
 
 .header {
-  color: #fff;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #313e47;
 }
 
 .header__side {
   flex-grow: 1;
 }
 
-.header .round {
-  text-align: right;
-}
-
 .round {
-  color: #fff;
+  text-align: center;
   font-size: 2rem;
 }
 
@@ -63,6 +56,7 @@ button {
   margin-right: auto;
   display: flex;
   justify-content: space-between;
+  flex: 1;
   gap: 32px;
 }
 
@@ -75,7 +69,7 @@ button {
 }
 
 .meter__progress {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #fff;
   border-radius: 5px;
 }
 
@@ -127,8 +121,7 @@ button {
 }
 
 .meter {
-  width: 15vw;
-  color: white;
+  flex: 1;
 }
 
 .meter__label {
@@ -147,15 +140,9 @@ button {
   height: 10px;
   border-radius: 5px;
   background-color: var(--color-primary);
-  transition: width 1s ease-in,
-    background-color var(--stats-color-transition-duration) ease-in;
+  transition: width 1s ease-in, background-color var(--stats-color-transition-duration) ease-in;
 }
 
-.first-half {
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.05);
-}
 
 .fade {
   transition: opacity var(--card-fade-duration) ease;
@@ -167,20 +154,30 @@ button {
 }
 
 .question {
-  flex: 1;
   display: flex;
-  color: #fff;
   overflow: hidden;
-  min-height: 1px;
+  height: 200px;
 }
 
 .question__text-wrap {
+  border-radius: 1vw;
+  background-color: #fff;
   display: flex;
   align-items: center;
   flex-grow: 1;
   font-size: 4vw;
   overflow: hidden;
+  position: relative;
 }
+
+.question__text {
+  margin: 1vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+ }
 
 .question__bearer {
   font-size: 2vw;
@@ -189,6 +186,17 @@ button {
 .answers {
   display: flex;
   flex: 1;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  background-color: #eee;
+}
+
+.floor {
+  padding: 1vw;
+  background-color:#dddddd;
 }
 
 .answer--no {
@@ -211,7 +219,6 @@ button {
   flex: 1;
   display: flex;
   flex-direction: column;
-  color: #fff;
 }
 
 .answer__zone {
@@ -230,8 +237,8 @@ button {
 .answer__text-inner-container {
   height: 16vh;
   position: relative;
-  background-color: #3c4850;
-  border-radius: 30px;
+  background-color: #fff;
+  border-radius: 20px;
 }
 
 .answer__text-background {
@@ -264,7 +271,6 @@ button {
 
 .answer__text {
   text-align: center;
-  color: #fff;
   z-index: 1;
   height: 70%;
   width: 80%;
@@ -314,11 +320,6 @@ button {
   margin: auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.game-half {
-  height: 50%;
-  position: relative;
 }
 
 /* this class is dynamically added by textFit */
