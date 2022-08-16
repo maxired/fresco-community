@@ -29,7 +29,9 @@ export const Question = ({ card }: { card: Card | null }) => {
         />
         <div className="question__bearer">{card.bearer}</div>
       </div>
-      <div className="question__text-wrap" ref={ref} />
+      <div className="question__text-wrap">
+        <div className="question__text" ref={ref} />
+      </div>
     </div>
   );
 };

@@ -1,3 +1,0 @@
-card,id,bearer,conditions,cooldown,weight,override_yes,answer_yes,yes_stat1,yes_stat2,yes_stat3,yes_stat4,yes_custom,answer_no,no_stat1,no_stat2,no_stat3,no_stat4,no_custom
-cooldown-3,card-1,entrepreneur,,3,1,,,0,0,0,0,,,0,0,0,,
-cooldown-1,card-2,customer-support,,,1,,,0,-100,0,0,,,0,0,0,,

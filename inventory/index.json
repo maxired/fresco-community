@@ -152,328 +152,31 @@
     "content": {
       "visuals": [
         {
-          "id": "zde8o0sdltprhz0j0jnab",
+          "id": "fmbrewhok5vmh7slhhfkr",
           "isLocked": false,
-          "zIndex": 221,
+          "zIndex": 2,
           "layer": 0,
-          "renderer": "Rectangle",
+          "renderer": "ConversationZone",
           "transform": {
-            "position": {
-              "x": 0,
-              "y": 0
-            },
-            "size": {
-              "x": 1740,
-              "y": 640
-            },
+            "position": { "x": 10, "y": 0 },
+            "size": { "x": 1800, "y": 920 },
             "rotation": 0
           },
           "appearance": {
             "EVENTS": "",
-            "COLOR": "#5905F8",
-            "STROKE_COLOR": 13224393,
-            "STROKE_THICKNESS": 0,
-            "BORDER_RADIUS": 0,
-            "TEXT_DISABLED": true,
-            "BODY_TYPE": "WALL",
-            "OPACITY": 100
+            "AUTOMUTE": false,
+            "TEXT_DISABLED": true
           }
         },
         {
-          "id": "qyyxc3kge-nq3phm1aq0v",
+          "id": "sgz0ocijei3x-zidhckis",
           "isLocked": false,
-          "zIndex": 222,
-          "layer": 0,
-          "renderer": "LandingZone",
-          "transform": {
-            "position": {
-              "x": 0,
-              "y": 396
-            },
-            "size": {
-              "x": 520,
-              "y": 120
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT_DISABLED": true,
-            "TEXT": "story-quizz-neutral"
-          }
-        },
-        {
-          "id": "yxqya8t87dpqe3kjz6nzf",
-          "isLocked": false,
-          "zIndex": 230,
-          "layer": 0,
-          "renderer": "Rectangle",
-          "transform": {
-            "position": {
-              "x": -584,
-              "y": 440
-            },
-            "size": {
-              "x": 572,
-              "y": 200
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"mezljzbhbdowtosc2lxop\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.no' })\"}},{\"id\":\"yypjpec65doggdgthibpk\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#e200a4\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"dffpqjjhi1h4yvv1k2cqe\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"mgezsn-lyzivq6uholety\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
-            "COLOR": "#5905F8",
-            "STROKE_COLOR": 13224393,
-            "STROKE_THICKNESS": 0,
-            "BORDER_RADIUS": 0,
-            "TEXT_DISABLED": true,
-            "BODY_TYPE": "PASSTHROUGH",
-            "OPACITY": 0
-          }
-        },
-        {
-          "id": "9mn0owh67drtxsuwtijz-",
-          "isLocked": false,
-          "zIndex": 231,
-          "layer": 0,
-          "renderer": "Rectangle",
-          "transform": {
-            "position": {
-              "x": 584.5,
-              "y": 439
-            },
-            "size": {
-              "x": 571,
-              "y": 200
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"v8k_3akjfshcvjw6xfcrp\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.yes' })\"}},{\"id\":\"y3i0iut57-szpwrxdzloq\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#9e32d6\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"ef0krxipjig7ap4u8xl4s\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"_h4x84tmsd2px2wjtqoxo\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
-            "COLOR": "#5905F8",
-            "STROKE_COLOR": 13224393,
-            "STROKE_THICKNESS": 0,
-            "BORDER_RADIUS": 0,
-            "TEXT_DISABLED": true,
-            "BODY_TYPE": "PASSTHROUGH",
-            "OPACITY": 0
-          }
-        },
-        {
-          "id": "oxj6sg2rocwf1mckizsda",
-          "isLocked": false,
-          "zIndex": 223,
-          "layer": 0,
-          "renderer": "IFrame",
-          "transform": {
-            "position": {
-              "x": 0,
-              "y": 100
-            },
-            "size": {
-              "x": 1780,
-              "y": 920
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"ky5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"htyp5uqr0cyxe-y671wbq\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.phase.end.death\",\"scope\":\"global\",\"actions\":[{\"id\":\"ky5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-death.mp3\",\"volume\":\"0.3\"}}]}]",
-            "NAME": "story-quizz",
-            "TEXT_BEHAVIOUR": 2,
-            "STATE": {
-              "selectedCard": null,
-              "phase": "not-started",
-              "stats": [],
-              "gameUrl": "games/gdpr.json",
-              "cards": ""
-            },
-            "PROTECTED_STORAGE": {},
-            "PINNED": false,
-            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/dist/"
-          }
-        },
-        {
-          "id": "z2bh59otjaixetuze-qic",
-          "isLocked": false,
-          "zIndex": 220,
-          "layer": 0,
-          "renderer": "CameraFrame",
-          "transform": {
-            "position": {
-              "x": -3,
-              "y": 112
-            },
-            "size": {
-              "x": 1800,
-              "y": 920
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT_DISABLED": true,
-            "APPEARANCE_CAMERA_MIN_ZOOM": 0,
-            "APPEARANCE_MARGIN": 0
-          }
-        },
-        {
-          "id": "aoy7acumnzsdwbfodo7uh",
-          "isLocked": false,
-          "zIndex": 219,
+          "zIndex": 3,
           "layer": 0,
           "renderer": "Sound",
           "transform": {
-            "position": {
-              "x": 1,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "",
-            "TEXT_DISABLED": true,
-            "RADIUS": "900",
-            "SOURCE": "https://fres-co.github.io/fresco-community/assets/background-sounds/office.mp3",
-            "VOLUME": 5,
-            "LOOP": true,
-            "SPATIALIZED": true
-          }
-        },
-        {
-          "id": "abpnnxcz54p-x2xolt9qs",
-          "isLocked": false,
-          "zIndex": 224,
-          "layer": 0,
-          "renderer": "Raster",
-          "transform": {
-            "position": {
-              "x": 680,
-              "y": 521
-            },
-            "size": {
-              "x": 64,
-              "y": 64
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "BORDER_RADIUS": 10,
-            "STROKE_THICKNESS": 0,
-            "TEXT_DISABLED": true,
-            "BACKGROUND_COLOR": "",
-            "IMAGE_TILED": false,
-            "ACTION": "",
-            "EVENTS": "",
-            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
-            "STROKE_COLOR": 13224393
-          }
-        },
-        {
-          "id": "vxgfs9meg5qc--gjxxuo0",
-          "isLocked": false,
-          "zIndex": 225,
-          "layer": 0,
-          "renderer": "Raster",
-          "transform": {
-            "position": {
-              "x": 618,
-              "y": 536
-            },
-            "size": {
-              "x": 34,
-              "y": 34
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "BORDER_RADIUS": 10,
-            "STROKE_THICKNESS": 0,
-            "TEXT_DISABLED": true,
-            "BACKGROUND_COLOR": "",
-            "IMAGE_TILED": false,
-            "ACTION": "",
-            "EVENTS": "",
-            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
-            "STROKE_COLOR": 13224393
-          }
-        },
-        {
-          "id": "zlxmccsto0rycgesy9cpq",
-          "isLocked": false,
-          "zIndex": 226,
-          "layer": 0,
-          "renderer": "Raster",
-          "transform": {
-            "position": {
-              "x": 571,
-              "y": 536
-            },
-            "size": {
-              "x": 34,
-              "y": 34
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "BORDER_RADIUS": 10,
-            "STROKE_THICKNESS": 0,
-            "TEXT_DISABLED": true,
-            "BACKGROUND_COLOR": "",
-            "IMAGE_TILED": false,
-            "ACTION": "",
-            "EVENTS": "",
-            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
-            "STROKE_COLOR": 13224393
-          }
-        },
-        {
-          "id": "eolco0cygtbt4u9lcygk2",
-          "isLocked": false,
-          "zIndex": 227,
-          "layer": 0,
-          "renderer": "Raster",
-          "transform": {
-            "position": {
-              "x": 524,
-              "y": 536
-            },
-            "size": {
-              "x": 34,
-              "y": 34
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "BORDER_RADIUS": 10,
-            "STROKE_THICKNESS": 0,
-            "TEXT_DISABLED": true,
-            "BACKGROUND_COLOR": "",
-            "IMAGE_TILED": false,
-            "ACTION": "",
-            "EVENTS": "",
-            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
-            "STROKE_COLOR": 13224393
-          }
-        },
-        {
-          "id": "lwwhmffngu0gpnurw8bg5",
-          "isLocked": false,
-          "zIndex": 216,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": {
-              "x": -67,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
+            "position": { "x": -54, "y": 362 },
+            "size": { "x": 30, "y": 30 },
             "rotation": 0
           },
           "appearance": {
@@ -488,20 +191,14 @@
           }
         },
         {
-          "id": "udwa4u4_t-srbrd22fhin",
+          "id": "gp8rfjf1n6hcxaqxa9vdv",
           "isLocked": false,
-          "zIndex": 217,
+          "zIndex": 4,
           "layer": 0,
           "renderer": "Sound",
           "transform": {
-            "position": {
-              "x": 73,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
+            "position": { "x": 86, "y": 362 },
+            "size": { "x": 30, "y": 30 },
             "rotation": 0
           },
           "appearance": {
@@ -516,20 +213,14 @@
           }
         },
         {
-          "id": "udwa4u4_t-srbrd22fhim",
+          "id": "xbad6sn5rumx7v7whiubl",
           "isLocked": false,
-          "zIndex": 218,
+          "zIndex": 5,
           "layer": 0,
           "renderer": "Sound",
           "transform": {
-            "position": {
-              "x": 73,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
+            "position": { "x": 86, "y": 362 },
+            "size": { "x": 30, "y": 30 },
             "rotation": 0
           },
           "appearance": {
@@ -544,20 +235,94 @@
           }
         },
         {
-          "id": "hjj6qlbu2kkzszvsuecv_",
-          "isLocked": true,
-          "zIndex": 229,
+          "id": "hczr3lui83e0cqcalx3yr",
+          "isLocked": false,
+          "zIndex": 6,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": { "x": 14, "y": 362 },
+            "size": { "x": 30, "y": 30 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "",
+            "TEXT_DISABLED": true,
+            "RADIUS": "900",
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/background-sounds/office.mp3",
+            "VOLUME": 5,
+            "LOOP": true,
+            "SPATIALIZED": true
+          }
+        },
+        {
+          "id": "wqmjgrasmos6jkflnxhdk",
+          "isLocked": false,
+          "zIndex": 7,
+          "layer": 0,
+          "renderer": "CameraFrame",
+          "transform": {
+            "position": { "x": 10, "y": 0 },
+            "size": { "x": 1800, "y": 920 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT_DISABLED": true,
+            "APPEARANCE_CAMERA_MIN_ZOOM": 0,
+            "APPEARANCE_MARGIN": 0,
+            "APPEARANCE_SCREEN_PADDING": 0
+          }
+        },
+        {
+          "id": "o64ivegarpvodetnvqvps",
+          "isLocked": false,
+          "zIndex": 8,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": {
-              "x": 65,
-              "y": 440
-            },
-            "size": {
-              "x": 592,
-              "y": 220
-            },
+            "position": { "x": 10, "y": -142 },
+            "size": { "x": 1400, "y": 560 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "COLOR": "transparent",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "WALL",
+            "OPACITY": 100
+          }
+        },
+        {
+          "id": "wgh4qbohlrpk8jkz8rbbm",
+          "isLocked": false,
+          "zIndex": 9,
+          "layer": 0,
+          "renderer": "LandingZone",
+          "transform": {
+            "position": { "x": 7, "y": 343 },
+            "size": { "x": 460, "y": 200 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT_DISABLED": true,
+            "TEXT": "story-quizz-neutral"
+          }
+        },
+        {
+          "id": "jj5l9ydc8ajvow3r6e9f4",
+          "isLocked": false,
+          "zIndex": 10,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": 10, "y": 343.5 },
+            "size": { "x": 420, "y": 217 },
             "rotation": 0
           },
           "appearance": {
@@ -572,62 +337,219 @@
           }
         },
         {
-          "id": "sbhw2yvzllhwg3qrxzfgn",
+          "id": "hj67k1-8bxqkzvafq1kib",
           "isLocked": false,
-          "zIndex": -233,
+          "zIndex": 58,
           "layer": 0,
-          "renderer": "ConversationZone",
+          "renderer": "Rectangle",
           "transform": {
-            "position": {
-              "x": -3,
-              "y": 112
+            "position": { "x": -547, "y": 295 },
+            "size": { "x": 640, "y": 314 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"mezljzbhbdowtosc2lxop\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.no' })\"}},{\"id\":\"yypjpec65doggdgthibpk\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#e200a4\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"dffpqjjhi1h4yvv1k2cqe\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"mgezsn-lyzivq6uholety\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 0
+          }
+        },
+        {
+          "id": "tgzgxuks16whvyv-m-g-m",
+          "isLocked": false,
+          "zIndex": 57,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": 557, "y": 295 },
+            "size": { "x": 620, "y": 314 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"v8k_3akjfshcvjw6xfcrp\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.yes' })\"}},{\"id\":\"y3i0iut57-szpwrxdzloq\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#9e32d6\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"ef0krxipjig7ap4u8xl4s\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"_h4x84tmsd2px2wjtqoxo\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 0
+          }
+        },
+        {
+          "id": "xaa0a4bjcjucagngaxgm9",
+          "isLocked": false,
+          "zIndex": 13,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": { "x": 10, "y": 0 },
+            "size": { "x": 1780, "y": 920 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"cywabds9bnuswuiedixth\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"r_rr7q3vcvwzot0vyyjjg\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.phase.end.death\",\"scope\":\"global\",\"actions\":[{\"id\":\"cgoetw_6zcr2xarzdfiem\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-death.mp3\",\"volume\":\"0.2\"}}]}]",
+            "NAME": "story-quizz",
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": {
+              "selectedCard": null,
+              "phase": "not-started",
+              "stats": [],
+              "gameUrl": "games/gdpr.json",
+              "cards": null
             },
-            "size": {
-              "x": 1800,
-              "y": 920
-            },
+            "PROTECTED_STORAGE": {},
+            "PINNED": false,
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/dist/"
+          }
+        },
+        {
+          "id": "hfeu8bla1sb2uz_tx8vud",
+          "isLocked": false,
+          "zIndex": 14,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": 693, "y": 420 },
+            "size": { "x": 64, "y": 64 },
+            "rotation": 0
+          },
+          "appearance": {
+            "BORDER_RADIUS": 10,
+            "STROKE_THICKNESS": 0,
+            "TEXT_DISABLED": true,
+            "BACKGROUND_COLOR": "",
+            "IMAGE_TILED": false,
+            "ACTION": "",
+            "EVENTS": "",
+            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
+            "STROKE_COLOR": 13224393
+          }
+        },
+        {
+          "id": "gv-lf0uomhsl2qrvmkitn",
+          "isLocked": false,
+          "zIndex": 15,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": 631, "y": 435 },
+            "size": { "x": 34, "y": 34 },
+            "rotation": 0
+          },
+          "appearance": {
+            "BORDER_RADIUS": 10,
+            "STROKE_THICKNESS": 0,
+            "TEXT_DISABLED": true,
+            "BACKGROUND_COLOR": "",
+            "IMAGE_TILED": false,
+            "ACTION": "",
+            "EVENTS": "",
+            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
+            "STROKE_COLOR": 13224393
+          }
+        },
+        {
+          "id": "sugzzep4ezlci2nlmgccc",
+          "isLocked": false,
+          "zIndex": 16,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": 537, "y": 435 },
+            "size": { "x": 34, "y": 34 },
+            "rotation": 0
+          },
+          "appearance": {
+            "BORDER_RADIUS": 10,
+            "STROKE_THICKNESS": 0,
+            "TEXT_DISABLED": true,
+            "BACKGROUND_COLOR": "",
+            "IMAGE_TILED": false,
+            "ACTION": "",
+            "EVENTS": "",
+            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
+            "STROKE_COLOR": 13224393
+          }
+        },
+        {
+          "id": "naqrug2ed_b7lg8doesal",
+          "isLocked": false,
+          "zIndex": 17,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": 584, "y": 435 },
+            "size": { "x": 34, "y": 34 },
+            "rotation": 0
+          },
+          "appearance": {
+            "BORDER_RADIUS": 10,
+            "STROKE_THICKNESS": 0,
+            "TEXT_DISABLED": true,
+            "BACKGROUND_COLOR": "",
+            "IMAGE_TILED": false,
+            "ACTION": "",
+            "EVENTS": "",
+            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
+            "STROKE_COLOR": 13224393
+          }
+        },
+        {
+          "id": "itghtnvs6uhyzonsap6x6",
+          "isLocked": false,
+          "zIndex": 59,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": 7, "y": 317 },
+            "size": { "x": 1800, "y": 280 },
             "rotation": 0
           },
           "appearance": {
             "EVENTS": "",
-            "AUTOMUTE": false,
-            "TEXT_DISABLED": true
+            "COLOR": "transparent",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 100
           }
         }
       ],
       "groups": [
         {
-          "id": "aqwmmu6uoqqsyjskwy1sx",
-          "zIndex": 228,
+          "id": "sdq6--ipv_hc7ig3xurly",
+          "zIndex": 68,
           "isLocked": false,
           "layer": 0,
           "childIds": [
-            "zde8o0sdltprhz0j0jnab",
-            "qyyxc3kge-nq3phm1aq0v",
-            "yxqya8t87dpqe3kjz6nzf",
-            "9mn0owh67drtxsuwtijz-",
-            "oxj6sg2rocwf1mckizsda",
-            "z2bh59otjaixetuze-qic",
-            "aoy7acumnzsdwbfodo7uh",
-            "abpnnxcz54p-x2xolt9qs",
-            "vxgfs9meg5qc--gjxxuo0",
-            "zlxmccsto0rycgesy9cpq",
-            "eolco0cygtbt4u9lcygk2",
-            "lwwhmffngu0gpnurw8bg5",
-            "udwa4u4_t-srbrd22fhin",
-            "udwa4u4_t-srbrd22fhim",
-            "hjj6qlbu2kkzszvsuecv_",
-            "sbhw2yvzllhwg3qrxzfgn"
+            "fmbrewhok5vmh7slhhfkr",
+            "sgz0ocijei3x-zidhckis",
+            "gp8rfjf1n6hcxaqxa9vdv",
+            "xbad6sn5rumx7v7whiubl",
+            "hczr3lui83e0cqcalx3yr",
+            "wqmjgrasmos6jkflnxhdk",
+            "o64ivegarpvodetnvqvps",
+            "wgh4qbohlrpk8jkz8rbbm",
+            "jj5l9ydc8ajvow3r6e9f4",
+            "hj67k1-8bxqkzvafq1kib",
+            "tgzgxuks16whvyv-m-g-m",
+            "xaa0a4bjcjucagngaxgm9",
+            "hfeu8bla1sb2uz_tx8vud",
+            "gv-lf0uomhsl2qrvmkitn",
+            "sugzzep4ezlci2nlmgccc",
+            "naqrug2ed_b7lg8doesal",
+            "itghtnvs6uhyzonsap6x6"
           ],
           "transform": {
-            "position": {
-              "x": -3,
-              "y": 106
-            },
-            "size": {
-              "x": 1800,
-              "y": 932
-            },
+            "position": { "x": 8.5, "y": 0 },
+            "size": { "x": 1803, "y": 920 },
             "rotation": 0
           },
           "rotation": 0

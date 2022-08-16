@@ -20,21 +20,26 @@ export function EndedScreen({
   doRestartGame: () => void;
 }) {
   const endMessage = getEndMessage(gameDefinition, currentStats, isGameWon);
-
-  const messageRef = useTextFit(endMessage);
+  const messageRef = useTextFit(endMessage, 86);
 
   return (
-    <div className="game-half first-half game--ended">
-      <Header definition={gameDefinition} stats={currentStats} round={round} />
+    <>
+      <div className="screen game--ended">
+        <Header definition={gameDefinition} stats={currentStats} />
+        <div className="round">
+          {gameDefinition.roundName} {round}
+        </div>
 
-      <div className="end">
-        <div className="end__message" ref={messageRef} />
-        {isHost && (
-          <button onClick={doRestartGame} className="end__restart_button">
-            Play again
-          </button>
-        )}
+        <div className="end">
+          <div className="end__message" ref={messageRef} />
+          {isHost && (
+            <button onClick={doRestartGame} className="end__restart_button">
+              Play again
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+      <div className="floor" />
+    </>
   );
 }

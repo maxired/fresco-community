@@ -27,7 +27,7 @@ export default function App() {
 
   if (!sdkLoaded || loading === Loading.InProgress) {
     return (
-      <div className="game-half first-half game--loading">
+      <div className="screen game--loading">
         <div className="end">Loading...</div>
       </div>
     );
@@ -35,7 +35,7 @@ export default function App() {
 
   if (loading === Loading.Error) {
     return (
-      <div className="game-half first-half game--error">
+      <div className="screen game--error">
         <div className="end">ERROR :(</div>
       </div>
     );
