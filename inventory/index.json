@@ -152,20 +152,41 @@
     "content": {
       "visuals": [
         {
-          "id": "zde8o0sdltprhz0j0jnab",
+          "id": "to8gwrhoexssnicrgw4wv",
           "isLocked": false,
-          "zIndex": 221,
+          "zIndex": 122,
+          "layer": 0,
+          "renderer": "IFrame",
+          "transform": {
+            "position": { "x": -5640, "y": -48 },
+            "size": { "x": 1780, "y": 920 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"cywabds9bnuswuiedixth\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"r_rr7q3vcvwzot0vyyjjg\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.phase.end.death\",\"scope\":\"global\",\"actions\":[{\"id\":\"cgoetw_6zcr2xarzdfiem\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-death.mp3\",\"volume\":\"0.2\"}}]}]",
+            "NAME": "",
+            "TEXT_BEHAVIOUR": 2,
+            "STATE": {
+              "selectedCard": null,
+              "phase": "not-started",
+              "stats": [],
+              "gameUrl": "games/gdpr.json",
+              "cards": null
+            },
+            "PROTECTED_STORAGE": {},
+            "PINNED": false,
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/dist/"
+          }
+        },
+        {
+          "id": "i-zapiep-yk2fzsopif0g",
+          "isLocked": false,
+          "zIndex": 117,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": {
-              "x": 0,
-              "y": 0
-            },
-            "size": {
-              "x": 1740,
-              "y": 640
-            },
+            "position": { "x": -5640, "y": -190 },
+            "size": { "x": 1400, "y": 560 },
             "rotation": 0
           },
           "appearance": {
@@ -180,20 +201,14 @@
           }
         },
         {
-          "id": "qyyxc3kge-nq3phm1aq0v",
+          "id": "lacs1ar32i_ywjnluwchq",
           "isLocked": false,
-          "zIndex": 222,
+          "zIndex": 118,
           "layer": 0,
           "renderer": "LandingZone",
           "transform": {
-            "position": {
-              "x": 0,
-              "y": 396
-            },
-            "size": {
-              "x": 520,
-              "y": 120
-            },
+            "position": { "x": -5637, "y": 236 },
+            "size": { "x": 520, "y": 120 },
             "rotation": 0
           },
           "appearance": {
@@ -203,20 +218,14 @@
           }
         },
         {
-          "id": "yxqya8t87dpqe3kjz6nzf",
+          "id": "yzv1iah48dh1jn9amw2q4",
           "isLocked": false,
-          "zIndex": 230,
+          "zIndex": 120,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": {
-              "x": -584,
-              "y": 440
-            },
-            "size": {
-              "x": 572,
-              "y": 200
-            },
+            "position": { "x": -6188, "y": 292 },
+            "size": { "x": 640, "y": 224 },
             "rotation": 0
           },
           "appearance": {
@@ -231,20 +240,14 @@
           }
         },
         {
-          "id": "9mn0owh67drtxsuwtijz-",
+          "id": "gqw-qvucqg1cusvqvxt7r",
           "isLocked": false,
-          "zIndex": 231,
+          "zIndex": 121,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": {
-              "x": 584.5,
-              "y": 439
-            },
-            "size": {
-              "x": 571,
-              "y": 200
-            },
+            "position": { "x": -5090, "y": 297 },
+            "size": { "x": 620, "y": 214 },
             "rotation": 0
           },
           "appearance": {
@@ -259,77 +262,33 @@
           }
         },
         {
-          "id": "oxj6sg2rocwf1mckizsda",
+          "id": "b8oufgqafgwta1dp74-xn",
           "isLocked": false,
-          "zIndex": 223,
-          "layer": 0,
-          "renderer": "IFrame",
-          "transform": {
-            "position": {
-              "x": 0,
-              "y": 100
-            },
-            "size": {
-              "x": 1780,
-              "y": 920
-            },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"ky5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"htyp5uqr0cyxe-y671wbq\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.phase.end.death\",\"scope\":\"global\",\"actions\":[{\"id\":\"ky5koxuw_axrspmodcjgy\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-death.mp3\",\"volume\":\"0.3\"}}]}]",
-            "NAME": "story-quizz",
-            "TEXT_BEHAVIOUR": 2,
-            "STATE": {
-              "selectedCard": null,
-              "phase": "not-started",
-              "stats": [],
-              "gameUrl": "games/gdpr.json",
-              "cards": ""
-            },
-            "PROTECTED_STORAGE": {},
-            "PINNED": false,
-            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/dist/"
-          }
-        },
-        {
-          "id": "z2bh59otjaixetuze-qic",
-          "isLocked": false,
-          "zIndex": 220,
+          "zIndex": 116,
           "layer": 0,
           "renderer": "CameraFrame",
           "transform": {
-            "position": {
-              "x": -3,
-              "y": 112
-            },
-            "size": {
-              "x": 1800,
-              "y": 920
-            },
+            "position": { "x": -5640, "y": -48 },
+            "size": { "x": 1800, "y": 920 },
             "rotation": 0
           },
           "appearance": {
             "EVENTS": "",
             "TEXT_DISABLED": true,
             "APPEARANCE_CAMERA_MIN_ZOOM": 0,
-            "APPEARANCE_MARGIN": 0
+            "APPEARANCE_MARGIN": 0,
+            "APPEARANCE_SCREEN_PADDING": 5
           }
         },
         {
-          "id": "aoy7acumnzsdwbfodo7uh",
+          "id": "skbp56ps_y7nyyxejw46c",
           "isLocked": false,
-          "zIndex": 219,
+          "zIndex": 115,
           "layer": 0,
           "renderer": "Sound",
           "transform": {
-            "position": {
-              "x": 1,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
+            "position": { "x": -5636, "y": 314 },
+            "size": { "x": 30, "y": 30 },
             "rotation": 0
           },
           "appearance": {
@@ -344,20 +303,14 @@
           }
         },
         {
-          "id": "abpnnxcz54p-x2xolt9qs",
+          "id": "g8jzvnz2-kbkz7bjw4rec",
           "isLocked": false,
-          "zIndex": 224,
+          "zIndex": 123,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
-            "position": {
-              "x": 680,
-              "y": 521
-            },
-            "size": {
-              "x": 64,
-              "y": 64
-            },
+            "position": { "x": -4957, "y": 372 },
+            "size": { "x": 64, "y": 64 },
             "rotation": 0
           },
           "appearance": {
@@ -373,20 +326,14 @@
           }
         },
         {
-          "id": "vxgfs9meg5qc--gjxxuo0",
+          "id": "hkpoqjb99tyap68racgue",
           "isLocked": false,
-          "zIndex": 225,
+          "zIndex": 124,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
-            "position": {
-              "x": 618,
-              "y": 536
-            },
-            "size": {
-              "x": 34,
-              "y": 34
-            },
+            "position": { "x": -5019, "y": 387 },
+            "size": { "x": 34, "y": 34 },
             "rotation": 0
           },
           "appearance": {
@@ -402,20 +349,14 @@
           }
         },
         {
-          "id": "zlxmccsto0rycgesy9cpq",
+          "id": "zbl0ezpeivbjizxnber32",
           "isLocked": false,
-          "zIndex": 226,
+          "zIndex": 126,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
-            "position": {
-              "x": 571,
-              "y": 536
-            },
-            "size": {
-              "x": 34,
-              "y": 34
-            },
+            "position": { "x": -5066, "y": 387 },
+            "size": { "x": 34, "y": 34 },
             "rotation": 0
           },
           "appearance": {
@@ -431,20 +372,14 @@
           }
         },
         {
-          "id": "eolco0cygtbt4u9lcygk2",
+          "id": "wpou9o5knugxlji71kk2b",
           "isLocked": false,
-          "zIndex": 227,
+          "zIndex": 125,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
-            "position": {
-              "x": 524,
-              "y": 536
-            },
-            "size": {
-              "x": 34,
-              "y": 34
-            },
+            "position": { "x": -5113, "y": 387 },
+            "size": { "x": 34, "y": 34 },
             "rotation": 0
           },
           "appearance": {
@@ -460,20 +395,14 @@
           }
         },
         {
-          "id": "lwwhmffngu0gpnurw8bg5",
+          "id": "ilzogqvl6wdqkzqh7ebao",
           "isLocked": false,
-          "zIndex": 216,
+          "zIndex": 112,
           "layer": 0,
           "renderer": "Sound",
           "transform": {
-            "position": {
-              "x": -67,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
+            "position": { "x": -5704, "y": 314 },
+            "size": { "x": 30, "y": 30 },
             "rotation": 0
           },
           "appearance": {
@@ -488,20 +417,14 @@
           }
         },
         {
-          "id": "udwa4u4_t-srbrd22fhin",
+          "id": "-s5jgx9x4ymqgh2wlcofy",
           "isLocked": false,
-          "zIndex": 217,
+          "zIndex": 113,
           "layer": 0,
           "renderer": "Sound",
           "transform": {
-            "position": {
-              "x": 73,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
+            "position": { "x": -5564, "y": 314 },
+            "size": { "x": 30, "y": 30 },
             "rotation": 0
           },
           "appearance": {
@@ -516,20 +439,14 @@
           }
         },
         {
-          "id": "udwa4u4_t-srbrd22fhim",
+          "id": "ol3x0kohqxp61-p7tdnlh",
           "isLocked": false,
-          "zIndex": 218,
+          "zIndex": 114,
           "layer": 0,
           "renderer": "Sound",
           "transform": {
-            "position": {
-              "x": 73,
-              "y": 474
-            },
-            "size": {
-              "x": 30,
-              "y": 30
-            },
+            "position": { "x": -5564, "y": 314 },
+            "size": { "x": 30, "y": 30 },
             "rotation": 0
           },
           "appearance": {
@@ -544,20 +461,14 @@
           }
         },
         {
-          "id": "hjj6qlbu2kkzszvsuecv_",
-          "isLocked": true,
-          "zIndex": 229,
+          "id": "y4bnxydg3yjfa4x4bptdo",
+          "isLocked": false,
+          "zIndex": 119,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": {
-              "x": 65,
-              "y": 440
-            },
-            "size": {
-              "x": 592,
-              "y": 220
-            },
+            "position": { "x": -5640, "y": 297 },
+            "size": { "x": 460, "y": 214 },
             "rotation": 0
           },
           "appearance": {
@@ -572,20 +483,14 @@
           }
         },
         {
-          "id": "sbhw2yvzllhwg3qrxzfgn",
+          "id": "n7gvmpipoak448tuhrwpc",
           "isLocked": false,
-          "zIndex": -233,
+          "zIndex": 111,
           "layer": 0,
           "renderer": "ConversationZone",
           "transform": {
-            "position": {
-              "x": -3,
-              "y": 112
-            },
-            "size": {
-              "x": 1800,
-              "y": 920
-            },
+            "position": { "x": -5640, "y": -48 },
+            "size": { "x": 1800, "y": 920 },
             "rotation": 0
           },
           "appearance": {
@@ -597,37 +502,31 @@
       ],
       "groups": [
         {
-          "id": "aqwmmu6uoqqsyjskwy1sx",
-          "zIndex": 228,
+          "id": "aidcet5lq7lgh330r687r",
+          "zIndex": 127,
           "isLocked": false,
           "layer": 0,
           "childIds": [
-            "zde8o0sdltprhz0j0jnab",
-            "qyyxc3kge-nq3phm1aq0v",
-            "yxqya8t87dpqe3kjz6nzf",
-            "9mn0owh67drtxsuwtijz-",
-            "oxj6sg2rocwf1mckizsda",
-            "z2bh59otjaixetuze-qic",
-            "aoy7acumnzsdwbfodo7uh",
-            "abpnnxcz54p-x2xolt9qs",
-            "vxgfs9meg5qc--gjxxuo0",
-            "zlxmccsto0rycgesy9cpq",
-            "eolco0cygtbt4u9lcygk2",
-            "lwwhmffngu0gpnurw8bg5",
-            "udwa4u4_t-srbrd22fhin",
-            "udwa4u4_t-srbrd22fhim",
-            "hjj6qlbu2kkzszvsuecv_",
-            "sbhw2yvzllhwg3qrxzfgn"
+            "to8gwrhoexssnicrgw4wv",
+            "i-zapiep-yk2fzsopif0g",
+            "lacs1ar32i_ywjnluwchq",
+            "yzv1iah48dh1jn9amw2q4",
+            "gqw-qvucqg1cusvqvxt7r",
+            "b8oufgqafgwta1dp74-xn",
+            "skbp56ps_y7nyyxejw46c",
+            "g8jzvnz2-kbkz7bjw4rec",
+            "hkpoqjb99tyap68racgue",
+            "zbl0ezpeivbjizxnber32",
+            "wpou9o5knugxlji71kk2b",
+            "ilzogqvl6wdqkzqh7ebao",
+            "-s5jgx9x4ymqgh2wlcofy",
+            "ol3x0kohqxp61-p7tdnlh",
+            "y4bnxydg3yjfa4x4bptdo",
+            "n7gvmpipoak448tuhrwpc"
           ],
           "transform": {
-            "position": {
-              "x": -3,
-              "y": 106
-            },
-            "size": {
-              "x": 1800,
-              "y": 932
-            },
+            "position": { "x": -5640, "y": -48 },
+            "size": { "x": 1800, "y": 920 },
             "rotation": 0
           },
           "rotation": 0

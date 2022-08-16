@@ -11,6 +11,7 @@ body {
   margin: 0;
   height: 100%;
   user-select: none;
+  overflow-x: hidden;
 }
 
 body,
@@ -160,7 +161,7 @@ button {
 }
 
 .question__text-wrap {
-  border-radius: 1vw;
+  border-radius: 30px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -192,11 +193,21 @@ button {
   display: flex;
   flex-direction: column;
   background-color: #eee;
+  height: 75%;
+}
+
+#root {
+  perspective: 600px;
+  padding: 0 10vw;
 }
 
 .floor {
+  display: flex;
+  flex: 1;
   padding: 1vw;
   background-color:#dddddd;
+  transform: rotateX(45deg);
+  transform-origin: top;
 }
 
 .answer--no {
@@ -238,7 +249,7 @@ button {
   height: 16vh;
   position: relative;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 .answer__text-background {
