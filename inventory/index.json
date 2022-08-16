@@ -152,13 +152,242 @@
     "content": {
       "visuals": [
         {
-          "id": "5hth-e8_6lrkp-cebj4ab",
+          "id": "fmbrewhok5vmh7slhhfkr",
           "isLocked": false,
-          "zIndex": 15,
+          "zIndex": 2,
+          "layer": 0,
+          "renderer": "ConversationZone",
+          "transform": {
+            "position": { "x": 10, "y": 0 },
+            "size": { "x": 1800, "y": 920 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "AUTOMUTE": false,
+            "TEXT_DISABLED": true
+          }
+        },
+        {
+          "id": "sgz0ocijei3x-zidhckis",
+          "isLocked": false,
+          "zIndex": 3,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": { "x": -54, "y": 362 },
+            "size": { "x": 30, "y": 30 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "vote-removed.mp3",
+            "TEXT_DISABLED": true,
+            "RADIUS": "6000",
+            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/y2l-bhi5ipc2eprcfo8gr.mp3",
+            "VOLUME": 0,
+            "LOOP": false,
+            "SPATIALIZED": false
+          }
+        },
+        {
+          "id": "gp8rfjf1n6hcxaqxa9vdv",
+          "isLocked": false,
+          "zIndex": 4,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": { "x": 86, "y": 362 },
+            "size": { "x": 30, "y": 30 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "vote-added.mp3",
+            "TEXT_DISABLED": true,
+            "RADIUS": "6000",
+            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/qgzgj6xymmfr9rl5nbujs.mp3",
+            "VOLUME": 0,
+            "LOOP": false,
+            "SPATIALIZED": false
+          }
+        },
+        {
+          "id": "xbad6sn5rumx7v7whiubl",
+          "isLocked": false,
+          "zIndex": 5,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": { "x": 86, "y": 362 },
+            "size": { "x": 30, "y": 30 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "vote-death.mp3",
+            "TEXT_DISABLED": true,
+            "RADIUS": "6000",
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/public/error.mp3",
+            "VOLUME": 0,
+            "LOOP": false,
+            "SPATIALIZED": false
+          }
+        },
+        {
+          "id": "hczr3lui83e0cqcalx3yr",
+          "isLocked": false,
+          "zIndex": 6,
+          "layer": 0,
+          "renderer": "Sound",
+          "transform": {
+            "position": { "x": 14, "y": 362 },
+            "size": { "x": 30, "y": 30 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT": "",
+            "TEXT_DISABLED": true,
+            "RADIUS": "900",
+            "SOURCE": "https://fres-co.github.io/fresco-community/assets/background-sounds/office.mp3",
+            "VOLUME": 5,
+            "LOOP": true,
+            "SPATIALIZED": true
+          }
+        },
+        {
+          "id": "wqmjgrasmos6jkflnxhdk",
+          "isLocked": false,
+          "zIndex": 7,
+          "layer": 0,
+          "renderer": "CameraFrame",
+          "transform": {
+            "position": { "x": 10, "y": 0 },
+            "size": { "x": 1800, "y": 920 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT_DISABLED": true,
+            "APPEARANCE_CAMERA_MIN_ZOOM": 0,
+            "APPEARANCE_MARGIN": 0,
+            "APPEARANCE_SCREEN_PADDING": 0
+          }
+        },
+        {
+          "id": "o64ivegarpvodetnvqvps",
+          "isLocked": false,
+          "zIndex": 8,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": 10, "y": -142 },
+            "size": { "x": 1400, "y": 560 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "COLOR": "transparent",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "WALL",
+            "OPACITY": 100
+          }
+        },
+        {
+          "id": "wgh4qbohlrpk8jkz8rbbm",
+          "isLocked": false,
+          "zIndex": 9,
+          "layer": 0,
+          "renderer": "LandingZone",
+          "transform": {
+            "position": { "x": 7, "y": 343 },
+            "size": { "x": 460, "y": 200 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "",
+            "TEXT_DISABLED": true,
+            "TEXT": "story-quizz-neutral"
+          }
+        },
+        {
+          "id": "jj5l9ydc8ajvow3r6e9f4",
+          "isLocked": false,
+          "zIndex": 10,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": 10, "y": 343.5 },
+            "size": { "x": 420, "y": 217 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 0
+          }
+        },
+        {
+          "id": "hj67k1-8bxqkzvafq1kib",
+          "isLocked": false,
+          "zIndex": 58,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": -547, "y": 295 },
+            "size": { "x": 640, "y": 314 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"mezljzbhbdowtosc2lxop\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.no' })\"}},{\"id\":\"yypjpec65doggdgthibpk\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#e200a4\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"dffpqjjhi1h4yvv1k2cqe\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"mgezsn-lyzivq6uholety\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 0
+          }
+        },
+        {
+          "id": "tgzgxuks16whvyv-m-g-m",
+          "isLocked": false,
+          "zIndex": 57,
+          "layer": 0,
+          "renderer": "Rectangle",
+          "transform": {
+            "position": { "x": 557, "y": 295 },
+            "size": { "x": 620, "y": 314 },
+            "rotation": 0
+          },
+          "appearance": {
+            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"v8k_3akjfshcvjw6xfcrp\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.yes' })\"}},{\"id\":\"y3i0iut57-szpwrxdzloq\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#9e32d6\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"ef0krxipjig7ap4u8xl4s\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"_h4x84tmsd2px2wjtqoxo\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
+            "COLOR": "#5905F8",
+            "STROKE_COLOR": 13224393,
+            "STROKE_THICKNESS": 0,
+            "BORDER_RADIUS": 0,
+            "TEXT_DISABLED": true,
+            "BODY_TYPE": "PASSTHROUGH",
+            "OPACITY": 0
+          }
+        },
+        {
+          "id": "xaa0a4bjcjucagngaxgm9",
+          "isLocked": false,
+          "zIndex": 13,
           "layer": 0,
           "renderer": "IFrame",
           "transform": {
-            "position": { "x": 0, "y": 0 },
+            "position": { "x": 10, "y": 0 },
             "size": { "x": 1780, "y": 920 },
             "rotation": 0
           },
@@ -175,141 +404,17 @@
             },
             "PROTECTED_STORAGE": {},
             "PINNED": false,
-            "SOURCE": "https://dev.fres.co:3001/"
+            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/dist/"
           }
         },
         {
-          "id": "xdp6dgsiondxkeqr3unot",
-          "isLocked": false,
-          "zIndex": 10,
-          "layer": 0,
-          "renderer": "Rectangle",
-          "transform": {
-            "position": { "x": 0, "y": -142 },
-            "size": { "x": 1400, "y": 560 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "COLOR": "#5905F8",
-            "STROKE_COLOR": 13224393,
-            "STROKE_THICKNESS": 0,
-            "BORDER_RADIUS": 0,
-            "TEXT_DISABLED": true,
-            "BODY_TYPE": "WALL",
-            "OPACITY": 100
-          }
-        },
-        {
-          "id": "o9abf4lofcjzywpq64db_",
-          "isLocked": false,
-          "zIndex": 11,
-          "layer": 0,
-          "renderer": "LandingZone",
-          "transform": {
-            "position": { "x": -3, "y": 334 },
-            "size": { "x": 460, "y": 220 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT_DISABLED": true,
-            "TEXT": "story-quizz-neutral"
-          }
-        },
-        {
-          "id": "fhenvmadruvmnlqjpej83",
-          "isLocked": false,
-          "zIndex": 13,
-          "layer": 0,
-          "renderer": "Rectangle",
-          "transform": {
-            "position": { "x": -548, "y": 340 },
-            "size": { "x": 640, "y": 224 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"mezljzbhbdowtosc2lxop\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.no' })\"}},{\"id\":\"yypjpec65doggdgthibpk\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#e200a4\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"dffpqjjhi1h4yvv1k2cqe\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"mgezsn-lyzivq6uholety\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
-            "COLOR": "#5905F8",
-            "STROKE_COLOR": 13224393,
-            "STROKE_THICKNESS": 0,
-            "BORDER_RADIUS": 0,
-            "TEXT_DISABLED": true,
-            "BODY_TYPE": "PASSTHROUGH",
-            "OPACITY": 0
-          }
-        },
-        {
-          "id": "1ucucesrohlon8pav_k0l",
+          "id": "hfeu8bla1sb2uz_tx8vud",
           "isLocked": false,
           "zIndex": 14,
           "layer": 0,
-          "renderer": "Rectangle",
-          "transform": {
-            "position": { "x": 550, "y": 345 },
-            "size": { "x": 620, "y": 214 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "[{\"event\":\"avatar.stopped.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"v8k_3akjfshcvjw6xfcrp\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.yes' })\"}},{\"id\":\"y3i0iut57-szpwrxdzloq\",\"type\":\"SET_PARTICIPANT_COLOR\",\"payload\":{\"color\":\"#9e32d6\"}}]},{\"event\":\"avatar.left.zone\",\"scope\":\"self\",\"actions\":[{\"id\":\"ef0krxipjig7ap4u8xl4s\",\"type\":\"SCRIPT\",\"payload\":{\"script\":\"fresco.triggerEvent({ eventName: 'custom.reign.remove-vote' })\"}},{\"id\":\"_h4x84tmsd2px2wjtqoxo\",\"type\":\"RESET_PARTICIPANT_COLOR\",\"payload\":{}}]}]",
-            "COLOR": "#5905F8",
-            "STROKE_COLOR": 13224393,
-            "STROKE_THICKNESS": 0,
-            "BORDER_RADIUS": 0,
-            "TEXT_DISABLED": true,
-            "BODY_TYPE": "PASSTHROUGH",
-            "OPACITY": 0
-          }
-        },
-        {
-          "id": "soac8preoxldpgoc0exww",
-          "isLocked": false,
-          "zIndex": 9,
-          "layer": 0,
-          "renderer": "CameraFrame",
-          "transform": {
-            "position": { "x": 0, "y": 0 },
-            "size": { "x": 1800, "y": 920 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT_DISABLED": true,
-            "APPEARANCE_CAMERA_MIN_ZOOM": 0,
-            "APPEARANCE_MARGIN": 0,
-            "APPEARANCE_SCREEN_PADDING": 0
-          }
-        },
-        {
-          "id": "flu1bvzmfgo8qy4gcryn_",
-          "isLocked": false,
-          "zIndex": 8,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": { "x": 4, "y": 362 },
-            "size": { "x": 30, "y": 30 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "",
-            "TEXT_DISABLED": true,
-            "RADIUS": "900",
-            "SOURCE": "https://fres-co.github.io/fresco-community/assets/background-sounds/office.mp3",
-            "VOLUME": 5,
-            "LOOP": true,
-            "SPATIALIZED": true
-          }
-        },
-        {
-          "id": "0iguflowddisfi8g4sxj0",
-          "isLocked": false,
-          "zIndex": 16,
-          "layer": 0,
           "renderer": "Raster",
           "transform": {
-            "position": { "x": 683, "y": 420 },
+            "position": { "x": 693, "y": 420 },
             "size": { "x": 64, "y": 64 },
             "rotation": 0
           },
@@ -326,13 +431,59 @@
           }
         },
         {
-          "id": "wzrdt99utm4u8bskj0gsf",
+          "id": "gv-lf0uomhsl2qrvmkitn",
+          "isLocked": false,
+          "zIndex": 15,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": 631, "y": 435 },
+            "size": { "x": 34, "y": 34 },
+            "rotation": 0
+          },
+          "appearance": {
+            "BORDER_RADIUS": 10,
+            "STROKE_THICKNESS": 0,
+            "TEXT_DISABLED": true,
+            "BACKGROUND_COLOR": "",
+            "IMAGE_TILED": false,
+            "ACTION": "",
+            "EVENTS": "",
+            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
+            "STROKE_COLOR": 13224393
+          }
+        },
+        {
+          "id": "sugzzep4ezlci2nlmgccc",
+          "isLocked": false,
+          "zIndex": 16,
+          "layer": 0,
+          "renderer": "Raster",
+          "transform": {
+            "position": { "x": 537, "y": 435 },
+            "size": { "x": 34, "y": 34 },
+            "rotation": 0
+          },
+          "appearance": {
+            "BORDER_RADIUS": 10,
+            "STROKE_THICKNESS": 0,
+            "TEXT_DISABLED": true,
+            "BACKGROUND_COLOR": "",
+            "IMAGE_TILED": false,
+            "ACTION": "",
+            "EVENTS": "",
+            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
+            "STROKE_COLOR": 13224393
+          }
+        },
+        {
+          "id": "naqrug2ed_b7lg8doesal",
           "isLocked": false,
           "zIndex": 17,
           "layer": 0,
           "renderer": "Raster",
           "transform": {
-            "position": { "x": 621, "y": 435 },
+            "position": { "x": 584, "y": 435 },
             "size": { "x": 34, "y": 34 },
             "rotation": 0
           },
@@ -349,184 +500,56 @@
           }
         },
         {
-          "id": "x1ybor0lekrv-evklxple",
+          "id": "itghtnvs6uhyzonsap6x6",
           "isLocked": false,
-          "zIndex": 19,
-          "layer": 0,
-          "renderer": "Raster",
-          "transform": {
-            "position": { "x": 574, "y": 435 },
-            "size": { "x": 34, "y": 34 },
-            "rotation": 0
-          },
-          "appearance": {
-            "BORDER_RADIUS": 10,
-            "STROKE_THICKNESS": 0,
-            "TEXT_DISABLED": true,
-            "BACKGROUND_COLOR": "",
-            "IMAGE_TILED": false,
-            "ACTION": "",
-            "EVENTS": "",
-            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
-            "STROKE_COLOR": 13224393
-          }
-        },
-        {
-          "id": "1sz52_ohtvsloagc5vazz",
-          "isLocked": false,
-          "zIndex": 18,
-          "layer": 0,
-          "renderer": "Raster",
-          "transform": {
-            "position": { "x": 527, "y": 435 },
-            "size": { "x": 34, "y": 34 },
-            "rotation": 0
-          },
-          "appearance": {
-            "BORDER_RADIUS": 10,
-            "STROKE_THICKNESS": 0,
-            "TEXT_DISABLED": true,
-            "BACKGROUND_COLOR": "",
-            "IMAGE_TILED": false,
-            "ACTION": "",
-            "EVENTS": "",
-            "SOURCE": "https://fresco-upload-test.s3.amazonaws.com/public/z5blfymgs34e1efd9lcl9.png",
-            "STROKE_COLOR": 13224393
-          }
-        },
-        {
-          "id": "iiljnod1qnaps7mer2h8z",
-          "isLocked": false,
-          "zIndex": 5,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": { "x": -64, "y": 362 },
-            "size": { "x": 30, "y": 30 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "vote-removed.mp3",
-            "TEXT_DISABLED": true,
-            "RADIUS": "6000",
-            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/y2l-bhi5ipc2eprcfo8gr.mp3",
-            "VOLUME": 0,
-            "LOOP": false,
-            "SPATIALIZED": false
-          }
-        },
-        {
-          "id": "0tvklnt_ks5er_1jwrl5y",
-          "isLocked": false,
-          "zIndex": 6,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": { "x": 76, "y": 362 },
-            "size": { "x": 30, "y": 30 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "vote-added.mp3",
-            "TEXT_DISABLED": true,
-            "RADIUS": "6000",
-            "SOURCE": "https://fresco-upload-dev.s3.amazonaws.com/public/qgzgj6xymmfr9rl5nbujs.mp3",
-            "VOLUME": 0,
-            "LOOP": false,
-            "SPATIALIZED": false
-          }
-        },
-        {
-          "id": "smedm09v7zc8flzula6yv",
-          "isLocked": false,
-          "zIndex": 7,
-          "layer": 0,
-          "renderer": "Sound",
-          "transform": {
-            "position": { "x": 76, "y": 362 },
-            "size": { "x": 30, "y": 30 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "TEXT": "vote-death.mp3",
-            "TEXT_DISABLED": true,
-            "RADIUS": "6000",
-            "SOURCE": "https://fres-co.github.io/fresco-community/elements/reigns/public/error.mp3",
-            "VOLUME": 0,
-            "LOOP": false,
-            "SPATIALIZED": false
-          }
-        },
-        {
-          "id": "0pqeaceldg4mm0gstsriw",
-          "isLocked": false,
-          "zIndex": 12,
+          "zIndex": 59,
           "layer": 0,
           "renderer": "Rectangle",
           "transform": {
-            "position": { "x": 0, "y": 335 },
-            "size": { "x": 420, "y": 200 },
+            "position": { "x": 7, "y": 317 },
+            "size": { "x": 1800, "y": 280 },
             "rotation": 0
           },
           "appearance": {
-            "EVENTS": "[]",
-            "COLOR": "#5905F8",
+            "EVENTS": "",
+            "COLOR": "transparent",
             "STROKE_COLOR": 13224393,
             "STROKE_THICKNESS": 0,
             "BORDER_RADIUS": 0,
             "TEXT_DISABLED": true,
             "BODY_TYPE": "PASSTHROUGH",
-            "OPACITY": 0
-          }
-        },
-        {
-          "id": "sddggewrljx2ya6lulddw",
-          "isLocked": false,
-          "zIndex": 4,
-          "layer": 0,
-          "renderer": "ConversationZone",
-          "transform": {
-            "position": { "x": 0, "y": 0 },
-            "size": { "x": 1800, "y": 920 },
-            "rotation": 0
-          },
-          "appearance": {
-            "EVENTS": "",
-            "AUTOMUTE": false,
-            "TEXT_DISABLED": true
+            "OPACITY": 100
           }
         }
       ],
       "groups": [
         {
-          "id": "xvivahbh40uvrp5xgjwzn",
-          "zIndex": 20,
+          "id": "sdq6--ipv_hc7ig3xurly",
+          "zIndex": 68,
           "isLocked": false,
           "layer": 0,
           "childIds": [
-            "5hth-e8_6lrkp-cebj4ab",
-            "xdp6dgsiondxkeqr3unot",
-            "o9abf4lofcjzywpq64db_",
-            "fhenvmadruvmnlqjpej83",
-            "1ucucesrohlon8pav_k0l",
-            "soac8preoxldpgoc0exww",
-            "flu1bvzmfgo8qy4gcryn_",
-            "0iguflowddisfi8g4sxj0",
-            "wzrdt99utm4u8bskj0gsf",
-            "x1ybor0lekrv-evklxple",
-            "1sz52_ohtvsloagc5vazz",
-            "iiljnod1qnaps7mer2h8z",
-            "0tvklnt_ks5er_1jwrl5y",
-            "smedm09v7zc8flzula6yv",
-            "0pqeaceldg4mm0gstsriw",
-            "sddggewrljx2ya6lulddw"
+            "fmbrewhok5vmh7slhhfkr",
+            "sgz0ocijei3x-zidhckis",
+            "gp8rfjf1n6hcxaqxa9vdv",
+            "xbad6sn5rumx7v7whiubl",
+            "hczr3lui83e0cqcalx3yr",
+            "wqmjgrasmos6jkflnxhdk",
+            "o64ivegarpvodetnvqvps",
+            "wgh4qbohlrpk8jkz8rbbm",
+            "jj5l9ydc8ajvow3r6e9f4",
+            "hj67k1-8bxqkzvafq1kib",
+            "tgzgxuks16whvyv-m-g-m",
+            "xaa0a4bjcjucagngaxgm9",
+            "hfeu8bla1sb2uz_tx8vud",
+            "gv-lf0uomhsl2qrvmkitn",
+            "sugzzep4ezlci2nlmgccc",
+            "naqrug2ed_b7lg8doesal",
+            "itghtnvs6uhyzonsap6x6"
           ],
           "transform": {
-            "position": { "x": 0, "y": 0 },
-            "size": { "x": 1800, "y": 920 },
+            "position": { "x": 8.5, "y": 0 },
+            "size": { "x": 1803, "y": 920 },
             "rotation": 0
           },
           "rotation": 0
