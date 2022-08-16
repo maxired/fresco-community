@@ -4,9 +4,10 @@ import { useRoundedRectangleProgress } from "./features/voting/useRoundedRectang
 import { AppState } from "./store";
 import { useTextFit } from "./useTextFit";
 
+const VOTES_MISSING_SUFFIX = "missing until majority";
 const getVotesMissingMessage = (votesMissing: number) => {
-  if (votesMissing === 1) return "1 vote missing";
-  return `${votesMissing} votes missing`;
+  if (votesMissing === 1) return `1 vote ${VOTES_MISSING_SUFFIX}`;
+  return `${votesMissing} votes ${VOTES_MISSING_SUFFIX}`;
 };
 
 type Props = {
@@ -58,7 +59,10 @@ export const AnswerText = ({
           </div>
         </div>
         <div
-          className={clsx("answer__votes-missing fade", !fadeAnswer && "fade--in")}
+          className={clsx(
+            "answer__votes-missing fade",
+            !fadeAnswer && "fade--in"
+          )}
           data-testid={`${answer}-votes-missing`}
         >
           {!!votesMissing && votesMissing < 4 && (
