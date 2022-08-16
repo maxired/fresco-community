@@ -164,7 +164,7 @@
           },
           "appearance": {
             "EVENTS": "[{\"event\":\"custom.reigns.voteAdded\",\"scope\":\"global\",\"actions\":[{\"id\":\"cywabds9bnuswuiedixth\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-added.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.voteRemoved\",\"scope\":\"global\",\"actions\":[{\"id\":\"r_rr7q3vcvwzot0vyyjjg\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-removed.mp3\",\"volume\":\"0.2\"}}]},{\"event\":\"custom.reigns.phase.end.death\",\"scope\":\"global\",\"actions\":[{\"id\":\"cgoetw_6zcr2xarzdfiem\",\"type\":\"PLAY_SOUND\",\"payload\":{\"soundName\":\"vote-death.mp3\",\"volume\":\"0.2\"}}]}]",
-            "NAME": "",
+            "NAME": "story-quizz",
             "TEXT_BEHAVIOUR": 2,
             "STATE": {
               "selectedCard": null,
