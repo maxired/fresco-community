@@ -33,34 +33,39 @@ export const StartedScreen = ({
     <div className="screen game--started" onClick={doRestartGame}>
       <Header definition={gameDefinition} stats={currentStats} />
       <Question card={selectedCard} />
-      <div className='answers'>
-        <AnswerText
-          text={selectedCard.answer_no || "No"}
-          answer="no"
-          progress={noProgress}
-          color="#e200a4"
-          votesMissing={noVotesMissing}
-        />
-        <div className='answer'>
+      <div className="answers">
+        {selectedCard.answer_no ? (
+          <AnswerText
+            text={selectedCard.answer_no || "No"}
+            answer="no"
+            progress={noProgress}
+            color="#e200a4"
+            votesMissing={noVotesMissing}
+          />
+        ) : (
+          <div className="answer" />
+        )}
+        <div className="answer">
           <div className="round">
             {gameDefinition.roundName} {round}
           </div>
         </div>
 
-        <AnswerText
-        text={selectedCard.answer_yes || "Yes"}
-        answer="yes"
-        progress={yesProgress}
-        color="#9e32d6"
-        votesMissing={yesVotesMissing}
-      />
-
+        {selectedCard.answer_yes ? (
+          <AnswerText
+            text={selectedCard.answer_yes || "Yes"}
+            answer="yes"
+            progress={yesProgress}
+            color="#9e32d6"
+            votesMissing={yesVotesMissing}
+          />
+        ) : (
+          <div className="answer" />
+        )}
       </div>
     </div>
     <div className="answers floor">
-      <AnswerArea
-        answer="no"
-      />
+      <AnswerArea answer="no" visible={Boolean(selectedCard.answer_no)} />
       <div className="answer answer--neutral">
         {countdown.isVoting && (
           <div className="countdown" data-testid="countdown">
@@ -68,7 +73,7 @@ export const StartedScreen = ({
           </div>
         )}
       </div>
-      <AnswerArea answer="yes" />
+      <AnswerArea answer="yes" visible={Boolean(selectedCard.answer_yes)} />
     </div>
   </>
 );
